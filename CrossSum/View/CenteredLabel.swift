@@ -16,7 +16,7 @@ class CenteredLabel: UIView {
             label.text = newValue
             label.sizeToFit()
             setNeedsLayout()
-          layoutIfNeeded()
+            layoutIfNeeded()
         }
     }
     

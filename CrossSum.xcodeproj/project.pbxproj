@@ -158,9 +158,9 @@
 		7C3C3F6E2159C74200BD026A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7C3C3F502159961400BD026A /* UIView+AutolayoutConvenience.swift */,
 				7C3C3F4F2159961400BD026A /* CenteredLabel.swift */,
 				7C3C3F5721599B8400BD026A /* RationalLabel.swift */,
+				7C3C3F502159961400BD026A /* UIView+AutolayoutConvenience.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
