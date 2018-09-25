@@ -8,6 +8,8 @@
 
 import XCTest
 
+// NOTE: as of Sep 24, 2018, I've disabled this test target in the Scheme to speed up testing time, which is fine because there's noting here yet
+
 class CrossSumUITests: XCTestCase {
 
     override func setUp() {

@@ -10,9 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var centeredLabel: CenteredLabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        centeredLabel.text = "hi"
+//        centeredLabel.label.text = "hello"
     }
 
 
