@@ -22,7 +22,7 @@ class RationalLabel: UIView {
                 return
             }
             
-            if integerPart != 0 { // || fractionalPart.numerator == 0  {
+            if integerPart != 0 { 
                 self.wholeNumberLabel.text = String(integerPart)
             }
             else if fractionalPart.numerator == 0 {
@@ -116,16 +116,29 @@ class RationalLabel: UIView {
         
         self.translatesAutoresizingMaskIntoConstraints = false
         
-        setupConstraints()
-        
         // ensure that label is in the view hierarchy as soon as init has been called
         wholeNumberLabel.text = "wl"
         numeratorLabel.text = "nl"
         denominatorLabel.text = "dl"
         fractionBar.isHidden = true
+    
+        setupConstraints()
     }
 
     func setupConstraints() {
+        
+        wholeNumberLabel.constrain(to: [
+            
+            ])
+        numeratorLabel.constrain(to: [
+            
+            ])
+        denominatorLabel.constrain(to: [
+            
+            ])
+        fractionBar.constrain(to: [
+            
+            ])
         
     }
 

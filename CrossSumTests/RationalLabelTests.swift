@@ -146,6 +146,22 @@ class RationalLabelTests: XCTestCase {
         XCTAssertEqual(sut.denominatorLabel.font, UIFont.systemFont(ofSize: 13))
     }
     
+    func testAutolayoutIsValid() {
+        let sut = createSUT()
+
+        XCTAssertFalse(sut.rationalLabel.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertFalse(sut.wholeNumberLabel.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertFalse(sut.numeratorLabel.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertFalse(sut.denominatorLabel.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertFalse(sut.fractionBar.translatesAutoresizingMaskIntoConstraints)
+
+        XCTAssertFalse(sut.rationalLabel.hasAmbiguousLayout)
+        XCTAssertFalse(sut.wholeNumberLabel.hasAmbiguousLayout)
+        XCTAssertFalse(sut.numeratorLabel.hasAmbiguousLayout)
+        XCTAssertFalse(sut.denominatorLabel.hasAmbiguousLayout)
+        XCTAssertFalse(sut.fractionBar.hasAmbiguousLayout)
+   }
+
     // MARK:-
     
     func createSUT() -> (rationalLabel:RationalLabel,
