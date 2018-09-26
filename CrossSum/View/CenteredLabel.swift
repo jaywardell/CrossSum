@@ -84,9 +84,9 @@ class CenteredLabel: UIView {
     
     private func updateLayout() {
 
+        zeroWidth.isActive = text == nil
         leadingMargin.isActive = text != nil
         trailingMargin.isActive = text != nil
-        zeroWidth.isActive = text == nil
         
         label.sizeToFit()
         setNeedsLayout()
