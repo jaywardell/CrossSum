@@ -12,10 +12,6 @@ class RationalLabel: UIView {
 
     private func updateLayout() {
         
-        wholeNumberLabel.directionalLayoutMargins = (wholeNumberLabel.text ?? "").count != 0 ? defaultLayoutMargins : .zero
-        numeratorLabel.directionalLayoutMargins = (numeratorLabel.text ?? "").count != 0 ? defaultLayoutMargins : .zero
-        denominatorLabel.directionalLayoutMargins = (denominatorLabel.text ?? "").count != 0 ? defaultLayoutMargins : .zero
-
         wholeNumberLabel.sizeToFit()
         numeratorLabel.sizeToFit()
         denominatorLabel.sizeToFit()
@@ -55,14 +51,14 @@ class RationalLabel: UIView {
                 self.denominatorLabel.text = String(fractionalPart.denominator)
             }
             else {
-                self.numeratorLabel.text = nil
-                self.denominatorLabel.text = nil
+                ignoringAutolayoutWarnings { // call to updateLayout() will correct constraints issues
+                    self.numeratorLabel.text = nil
+                    self.denominatorLabel.text = nil
+                }
             }
             updateLayout()
         }
     }
-    
-    private let defaultLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
     
     var textColor : UIColor {
         get {  return wholeNumberLabel.textColor }
@@ -80,6 +76,7 @@ class RationalLabel: UIView {
             wholeNumberLabel.font = newValue
             numeratorLabel.font = newValue.withSize(newValue.pointSize * 13/34)
             denominatorLabel.font = newValue.withSize(newValue.pointSize * 13/34)
+            updateLayout()
         }
     }
     
@@ -143,7 +140,7 @@ class RationalLabel: UIView {
         setupConstraints()
     }
 
-    func setupConstraints() {
+    private func setupConstraints() {
         
         wholeNumberLabel.constrain(to: [
             wholeNumberLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -158,15 +155,15 @@ class RationalLabel: UIView {
             numeratorLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             numeratorLabel.bottomAnchor.constraint(equalTo: fractionBar.topAnchor),
             
-//            numeratorLabel.heightAnchor.constraint(equalTo: wholeNumberLabel.heightAnchor, multiplier: 13/34),
+            numeratorLabel.heightAnchor.constraint(equalTo: wholeNumberLabel.heightAnchor, multiplier: 13/34),
 
-            numeratorLabel.heightAnchor.constraint(greaterThanOrEqualTo: numeratorLabel.widthAnchor, multiplier: 1)
+//            numeratorLabel.heightAnchor.constraint(greaterThanOrEqualTo: numeratorLabel.heightAnchor, multiplier: 1)
             ])
         
         denominatorLabel.constrain(to: [
-            denominatorLabel.leadingAnchor.constraint(equalTo: wholeNumberLabel.trailingAnchor),
+            denominatorLabel.leadingAnchor.constraint(equalTo: numeratorLabel.leadingAnchor),
             denominatorLabel.topAnchor.constraint(equalTo: fractionBar.bottomAnchor),
-            denominatorLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            denominatorLabel.trailingAnchor.constraint(equalTo: numeratorLabel.trailingAnchor),
             denominatorLabel.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor),
             
             denominatorLabel.widthAnchor.constraint(equalTo: numeratorLabel.widthAnchor, multiplier: 1),
@@ -177,7 +174,7 @@ class RationalLabel: UIView {
         
         fractionBar.constrain(to: [
             fractionBar.leadingAnchor.constraint(equalTo: numeratorLabel.leadingAnchor),
-            fractionBar.widthAnchor.constraint(equalTo: numeratorLabel.widthAnchor),
+            fractionBar.trailingAnchor.constraint(equalTo: numeratorLabel.trailingAnchor),
             // TODO: make this depend on the font ligature
             fractionBar.heightAnchor.constraint(equalToConstant: 5)
             ])

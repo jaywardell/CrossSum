@@ -167,6 +167,26 @@ extension UIView {
     }
 }
 
+// MARK:- UIViewAlertForUnsatisfiableConstraints
+
+extension UIView {
+    
+    /// calls the block passed in with UIViewAlertForUnsatisfiableConstraints logging turned off
+    ///
+    /// Use this in situations where you know that an unsatisfiable autolayout situation will occur but you know it can be ignored.
+    /// For example, if you will immediately change one or more constraints to bring things back into compliance
+    /// - Parameter callback: a block of code to be executed that you know may cause an _UIConstraintBasedLayoutLogUnsatisfiable to be logged and that you know is uninteresting to you
+    func ignoringAutolayoutWarnings(_ callback:()->()) {
+        
+        UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
+
+        callback()
+        
+        UserDefaults.standard.setValue(true, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
+
+    }
+}
+
 // we need to be able to refer to a UIVIew or a UILayoutGuide for the purposes of various anchors
 protocol LayoutPositioning {
     

@@ -82,7 +82,7 @@ class CenteredLabelTests: XCTestCase {
         sut.text = "abc"
 
         sut.text = nil
-        XCTAssertEqual(sut.frame.width, 16)
+        XCTAssertEqual(sut.frame.width, 0)
         XCTAssertEqual(sut.frame.height, 0)
         XCTAssertEqual(label.frame.width, 0)
         XCTAssertEqual(label.frame.height, 0)

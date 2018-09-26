@@ -14,9 +14,7 @@ class CenteredLabel: UIView {
         get { return label.text }
         set {
             label.text = newValue
-            label.sizeToFit()
-            setNeedsLayout()
-            layoutIfNeeded()
+            updateLayout()
         }
     }
     
@@ -40,14 +38,19 @@ class CenteredLabel: UIView {
         }
     }
     
+    private lazy var leadingMargin = label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8)
+    private lazy var trailingMargin = label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+    private lazy var zeroWidth = widthAnchor.constraint(equalToConstant: 0)
+
     private lazy var label : UILabel = {
         let out = UILabel()
         out.font = UIFont.preferredFont(forTextStyle: .body)
         addSubview(out)
         
-        out.anchor(leading: leadingAnchor, trailing: trailingAnchor, middle: centerYAnchor, padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8))
-        
         out.constrain(to: [
+            
+            out.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
                 out.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: 0),
                 out.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: 0)
             ])
@@ -73,5 +76,20 @@ class CenteredLabel: UIView {
         
         // ensure that label is in the view hierarchy as soon as init has been called
         label.text = nil
+        
+        updateLayout()
+    }
+    
+    // MARK:-
+    
+    private func updateLayout() {
+
+        leadingMargin.isActive = text != nil
+        trailingMargin.isActive = text != nil
+        zeroWidth.isActive = text == nil
+        
+        label.sizeToFit()
+        setNeedsLayout()
+        layoutIfNeeded()
     }
 }
