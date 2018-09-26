@@ -12,7 +12,6 @@
 		7C3C3F27215995EE00BD026A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C3C3F25215995EE00BD026A /* Main.storyboard */; };
 		7C3C3F29215995F000BD026A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C3C3F28215995F000BD026A /* Assets.xcassets */; };
 		7C3C3F2C215995F000BD026A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C3C3F2A215995F000BD026A /* LaunchScreen.storyboard */; };
-		7C3C3F37215995F000BD026A /* CrossSumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F36215995F000BD026A /* CrossSumTests.swift */; };
 		7C3C3F42215995F000BD026A /* CrossSumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F41215995F000BD026A /* CrossSumUITests.swift */; };
 		7C3C3F512159961400BD026A /* CenteredLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F4F2159961400BD026A /* CenteredLabel.swift */; };
 		7C3C3F522159961400BD026A /* UIView+AutolayoutConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F502159961400BD026A /* UIView+AutolayoutConvenience.swift */; };
@@ -50,7 +49,6 @@
 		7C3C3F2B215995F000BD026A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C3C3F2D215995F000BD026A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C3C3F32215995F000BD026A /* CrossSumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrossSumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7C3C3F36215995F000BD026A /* CrossSumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossSumTests.swift; sourceTree = "<group>"; };
 		7C3C3F38215995F000BD026A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C3C3F3D215995F000BD026A /* CrossSumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrossSumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C3C3F41215995F000BD026A /* CrossSumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossSumUITests.swift; sourceTree = "<group>"; };
@@ -129,10 +127,9 @@
 		7C3C3F35215995F000BD026A /* CrossSumTests */ = {
 			isa = PBXGroup;
 			children = (
-				7C3C3F36215995F000BD026A /* CrossSumTests.swift */,
+				7C3C3F692159C45500BD026A /* RationalTests.swift */,
 				7C3C3F532159961B00BD026A /* CenteredLabelTests.swift */,
 				7C3C3F592159A06100BD026A /* RationalLabelTests.swift */,
-				7C3C3F692159C45500BD026A /* RationalTests.swift */,
 				7C3C3F38215995F000BD026A /* Info.plist */,
 			);
 			path = CrossSumTests;
@@ -328,7 +325,6 @@
 			files = (
 				7C3C3F542159961B00BD026A /* CenteredLabelTests.swift in Sources */,
 				7C3C3F5A2159A06100BD026A /* RationalLabelTests.swift in Sources */,
-				7C3C3F37215995F000BD026A /* CrossSumTests.swift in Sources */,
 				7C3C3F6A2159C45500BD026A /* RationalTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
