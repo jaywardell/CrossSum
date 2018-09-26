@@ -10,15 +10,6 @@ import UIKit
 
 class RationalLabel: UIView {
 
-    private func updateLayout() {
-        
-        wholeNumberLabel.sizeToFit()
-        numeratorLabel.sizeToFit()
-        denominatorLabel.sizeToFit()
-        fractionBar.sizeToFit()
-        setNeedsLayout()
-        layoutIfNeeded()
-    }
     
     var value : Rational? {
         didSet {
@@ -80,11 +71,14 @@ class RationalLabel: UIView {
         }
     }
     
+    // MARK:- 
+
+    
     private lazy var wholeNumberLabel : CenteredLabel = {
         let out = CenteredLabel()
         out.textAlignment = .center
         out.font = UIFont.preferredFont(forTextStyle: .body)
-        addSubview(out)
+//        addSubview(out)
         
         return out
     }()
@@ -93,7 +87,7 @@ class RationalLabel: UIView {
         let out = CenteredLabel()
         out.textAlignment = .center
         out.font = UIFont.preferredFont(forTextStyle: .body)
-        addSubview(out)
+//        addSubview(out)
         
         return out
     }()
@@ -102,7 +96,7 @@ class RationalLabel: UIView {
         let out = CenteredLabel()
         out.textAlignment = .center
         out.font = UIFont.preferredFont(forTextStyle: .body)
-        addSubview(out)
+//        addSubview(out)
         
         return out
     }()
@@ -110,7 +104,7 @@ class RationalLabel: UIView {
     private lazy var fractionBar : UIView = {
         let out = UIView()
         out.backgroundColor = .black
-        addSubview(out)
+//        addSubview(out)
         
         return out
     }()
@@ -129,19 +123,20 @@ class RationalLabel: UIView {
     
     private func setup() {
         
-        self.translatesAutoresizingMaskIntoConstraints = false
+        [
+            wholeNumberLabel,
+            numeratorLabel,
+            denominatorLabel,
+            fractionBar
+            ].forEach { addSubview($0) }
         
-        // ensure that label is in the view hierarchy as soon as init has been called
-        wholeNumberLabel.text = "wl"
-        numeratorLabel.text = "nl"
-        denominatorLabel.text = "dl"
-        fractionBar.isHidden = true
-    
         setupConstraints()
     }
 
     private func setupConstraints() {
         
+        self.translatesAutoresizingMaskIntoConstraints = false
+
         wholeNumberLabel.constrain(to: [
             wholeNumberLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             wholeNumberLabel.topAnchor.constraint(equalTo: topAnchor),
@@ -181,4 +176,13 @@ class RationalLabel: UIView {
         
     }
 
+    private func updateLayout() {
+        
+        wholeNumberLabel.sizeToFit()
+        numeratorLabel.sizeToFit()
+        denominatorLabel.sizeToFit()
+        fractionBar.sizeToFit()
+        setNeedsLayout()
+        layoutIfNeeded()
+    }
 }

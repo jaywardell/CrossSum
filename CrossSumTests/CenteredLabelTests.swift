@@ -109,7 +109,7 @@ class CenteredLabelTests: XCTestCase {
     
     // MARK:-
 
-    func createSUT() -> (CenteredLabel, UILabel) {
+    private func createSUT() -> (CenteredLabel, UILabel) {
         
         let sut = CenteredLabel()
         let label = sut.subviews.first! as! UILabel

@@ -38,6 +38,8 @@ class CenteredLabel: UIView {
         }
     }
     
+    // MARK:- 
+
     private lazy var leadingMargin = label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8)
     private lazy var trailingMargin = label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
     private lazy var zeroWidth = widthAnchor.constraint(equalToConstant: 0)

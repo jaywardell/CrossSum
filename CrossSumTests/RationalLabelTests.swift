@@ -19,9 +19,9 @@ class RationalLabelTests: XCTestCase {
         XCTAssertEqual(sut.denominatorLabel.superview, sut.rationalLabel)
         XCTAssertEqual(sut.fractionBar.superview, sut.rationalLabel)
     
-        XCTAssertEqual(sut.wholeNumberLabel.text, "wl")
-        XCTAssertEqual(sut.numeratorLabel.text, "nl")
-        XCTAssertEqual(sut.denominatorLabel.text, "dl")
+        XCTAssertEqual(sut.wholeNumberLabel.text, nil)
+        XCTAssertEqual(sut.numeratorLabel.text, nil)
+        XCTAssertEqual(sut.denominatorLabel.text, nil)
         XCTAssertEqual(sut.fractionBar.backgroundColor, .black)
     }
 
@@ -117,6 +117,8 @@ class RationalLabelTests: XCTestCase {
 
     }
     
+    // MARK:-
+
     func testTextAlignments() {
         
         let sut = createSUT()
@@ -148,6 +150,8 @@ class RationalLabelTests: XCTestCase {
         XCTAssertEqual(sut.denominatorLabel.font, UIFont.systemFont(ofSize: 13))
     }
     
+    // MARK:-
+
     func testAutolayoutIsValid() {
         let sut = createSUT()
 
@@ -292,7 +296,7 @@ class RationalLabelTests: XCTestCase {
     
     // MARK:-
     
-    func createSUT() -> (rationalLabel:RationalLabel,
+    private func createSUT() -> (rationalLabel:RationalLabel,
         wholeNumberLabel:CenteredLabel,
         numeratorLabel:CenteredLabel,
         denominatorLabel:CenteredLabel,

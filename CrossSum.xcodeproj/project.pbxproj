@@ -21,6 +21,8 @@
 		7C3C3F5A2159A06100BD026A /* RationalLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F592159A06100BD026A /* RationalLabelTests.swift */; };
 		7C3C3F6A2159C45500BD026A /* RationalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F692159C45500BD026A /* RationalTests.swift */; };
 		7C3C3F6C2159C4E800BD026A /* Rational.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F6B2159C4E800BD026A /* Rational.swift */; };
+		7C84DA55215B0B3900D3B36F /* StatementLabelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA54215B0B3900D3B36F /* StatementLabelTest.swift */; };
+		7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA56215B0C6800D3B36F /* StatementLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		7C3C3F592159A06100BD026A /* RationalLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationalLabelTests.swift; sourceTree = "<group>"; };
 		7C3C3F692159C45500BD026A /* RationalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RationalTests.swift; sourceTree = "<group>"; };
 		7C3C3F6B2159C4E800BD026A /* Rational.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rational.swift; sourceTree = "<group>"; };
+		7C84DA54215B0B3900D3B36F /* StatementLabelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementLabelTest.swift; sourceTree = "<group>"; };
+		7C84DA56215B0C6800D3B36F /* StatementLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 				7C3C3F692159C45500BD026A /* RationalTests.swift */,
 				7C3C3F532159961B00BD026A /* CenteredLabelTests.swift */,
 				7C3C3F592159A06100BD026A /* RationalLabelTests.swift */,
+				7C84DA54215B0B3900D3B36F /* StatementLabelTest.swift */,
 				7C3C3F38215995F000BD026A /* Info.plist */,
 			);
 			path = CrossSumTests;
@@ -157,6 +162,7 @@
 			children = (
 				7C3C3F4F2159961400BD026A /* CenteredLabel.swift */,
 				7C3C3F5721599B8400BD026A /* RationalLabel.swift */,
+				7C84DA56215B0C6800D3B36F /* StatementLabel.swift */,
 				7C3C3F502159961400BD026A /* UIView+AutolayoutConvenience.swift */,
 			);
 			path = View;
@@ -313,6 +319,7 @@
 				7C3C3F24215995EE00BD026A /* ViewController.swift in Sources */,
 				7C3C3F522159961400BD026A /* UIView+AutolayoutConvenience.swift in Sources */,
 				7C3C3F22215995EE00BD026A /* AppDelegate.swift in Sources */,
+				7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */,
 				7C3C3F5821599B8400BD026A /* RationalLabel.swift in Sources */,
 				7C3C3F512159961400BD026A /* CenteredLabel.swift in Sources */,
 				7C3C3F6C2159C4E800BD026A /* Rational.swift in Sources */,
@@ -323,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C84DA55215B0B3900D3B36F /* StatementLabelTest.swift in Sources */,
 				7C3C3F542159961B00BD026A /* CenteredLabelTests.swift in Sources */,
 				7C3C3F5A2159A06100BD026A /* RationalLabelTests.swift in Sources */,
 				7C3C3F6A2159C45500BD026A /* RationalTests.swift in Sources */,
