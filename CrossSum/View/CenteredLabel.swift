@@ -26,7 +26,12 @@ class CenteredLabel: UIView {
     var highlightColor : UIColor?
     var isHighlighted : Bool = false {
         didSet {
-            label.backgroundColor = highlightColor
+//            if isHighlighted {
+                label.backgroundColor = isHighlighted ? highlightColor : nil
+//            }
+//            else {
+//                print("backgroundcolor: \(backgroundColor)")
+//            }
         }
     }
     
@@ -54,7 +59,8 @@ class CenteredLabel: UIView {
     private lazy var label : UILabel = {
         let out = UILabel()
         out.font = UIFont.preferredFont(forTextStyle: .body)
-        
+        out.isOpaque = false
+
         return out
     }()
 

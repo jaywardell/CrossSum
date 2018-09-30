@@ -49,6 +49,8 @@ class StatementLabelTests: XCTestCase {
         XCTAssertNil(sut.expressionLabel.backgroundColor)
         XCTAssertFalse(sut.statementLabel.isPromptingForExpression)
 
+        XCTAssertFalse(sut.expressionLabel.isHighlighted)
+
         // we expect six issues with unsatisfiable constraints during the transition step
         XCTAssertEqual(unsatisfiableConstraintsCount + 6, InterceptUnsatisfiableConstraints.callCount())
         // but the layout should be satisfiable after the set
@@ -77,6 +79,8 @@ class StatementLabelTests: XCTestCase {
         XCTAssertNil(sut.expressionLabel.backgroundColor)
         XCTAssertFalse(sut.statementLabel.isPromptingForExpression)
 
+        XCTAssertFalse(sut.expressionLabel.isHighlighted)
+
         // we expect six issues with unsatisfiable constraints during the transition step
         XCTAssertEqual(unsatisfiableConstraintsCount + 6, InterceptUnsatisfiableConstraints.callCount())
         // but the layout should be satisfiable after the set
@@ -95,6 +99,8 @@ class StatementLabelTests: XCTestCase {
         XCTAssertNil(sut.equalityLabel.text)
         XCTAssertNil(sut.solutionLabel.value)
         XCTAssertNil(sut.expressionLabel.backgroundColor)
+
+        XCTAssertFalse(sut.expressionLabel.isHighlighted)
 
         // we expect six issues with unsatisfiable constraints during the transition step
         XCTAssertEqual(unsatisfiableConstraintsCount + 1, InterceptUnsatisfiableConstraints.callCount())
