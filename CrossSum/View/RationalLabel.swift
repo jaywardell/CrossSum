@@ -78,7 +78,6 @@ class RationalLabel: UIView {
         let out = CenteredLabel()
         out.textAlignment = .center
         out.font = UIFont.preferredFont(forTextStyle: .body)
-//        addSubview(out)
         
         return out
     }()
@@ -87,7 +86,6 @@ class RationalLabel: UIView {
         let out = CenteredLabel()
         out.textAlignment = .center
         out.font = UIFont.preferredFont(forTextStyle: .body)
-//        addSubview(out)
         
         return out
     }()
@@ -96,7 +94,6 @@ class RationalLabel: UIView {
         let out = CenteredLabel()
         out.textAlignment = .center
         out.font = UIFont.preferredFont(forTextStyle: .body)
-//        addSubview(out)
         
         return out
     }()
@@ -104,7 +101,6 @@ class RationalLabel: UIView {
     private lazy var fractionBar : UIView = {
         let out = UIView()
         out.backgroundColor = .black
-//        addSubview(out)
         
         return out
     }()

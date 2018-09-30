@@ -8,13 +8,27 @@
 
 import Foundation
 
+struct Comparator {
+    let title : String
+    let falseTitle : String
+    let compare : (Rational, Rational) -> Bool
+}
+
 struct Statement {
     
     // TODO: Write test cases
     
+    static let equal = Comparator(title: "=", falseTitle: "≠", compare: ==)
+    static let notequal = Comparator(title: "≠", falseTitle: "=", compare: !=)
+    static let lessthan = Comparator(title: "<", falseTitle: "≮", compare: <)
+    static let lessthanorequal = Comparator(title: "≤", falseTitle: "≰", compare: <=)
+    static let greatherthan = Comparator(title: ">", falseTitle: "≯", compare: >)
+    static let greatherthanorequal = Comparator(title: "≥", falseTitle: "≱", compare: >=)
+
+    
     let expression : String
     let targetSolution : Rational
-    let comparator : (Rational, Rational) -> Bool
+    let comparator : Comparator
     
     private let calculation : Rational?
     
@@ -24,10 +38,14 @@ struct Statement {
     
     var isTrue : Bool {
         guard let calculation = calculation else { return false }
-        return comparator(calculation, targetSolution)
+        return comparator.compare(calculation, targetSolution)
     }
     
-    init(_ expression:String, _ targetSolution:Rational, _ comparator:@escaping (Rational, Rational) -> Bool) {
+    var title : String {
+        return isTrue ? comparator.title : comparator.falseTitle
+    }
+    
+    init(_ expression:String, _ targetSolution:Rational, _ comparator:Comparator = Statement.equal) {
         self.expression = expression
         self.targetSolution = targetSolution
         self.calculation = RationalParser.parse(expression)
