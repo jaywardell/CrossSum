@@ -26,29 +26,39 @@ struct Statement {
     static let greatherthanorequal = Comparator(title: "≥", falseTitle: "≱", compare: >=)
 
     
-    let expression : String
-    let targetSolution : Rational
+    let expression : String?
+    let targetSolution : Rational?
     let comparator : Comparator
     
     private let calculation : Rational?
+    
+    var hasExpression : Bool {
+        return nil != expression
+    }
     
     var isValid : Bool {
         return nil != calculation
     }
     
     var isTrue : Bool {
-        guard let calculation = calculation else { return false }
+        guard let calculation = calculation,
+        let targetSolution = targetSolution else { return false }
         return comparator.compare(calculation, targetSolution)
     }
     
-    var title : String {
+    var title : String? {
+        guard nil != targetSolution else { return nil }
         return isTrue ? comparator.title : comparator.falseTitle
     }
     
-    init(_ expression:String, _ targetSolution:Rational, _ comparator:Comparator = Statement.equal) {
+    var promptTitle : String? {
+        return comparator.title
+    }
+    
+    init(_ expression:String?, _ targetSolution:Rational? = nil, _ comparator:Comparator = Statement.equal) {
         self.expression = expression
         self.targetSolution = targetSolution
-        self.calculation = RationalParser.parse(expression)
+        self.calculation = RationalParser.parse(expression ?? "")
         self.comparator = comparator
     }
 }

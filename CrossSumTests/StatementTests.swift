@@ -31,6 +31,13 @@ class StatementTests: XCTestCase {
         XCTAssertEqual(Statement("", 5).title, Statement.equal.falseTitle)
     }
 
+    func testEmptyTargetolution() {
+        XCTAssertNil(Statement("1+1").targetSolution)
+        XCTAssert(Statement("1+1").isValid)
+        XCTAssert(!Statement("1+1").isTrue)
+        XCTAssertEqual(Statement("1+1").title, nil)
+    }
+    
     func testNotEqual() {
         XCTAssert(Statement("2*-3",6, Statement.notequal).isTrue)
         XCTAssert(Statement("-2*-3",-6, Statement.notequal).isTrue)

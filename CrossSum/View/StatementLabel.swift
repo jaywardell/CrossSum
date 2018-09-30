@@ -10,7 +10,26 @@ import UIKit
 
 class StatementLabel: UIView {
 
-    // TODO: var statement : Statement
+    var statement : Statement? {
+        didSet {
+            guard let statement = statement else {
+                expressionLabel.text = nil
+                expressionLabel.backgroundColor = nil
+                equalityLabel.text = nil
+                solutionLabel.value = nil
+                return
+            }
+            expressionLabel.text = statement.expression
+            expressionLabel.backgroundColor = isPromptingForExpression ? highlightColor : nil
+            equalityLabel.text = statement.hasExpression ? statement.title : statement.promptTitle
+            solutionLabel.value = statement.targetSolution
+        }
+    }
+    
+    var isPromptingForExpression : Bool {
+        guard let statement = statement else { return false }
+        return !statement.hasExpression
+    }
     
     var textColor : UIColor {
         get { return expressionLabel.textColor }
@@ -20,6 +39,8 @@ class StatementLabel: UIView {
             solutionLabel.textColor = newValue
         }
     }
+    
+    var highlightColor : UIColor = UIColor.cyan
     
     var font : UIFont {
         get { return expressionLabel.font }
