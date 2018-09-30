@@ -13,6 +13,7 @@ class StatementLabelTests: XCTestCase {
 
     func testContainsExpectedSubviews() {
         let sut = createSUT()
+        print("sut: \(sut)")
         
         XCTAssertNotNil(sut.statementLabel.subviews.first)
         XCTAssertEqual(sut.expressionLabel.superview, sut.statementLabel)
@@ -45,7 +46,8 @@ class StatementLabelTests: XCTestCase {
         XCTAssertEqual(sut.solutionLabel.value, s.targetSolution)
         
         XCTAssertNil(sut.expressionLabel.backgroundColor)
-    }
+        XCTAssertFalse(sut.statementLabel.isPromptingForExpression)
+   }
     
     func testLabelsAreEmptyWHenStatementIsNil() {
         let sut = createSUT()
@@ -55,7 +57,8 @@ class StatementLabelTests: XCTestCase {
         XCTAssertNil(sut.equalityLabel.text)
         XCTAssertNil(sut.solutionLabel.value)
         XCTAssertNil(sut.expressionLabel.backgroundColor)
-
+        XCTAssertFalse(sut.statementLabel.isPromptingForExpression)
+        
         // set the statement to something
         sut.statementLabel.statement = Statement("1+1", 2, Statement.notequal)
         
@@ -65,6 +68,7 @@ class StatementLabelTests: XCTestCase {
         XCTAssertNil(sut.equalityLabel.text)
         XCTAssertNil(sut.solutionLabel.value)
         XCTAssertNil(sut.expressionLabel.backgroundColor)
+        XCTAssertFalse(sut.statementLabel.isPromptingForExpression)
    }
 
     func testSetStatementWithoutTargetSoluton() {
@@ -91,6 +95,7 @@ class StatementLabelTests: XCTestCase {
         XCTAssertEqual(sut.equalityLabel.text, "=")
         XCTAssertEqual(sut.solutionLabel.value, 2)
         
+        // a statement without an expression, the user should be prompted for an expression here
         XCTAssert(sut.statementLabel.isPromptingForExpression)
         XCTAssertEqual(sut.expressionLabel.backgroundColor, sut.statementLabel.highlightColor)
     }

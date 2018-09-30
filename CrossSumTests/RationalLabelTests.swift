@@ -9,6 +9,7 @@
 import XCTest
 @testable import CrossSum
 
+// TODO: autolayout is flaking out
 class RationalLabelTests: XCTestCase {
 
     func testContainsLabelsAndFractionBar() {

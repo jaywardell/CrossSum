@@ -24,17 +24,30 @@
                                     <constraint firstAttribute="height" constant="128" id="iHS-5Y-nF9"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Fv-P0-sSq" customClass="StatementLabel" customModule="CrossSum" customModuleProvider="target">
+                                <rect key="frame" x="67" y="415" width="241" height="128"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="TiK-Cd-0vx"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="9Fv-P0-sSq" firstAttribute="width" secondItem="9vy-zl-T9L" secondAttribute="width" id="4B8-4U-QSH"/>
                             <constraint firstItem="9vy-zl-T9L" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Boa-CY-NOP"/>
+                            <constraint firstItem="9Fv-P0-sSq" firstAttribute="top" secondItem="9vy-zl-T9L" secondAttribute="bottom" constant="7.5" id="ET7-Dp-1HI"/>
+                            <constraint firstItem="9Fv-P0-sSq" firstAttribute="trailing" secondItem="9vy-zl-T9L" secondAttribute="trailing" id="NYD-VQ-c2l"/>
                             <constraint firstItem="9vy-zl-T9L" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="STq-ey-OH5"/>
+                            <constraint firstItem="9Fv-P0-sSq" firstAttribute="height" secondItem="9vy-zl-T9L" secondAttribute="height" id="y4h-og-zRV"/>
                             <constraint firstItem="9vy-zl-T9L" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="67" placeholder="YES" id="z7y-Uy-dEt"/>
+                            <constraint firstItem="9Fv-P0-sSq" firstAttribute="leading" secondItem="9vy-zl-T9L" secondAttribute="leading" id="zaO-R3-5vq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="centeredLabel" destination="9vy-zl-T9L" id="GCI-Rl-MnM"/>
+                        <outlet property="statementLabel" destination="9Fv-P0-sSq" id="8j0-Wd-p0H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

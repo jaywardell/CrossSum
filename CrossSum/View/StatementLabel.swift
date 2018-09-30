@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatementLabel: UIView {
+class StatementLabel: UIStackView {
 
     var statement : Statement? {
         didSet {
@@ -78,26 +78,37 @@ class StatementLabel: UIView {
         super.init(frame: frame)
         setup()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
         setup()
     }
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        setup()
+//    }
     
     private func setup() {
-        
+        axis = .horizontal
+//        distribution = .fillProportionally
+        spacing = UIStackView.spacingUseDefault
         [
             expressionLabel,
             equalityLabel,
             solutionLabel
-            ].forEach() { addSubview($0) }
+            ].forEach() { addArrangedSubview($0) }
         
-        setupConstraints()
+//        setupConstraints()
     }
     
     private func setupConstraints() {
         translatesAutoresizingMaskIntoConstraints = false
         
-        // TODO: setup autolayout constraints
+        // TODO: autolayout constraints are not working well
+        expressionLabel.trailingAnchor.constraint(equalTo: equalityLabel.leadingAnchor)
+        equalityLabel.trailingAnchor.constraint(equalTo: solutionLabel.leadingAnchor)
+        
+        equalityLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+        equalityLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
     }
 }
