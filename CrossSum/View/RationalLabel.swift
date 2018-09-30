@@ -67,8 +67,8 @@ class RationalLabel: UIView {
         get { return wholeNumberLabel.font }
         set {
             wholeNumberLabel.font = newValue
-            numeratorLabel.font = newValue.withSize(newValue.pointSize * 13/34)
-            denominatorLabel.font = newValue.withSize(newValue.pointSize * 13/34)
+            numeratorLabel.font = newValue.withSize(newValue.pointSize * 21/34)
+            denominatorLabel.font = newValue.withSize(newValue.pointSize * 21/34)
             updateLayout()
         }
     }
@@ -105,6 +105,10 @@ class RationalLabel: UIView {
         out.backgroundColor = .black
         
         return out
+    }()
+    
+    private lazy var fractionBarHeight : NSLayoutConstraint = {
+       return fractionBar.heightAnchor.constraint(equalToConstant: 10)
     }()
     
     // MARK:-
@@ -149,8 +153,6 @@ class RationalLabel: UIView {
             numeratorLabel.bottomAnchor.constraint(equalTo: fractionBar.topAnchor),
             
             numeratorLabel.heightAnchor.constraint(equalTo: wholeNumberLabel.heightAnchor, multiplier: 13/34),
-
-//            numeratorLabel.heightAnchor.constraint(greaterThanOrEqualTo: numeratorLabel.heightAnchor, multiplier: 1)
             ])
         
         denominatorLabel.constrain(to: [
@@ -161,21 +163,19 @@ class RationalLabel: UIView {
             
             denominatorLabel.widthAnchor.constraint(equalTo: numeratorLabel.widthAnchor, multiplier: 1),
             denominatorLabel.heightAnchor.constraint(equalTo: numeratorLabel.heightAnchor, multiplier: 1),
-            
-//            denominatorLabel.widthAnchor.constraint(equalTo: denominatorLabel.heightAnchor, multiplier: 1)
             ])
         
         fractionBar.constrain(to: [
             fractionBar.leadingAnchor.constraint(equalTo: numeratorLabel.leadingAnchor),
             fractionBar.trailingAnchor.constraint(equalTo: numeratorLabel.trailingAnchor),
-            // TODO: make this depend on the font ligature
-            fractionBar.heightAnchor.constraint(equalToConstant: 5)
+            fractionBarHeight
             ])
         
     }
 
     private func updateLayout() {
         
+        fractionBarHeight.constant = font.underlineThickness
         wholeNumberLabel.sizeToFit()
         numeratorLabel.sizeToFit()
         denominatorLabel.sizeToFit()

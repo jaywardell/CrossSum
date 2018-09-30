@@ -93,6 +93,16 @@ class StatementLabel: UIStackView {
 
     required init(coder: NSCoder) {
         super.init(coder: coder)
+
+        // if there are width or height constraints tied to this view in the storyboard,
+        // then we don't want them. THey're there to prevent the storyboard from complaining
+        // We only want constraints that define position, e.g. centerXAnchor or leadingAnchor
+        deactivateWidthAndHeightConstriants()
+    }
+    
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        
         setup()
     }
     

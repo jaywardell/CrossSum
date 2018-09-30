@@ -9,22 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-
-//        print("constraints: \(centeredLabel.constraints)")
-//        let width = centeredLabel.constraints.filter {
-//            $0.firstAnchor == centeredLabel.widthAnchor ||
-//                $0.secondAnchor == centeredLabel.widthAnchor
-//        }
-//        let height = centeredLabel.constraints.filter {
-//            $0.firstAnchor == centeredLabel.heightAnchor ||
-//                $0.secondAnchor == centeredLabel.heightAnchor
-//        }
-//        NSLayoutConstraint.deactivate(width + height)
-//        print("width anchors: \(width)")
-    }
     
     @IBOutlet weak var centeredLabel: CenteredLabel?
     @IBOutlet weak var statementLabel: StatementLabel?
@@ -35,8 +19,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         centeredLabel?.text = "hi"
 //        centeredLabel.label.text = "hello"
-        
-//        statementLabel.statement = Statement(nil, 5)
+//        statementLabel?.font = UIFont.systemFont(ofSize: 34)
+        statementLabel?.statement = Statement("2-1", 5/2, Statement.greatherthan)
     }
 
 
