@@ -147,8 +147,8 @@ class RationalLabelTests: XCTestCase {
         sut.rationalLabel.font = f
         XCTAssertEqual(sut.rationalLabel.font, f)
         XCTAssertEqual(sut.wholeNumberLabel.font, f)
-        XCTAssertEqual(sut.numeratorLabel.font, UIFont.systemFont(ofSize: 13))
-        XCTAssertEqual(sut.denominatorLabel.font, UIFont.systemFont(ofSize: 13))
+        XCTAssertEqual(sut.numeratorLabel.font, UIFont.systemFont(ofSize: 21))
+        XCTAssertEqual(sut.denominatorLabel.font, UIFont.systemFont(ofSize: 21))
     }
     
     // MARK:-
@@ -196,7 +196,7 @@ class RationalLabelTests: XCTestCase {
         XCTAssertEqual(sut.numeratorLabel.frame.height, sut.denominatorLabel.frame.height)
 
         XCTAssertEqual(sut.fractionBar.frame.width, 26.5)
-        XCTAssertEqual(sut.fractionBar.frame.height, 5)
+        XCTAssertEqual(sut.fractionBar.frame.height, 1)
         
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)
@@ -234,7 +234,7 @@ class RationalLabelTests: XCTestCase {
         XCTAssertEqual(sut.numeratorLabel.frame.height, sut.denominatorLabel.frame.height)
 
         XCTAssertEqual(sut.fractionBar.frame.width, 26.5)
-        XCTAssertEqual(sut.fractionBar.frame.height, 5)
+        XCTAssertEqual(sut.fractionBar.frame.height, 1)
         
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)
@@ -272,7 +272,7 @@ class RationalLabelTests: XCTestCase {
         // NOTE: don't care about denominatorLabel.frame.height, becuase it's invisible
         
         XCTAssertEqual(sut.fractionBar.frame.width, 0)
-        XCTAssertEqual(sut.fractionBar.frame.height, 5)
+        XCTAssertEqual(sut.fractionBar.frame.height, 1)
         
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)
@@ -290,23 +290,23 @@ class RationalLabelTests: XCTestCase {
         sut.rationalLabel.value = 5.2
         sut.rationalLabel.font = UIFont.systemFont(ofSize: 64)
 
-        XCTAssertEqual(sut.rationalLabel.frame.width, 54+31)
-        XCTAssertEqual(sut.rationalLabel.frame.height, 77)
+        XCTAssertEqual(sut.rationalLabel.frame.width, 54+39.5)
+        XCTAssertEqual(sut.rationalLabel.frame.height, 124)
         
         XCTAssertEqual(sut.wholeNumberLabel.frame.width, 54)
-        XCTAssertEqual(sut.wholeNumberLabel.frame.height, 77)
+        XCTAssertEqual(sut.wholeNumberLabel.frame.height, 124)
         
-        XCTAssertEqual(sut.numeratorLabel.frame.width, 31)
-        XCTAssertEqual(sut.numeratorLabel.frame.height, 29.5)
+        XCTAssertEqual(sut.numeratorLabel.frame.width, 39.5)
+        XCTAssertEqual(sut.numeratorLabel.frame.height, 47.5)
         
-        XCTAssertEqual(sut.denominatorLabel.frame.width, 31)
-        XCTAssertEqual(sut.denominatorLabel.frame.height, 29.5)
+        XCTAssertEqual(sut.denominatorLabel.frame.width, 39.5)
+        XCTAssertEqual(sut.denominatorLabel.frame.height, 47.5)
         
         XCTAssertEqual(sut.numeratorLabel.frame.width, sut.denominatorLabel.frame.width)
         XCTAssertEqual(sut.numeratorLabel.frame.height, sut.denominatorLabel.frame.height)
         
-        XCTAssertEqual(sut.fractionBar.frame.width, 31)
-        XCTAssertEqual(sut.fractionBar.frame.height, 5)
+        XCTAssertEqual(sut.fractionBar.frame.width, 39.5)
+        XCTAssertEqual(sut.fractionBar.frame.height, 3.5)
         
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)

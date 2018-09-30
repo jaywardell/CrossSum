@@ -33,19 +33,52 @@
                                     <constraint firstAttribute="width" constant="241" id="msO-3I-9oK"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="li1-If-AYv" customClass="StatementLabel" customModule="CrossSum" customModuleProvider="target">
+                                <rect key="frame" x="67" y="297" width="241" height="12"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="2me-gv-yqW"/>
+                                    <constraint firstAttribute="width" constant="241" id="zDX-Ep-Jhm"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeG-6x-thm" customClass="StatementLabel" customModule="CrossSum" customModuleProvider="target">
+                                <rect key="frame" x="67" y="277" width="241" height="12"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="241" id="I6l-xQ-cgz"/>
+                                    <constraint firstAttribute="height" constant="12" id="Z9Y-Z4-6MY"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oIH-YR-zF6" customClass="StatementLabel" customModule="CrossSum" customModuleProvider="target">
+                                <rect key="frame" x="67" y="257" width="241" height="12"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="XMV-vf-azv"/>
+                                    <constraint firstAttribute="width" constant="241" id="hPX-r5-4YJ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="li1-If-AYv" firstAttribute="centerX" secondItem="aeG-6x-thm" secondAttribute="centerX" id="6je-lX-gVy"/>
                             <constraint firstItem="9vy-zl-T9L" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Boa-CY-NOP"/>
+                            <constraint firstItem="8Ux-XY-5Jy" firstAttribute="top" secondItem="li1-If-AYv" secondAttribute="bottom" constant="8" id="FHQ-ni-xVD"/>
+                            <constraint firstItem="aeG-6x-thm" firstAttribute="centerX" secondItem="oIH-YR-zF6" secondAttribute="centerX" id="Jgy-cO-FqJ"/>
                             <constraint firstItem="8Ux-XY-5Jy" firstAttribute="centerX" secondItem="9vy-zl-T9L" secondAttribute="centerX" id="Pw1-q9-OhF"/>
                             <constraint firstItem="9vy-zl-T9L" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="STq-ey-OH5"/>
+                            <constraint firstItem="8Ux-XY-5Jy" firstAttribute="centerX" secondItem="li1-If-AYv" secondAttribute="centerX" id="W89-3k-Qvz"/>
+                            <constraint firstItem="li1-If-AYv" firstAttribute="top" secondItem="aeG-6x-thm" secondAttribute="bottom" constant="8" id="cpQ-gz-9UQ"/>
                             <constraint firstItem="9vy-zl-T9L" firstAttribute="top" secondItem="8Ux-XY-5Jy" secondAttribute="bottom" constant="8.5" id="iN2-oh-OIA"/>
+                            <constraint firstItem="aeG-6x-thm" firstAttribute="top" secondItem="oIH-YR-zF6" secondAttribute="bottom" constant="8" id="qay-pP-XGz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="blankExpressionStatementLabel" destination="8Ux-XY-5Jy" id="dKz-Yz-S2N"/>
                         <outlet property="centeredLabel" destination="9vy-zl-T9L" id="GCI-Rl-MnM"/>
-                        <outlet property="statementLabel" destination="8Ux-XY-5Jy" id="sBJ-lc-jwR"/>
+                        <outlet property="equalStatementLabel" destination="aeG-6x-thm" id="dnp-tk-nT3"/>
+                        <outlet property="notequalStatementLabel" destination="li1-If-AYv" id="YyL-bv-d8D"/>
+                        <outlet property="statementLabel" destination="oIH-YR-zF6" id="O7q-qQ-PAe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
