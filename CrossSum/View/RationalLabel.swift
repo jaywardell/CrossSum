@@ -38,8 +38,10 @@ class RationalLabel: UIView {
             }
             
             if fractionalPart.numerator != 0 {
-                self.numeratorLabel.text = String(fractionalPart.numerator)
-                self.denominatorLabel.text = String(fractionalPart.denominator)
+                ignoringAutolayoutWarnings { // call to updateLayout() will correct constraints issues
+                    self.numeratorLabel.text = String(fractionalPart.numerator)
+                    self.denominatorLabel.text = String(fractionalPart.denominator)
+                }
             }
             else {
                 ignoringAutolayoutWarnings { // call to updateLayout() will correct constraints issues

@@ -172,7 +172,8 @@ class RationalLabelTests: XCTestCase {
     // TODO: I may need to test this visually, I'm getting nowhere with the code
     func testExpandsWhenValueChangesToMixedNumber() {
         let sut = createSUT()
-        
+        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+
         // NOTE: the magic numbers here are more or less arbitrary
         // they represent values returned in iOS 12 Simulator as of Sep 25, 2018
         // if they change in the future, that's probably okay
@@ -200,11 +201,17 @@ class RationalLabelTests: XCTestCase {
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)
         XCTAssert(sut.wholeNumberLabel.frame.origin.x < sut.numeratorLabel.frame.origin.x)
+ 
+        // we expect one issue with unsatisfiable constraints during the transition step
+        XCTAssertEqual(unsatisfiableConstraintsCount + 1, InterceptUnsatisfiableConstraints.callCount())
+        // but the layout should be satisfiable after the set
+        XCTAssertFalse(sut.rationalLabel.hasAmbiguousLayout)
     }
 
     func testExpandsWhenValueChangesToFraction() {
         let sut = createSUT()
-        
+        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+
         // NOTE: the magic numbers here are more or less arbitrary
         // they represent values returned in iOS 12 Simulator as of Sep 25, 2018
         // if they change in the future, that's probably okay
@@ -232,11 +239,17 @@ class RationalLabelTests: XCTestCase {
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)
         XCTAssert(sut.wholeNumberLabel.frame.origin.x <= sut.numeratorLabel.frame.origin.x)
-    }
+ 
+        // we expect one issue with unsatisfiable constraints during the transition step
+        XCTAssertEqual(unsatisfiableConstraintsCount + 1, InterceptUnsatisfiableConstraints.callCount())
+        // but the layout should be satisfiable after the set
+        XCTAssertFalse(sut.rationalLabel.hasAmbiguousLayout)
+   }
 
     func testExpandsWhenValueChangesToWholeNumber() {
         let sut = createSUT()
-        
+        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+
         // NOTE: the magic numbers here are more or less arbitrary
         // they represent values returned in iOS 12 Simulator as of Sep 25, 2018
         // if they change in the future, that's probably okay
@@ -264,11 +277,16 @@ class RationalLabelTests: XCTestCase {
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)
         XCTAssert(sut.wholeNumberLabel.frame.origin.x < sut.numeratorLabel.frame.origin.x)
+
+        XCTAssertEqual(unsatisfiableConstraintsCount, InterceptUnsatisfiableConstraints.callCount())
+        // the layout should be satisfiable after the set
+        XCTAssertFalse(sut.rationalLabel.hasAmbiguousLayout)
     }
 
     func testExpandsWhenFontChanges() {
         let sut = createSUT()
-   
+        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+        
         sut.rationalLabel.value = 5.2
         sut.rationalLabel.font = UIFont.systemFont(ofSize: 64)
 
@@ -293,6 +311,11 @@ class RationalLabelTests: XCTestCase {
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
         XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)
         XCTAssert(sut.wholeNumberLabel.frame.origin.x < sut.numeratorLabel.frame.origin.x)
+        
+        // we expect one issue with unsatisfiable constraints during the transition step
+        XCTAssertEqual(unsatisfiableConstraintsCount + 1, InterceptUnsatisfiableConstraints.callCount())
+        // but the layout should be satisfiable after the set
+        XCTAssertFalse(sut.rationalLabel.hasAmbiguousLayout)
 }
     
     // MARK:-

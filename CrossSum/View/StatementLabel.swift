@@ -10,6 +10,9 @@ import UIKit
 
 class StatementLabel: UIStackView {
 
+    static let PromptSpace = "     "
+
+    
     var statement : Statement? {
         didSet {
             guard let statement = statement else {
@@ -19,10 +22,14 @@ class StatementLabel: UIStackView {
                 solutionLabel.value = nil
                 return
             }
-            expressionLabel.text = statement.expression
-            expressionLabel.backgroundColor = isPromptingForExpression ? highlightColor : nil
-            equalityLabel.text = statement.hasExpression ? statement.title : statement.promptTitle
-            solutionLabel.value = statement.targetSolution
+            ignoringAutolayoutWarnings {
+                
+                expressionLabel.text = statement.expression ?? StatementLabel.PromptSpace
+                expressionLabel.isHighlighted = isPromptingForExpression
+                //            expressionLabel.backgroundColor = isPromptingForExpression ? highlightColor : nil
+                equalityLabel.text = statement.hasExpression ? statement.title : statement.promptTitle
+                solutionLabel.value = statement.targetSolution
+            }
         }
     }
     
@@ -40,7 +47,12 @@ class StatementLabel: UIStackView {
         }
     }
     
-    var highlightColor : UIColor = UIColor.cyan
+    var highlightColor : UIColor? {
+        get { return expressionLabel.highlightColor }
+        set {
+            expressionLabel.highlightColor = newValue
+        }
+    }
     
     var font : UIFont {
         get { return expressionLabel.font }
@@ -83,32 +95,31 @@ class StatementLabel: UIStackView {
         super.init(coder: coder)
         setup()
     }
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//        setup()
-//    }
     
     private func setup() {
         axis = .horizontal
 //        distribution = .fillProportionally
         spacing = UIStackView.spacingUseDefault
+        
         [
             expressionLabel,
             equalityLabel,
             solutionLabel
             ].forEach() { addArrangedSubview($0) }
         
+        highlightColor = .cyan
+        
 //        setupConstraints()
     }
     
-    private func setupConstraints() {
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        // TODO: autolayout constraints are not working well
-        expressionLabel.trailingAnchor.constraint(equalTo: equalityLabel.leadingAnchor)
-        equalityLabel.trailingAnchor.constraint(equalTo: solutionLabel.leadingAnchor)
-        
-        equalityLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
-        equalityLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
-    }
+//    private func setupConstraints() {
+//        translatesAutoresizingMaskIntoConstraints = false
+//
+//        // TODO: autolayout constraints are not working well
+//        expressionLabel.trailingAnchor.constraint(equalTo: equalityLabel.leadingAnchor)
+//        equalityLabel.trailingAnchor.constraint(equalTo: solutionLabel.leadingAnchor)
+//
+//        equalityLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+//        equalityLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+//    }
 }

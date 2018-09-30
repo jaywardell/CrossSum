@@ -35,6 +35,10 @@
 		7C84DA82215B226000D3B36F /* RationalParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA81215B226000D3B36F /* RationalParserTests.swift */; };
 		7C84DA84215B240800D3B36F /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA83215B240800D3B36F /* Statement.swift */; };
 		7C8BD3C021605A60002BC785 /* StatementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3BF21605A60002BC785 /* StatementTests.swift */; };
+		7C8BD3C22160FAB8002BC785 /* UIView+AutolayoutSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3C12160FAB8002BC785 /* UIView+AutolayoutSetup.swift */; };
+		7C8BD3C42160FC49002BC785 /* Tests.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C8BD3C32160FC49002BC785 /* Tests.storyboard */; };
+		7C8BD3C62160FCA4002BC785 /* CenteredLabelTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3C52160FCA4002BC785 /* CenteredLabelTestsViewController.swift */; };
+		7C8BD3C921610D1C002BC785 /* InterceptUnsatisfiableConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3C821610D1C002BC785 /* InterceptUnsatisfiableConstraints.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +93,12 @@
 		7C84DA81215B226000D3B36F /* RationalParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationalParserTests.swift; sourceTree = "<group>"; };
 		7C84DA83215B240800D3B36F /* Statement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statement.swift; sourceTree = "<group>"; };
 		7C8BD3BF21605A60002BC785 /* StatementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementTests.swift; sourceTree = "<group>"; };
+		7C8BD3C12160FAB8002BC785 /* UIView+AutolayoutSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutolayoutSetup.swift"; sourceTree = "<group>"; };
+		7C8BD3C32160FC49002BC785 /* Tests.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tests.storyboard; sourceTree = "<group>"; };
+		7C8BD3C52160FCA4002BC785 /* CenteredLabelTestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredLabelTestsViewController.swift; sourceTree = "<group>"; };
+		7C8BD3C721610D1C002BC785 /* CrossSumTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CrossSumTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		7C8BD3C821610D1C002BC785 /* InterceptUnsatisfiableConstraints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterceptUnsatisfiableConstraints.m; sourceTree = "<group>"; };
+		7C8BD3CA216122A9002BC785 /* InterceptUnsatisfiableConstraints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterceptUnsatisfiableConstraints.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +175,11 @@
 				7C84DA78215B211600D3B36F /* ParserTests.swift */,
 				7C8BD3BF21605A60002BC785 /* StatementTests.swift */,
 				7C3C3F38215995F000BD026A /* Info.plist */,
+				7C8BD3C32160FC49002BC785 /* Tests.storyboard */,
+				7C8BD3C52160FCA4002BC785 /* CenteredLabelTestsViewController.swift */,
+				7C8BD3CA216122A9002BC785 /* InterceptUnsatisfiableConstraints.h */,
+				7C8BD3C821610D1C002BC785 /* InterceptUnsatisfiableConstraints.m */,
+				7C8BD3C721610D1C002BC785 /* CrossSumTests-Bridging-Header.h */,
 			);
 			path = CrossSumTests;
 			sourceTree = "<group>";
@@ -192,6 +207,7 @@
 				7C3C3F4F2159961400BD026A /* CenteredLabel.swift */,
 				7C3C3F5721599B8400BD026A /* RationalLabel.swift */,
 				7C84DA56215B0C6800D3B36F /* StatementLabel.swift */,
+				7C8BD3C12160FAB8002BC785 /* UIView+AutolayoutSetup.swift */,
 				7C3C3F502159961400BD026A /* UIView+AutolayoutConvenience.swift */,
 			);
 			path = View;
@@ -307,6 +323,7 @@
 					};
 					7C3C3F31215995F000BD026A = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 						TestTargetID = 7C3C3F1D215995EE00BD026A;
 					};
 					7C3C3F3C215995F000BD026A = {
@@ -350,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C8BD3C42160FC49002BC785 /* Tests.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +388,7 @@
 				7C3C3F562159974600BD026A /* Presenters.swift in Sources */,
 				7C3C3F24215995EE00BD026A /* ViewController.swift in Sources */,
 				7C3C3F522159961400BD026A /* UIView+AutolayoutConvenience.swift in Sources */,
+				7C8BD3C22160FAB8002BC785 /* UIView+AutolayoutSetup.swift in Sources */,
 				7C3C3F22215995EE00BD026A /* AppDelegate.swift in Sources */,
 				7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */,
 				7C84DA77215B210700D3B36F /* Parser<Character>.swift in Sources */,
@@ -389,6 +408,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C8BD3C921610D1C002BC785 /* InterceptUnsatisfiableConstraints.m in Sources */,
 				7C84DA55215B0B3900D3B36F /* StatementLabelTests.swift in Sources */,
 				7C84DA7C215B211600D3B36F /* DoubleParserTests.swift in Sources */,
 				7C3C3F542159961B00BD026A /* CenteredLabelTests.swift in Sources */,
@@ -396,6 +416,7 @@
 				7C3C3F5A2159A06100BD026A /* RationalLabelTests.swift in Sources */,
 				7C8BD3C021605A60002BC785 /* StatementTests.swift in Sources */,
 				7C84DA7D215B211600D3B36F /* IntParserTests.swift in Sources */,
+				7C8BD3C62160FCA4002BC785 /* CenteredLabelTestsViewController.swift in Sources */,
 				7C84DA82215B226000D3B36F /* RationalParserTests.swift in Sources */,
 				7C3C3F6A2159C45500BD026A /* RationalTests.swift in Sources */,
 			);
@@ -601,6 +622,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BU47XE2F27;
 				INFOPLIST_FILE = CrossSumTests/Info.plist;
@@ -611,6 +633,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oldjewel.CrossSumTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CrossSumTests/CrossSumTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrossSum.app/CrossSum";
@@ -622,6 +646,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BU47XE2F27;
 				INFOPLIST_FILE = CrossSumTests/Info.plist;
@@ -632,6 +657,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oldjewel.CrossSumTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CrossSumTests/CrossSumTests-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrossSum.app/CrossSum";

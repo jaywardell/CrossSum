@@ -13,7 +13,6 @@ class StatementLabelTests: XCTestCase {
 
     func testContainsExpectedSubviews() {
         let sut = createSUT()
-        print("sut: \(sut)")
         
         XCTAssertNotNil(sut.statementLabel.subviews.first)
         XCTAssertEqual(sut.expressionLabel.superview, sut.statementLabel)
@@ -29,13 +28,15 @@ class StatementLabelTests: XCTestCase {
         let sut = createSUT()
         
         XCTAssertEqual(sut.statementLabel.highlightColor, .cyan)
+        XCTAssertEqual(sut.expressionLabel.highlightColor, .cyan)
     }
     
     func testSetStatement() {
         
         let sut = createSUT()
         let s = Statement("1+1", 2)
-        
+        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+
         sut.statementLabel.statement = s
         XCTAssertEqual(sut.statementLabel.statement?.expression, s.expression)
         XCTAssertEqual(sut.statementLabel.statement?.targetSolution, s.targetSolution)
@@ -47,11 +48,17 @@ class StatementLabelTests: XCTestCase {
         
         XCTAssertNil(sut.expressionLabel.backgroundColor)
         XCTAssertFalse(sut.statementLabel.isPromptingForExpression)
-   }
+
+        // we expect six issues with unsatisfiable constraints during the transition step
+        XCTAssertEqual(unsatisfiableConstraintsCount + 6, InterceptUnsatisfiableConstraints.callCount())
+        // but the layout should be satisfiable after the set
+        XCTAssertFalse(sut.statementLabel.hasAmbiguousLayout)
+    }
     
     func testLabelsAreEmptyWHenStatementIsNil() {
         let sut = createSUT()
-        
+        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+
         // ensure that thigns are nil be default
         XCTAssertNil(sut.expressionLabel.text)
         XCTAssertNil(sut.equalityLabel.text)
@@ -69,35 +76,52 @@ class StatementLabelTests: XCTestCase {
         XCTAssertNil(sut.solutionLabel.value)
         XCTAssertNil(sut.expressionLabel.backgroundColor)
         XCTAssertFalse(sut.statementLabel.isPromptingForExpression)
-   }
+
+        // we expect six issues with unsatisfiable constraints during the transition step
+        XCTAssertEqual(unsatisfiableConstraintsCount + 6, InterceptUnsatisfiableConstraints.callCount())
+        // but the layout should be satisfiable after the set
+        XCTAssertFalse(sut.statementLabel.hasAmbiguousLayout)
+  }
 
     func testSetStatementWithoutTargetSoluton() {
         
         let sut = createSUT()
         let s = Statement("1+1")
-        
+        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+
         sut.statementLabel.statement = s
 
         XCTAssertEqual(sut.expressionLabel.text, s.expression)
         XCTAssertNil(sut.equalityLabel.text)
         XCTAssertNil(sut.solutionLabel.value)
         XCTAssertNil(sut.expressionLabel.backgroundColor)
-   }
+
+        // we expect six issues with unsatisfiable constraints during the transition step
+        XCTAssertEqual(unsatisfiableConstraintsCount + 1, InterceptUnsatisfiableConstraints.callCount())
+        // but the layout should be satisfiable after the set
+        XCTAssertFalse(sut.statementLabel.hasAmbiguousLayout)
+    }
 
     func testSetStatementWithoutExpression() {
         
         let sut = createSUT()
         let s = Statement(nil, 2)
-        
+        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+
         sut.statementLabel.statement = s
         
-        XCTAssertNil(sut.expressionLabel.text)
+        XCTAssertEqual(sut.expressionLabel.text, StatementLabel.PromptSpace)
         XCTAssertEqual(sut.equalityLabel.text, "=")
         XCTAssertEqual(sut.solutionLabel.value, 2)
         
         // a statement without an expression, the user should be prompted for an expression here
         XCTAssert(sut.statementLabel.isPromptingForExpression)
-        XCTAssertEqual(sut.expressionLabel.backgroundColor, sut.statementLabel.highlightColor)
+        XCTAssert(sut.expressionLabel.isHighlighted)
+ 
+        // we expect six issues with unsatisfiable constraints during the transition step
+        XCTAssertEqual(unsatisfiableConstraintsCount + 6, InterceptUnsatisfiableConstraints.callCount())
+        // but the layout should be satisfiable after the set
+        XCTAssertFalse(sut.statementLabel.hasAmbiguousLayout)
     }
 
     // MARK:-
@@ -129,11 +153,12 @@ class StatementLabelTests: XCTestCase {
 
     func testAutolayoutIsValid() {
         let sut = createSUT()
-        
-        XCTAssertFalse(sut.statementLabel.translatesAutoresizingMaskIntoConstraints)
-        XCTAssertFalse(sut.expressionLabel.translatesAutoresizingMaskIntoConstraints)
-        XCTAssertFalse(sut.equalityLabel.translatesAutoresizingMaskIntoConstraints)
-        XCTAssertFalse(sut.solutionLabel.translatesAutoresizingMaskIntoConstraints)
+
+        // since I switched to a UIStackVIew, these tests appear to be irrelevant
+//        XCTAssertFalse(sut.statementLabel.translatesAutoresizingMaskIntoConstraints)
+//        XCTAssertFalse(sut.expressionLabel.translatesAutoresizingMaskIntoConstraints)
+//        XCTAssertFalse(sut.equalityLabel.translatesAutoresizingMaskIntoConstraints)
+//        XCTAssertFalse(sut.solutionLabel.translatesAutoresizingMaskIntoConstraints)
         XCTAssertFalse(sut.statementLabel.hasAmbiguousLayout)
     }
 

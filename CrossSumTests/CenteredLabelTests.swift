@@ -10,11 +10,31 @@ import XCTest
 @testable import CrossSum
 
 class CenteredLabelTests: XCTestCase {
-
+    
     func testContainsLabel() {
         let (sut, label) = createSUT()
         XCTAssertNotNil(sut.subviews.first)
         XCTAssertEqual(label.superview, sut)
+    }
+    
+    func testLoadingFromStoryboard() {
+        let storyboard = UIStoryboard(name: "Tests", bundle: Bundle(for: CenteredLabelTests.self))
+        XCTAssertNotNil(storyboard)
+
+        let tvc = storyboard.instantiateViewController(withIdentifier: "CenteredLabels") as! CenteredLabelTestsViewController
+        XCTAssertNotNil(tvc)
+
+        XCTAssertNotNil(tvc.view)
+        
+        let label = tvc.centeredLabel
+        XCTAssertNotNil(label)
+        
+        // when the label is loaded from a storyboard,
+        // any width or height constraints placed on it by the storybaord should be removed
+        // only positioning constraints should apply to the centeredlabel
+        XCTAssertEqual(label?.widthConstraints.count, 1)
+        XCTAssertEqual(label?.widthConstraints.first?.constant, 0)
+        XCTAssertEqual(label?.heightConstraints.count, 0)
     }
     
     func testTakesText() {
@@ -112,6 +132,7 @@ class CenteredLabelTests: XCTestCase {
     private func createSUT() -> (CenteredLabel, UILabel) {
         
         let sut = CenteredLabel()
+        sut.didMoveToSuperview()
         let label = sut.subviews.first! as! UILabel
 
         return (sut, label)
