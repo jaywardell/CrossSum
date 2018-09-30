@@ -16,9 +16,9 @@ class RationalLabelTests: XCTestCase {
         let sut = createSUT()
         XCTAssertNotNil(sut.rationalLabel.subviews.first)
         XCTAssertEqual(sut.wholeNumberLabel.superview, sut.rationalLabel)
-        XCTAssertEqual(sut.numeratorLabel.superview, sut.rationalLabel)
-        XCTAssertEqual(sut.denominatorLabel.superview, sut.rationalLabel)
-        XCTAssertEqual(sut.fractionBar.superview, sut.rationalLabel)
+        XCTAssertEqual(sut.numeratorLabel.superview?.superview, sut.rationalLabel)
+        XCTAssertEqual(sut.denominatorLabel.superview?.superview, sut.rationalLabel)
+        XCTAssertEqual(sut.fractionBar.superview?.superview, sut.rationalLabel)
     
         XCTAssertEqual(sut.wholeNumberLabel.text, nil)
         XCTAssertEqual(sut.numeratorLabel.text, nil)
@@ -327,13 +327,14 @@ class RationalLabelTests: XCTestCase {
         numeratorLabel:CenteredLabel,
         denominatorLabel:CenteredLabel,
         fractionBar:UIView) {
-        
-        let rl = RationalLabel()
-        let wl = rl.subviews[0] as! CenteredLabel
-            let nl = rl.subviews[1] as! CenteredLabel
-            let dl = rl.subviews[2] as! CenteredLabel
-            let fb = rl.subviews[3]
-
+            
+            let rl = RationalLabel()
+            let wl = rl.arrangedSubviews[0] as! CenteredLabel
+            let fr = rl.arrangedSubviews[1] as! UIStackView
+            let nl = fr.arrangedSubviews[0] as! CenteredLabel
+            let fb = fr.arrangedSubviews[1]
+            let dl = fr.arrangedSubviews[2] as! CenteredLabel
+            
             return (rationalLabel:rl,
                     wholeNumberLabel:wl,
                     numeratorLabel:nl,

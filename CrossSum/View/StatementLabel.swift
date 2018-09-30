@@ -10,7 +10,7 @@ import UIKit
 
 class StatementLabel: UIStackView {
 
-    static let PromptSpace = "     "
+    static let PromptSpace = "       "
 
     
     var statement : Statement? {
@@ -20,16 +20,14 @@ class StatementLabel: UIStackView {
                 expressionLabel.backgroundColor = nil
                 equalityLabel.text = nil
                 solutionLabel.value = nil
+                updateLayout()
                 return
             }
-//            ignoringAutolayoutWarnings {
             
-                expressionLabel.text = statement.expression ?? StatementLabel.PromptSpace
-                expressionLabel.isHighlighted = isPromptingForExpression
-                //            expressionLabel.backgroundColor = isPromptingForExpression ? highlightColor : nil
-                equalityLabel.text = statement.hasExpression ? statement.title : statement.promptTitle
-                solutionLabel.value = statement.targetSolution
-//            }
+            expressionLabel.text = statement.expression ?? StatementLabel.PromptSpace
+            expressionLabel.isHighlighted = isPromptingForExpression
+            equalityLabel.text = statement.hasExpression ? statement.title : statement.promptTitle
+            solutionLabel.value = statement.targetSolution
             
             updateLayout()
         }
@@ -110,7 +108,6 @@ class StatementLabel: UIStackView {
     
     private func setup() {
         axis = .horizontal
-//        distribution = .fillProportionally
         spacing = UIStackView.spacingUseDefault
         
         [
@@ -121,7 +118,6 @@ class StatementLabel: UIStackView {
         
         highlightColor = .cyan
         
-//        setupConstraints()
         updateLayout()
     }
     

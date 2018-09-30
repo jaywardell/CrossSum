@@ -23,7 +23,7 @@ import UIKit
         
     var contentView : UIView { return rowsStackView! }
     
-    var letterFont : UIFont {
+    var choiceFont : UIFont {
         return labels.first!.font
     }
     

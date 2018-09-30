@@ -18,19 +18,25 @@ class GameViewController: UIViewController {
         }
     }
     
-    var statementLabel : StatementLabel = StatementLabel()
+//    var statementLabel : StatementLabel = StatementLabel()
+    
+    @IBOutlet weak var statementLabel: StatementLabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        statementLabel.backgroundColor = nil
+        wordSearchView.backgroundColor = nil
+        
         let grid = generateGrid(size: 7)
         print("grid: \(grid)")
         
         wordSearchView.symbols = grid
         
-        wordSearchView.addSubview(statementLabel)
         wordSearchView.centerXAnchor.constraint(equalTo: statementLabel.centerXAnchor)
         wordSearchView.topAnchor.constraint(equalTo: statementLabel.topAnchor)
+        view.layoutIfNeeded()
+        statementLabel.font = wordSearchView.choiceFont
     }
     
     func generateGrid(size:Int) -> [[String]] {
@@ -81,9 +87,10 @@ extension GameViewController {
 //        print("\(#function) \(string) = \(result)")
         
         // NOTE: right now the StatementLabel is not resizing as it should, but the various parts are being updated appropriately
-        let statement = Statement(string, 15)
+        
+        let r = RationalParser.grammar.parse(string[...])
+        let statement = Statement(string, r?.0)
         statementLabel.statement = statement
         
-        print("statementLabel: \(statementLabel)")
     }
 }

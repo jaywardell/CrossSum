@@ -2,14 +2,14 @@
 //  RationalLabel.swift
 //  CrossSum
 //
-//  Created by Joseph Wardell on 9/24/18.
+//  Created by Joseph Wardell on 9/30/18.
 //  Copyright © 2018 Joseph Wardell. All rights reserved.
 //
 
 import UIKit
 
-class RationalLabel: UIView {
-
+class RationalLabel: UIStackView {
+    
     
     var value : Rational? {
         didSet {
@@ -24,7 +24,7 @@ class RationalLabel: UIView {
                     return
             }
             
-            if integerPart != 0 { 
+            if integerPart != 0 {
                 self.wholeNumberLabel.text = String(integerPart)
             }
             else if fractionalPart.numerator == 0 {
@@ -38,16 +38,12 @@ class RationalLabel: UIView {
             }
             
             if fractionalPart.numerator != 0 {
-//                ignoringAutolayoutWarnings { // call to updateLayout() will correct constraints issues
-                    self.numeratorLabel.text = String(fractionalPart.numerator)
-                    self.denominatorLabel.text = String(fractionalPart.denominator)
-//                }
+                self.numeratorLabel.text = String(fractionalPart.numerator)
+                self.denominatorLabel.text = String(fractionalPart.denominator)
             }
             else {
-//                ignoringAutolayoutWarnings { // call to updateLayout() will correct constraints issues
-                    self.numeratorLabel.text = nil
-                    self.denominatorLabel.text = nil
-//                }
+                self.numeratorLabel.text = nil
+                self.denominatorLabel.text = nil
             }
             updateLayout()
         }
@@ -62,7 +58,7 @@ class RationalLabel: UIView {
             fractionBar.backgroundColor = newValue
         }
     }
-
+    
     var font : UIFont {
         get { return wholeNumberLabel.font }
         set {
@@ -73,8 +69,8 @@ class RationalLabel: UIView {
         }
     }
     
-    // MARK:- 
-
+    // MARK:-
+    
     
     private lazy var wholeNumberLabel : CenteredLabel = {
         let out = CenteredLabel()
@@ -83,7 +79,7 @@ class RationalLabel: UIView {
         
         return out
     }()
-
+    
     private lazy var numeratorLabel : CenteredLabel = {
         let out = CenteredLabel()
         out.textAlignment = .center
@@ -91,7 +87,7 @@ class RationalLabel: UIView {
         
         return out
     }()
-
+    
     private lazy var denominatorLabel : CenteredLabel = {
         let out = CenteredLabel()
         out.textAlignment = .center
@@ -99,16 +95,16 @@ class RationalLabel: UIView {
         
         return out
     }()
-
-    private lazy var fractionBar : UIView = {
-        let out = UIView()
+    
+    private lazy var fractionBar : FractionBar = {
+        let out = FractionBar()
         out.backgroundColor = .black
         
         return out
     }()
     
     private lazy var fractionBarHeight : NSLayoutConstraint = {
-       return fractionBar.heightAnchor.constraint(equalToConstant: 10)
+        return fractionBar.heightAnchor.constraint(equalToConstant: 10)
     }()
     
     // MARK:-
@@ -118,69 +114,95 @@ class RationalLabel: UIView {
         setup()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
     
     private func setup() {
         
+        let fractionView = UIStackView(arrangedSubviews: [numeratorLabel, fractionBar, denominatorLabel])
+        fractionView.axis = .vertical
+        
         [
             wholeNumberLabel,
-            numeratorLabel,
-            denominatorLabel,
-            fractionBar
-            ].forEach { addSubview($0) }
-        
-        setupConstraints()
+            fractionView
+            ].forEach { addArrangedSubview($0) }
     }
-
-    private func setupConstraints() {
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-
-        wholeNumberLabel.constrain(to: [
-            wholeNumberLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            wholeNumberLabel.topAnchor.constraint(equalTo: topAnchor),
-            wholeNumberLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            wholeNumberLabel.heightAnchor.constraint(greaterThanOrEqualTo: wholeNumberLabel.heightAnchor, multiplier: 1)
-            ])
-        
-        numeratorLabel.constrain(to: [
-            numeratorLabel.leadingAnchor.constraint(equalTo: wholeNumberLabel.trailingAnchor),
-            numeratorLabel.topAnchor.constraint(greaterThanOrEqualTo: topAnchor),
-            numeratorLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            numeratorLabel.bottomAnchor.constraint(equalTo: fractionBar.topAnchor),
-            
-            numeratorLabel.heightAnchor.constraint(equalTo: wholeNumberLabel.heightAnchor, multiplier: 13/34),
-            ])
-        
-        denominatorLabel.constrain(to: [
-            denominatorLabel.leadingAnchor.constraint(equalTo: numeratorLabel.leadingAnchor),
-            denominatorLabel.topAnchor.constraint(equalTo: fractionBar.bottomAnchor),
-            denominatorLabel.trailingAnchor.constraint(equalTo: numeratorLabel.trailingAnchor),
-            denominatorLabel.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor),
-            
-            denominatorLabel.widthAnchor.constraint(equalTo: numeratorLabel.widthAnchor, multiplier: 1),
-            denominatorLabel.heightAnchor.constraint(equalTo: numeratorLabel.heightAnchor, multiplier: 1),
-            ])
-        
-        fractionBar.constrain(to: [
-            fractionBar.leadingAnchor.constraint(equalTo: numeratorLabel.leadingAnchor),
-            fractionBar.trailingAnchor.constraint(equalTo: numeratorLabel.trailingAnchor),
-            fractionBarHeight
-            ])
-        
-    }
-
+    
+//    private func setupConstraints() {
+//
+//        self.translatesAutoresizingMaskIntoConstraints = false
+//
+//        wholeNumberLabel.constrain(to: [
+//            wholeNumberLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+//            wholeNumberLabel.topAnchor.constraint(equalTo: topAnchor),
+//            wholeNumberLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+//            wholeNumberLabel.heightAnchor.constraint(greaterThanOrEqualTo: wholeNumberLabel.heightAnchor, multiplier: 1)
+//            ])
+//
+//        numeratorLabel.constrain(to: [
+//            numeratorLabel.leadingAnchor.constraint(equalTo: wholeNumberLabel.trailingAnchor),
+//            numeratorLabel.topAnchor.constraint(greaterThanOrEqualTo: topAnchor),
+//            numeratorLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+//            numeratorLabel.bottomAnchor.constraint(equalTo: fractionBar.topAnchor),
+//
+//            numeratorLabel.heightAnchor.constraint(equalTo: wholeNumberLabel.heightAnchor, multiplier: 13/34),
+//            ])
+//
+//        denominatorLabel.constrain(to: [
+//            denominatorLabel.leadingAnchor.constraint(equalTo: numeratorLabel.leadingAnchor),
+//            denominatorLabel.topAnchor.constraint(equalTo: fractionBar.bottomAnchor),
+//            denominatorLabel.trailingAnchor.constraint(equalTo: numeratorLabel.trailingAnchor),
+//            denominatorLabel.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor),
+//
+//            denominatorLabel.widthAnchor.constraint(equalTo: numeratorLabel.widthAnchor, multiplier: 1),
+//            denominatorLabel.heightAnchor.constraint(equalTo: numeratorLabel.heightAnchor, multiplier: 1),
+//            ])
+//
+//        fractionBar.constrain(to: [
+//            fractionBar.leadingAnchor.constraint(equalTo: numeratorLabel.leadingAnchor),
+//            fractionBar.trailingAnchor.constraint(equalTo: numeratorLabel.trailingAnchor),
+//            fractionBarHeight
+//            ])
+//
+//    }
+    
     private func updateLayout() {
-        
-        fractionBarHeight.constant = font.underlineThickness
+
         wholeNumberLabel.sizeToFit()
         numeratorLabel.sizeToFit()
         denominatorLabel.sizeToFit()
+
+        fractionBar.height = font.underlineThickness
+        fractionBar.width = denominatorLabel.intrinsicContentSize.width
         fractionBar.sizeToFit()
+
         setNeedsLayout()
         layoutIfNeeded()
+
     }
 }
+
+// MARK:-
+
+private final class FractionBar : UIView {
+
+    var width : CGFloat = 0 {
+        didSet {
+            invalidateIntrinsicContentSize()
+        }
+    }
+    var height : CGFloat = 0 {
+        didSet {
+            invalidateIntrinsicContentSize()
+        }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        let out = CGSize(width: width, height: ceil(height))
+        print("\(#function) \(out)")
+        return out
+    }
+}
+

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CenteredLabel: UIView {
+class CenteredLabel: UIStackView {
 
     var text: String? {
         get { return label.text }
@@ -47,9 +47,9 @@ class CenteredLabel: UIView {
     
     // MARK:- 
 
-    private lazy var leadingMargin = label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8)
-    private lazy var trailingMargin = label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
-    private lazy var zeroWidth = widthAnchor.constraint(equalToConstant: 0)
+//    private lazy var leadingMargin = label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2)
+//    private lazy var trailingMargin = label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2)
+//    private lazy var zeroWidth = widthAnchor.constraint(equalToConstant: 0)
 
     private lazy var label : UILabel = {
         let out = UILabel()
@@ -65,7 +65,7 @@ class CenteredLabel: UIView {
         super.init(frame: frame)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
         // if there are width or height constraints tied to this view in the storyboard,
@@ -86,19 +86,23 @@ class CenteredLabel: UIView {
         super.sizeToFit()
     }
     
+    override var intrinsicContentSize: CGSize {
+        return label.intrinsicContentSize
+    }
+    
     private func setup() {
     
         self.translatesAutoresizingMaskIntoConstraints = false
         
-        addSubview(label)
+        addArrangedSubview(label)
         
-        label.constrain(to: [
-            
-            label.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
-            label.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: 0),
-            label.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: 0)
-            ])
+//        label.constrain(to: [
+//
+//            label.centerYAnchor.constraint(equalTo: centerYAnchor),
+//
+//            label.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: 0),
+//            label.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: 0)
+//            ])
 
         
         // ensure that label is in the view hierarchy as soon as init has been called
@@ -112,13 +116,13 @@ class CenteredLabel: UIView {
     private func updateLayout() {
 
         // first turn off these constraints to prevent unnecessary logging of unsatisfiable constriants
-        [zeroWidth, leadingMargin, trailingMargin].forEach { $0.isActive = false }
+//        [zeroWidth, leadingMargin, trailingMargin].forEach { $0.isActive = false }
         
         label.sizeToFit()
 
-        zeroWidth.isActive = text == nil
-        leadingMargin.isActive = text != nil
-        trailingMargin.isActive = text != nil
+//        zeroWidth.isActive = text == nil
+//        leadingMargin.isActive = text != nil
+//        trailingMargin.isActive = text != nil
         
         setNeedsLayout()
         layoutIfNeeded()
