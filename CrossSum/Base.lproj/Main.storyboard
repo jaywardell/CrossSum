@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H7q-YO-3RR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CrossSum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LabelTests" id="BYZ-38-t0r" customClass="ViewController" customModule="CrossSum" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,6 +83,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="103" y="68"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="w0i-RD-4pj">
+            <objects>
+                <viewController id="H7q-YO-3RR" customClass="GameViewController" customModule="CrossSum" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fAQ-CG-INI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fy2-xd-F8H" customClass="WordSearchView" customModule="CrossSum" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Fy2-xd-F8H" firstAttribute="leading" secondItem="oUT-VS-hdC" secondAttribute="leading" id="7Fl-AS-y3U"/>
+                            <constraint firstItem="oUT-VS-hdC" firstAttribute="bottom" secondItem="Fy2-xd-F8H" secondAttribute="bottom" id="QSN-Hs-aRk"/>
+                            <constraint firstItem="Fy2-xd-F8H" firstAttribute="top" secondItem="oUT-VS-hdC" secondAttribute="top" id="hQo-6F-Fqo"/>
+                            <constraint firstItem="oUT-VS-hdC" firstAttribute="trailing" secondItem="Fy2-xd-F8H" secondAttribute="trailing" id="iSx-wQ-pJ8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oUT-VS-hdC"/>
+                    </view>
+                    <connections>
+                        <outlet property="wordSearchView" destination="Fy2-xd-F8H" id="xYu-fd-h5g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q3s-Bf-eaB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="748" y="68"/>
         </scene>
     </scenes>
 </document>

@@ -40,6 +40,12 @@
 		7C8BD3C62160FCA4002BC785 /* CenteredLabelTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3C52160FCA4002BC785 /* CenteredLabelTestsViewController.swift */; };
 		7C8BD3C921610D1C002BC785 /* InterceptUnsatisfiableConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3C821610D1C002BC785 /* InterceptUnsatisfiableConstraints.m */; };
 		7C8BD3CC21613900002BC785 /* UIFont+CoreTextConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3CB21613900002BC785 /* UIFont+CoreTextConvenience.swift */; };
+		7C8BD3D121614789002BC785 /* WordSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D021614789002BC785 /* WordSearchView.swift */; };
+		7C8BD3D3216147AB002BC785 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D2216147AA002BC785 /* GameViewController.swift */; };
+		7C8BD3D521614806002BC785 /* CGPoint+Geomtery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D421614806002BC785 /* CGPoint+Geomtery.swift */; };
+		7C8BD3D72161481E002BC785 /* CGPoint+LinearAlgebra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D62161481E002BC785 /* CGPoint+LinearAlgebra.swift */; };
+		7C8BD3D921614833002BC785 /* CGVector+LinearAlgebra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D821614833002BC785 /* CGVector+LinearAlgebra.swift */; };
+		7C8BD3DB21614857002BC785 /* Collection+SpecialIteration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3DA21614857002BC785 /* Collection+SpecialIteration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +107,12 @@
 		7C8BD3C821610D1C002BC785 /* InterceptUnsatisfiableConstraints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterceptUnsatisfiableConstraints.m; sourceTree = "<group>"; };
 		7C8BD3CA216122A9002BC785 /* InterceptUnsatisfiableConstraints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterceptUnsatisfiableConstraints.h; sourceTree = "<group>"; };
 		7C8BD3CB21613900002BC785 /* UIFont+CoreTextConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CoreTextConvenience.swift"; sourceTree = "<group>"; };
+		7C8BD3D021614789002BC785 /* WordSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordSearchView.swift; sourceTree = "<group>"; };
+		7C8BD3D2216147AA002BC785 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		7C8BD3D421614806002BC785 /* CGPoint+Geomtery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Geomtery.swift"; sourceTree = "<group>"; };
+		7C8BD3D62161481E002BC785 /* CGPoint+LinearAlgebra.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+LinearAlgebra.swift"; sourceTree = "<group>"; };
+		7C8BD3D821614833002BC785 /* CGVector+LinearAlgebra.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+LinearAlgebra.swift"; sourceTree = "<group>"; };
+		7C8BD3DA21614857002BC785 /* Collection+SpecialIteration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+SpecialIteration.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,15 +179,8 @@
 		7C3C3F35215995F000BD026A /* CrossSumTests */ = {
 			isa = PBXGroup;
 			children = (
-				7C3C3F692159C45500BD026A /* RationalTests.swift */,
-				7C3C3F532159961B00BD026A /* CenteredLabelTests.swift */,
-				7C3C3F592159A06100BD026A /* RationalLabelTests.swift */,
-				7C84DA54215B0B3900D3B36F /* StatementLabelTests.swift */,
-				7C84DA79215B211600D3B36F /* DoubleParserTests.swift */,
-				7C84DA81215B226000D3B36F /* RationalParserTests.swift */,
-				7C84DA7A215B211600D3B36F /* IntParserTests.swift */,
-				7C84DA78215B211600D3B36F /* ParserTests.swift */,
-				7C8BD3BF21605A60002BC785 /* StatementTests.swift */,
+				7C8BD3CF21614241002BC785 /* Model Layer Tests */,
+				7C8BD3CE21614233002BC785 /* Label Tests */,
 				7C3C3F38215995F000BD026A /* Info.plist */,
 				7C8BD3C32160FC49002BC785 /* Tests.storyboard */,
 				7C8BD3C52160FCA4002BC785 /* CenteredLabelTestsViewController.swift */,
@@ -206,12 +211,17 @@
 		7C3C3F6E2159C74200BD026A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7C8BD3D021614789002BC785 /* WordSearchView.swift */,
 				7C3C3F4F2159961400BD026A /* CenteredLabel.swift */,
 				7C3C3F5721599B8400BD026A /* RationalLabel.swift */,
 				7C84DA56215B0C6800D3B36F /* StatementLabel.swift */,
 				7C8BD3C12160FAB8002BC785 /* UIView+AutolayoutSetup.swift */,
 				7C3C3F502159961400BD026A /* UIView+AutolayoutConvenience.swift */,
 				7C8BD3CB21613900002BC785 /* UIFont+CoreTextConvenience.swift */,
+				7C8BD3D421614806002BC785 /* CGPoint+Geomtery.swift */,
+				7C8BD3D62161481E002BC785 /* CGPoint+LinearAlgebra.swift */,
+				7C8BD3D821614833002BC785 /* CGVector+LinearAlgebra.swift */,
+				7C8BD3DA21614857002BC785 /* Collection+SpecialIteration.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -230,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				7C3C3F23215995EE00BD026A /* ViewController.swift */,
+				7C8BD3D2216147AA002BC785 /* GameViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -253,6 +264,37 @@
 				7C84DA6F215B210700D3B36F /* Parser<Int>.swift */,
 			);
 			path = Original;
+			sourceTree = "<group>";
+		};
+		7C8BD3CD21614223002BC785 /* Parser Tests */ = {
+			isa = PBXGroup;
+			children = (
+				7C84DA78215B211600D3B36F /* ParserTests.swift */,
+				7C84DA81215B226000D3B36F /* RationalParserTests.swift */,
+				7C84DA7A215B211600D3B36F /* IntParserTests.swift */,
+				7C84DA79215B211600D3B36F /* DoubleParserTests.swift */,
+			);
+			path = "Parser Tests";
+			sourceTree = "<group>";
+		};
+		7C8BD3CE21614233002BC785 /* Label Tests */ = {
+			isa = PBXGroup;
+			children = (
+				7C3C3F532159961B00BD026A /* CenteredLabelTests.swift */,
+				7C3C3F592159A06100BD026A /* RationalLabelTests.swift */,
+				7C84DA54215B0B3900D3B36F /* StatementLabelTests.swift */,
+			);
+			path = "Label Tests";
+			sourceTree = "<group>";
+		};
+		7C8BD3CF21614241002BC785 /* Model Layer Tests */ = {
+			isa = PBXGroup;
+			children = (
+				7C3C3F692159C45500BD026A /* RationalTests.swift */,
+				7C8BD3BF21605A60002BC785 /* StatementTests.swift */,
+				7C8BD3CD21614223002BC785 /* Parser Tests */,
+			);
+			path = "Model Layer Tests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,21 +432,27 @@
 			files = (
 				7C3C3F562159974600BD026A /* Presenters.swift in Sources */,
 				7C3C3F24215995EE00BD026A /* ViewController.swift in Sources */,
+				7C8BD3D121614789002BC785 /* WordSearchView.swift in Sources */,
 				7C8BD3CC21613900002BC785 /* UIFont+CoreTextConvenience.swift in Sources */,
 				7C3C3F522159961400BD026A /* UIView+AutolayoutConvenience.swift in Sources */,
 				7C8BD3C22160FAB8002BC785 /* UIView+AutolayoutSetup.swift in Sources */,
 				7C3C3F22215995EE00BD026A /* AppDelegate.swift in Sources */,
 				7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */,
+				7C8BD3D921614833002BC785 /* CGVector+LinearAlgebra.swift in Sources */,
+				7C8BD3D3216147AB002BC785 /* GameViewController.swift in Sources */,
 				7C84DA77215B210700D3B36F /* Parser<Character>.swift in Sources */,
 				7C84DA75215B210700D3B36F /* Op.swift in Sources */,
 				7C84DA73215B210700D3B36F /* Parser<Double>.swift in Sources */,
+				7C8BD3D521614806002BC785 /* CGPoint+Geomtery.swift in Sources */,
 				7C3C3F5821599B8400BD026A /* RationalLabel.swift in Sources */,
+				7C8BD3DB21614857002BC785 /* Collection+SpecialIteration.swift in Sources */,
 				7C84DA84215B240800D3B36F /* Statement.swift in Sources */,
 				7C84DA76215B210700D3B36F /* Parser.swift in Sources */,
 				7C3C3F512159961400BD026A /* CenteredLabel.swift in Sources */,
 				7C84DA74215B210700D3B36F /* Parser<Int>.swift in Sources */,
 				7C84DA80215B217E00D3B36F /* RationalParser.swift in Sources */,
 				7C3C3F6C2159C4E800BD026A /* Rational.swift in Sources */,
+				7C8BD3D72161481E002BC785 /* CGPoint+LinearAlgebra.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

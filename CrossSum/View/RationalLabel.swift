@@ -38,16 +38,16 @@ class RationalLabel: UIView {
             }
             
             if fractionalPart.numerator != 0 {
-                ignoringAutolayoutWarnings { // call to updateLayout() will correct constraints issues
+//                ignoringAutolayoutWarnings { // call to updateLayout() will correct constraints issues
                     self.numeratorLabel.text = String(fractionalPart.numerator)
                     self.denominatorLabel.text = String(fractionalPart.denominator)
-                }
+//                }
             }
             else {
-                ignoringAutolayoutWarnings { // call to updateLayout() will correct constraints issues
+//                ignoringAutolayoutWarnings { // call to updateLayout() will correct constraints issues
                     self.numeratorLabel.text = nil
                     self.denominatorLabel.text = nil
-                }
+//                }
             }
             updateLayout()
         }

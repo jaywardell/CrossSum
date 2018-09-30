@@ -144,6 +144,36 @@ extension UIView {
         }
     }
     
+    func constrainToLimitSize(of viewOrGuide:LayoutPositioning, widthMultiplier:CGFloat? = nil, heightMultiplier:CGFloat? = nil) {
+        
+        var constraints = [NSLayoutConstraint]()
+        
+        if let widthMultiplier = widthMultiplier {
+            constraints.append(widthAnchor.constraint(lessThanOrEqualTo: viewOrGuide.widthAnchor, multiplier: widthMultiplier))
+        }
+        
+        if let heightMultiplier = heightMultiplier {
+            constraints.append(heightAnchor.constraint(lessThanOrEqualTo: viewOrGuide.heightAnchor, multiplier: heightMultiplier))
+        }
+        
+        constrain(to: constraints)
+    }
+    
+    func constrainToMeetOrExceedSize(of viewOrGuide:LayoutPositioning, widthMultiplier:CGFloat? = nil, heightMultiplier:CGFloat? = nil) {
+        
+        var constraints = [NSLayoutConstraint]()
+        
+        if let widthMultiplier = widthMultiplier {
+            constraints.append(widthAnchor.constraint(greaterThanOrEqualTo: viewOrGuide.widthAnchor, multiplier: widthMultiplier))
+        }
+        
+        if let heightMultiplier = heightMultiplier {
+            constraints.append(heightAnchor.constraint(greaterThanOrEqualTo: viewOrGuide.heightAnchor, multiplier: heightMultiplier))
+        }
+        
+        constrain(to: constraints)
+    }
+
     func constrainToMatchSize(of viewOrGuide:LayoutPositioning, widthMultiplier:CGFloat? = nil, heightMultiplier:CGFloat? = nil) {
         
         var constraints = [NSLayoutConstraint]()

@@ -26,12 +26,7 @@ class CenteredLabel: UIView {
     var highlightColor : UIColor?
     var isHighlighted : Bool = false {
         didSet {
-//            if isHighlighted {
                 label.backgroundColor = isHighlighted ? highlightColor : nil
-//            }
-//            else {
-//                print("backgroundcolor: \(backgroundColor)")
-//            }
         }
     }
     
@@ -83,6 +78,12 @@ class CenteredLabel: UIView {
         super.didMoveToSuperview()
         
         setup()
+    }
+    
+    override func sizeToFit() {
+        
+        label.sizeToFit()
+        super.sizeToFit()
     }
     
     private func setup() {

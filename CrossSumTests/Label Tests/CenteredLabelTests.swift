@@ -32,6 +32,7 @@ class CenteredLabelTests: XCTestCase {
         // when the label is loaded from a storyboard,
         // any width or height constraints placed on it by the storybaord should be removed
         // only positioning constraints should apply to the centeredlabel
+        // It should have a zero-width constraint based on the fact that's it's empty
         XCTAssertEqual(label?.widthConstraints.count, 1)
         XCTAssertEqual(label?.widthConstraints.first?.constant, 0)
         XCTAssertEqual(label?.heightConstraints.count, 0)

@@ -22,14 +22,16 @@ class StatementLabel: UIStackView {
                 solutionLabel.value = nil
                 return
             }
-            ignoringAutolayoutWarnings {
-                
+//            ignoringAutolayoutWarnings {
+            
                 expressionLabel.text = statement.expression ?? StatementLabel.PromptSpace
                 expressionLabel.isHighlighted = isPromptingForExpression
                 //            expressionLabel.backgroundColor = isPromptingForExpression ? highlightColor : nil
                 equalityLabel.text = statement.hasExpression ? statement.title : statement.promptTitle
                 solutionLabel.value = statement.targetSolution
-            }
+//            }
+            
+            updateLayout()
         }
     }
     
@@ -120,8 +122,19 @@ class StatementLabel: UIStackView {
         highlightColor = .cyan
         
 //        setupConstraints()
+        updateLayout()
     }
     
+    
+    private func updateLayout() {
+        
+        expressionLabel.sizeToFit()
+        equalityLabel.sizeToFit()
+        solutionLabel.sizeToFit()
+        setNeedsLayout()
+        layoutIfNeeded()
+    }
+
 //    private func setupConstraints() {
 //        translatesAutoresizingMaskIntoConstraints = false
 //

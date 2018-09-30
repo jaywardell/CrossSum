@@ -26,6 +26,8 @@ class RationalLabelTests: XCTestCase {
         XCTAssertEqual(sut.fractionBar.backgroundColor, .black)
     }
 
+    // TODO: test loading from storyboard, verify proper tnumber of constraints
+    
     func testTakesRational() {
         let sut = createSUT()
         
