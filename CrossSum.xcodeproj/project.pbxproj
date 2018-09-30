@@ -34,6 +34,7 @@
 		7C84DA80215B217E00D3B36F /* RationalParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA7F215B217E00D3B36F /* RationalParser.swift */; };
 		7C84DA82215B226000D3B36F /* RationalParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA81215B226000D3B36F /* RationalParserTests.swift */; };
 		7C84DA84215B240800D3B36F /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA83215B240800D3B36F /* Statement.swift */; };
+		7C8BD3C021605A60002BC785 /* StatementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3BF21605A60002BC785 /* StatementTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		7C84DA7F215B217E00D3B36F /* RationalParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationalParser.swift; sourceTree = "<group>"; };
 		7C84DA81215B226000D3B36F /* RationalParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationalParserTests.swift; sourceTree = "<group>"; };
 		7C84DA83215B240800D3B36F /* Statement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statement.swift; sourceTree = "<group>"; };
+		7C8BD3BF21605A60002BC785 /* StatementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				7C84DA81215B226000D3B36F /* RationalParserTests.swift */,
 				7C84DA7A215B211600D3B36F /* IntParserTests.swift */,
 				7C84DA78215B211600D3B36F /* ParserTests.swift */,
+				7C8BD3BF21605A60002BC785 /* StatementTests.swift */,
 				7C3C3F38215995F000BD026A /* Info.plist */,
 			);
 			path = CrossSumTests;
@@ -391,6 +394,7 @@
 				7C3C3F542159961B00BD026A /* CenteredLabelTests.swift in Sources */,
 				7C84DA7B215B211600D3B36F /* ParserTests.swift in Sources */,
 				7C3C3F5A2159A06100BD026A /* RationalLabelTests.swift in Sources */,
+				7C8BD3C021605A60002BC785 /* StatementTests.swift in Sources */,
 				7C84DA7D215B211600D3B36F /* IntParserTests.swift in Sources */,
 				7C84DA82215B226000D3B36F /* RationalParserTests.swift in Sources */,
 				7C3C3F6A2159C45500BD026A /* RationalTests.swift in Sources */,
