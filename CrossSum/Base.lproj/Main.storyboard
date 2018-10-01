@@ -104,11 +104,23 @@
                                             <constraint firstAttribute="height" constant="22" id="x8P-ZO-aw9"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zpK-jk-QGH">
+                                        <rect key="frame" x="292" y="609" width="75" height="30"/>
+                                        <state key="normal" title="New Game"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91F-wm-LNm">
+                                        <rect key="frame" x="8" y="609" width="30" height="30"/>
+                                        <state key="normal" title="Hint"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90000000000000002" green="0.79999748059999998" blue="0.67500000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="zpK-jk-QGH" secondAttribute="bottom" constant="8" id="2l8-af-5BW"/>
+                                    <constraint firstItem="91F-wm-LNm" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leading" constant="8" id="HBR-b2-Nkg"/>
+                                    <constraint firstAttribute="bottom" secondItem="91F-wm-LNm" secondAttribute="bottom" constant="8" id="Iu2-rW-hzy"/>
                                     <constraint firstAttribute="width" secondItem="Fy2-xd-F8H" secondAttribute="height" multiplier="375:647" id="LvP-KX-3fh"/>
                                     <constraint firstItem="ivz-NB-Y3C" firstAttribute="top" secondItem="Fy2-xd-F8H" secondAttribute="top" id="dKf-27-hbN"/>
+                                    <constraint firstAttribute="trailing" secondItem="zpK-jk-QGH" secondAttribute="trailing" constant="8" id="hj4-dL-cN0"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -122,6 +134,7 @@
                         <viewLayoutGuide key="safeArea" id="oUT-VS-hdC"/>
                     </view>
                     <connections>
+                        <outlet property="newGameButton" destination="zpK-jk-QGH" id="mEm-7M-XgK"/>
                         <outlet property="statementLabel" destination="ivz-NB-Y3C" id="BwW-UL-VFa"/>
                         <outlet property="wordSearchView" destination="Fy2-xd-F8H" id="xYu-fd-h5g"/>
                     </connections>

@@ -10,6 +10,18 @@ import UIKit
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var newGameButton: UIButton! {
+        didSet {
+            newGameButton.addTarget(self, action: #selector(newGameButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var showHintButton: UIButton! {
+        didSet {
+            showHintButton.addTarget(self, action: #selector(showHintButtonPressed), for: .touchUpInside)
+        }
+    }
+    
     @IBOutlet weak var wordSearchView: WordSearchView! {
         didSet {
             wordSearchView.allowsDiagonalSelection = false
@@ -30,21 +42,27 @@ class GameViewController: UIViewController {
         wordSearchView.backgroundColor = nil
         statementLabel.highlightColor = .orange
         
-        round = Round()
-        round?.statementPresenter = statementLabel
-        round?.wordSearchView = wordSearchView
-        round?.solutionFilter = {
-            $0 > 0
-        }
-                
-        round?.begin(with: Grid(size:7, range:0..<10, operators:[.plus, .minus, .times]))
-
+        startRound()
+        
         wordSearchView.centerXAnchor.constraint(equalTo: statementLabel.centerXAnchor)
         wordSearchView.topAnchor.constraint(equalTo: statementLabel.topAnchor)
         view.layoutIfNeeded()
         statementLabel.font = wordSearchView.choiceFont
         
     }
+    
+    @IBAction func newGameButtonPressed() {
+        print(#function)
+        
+        startRound()
+    }
+
+    @IBAction func showHintButtonPressed() {
+        print(#function)
+        
+        // TODO: implement this: highlight the first label needed to get this value
+    }
+
 }
 
 // MARK:-
@@ -75,5 +93,20 @@ extension GameViewController {
         let statement = Statement(string, r?.0)
         statementLabel.statement = statement
         
+    }
+}
+
+extension GameViewController {
+    
+    func startRound() {
+        
+        round = Round()
+        round?.statementPresenter = statementLabel
+        round?.wordSearchView = wordSearchView
+        round?.solutionFilter = {
+            $0 > 0
+        }
+        
+        round?.begin(with: Grid(size:7, range:0..<10, operators:[.plus, .minus, .times]))
     }
 }
