@@ -69,11 +69,15 @@ extension Round {
 // MARK:- Hints
 
 extension Round {
-    /// Tells the WordSearchVIew to show a selection over the first view of ONE OF the possible ways to get the solution, chosen randomly
+    /// Tells the WordSearchView to show a selection over the first view of ONE OF the possible ways to get the solution, chosen randomly
     func showAHint() {
         guard let thisWay = hintedCoordinate() else { return }
         
         wordSearchView?.select(thisWay.0, thisWay.1)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.wordSearchView?.removeSelection()
+        }
     }
     
     private func hintedCoordinate() -> (Int, Int)? {
