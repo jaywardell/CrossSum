@@ -30,7 +30,7 @@ struct Statement {
     let targetSolution : Rational?
     let comparator : Comparator
     
-    private let calculation : Rational?
+    let calculation : Rational?
     
     var hasExpression : Bool {
         return nil != expression

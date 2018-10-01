@@ -18,7 +18,6 @@ class GameViewController: UIViewController {
         }
     }
     
-//    var statementLabel : StatementLabel = StatementLabel()
     
     @IBOutlet weak var statementLabel: StatementLabel!
     
@@ -30,41 +29,19 @@ class GameViewController: UIViewController {
         statementLabel.backgroundColor = nil
         wordSearchView.backgroundColor = nil
                 
-        let s = generateGrid(size: 7)
-        grid = Grid()
-        grid?.symbols = s
+        grid = Grid(size:7, range:0..<5, operators:[.plus, .minus])
         wordSearchView.dataSource = grid
         wordSearchView.reloadSymbols()
 
+        grid?.findSoltuions() {
+            $0 > 0
+        }
+        
         wordSearchView.centerXAnchor.constraint(equalTo: statementLabel.centerXAnchor)
         wordSearchView.topAnchor.constraint(equalTo: statementLabel.topAnchor)
         view.layoutIfNeeded()
         statementLabel.font = wordSearchView.choiceFont
     }
-    
-    func generateGrid(size:Int) -> [[String]] {
-        
-        let operators = "+-×÷"
-        
-        var out = [[String]]()
-        var i = 0
-        (0..<size).forEach { _ in
-            var row = [String]()
-            (0..<size).forEach { _ in
-                
-                row.append(
-                    i%2 == 0 ?
-                        "\(Int.random(in: 0..<20))" :
-                    "\(operators.randomElement()!)"
-                )
-                
-                i += 1
-            }
-            out.append(row)
-        }
-        return out
-    }
-
 }
 
 // MARK:-

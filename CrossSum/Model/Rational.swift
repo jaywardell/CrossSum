@@ -356,6 +356,22 @@ extension Rational : CustomStringConvertible {
     }
 }
 
+// MARK:- Hashable
+
+extension Rational : Hashable {
+    
+    public func hash(into hasher: inout Hasher) {
+        
+        // gaurantee that 1/2 and 5/10 have the same hash value
+        // TODO: test this explicitly
+        let s = standardized
+        s.numerator.hash(into: &hasher)
+        s.denominator.hash(into: &hasher)
+    }
+
+}
+
+
 // MARK:-
 
 public extension Double {

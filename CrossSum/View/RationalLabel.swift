@@ -201,7 +201,6 @@ private final class FractionBar : UIView {
     
     override var intrinsicContentSize: CGSize {
         let out = CGSize(width: width, height: ceil(height))
-        print("\(#function) \(out)")
         return out
     }
 }
