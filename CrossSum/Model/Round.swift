@@ -29,9 +29,11 @@ final class Round {
     var statementPresenter : OptionalStatementPresenter?
     
     var solutionFilter : (Rational) -> Bool = { _ in return true }
+
+    private var hint : (Int, Int)?
 }
 
-// MARK:-
+// MARK:- Game Play
 
 extension Round {
     
@@ -50,6 +52,7 @@ extension Round {
             return
         }
         
+        hint = nil
         currentTargetSolution = next
         presentCurrentTargetSolution()
     }
@@ -61,14 +64,26 @@ extension Round {
     func showNextGrid() {
         print("\(#function) not yet implemented")
     }
-    
+}
+
+// MARK:- Hints
+
+extension Round {
     /// Tells the WordSearchVIew to show a selection over the first view of ONE OF the possible ways to get the solution, chosen randomly
     func showAHint() {
-        guard let currentTargetSolution = currentTargetSolution,
-        let ways = grid?.waysToGet(solution: currentTargetSolution),
-        let thisWay = ways.randomElement()  else { return }
+        guard let thisWay = hintedCoordinate() else { return }
         
-        wordSearchView?.select(thisWay.0.0, thisWay.0.1)
+        wordSearchView?.select(thisWay.0, thisWay.1)
+    }
+    
+    private func hintedCoordinate() -> (Int, Int)? {
+        if let hint = hint { return hint}
+        guard let currentTargetSolution = currentTargetSolution,
+            let ways = grid?.waysToGet(solution: currentTargetSolution),
+            let thisWay = ways.randomElement()  else { return nil }
+        print("ways to get \(currentTargetSolution): \(ways)")
+        hint = thisWay.0
+        return hint
     }
 }
 
