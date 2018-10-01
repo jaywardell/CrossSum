@@ -163,9 +163,9 @@ extension WordSearchDataSource {
     /// - Parameters:
     ///   - row: the row of the view you wish to represent as selected
     ///   - column: the column of the view you wish to represent as selected
-    func select(_ row:Int, _ column:Int) {
+    func select(_ row:Int, _ column:Int, animated:Bool = false) {
         let l = label(at: row, column)
-        showSelection(over: l, animated:true)
+        showSelection(over: l, animated:animated)
     }
     
     /// Shows a selection over the views at the passed in coordinates,
@@ -177,11 +177,11 @@ extension WordSearchDataSource {
     ///   - column1: the column of the view you wish to represent as the start of the selection
     ///   - row2: the row of the view you wish to represent as the end of the selection
     ///   - column2: the column of the view you wish to represent as the end of the selection
-    func select(from row1:Int, _ column1:Int, to row2:Int, _ column2:Int) {
+    func select(from row1:Int, _ column1:Int, to row2:Int, _ column2:Int, animated:Bool = false) {
         let l1 = label(at: row1, column1)
         let l2 = label(at: row2, column2)
         
-        showSelection(from: l1, to: l2)
+        showSelection(from: l1, to: l2, animated:animated)
     }
     
     func removeSelection(animated:Bool = false) {

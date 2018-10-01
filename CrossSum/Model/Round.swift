@@ -73,7 +73,7 @@ extension Round {
     func showAHint() {
         guard let thisWay = hintedCoordinate() else { return }
         
-        wordSearchView?.select(thisWay.0, thisWay.1)
+        wordSearchView?.select(thisWay.0, thisWay.1, animated:true)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
             self?.wordSearchView?.removeSelection(animated: true)
