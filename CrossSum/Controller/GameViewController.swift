@@ -22,13 +22,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var wordSearchView: WordSearchView! {
-        didSet {
-            wordSearchView.allowsDiagonalSelection = false
-            wordSearchView.didSelect = didSelect(_:)
-            wordSearchView.isValidSelection = isValidSelection
-        }
-    }
+    @IBOutlet weak var wordSearchView: WordSearchView!
     
     
     @IBOutlet weak var statementLabel: StatementLabel!

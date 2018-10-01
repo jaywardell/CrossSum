@@ -107,7 +107,11 @@ extension Round {
     
     func didSelect(_ string: String) {
         
-        let statement = Statement(string, currentTargetSolution)
+        // a little hysterysis: if the user stopped selecting on an operator, then just drop it and assume he meant to select
+        // the string up to but not including the operator
+        let solutionString = "+-×÷".contains(string.last!) ? String(string.dropLast()) : string
+        
+        let statement = Statement(solutionString, currentTargetSolution)
         statementPresenter?.statement = statement
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in

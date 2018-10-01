@@ -115,6 +115,7 @@ extension WordSearchDataSource {
         switch pan.state {
         case .began:
             if let closestLabel = closestLabel(to: gestureRecognizer.location(in: self)) {
+                // TODO: hysterysis: coordinatesOfClosstValidLabelToStartSelection (maybe a shorter name, but that's the idea, the closest label that allows for a valid selection)
                 guard let c = coordinates(of: closestLabel) else {
                     _isValidSelection = false
                     return
