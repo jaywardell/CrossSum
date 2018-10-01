@@ -165,7 +165,7 @@ extension WordSearchDataSource {
     ///   - column: the column of the view you wish to represent as selected
     func select(_ row:Int, _ column:Int) {
         let l = label(at: row, column)
-        showSelection(over: l)
+        showSelection(over: l, animated:true)
     }
     
     /// Shows a selection over the views at the passed in coordinates,
@@ -184,14 +184,29 @@ extension WordSearchDataSource {
         showSelection(from: l1, to: l2)
     }
     
-    func removeSelection() {
+    func removeSelection(animated:Bool = false) {
         
         if let layer = selectionLayer {
-            layer.removeFromSuperlayer()
+            
+            if animated {
+                
+                    CATransaction.begin()
+                    CATransaction.setCompletionBlock {
+                        layer.removeFromSuperlayer()
+                    }
+                    CATransaction.setAnimationDuration(0.3)
+                    
+                    layer.opacity = 0
+                    
+                    CATransaction.commit()
+                }
+            else {
+                layer.removeFromSuperlayer()
+            }
         }
     }
     
-    private func showSelection(over label:UILabel) {
+    private func showSelection(over label:UILabel, animated:Bool = false) {
         removeSelection()
         
         let newLayer = CALayer()
@@ -200,12 +215,20 @@ extension WordSearchDataSource {
         newLayer.frame = convert(label.bounds, from: label)
         newLayer.cornerRadius = newLayer.frame.height/2
         newLayer.masksToBounds = true
-        
+
         layer.addSublayer(newLayer)
         selectionLayer = newLayer
+
+        if animated {
+            let fadeIn = CABasicAnimation(keyPath: "opacity")
+            fadeIn.fromValue = 0
+            fadeIn.toValue = 1
+            fadeIn.duration = 0.3
+            newLayer.add(fadeIn, forKey: "fade in")
+        }
     }
     
-    private func showSelection(from label1:UILabel, to label2:UILabel) {
+    private func showSelection(from label1:UILabel, to label2:UILabel, animated:Bool = false) {
 
         removeSelection()
         
@@ -261,6 +284,14 @@ extension WordSearchDataSource {
         
         layer.addSublayer(newLayer)
         selectionLayer = newLayer
+        
+        if animated {
+            let fadeIn = CABasicAnimation(keyPath: "opacity")
+            fadeIn.fromValue = 0
+            fadeIn.toValue = 1
+            fadeIn.duration = 0.3
+            newLayer.add(fadeIn, forKey: "fade in")
+        }
     }
     
     private func reportSelectionChanged(_ label1:UILabel, to label2:UILabel?=nil) {

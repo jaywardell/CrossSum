@@ -75,8 +75,8 @@ extension Round {
         
         wordSearchView?.select(thisWay.0, thisWay.1)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.wordSearchView?.removeSelection()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.wordSearchView?.removeSelection(animated: true)
         }
     }
     
