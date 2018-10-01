@@ -108,7 +108,7 @@ class StatementLabel: UIStackView {
     
     private func setup() {
         axis = .horizontal
-        spacing = UIStackView.spacingUseDefault
+        spacing = 6
         
         [
             expressionLabel,
@@ -142,3 +142,5 @@ class StatementLabel: UIStackView {
 //        equalityLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
 //    }
 }
+
+extension StatementLabel : OptionalStatementPresenter {}

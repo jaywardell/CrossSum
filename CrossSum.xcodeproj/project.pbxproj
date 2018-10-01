@@ -48,6 +48,7 @@
 		7C8BD3DB21614857002BC785 /* Collection+SpecialIteration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3DA21614857002BC785 /* Collection+SpecialIteration.swift */; };
 		7C8BD3DD21615BCD002BC785 /* RationalLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3DC21615BCD002BC785 /* RationalLabel.swift */; };
 		7C8BD3DF2161ABAD002BC785 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3DE2161ABAC002BC785 /* Grid.swift */; };
+		7C8BD3E12161C363002BC785 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3E02161C363002BC785 /* Round.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		7C8BD3DA21614857002BC785 /* Collection+SpecialIteration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+SpecialIteration.swift"; sourceTree = "<group>"; };
 		7C8BD3DC21615BCD002BC785 /* RationalLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationalLabel.swift; sourceTree = "<group>"; };
 		7C8BD3DE2161ABAC002BC785 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		7C8BD3E02161C363002BC785 /* Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +239,7 @@
 				7C3C3F6B2159C4E800BD026A /* Rational.swift */,
 				7C84DA83215B240800D3B36F /* Statement.swift */,
 				7C8BD3DE2161ABAC002BC785 /* Grid.swift */,
+				7C8BD3E02161C363002BC785 /* Round.swift */,
 				7C84DA6D215B20F800D3B36F /* Parser */,
 			);
 			path = Model;
@@ -446,6 +449,7 @@
 				7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */,
 				7C8BD3D921614833002BC785 /* CGVector+LinearAlgebra.swift in Sources */,
 				7C8BD3D3216147AB002BC785 /* GameViewController.swift in Sources */,
+				7C8BD3E12161C363002BC785 /* Round.swift in Sources */,
 				7C84DA77215B210700D3B36F /* Parser<Character>.swift in Sources */,
 				7C84DA75215B210700D3B36F /* Op.swift in Sources */,
 				7C84DA73215B210700D3B36F /* Parser<Double>.swift in Sources */,

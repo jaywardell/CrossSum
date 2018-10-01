@@ -21,26 +21,29 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var statementLabel: StatementLabel!
     
-    var grid : Grid?
+    var round : Round?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         statementLabel.backgroundColor = nil
         wordSearchView.backgroundColor = nil
-                
-        grid = Grid(size:7, range:0..<5, operators:[.plus, .minus])
-        wordSearchView.dataSource = grid
-        wordSearchView.reloadSymbols()
-
-        grid?.findSoltuions() {
+        statementLabel.highlightColor = .orange
+        
+        round = Round()
+        round?.statementPresenter = statementLabel
+        round?.wordSearchView = wordSearchView
+        round?.solutionFilter = {
             $0 > 0
         }
-        
+                
+        round?.begin(with: Grid(size:7, range:0..<10, operators:[.plus, .minus, .times]))
+
         wordSearchView.centerXAnchor.constraint(equalTo: statementLabel.centerXAnchor)
         wordSearchView.topAnchor.constraint(equalTo: statementLabel.topAnchor)
         view.layoutIfNeeded()
         statementLabel.font = wordSearchView.choiceFont
+        
     }
 }
 

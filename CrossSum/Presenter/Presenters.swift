@@ -18,6 +18,14 @@ protocol ScorePresenter {
     var score : Int { get set }
 }
 
+protocol RationalPresenter {
+    var value : Rational { get set }
+}
+
+protocol OptionalStatementPresenter {
+    var statement : Statement? { get set }
+}
+
 /*
  RationalPresenter
  TimeRemainingPresenter

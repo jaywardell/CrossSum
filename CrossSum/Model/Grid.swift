@@ -85,12 +85,13 @@ extension Grid : WordSearchDataSource {
 
 extension Grid {
     
-    mutating func findSoltuions(filter:(Rational)->Bool = { _ in true }) {
+    mutating func findSolutions(filter:(Rational)->Bool = { _ in true }) {
         
         let start = Date().timeIntervalSinceReferenceDate
         
         var solutions = Set<Rational>()
         
+        // TODO: use GCD to speed this up
         for row in 0..<rows {
             for column in 0..<columns {
                 let s = symbol(at: row, column)
