@@ -47,6 +47,7 @@
 		7C8BD3D921614833002BC785 /* CGVector+LinearAlgebra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D821614833002BC785 /* CGVector+LinearAlgebra.swift */; };
 		7C8BD3DB21614857002BC785 /* Collection+SpecialIteration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3DA21614857002BC785 /* Collection+SpecialIteration.swift */; };
 		7C8BD3DD21615BCD002BC785 /* RationalLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3DC21615BCD002BC785 /* RationalLabel.swift */; };
+		7C8BD3DF2161ABAD002BC785 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3DE2161ABAC002BC785 /* Grid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		7C8BD3D821614833002BC785 /* CGVector+LinearAlgebra.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+LinearAlgebra.swift"; sourceTree = "<group>"; };
 		7C8BD3DA21614857002BC785 /* Collection+SpecialIteration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+SpecialIteration.swift"; sourceTree = "<group>"; };
 		7C8BD3DC21615BCD002BC785 /* RationalLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationalLabel.swift; sourceTree = "<group>"; };
+		7C8BD3DE2161ABAC002BC785 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +236,7 @@
 			children = (
 				7C3C3F6B2159C4E800BD026A /* Rational.swift */,
 				7C84DA83215B240800D3B36F /* Statement.swift */,
+				7C8BD3DE2161ABAC002BC785 /* Grid.swift */,
 				7C84DA6D215B20F800D3B36F /* Parser */,
 			);
 			path = Model;
@@ -451,6 +454,7 @@
 				7C8BD3DB21614857002BC785 /* Collection+SpecialIteration.swift in Sources */,
 				7C8BD3DD21615BCD002BC785 /* RationalLabel.swift in Sources */,
 				7C84DA84215B240800D3B36F /* Statement.swift in Sources */,
+				7C8BD3DF2161ABAD002BC785 /* Grid.swift in Sources */,
 				7C84DA76215B210700D3B36F /* Parser.swift in Sources */,
 				7C3C3F512159961400BD026A /* CenteredLabel.swift in Sources */,
 				7C84DA74215B210700D3B36F /* Parser<Int>.swift in Sources */,

@@ -13,14 +13,19 @@ import UIKit
 //    func didSelect(_ string:String)
 //}
 
+protocol WordSearchDataSource {
+    
+    var rows : Int { get }
+    var columns : Int { get }
+    
+    func symbol(at row:Int, _ column:Int) -> String
+}
+
 // MARK:-
 
 /// presents a square word search grid
 @IBDesignable class WordSearchView: UIView {
-
-    @IBInspectable var rows : Int = 0 { didSet { updateLayout() } }
-    @IBInspectable var columns : Int = 0 { didSet { updateLayout() } }
-        
+    
     var contentView : UIView { return rowsStackView! }
     
     var choiceFont : UIFont {
@@ -43,55 +48,15 @@ import UIKit
         }
     }
     
-//    private var _letters : String = ""
-//    var letters : String {
-//        get {
-//            return _letters
-//        }
-//        set {
-//            // don't allow non-square strings to be set, but instead crash
-//            let lines = newValue.components(separatedBy: "\n").filter() { $0.count > 0 }
-//            for thisLine in lines {
-//                if thisLine.count != lines.count {
-//                    fatalError("new value for letters is not a square string\n\n\(newValue)\n\n")
-//                }
-//            }
-//            
-//            _letters = lines.reduce("") { $0 + $1 }
-//            
-//            rows = lines.count
-//            columns = lines.count
-//            
-//            updateLayout()
-//            updateLetters()
-//            setNeedsLayout()
-//        }
-//    }
-
-    private var _symbols : [[String]] = []
-    var symbols : [[String]] {
-        get {
-            return _symbols
-        }
-        set {
-            // don't allow non-square strings to be set, but instead crash
-
-            guard newValue.allTheSame({
-                $0.count
-            }) else {
-                fatalError("symbolds must be in a rectangular grid\n\(newValue)\nIs not rectangular\n")
-            }
-            
-            _symbols = newValue
-            
-            rows = newValue.count
-            columns = newValue.first?.count ?? 0
-            
-            updateLayout()
-            updateLetters()
-            setNeedsLayout()
-        }
+    var dataSource : WordSearchDataSource?
+    
+    public func reloadSymbols() {
+        
+        updateLayout()
+        updateLetters()
+        setNeedsLayout()
     }
+    
     
     var allowsDiagonalSelection = true
     
@@ -106,19 +71,9 @@ import UIKit
         
         updateLayout()
         
-//        addGestureRecognizer(tap)
         addGestureRecognizer(pan)
     }
     
-    
-//    private lazy var tap = UITapGestureRecognizer(target: self, action: #selector(didTap(_:)))
-//    @objc private func didTap(_ gestureRecognizer:UITapGestureRecognizer) {
-//        print("\(#function) \(gestureRecognizer.location(in: self))")
-//        return
-//        guard let closest = closestLabel(to: gestureRecognizer.location(in: self)) else { return }
-//
-//        selectLabel(closest)
-//    }
     
     private lazy var pan = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
     private var selectionStartLabel : UILabel?
@@ -303,7 +258,6 @@ import UIKit
         }
         
         if !allowsDiagonalSelection && (r1 != r2 && c1 != c2) {
-//            print("allowsDiagonalSelection is false \(r1):\(c1) \(r2):\(c2)")
             return false
         }
         
@@ -360,31 +314,26 @@ import UIKit
     // MARK:-
 
     private func updateLetters() {
+        guard let dataSource = dataSource else { return }
         
-        for row in 0..<rows {
-            for column in 0..<columns {
+        for row in 0..<dataSource.rows {
+            for column in 0..<dataSource.columns {
                 let l = label(at: row, column)
-                l.text = letter(at: row, column)
+                l.text = dataSource.symbol(at: row, column)
             }
         }
     }
-    
-    private func letter(at row:Int, _ column:Int) -> String {
-        return symbols[row][column]
-//        let i = row * columns + column
-//        let si = symbols.index(symbols.startIndex, offsetBy: i)
-//        return "\(symbols[si])"
-    }
-    
+        
     private func label(at row:Int, _ column:Int) -> UILabel {
         let rowView = rowsStackView!.arrangedSubviews[row] as! UIStackView
         return rowView.arrangedSubviews[column] as! UILabel
     }
     
     private func coordinates(of label:UILabel) -> (row:Int, column:Int)? {
-        guard let index = labels.index(of: label) else { return nil }
+        guard let index = labels.index(of: label),
+        let dataSource = dataSource else { return nil }
         
-        return (row:index/columns, column:index%columns)
+        return (row:index/dataSource.columns, column:index%dataSource.columns)
     }
     
     private var labels : [UILabel] {
@@ -409,9 +358,10 @@ import UIKit
     // MARK:- Layout
 
     private func updateLayout() {
+        guard let dataSource = dataSource else { return }
         
-        let rowViews = (0..<rows).map() { _ in
-            createRowView(width: columns)
+        let rowViews = (0..<dataSource.rows).map() { _ in
+            createRowView(width: dataSource.columns)
         }
         
         rowsStackView = createRowsStackView(for: rowViews)

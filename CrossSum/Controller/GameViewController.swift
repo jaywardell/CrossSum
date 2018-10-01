@@ -22,17 +22,20 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var statementLabel: StatementLabel!
     
+    var grid : Grid?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         statementLabel.backgroundColor = nil
         wordSearchView.backgroundColor = nil
-        
-        let grid = generateGrid(size: 7)
-        print("grid: \(grid)")
-        
-        wordSearchView.symbols = grid
-        
+                
+        let s = generateGrid(size: 7)
+        grid = Grid()
+        grid?.symbols = s
+        wordSearchView.dataSource = grid
+        wordSearchView.reloadSymbols()
+
         wordSearchView.centerXAnchor.constraint(equalTo: statementLabel.centerXAnchor)
         wordSearchView.topAnchor.constraint(equalTo: statementLabel.topAnchor)
         view.layoutIfNeeded()
