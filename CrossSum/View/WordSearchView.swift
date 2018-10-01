@@ -360,7 +360,7 @@ extension WordSearchDataSource {
         
         defer {
             
-            removeSelection()
+            removeSelection(animated:true)
             selectionStartLabel = nil
             selectionEndLabel = nil
        }
