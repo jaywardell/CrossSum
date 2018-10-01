@@ -60,6 +60,7 @@ class GameViewController: UIViewController {
     @IBAction func showHintButtonPressed() {
         print(#function)
         
+        round?.showAHint()
         // TODO: implement this: highlight the first label needed to get this value
     }
 
@@ -80,14 +81,6 @@ extension GameViewController {
     }
     
     func didSelect(_ string: String) {
-//        guard let r = RationalParser.grammar.parse(string[...]),
-//            let result = r.0 else {
-//                print("\(#function) \(string) = nil")
-//                return
-//        }
-//        print("\(#function) \(string) = \(result)")
-        
-        // NOTE: right now the StatementLabel is not resizing as it should, but the various parts are being updated appropriately
         
         let r = RationalParser.grammar.parse(string[...])
         let statement = Statement(string, r?.0)

@@ -35,6 +35,10 @@ struct Grid {
         guard let solutionKeys = solutionsToLocations?.keys else { return Set() }
         return Set(solutionKeys)
     }
+    
+    func waysToGet(solution:Rational) -> [((Int,Int), (Int,Int))] {
+        return solutionsToLocations?[solution] ?? []
+    }
 }
 
 extension Grid {

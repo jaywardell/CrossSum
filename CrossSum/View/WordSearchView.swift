@@ -155,6 +155,35 @@ extension WordSearchDataSource {
 
     private var selectionLayer : CALayer?
     
+    /// Shows a selection over the view at the passed in coordinates
+    ///
+    /// NOTE: this does not notify listeners of a change in selection.
+    /// It simply displays the selection UI
+    ///
+    /// - Parameters:
+    ///   - row: the row of the view you wish to represent as selected
+    ///   - column: the column of the view you wish to represent as selected
+    func select(_ row:Int, _ column:Int) {
+        let l = label(at: row, column)
+        showSelection(over: l)
+    }
+    
+    /// Shows a selection over the views at the passed in coordinates,
+    /// starting at the view at (row1, column1)
+    /// and extending through the view at (row2, column2)
+    ///
+    /// - Parameters:
+    ///   - row1: the row of the view you wish to represent as the start of the selection
+    ///   - column1: the column of the view you wish to represent as the start of the selection
+    ///   - row2: the row of the view you wish to represent as the end of the selection
+    ///   - column2: the column of the view you wish to represent as the end of the selection
+    func select(from row1:Int, _ column1:Int, to row2:Int, _ column2:Int) {
+        let l1 = label(at: row1, column1)
+        let l2 = label(at: row2, column2)
+        
+        showSelection(from: l1, to: l2)
+    }
+    
     func removeSelection() {
         
         if let layer = selectionLayer {
@@ -162,7 +191,7 @@ extension WordSearchDataSource {
         }
     }
     
-    func showSelection(over label:UILabel) {
+    private func showSelection(over label:UILabel) {
         removeSelection()
         
         let newLayer = CALayer()
@@ -176,7 +205,7 @@ extension WordSearchDataSource {
         selectionLayer = newLayer
     }
     
-    func showSelection(from label1:UILabel, to label2:UILabel) {
+    private func showSelection(from label1:UILabel, to label2:UILabel) {
 
         removeSelection()
         
@@ -234,7 +263,7 @@ extension WordSearchDataSource {
         selectionLayer = newLayer
     }
     
-    func reportSelectionChanged(_ label1:UILabel, to label2:UILabel?=nil) {
+    private func reportSelectionChanged(_ label1:UILabel, to label2:UILabel?=nil) {
         guard let label2 = label2 else {
             
             if let string = label1.text {
@@ -247,7 +276,7 @@ extension WordSearchDataSource {
         isSelecting?(selectedString)
     }
     
-    func reportSelectionEnded(_ label1:UILabel, to label2:UILabel) {
+    private func reportSelectionEnded(_ label1:UILabel, to label2:UILabel) {
 
         let selectedString = stringForLabels(between: label1, and: label2)
         didSelect?(selectedString)

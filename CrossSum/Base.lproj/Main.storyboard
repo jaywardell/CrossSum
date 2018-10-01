@@ -135,6 +135,7 @@
                     </view>
                     <connections>
                         <outlet property="newGameButton" destination="zpK-jk-QGH" id="mEm-7M-XgK"/>
+                        <outlet property="showHintButton" destination="91F-wm-LNm" id="reu-0N-ipv"/>
                         <outlet property="statementLabel" destination="ivz-NB-Y3C" id="BwW-UL-VFa"/>
                         <outlet property="wordSearchView" destination="Fy2-xd-F8H" id="xYu-fd-h5g"/>
                     </connections>

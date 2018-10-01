@@ -61,6 +61,15 @@ extension Round {
     func showNextGrid() {
         print("\(#function) not yet implemented")
     }
+    
+    /// Tells the WordSearchVIew to show a selection over the first view of ONE OF the possible ways to get the solution, chosen randomly
+    func showAHint() {
+        guard let currentTargetSolution = currentTargetSolution,
+        let ways = grid?.waysToGet(solution: currentTargetSolution),
+        let thisWay = ways.randomElement()  else { return }
+        
+        wordSearchView?.select(thisWay.0.0, thisWay.0.1)
+    }
 }
 
 
