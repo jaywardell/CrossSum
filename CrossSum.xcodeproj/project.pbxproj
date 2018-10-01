@@ -49,6 +49,7 @@
 		7C8BD3DD21615BCD002BC785 /* RationalLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3DC21615BCD002BC785 /* RationalLabel.swift */; };
 		7C8BD3DF2161ABAD002BC785 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3DE2161ABAC002BC785 /* Grid.swift */; };
 		7C8BD3E12161C363002BC785 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3E02161C363002BC785 /* Round.swift */; };
+		7C8BD3E42162E10C002BC785 /* ThreadSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3E32162E10C002BC785 /* ThreadSafe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		7C8BD3DC21615BCD002BC785 /* RationalLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationalLabel.swift; sourceTree = "<group>"; };
 		7C8BD3DE2161ABAC002BC785 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		7C8BD3E02161C363002BC785 /* Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
+		7C8BD3E32162E10C002BC785 /* ThreadSafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				7C3C3F21215995EE00BD026A /* AppDelegate.swift */,
+				7C8BD3E22162E0FE002BC785 /* Utility */,
 				7C3C3F702159C76800BD026A /* Controller */,
 				7C3C3F6F2159C76000BD026A /* Model */,
 				7C3C3F6E2159C74200BD026A /* View */,
@@ -306,6 +309,14 @@
 			path = "Model Layer Tests";
 			sourceTree = "<group>";
 		};
+		7C8BD3E22162E0FE002BC785 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				7C8BD3E32162E10C002BC785 /* ThreadSafe.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -440,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C3C3F562159974600BD026A /* Presenters.swift in Sources */,
+				7C8BD3E42162E10C002BC785 /* ThreadSafe.swift in Sources */,
 				7C3C3F24215995EE00BD026A /* ViewController.swift in Sources */,
 				7C8BD3D121614789002BC785 /* WordSearchView.swift in Sources */,
 				7C8BD3CC21613900002BC785 /* UIFont+CoreTextConvenience.swift in Sources */,

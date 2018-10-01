@@ -9,10 +9,11 @@
 import Foundation
 
 
-struct Grid {
-        
+class Grid {
+    typealias Coordinate = (Int, Int)
+
     private var _symbols : [[String]] = []
-    var symbols : [[String]] {
+    private(set) var symbols : [[String]] {
         get {
             return _symbols
         }
@@ -29,19 +30,15 @@ struct Grid {
         }
     }
     
-//    var solutions : Set<Rational>?
-    private var solutionsToLocations : [Rational:[((Int,Int), (Int,Int))]]?
+    private var solutionsToLocations = ThreadSafe([Rational:[(Coordinate, Coordinate)]]())
     var solutions : Set<Rational> {
-        guard let solutionKeys = solutionsToLocations?.keys else { return Set() }
-        return Set(solutionKeys)
+        return Set(solutionsToLocations.value.keys)
     }
     
-    func waysToGet(solution:Rational) -> [((Int,Int), (Int,Int))] {
-        return solutionsToLocations?[solution] ?? []
+    func waysToGet(solution:Rational) -> [(Coordinate, Coordinate)] {
+        let d = solutionsToLocations.value[solution]
+        return d ?? []
     }
-}
-
-extension Grid {
     
     enum Operator : String {
         case plus = "+"
@@ -72,6 +69,9 @@ extension Grid {
         
         self.symbols = ss
     }
+    
+    // TODO: init from a String
+    // TODO: COdable
 }
 
 // MARK:- WordSearchDataSource
@@ -94,20 +94,15 @@ extension Grid : WordSearchDataSource {
 
 extension Grid {
     
-    mutating func findSolutions(filter:(Rational)->Bool = { _ in true }) {
+    func findSolutions(filter:(Rational)->Bool = { _ in true }) {
         
         let start = Date().timeIntervalSinceReferenceDate
         
-//        var solutions = Set<Rational>()
-        
-        var ss = [Rational:[((Int,Int), (Int,Int))]]()
-        
-        // TODO: use GCD to speed this up
-        for row in 0..<rows {
+        DispatchQueue.concurrentPerform(iterations: rows) { row in
+
             for column in 0..<columns {
                 let s = symbol(at: row, column)
                 if nil != Rational(s) || "-" == s {
-                    // I can build solutions here
                     
                     // solutions on the same row
                     
@@ -115,10 +110,11 @@ extension Grid {
                     for i in column + 1 ..< columns {
                         if let solution = solution(for: (row, column), to: (row, i)) {
                             if filter(solution) {
-//                                solutions.insert(solution)
-                                var array = (ss[solution] ?? [((Int,Int), (Int,Int))]())
-                                array.append(((row, column), (row, i)))
-                                ss[solution] = array
+                                solutionsToLocations.atomically { s in
+                                    var array = (s[solution] ?? [(Coordinate, Coordinate)]())
+                                    array.append(((row, column), (row, i)))
+                                    s[solution] = array
+                                }
                             }
                         }
                     }
@@ -127,10 +123,11 @@ extension Grid {
                     for i in stride(from: column - 1, through: 0, by: -1) {
                         if let solution = solution(for: (row, column), to: (row, i)) {
                             if filter(solution) {
-                                //                                solutions.insert(solution)
-                                var array = (ss[solution] ?? [((Int,Int), (Int,Int))]())
-                                array.append(((row, column), (row, i)))
-                                ss[solution] = array
+                                solutionsToLocations.atomically { s in
+                                    var array = (s[solution] ?? [(Coordinate, Coordinate)]())
+                                    array.append(((row, column), (row, i)))
+                                    s[solution] = array
+                                }
                             }
                         }
                     }
@@ -141,10 +138,11 @@ extension Grid {
                     for i in row + 1 ..< rows {
                         if let solution = solution(for: (row, column), to: (i, column)) {
                             if filter(solution) {
-                                //                                solutions.insert(solution)
-                                var array = (ss[solution] ?? [((Int,Int), (Int,Int))]())
-                                array.append(((row, column), (i, column)))
-                                ss[solution] = array
+                                solutionsToLocations.atomically { s in
+                                    var array = (s[solution] ?? [(Coordinate, Coordinate)]())
+                                    array.append(((row, column), (i, column)))
+                                    s[solution] = array
+                                }
                             }
                         }
                     }
@@ -153,17 +151,17 @@ extension Grid {
                     for i in stride(from: row - 1, through: 0, by: -1) {
                         if let solution = solution(for: (row, column), to: (i, column)) {
                             if filter(solution) {
-                                //                                solutions.insert(solution)
-                                var array = (ss[solution] ?? [((Int,Int), (Int,Int))]())
-                                array.append(((row, column), (i, column)))
-                                ss[solution] = array
+                                solutionsToLocations.atomically { s in
+                                    var array = (s[solution] ?? [(Coordinate, Coordinate)]())
+                                    array.append(((row, column), (i, column)))
+                                    s[solution] = array
+                                }
                             }
                         }
                     }
                 }
             }
         }
-        self.solutionsToLocations = ss
         
         print("solutions: \(self.solutionsToLocations)")
         print("\(#function) \(Date().timeIntervalSinceReferenceDate - start)")
