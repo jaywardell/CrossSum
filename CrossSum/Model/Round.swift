@@ -15,7 +15,7 @@ final class Round {
     var foundSolutions = Set<Rational>()
     var currentTargetSolution : Rational?
     var availableSolutions : Set<Rational> {
-        return grid?.solutions?.subtracting(foundSolutions) ?? Set()
+        return grid?.solutions.subtracting(foundSolutions) ?? Set()
     }
     
     var wordSearchView : WordSearchView? = nil {

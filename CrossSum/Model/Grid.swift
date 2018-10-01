@@ -29,7 +29,12 @@ struct Grid {
         }
     }
     
-    var solutions : Set<Rational>?
+//    var solutions : Set<Rational>?
+    private var solutionsToLocations : [Rational:[((Int,Int), (Int,Int))]]?
+    var solutions : Set<Rational> {
+        guard let solutionKeys = solutionsToLocations?.keys else { return Set() }
+        return Set(solutionKeys)
+    }
 }
 
 extension Grid {
@@ -89,7 +94,9 @@ extension Grid {
         
         let start = Date().timeIntervalSinceReferenceDate
         
-        var solutions = Set<Rational>()
+//        var solutions = Set<Rational>()
+        
+        var ss = [Rational:[((Int,Int), (Int,Int))]]()
         
         // TODO: use GCD to speed this up
         for row in 0..<rows {
@@ -104,7 +111,10 @@ extension Grid {
                     for i in column + 1 ..< columns {
                         if let solution = solution(for: (row, column), to: (row, i)) {
                             if filter(solution) {
-                                solutions.insert(solution)
+//                                solutions.insert(solution)
+                                var array = (ss[solution] ?? [((Int,Int), (Int,Int))]())
+                                array.append(((row, column), (row, i)))
+                                ss[solution] = array
                             }
                         }
                     }
@@ -113,7 +123,10 @@ extension Grid {
                     for i in stride(from: column - 1, through: 0, by: -1) {
                         if let solution = solution(for: (row, column), to: (row, i)) {
                             if filter(solution) {
-                                solutions.insert(solution)
+                                //                                solutions.insert(solution)
+                                var array = (ss[solution] ?? [((Int,Int), (Int,Int))]())
+                                array.append(((row, column), (row, i)))
+                                ss[solution] = array
                             }
                         }
                     }
@@ -124,7 +137,10 @@ extension Grid {
                     for i in row + 1 ..< rows {
                         if let solution = solution(for: (row, column), to: (i, column)) {
                             if filter(solution) {
-                                solutions.insert(solution)
+                                //                                solutions.insert(solution)
+                                var array = (ss[solution] ?? [((Int,Int), (Int,Int))]())
+                                array.append(((row, column), (i, column)))
+                                ss[solution] = array
                             }
                         }
                     }
@@ -133,16 +149,19 @@ extension Grid {
                     for i in stride(from: row - 1, through: 0, by: -1) {
                         if let solution = solution(for: (row, column), to: (i, column)) {
                             if filter(solution) {
-                                solutions.insert(solution)
+                                //                                solutions.insert(solution)
+                                var array = (ss[solution] ?? [((Int,Int), (Int,Int))]())
+                                array.append(((row, column), (i, column)))
+                                ss[solution] = array
                             }
                         }
                     }
                 }
             }
         }
-        self.solutions = solutions
+        self.solutionsToLocations = ss
         
-        print("solutions: \(self.solutions)")
+        print("solutions: \(self.solutionsToLocations)")
         print("\(#function) \(Date().timeIntervalSinceReferenceDate - start)")
     }
     
