@@ -105,7 +105,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zpK-jk-QGH">
-                                        <rect key="frame" x="300" y="609" width="75" height="30"/>
+                                        <rect key="frame" x="284" y="609" width="75" height="30"/>
                                         <state key="normal" title="New Game"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91F-wm-LNm">
@@ -123,9 +123,9 @@
                                 <constraints>
                                     <constraint firstItem="cLN-qW-RPt" firstAttribute="firstBaseline" secondItem="zpK-jk-QGH" secondAttribute="firstBaseline" id="0ll-rT-hnt"/>
                                     <constraint firstAttribute="bottom" secondItem="zpK-jk-QGH" secondAttribute="bottom" constant="8" id="2l8-af-5BW"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="zpK-jk-QGH" secondAttribute="trailing" constant="8" id="3uw-Qi-j9g"/>
                                     <constraint firstAttribute="bottom" secondItem="91F-wm-LNm" secondAttribute="bottom" constant="8" id="Iu2-rW-hzy"/>
                                     <constraint firstAttribute="width" secondItem="Fy2-xd-F8H" secondAttribute="height" multiplier="375:647" id="LvP-KX-3fh"/>
-                                    <constraint firstItem="zpK-jk-QGH" firstAttribute="trailing" secondItem="Fy2-xd-F8H" secondAttribute="trailingMargin" constant="8" id="dDQ-eH-Zs8"/>
                                     <constraint firstItem="91F-wm-LNm" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leadingMargin" constant="8" id="qpE-fC-4ax"/>
                                     <constraint firstItem="cLN-qW-RPt" firstAttribute="centerX" secondItem="Fy2-xd-F8H" secondAttribute="centerX" id="rXw-6N-1Me"/>
                                     <constraint firstItem="ivz-NB-Y3C" firstAttribute="top" secondItem="Fy2-xd-F8H" secondAttribute="topMargin" constant="8" id="zZd-Y7-QOW"/>

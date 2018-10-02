@@ -51,6 +51,7 @@ extension Round {
     
     func begin() {
         showNextGrid()
+        scorePresenter?.score = 0
     }
     
     private func showNextTargetSolution() {
@@ -129,7 +130,7 @@ extension Round {
         let statement = Statement(solutionString, currentTargetSolution)
         statementPresenter?.statement = statement
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             guard let self = self else { return }
             if statement.isTrue {
                 self.foundSolutions.insert(self.currentTargetSolution!)

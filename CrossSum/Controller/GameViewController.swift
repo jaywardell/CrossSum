@@ -39,7 +39,7 @@ class GameViewController: UIViewController {
         statementLabel.backgroundColor = nil
         wordSearchView.backgroundColor = nil
 //        statementLabel.highlightColor = .orange
-        wordSearchView.selectionColor = statementLabel.highlightColor!
+        wordSearchView.selectionColor = view.tintColor
         statementLabel.highlightColor = wordSearchView.selectionColor
         
         startRound()
