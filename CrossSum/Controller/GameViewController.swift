@@ -22,6 +22,8 @@ class GameViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     // TODO: Skip Button - displays a way to solve the current target, then advances to the next target
     
     @IBOutlet weak var wordSearchView: WordSearchView!
@@ -41,6 +43,8 @@ class GameViewController: UIViewController {
         statementLabel.highlightColor = wordSearchView.selectionColor
         
         startRound()
+        
+        scoreLabel.font = wordSearchView.choiceFont
         
         wordSearchView.centerXAnchor.constraint(equalTo: statementLabel.centerXAnchor)
         wordSearchView.topAnchor.constraint(equalTo: statementLabel.topAnchor)
@@ -93,8 +97,23 @@ extension GameViewController {
         
         round = Round(gridFactory: GameReadyGridFactory())
         round?.statementPresenter = statementLabel
+        round?.scorePresenter = scoreLabel
         round?.wordSearchView = wordSearchView
                 
         round?.begin()
     }
+}
+
+
+extension UILabel : ScorePresenter {
+    var score: Int {
+        get {
+            return Int(text ?? "") ?? 0
+        }
+        set {
+            text = "\(newValue)"
+        }
+    }
+    
+    
 }

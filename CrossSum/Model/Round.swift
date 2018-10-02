@@ -10,6 +10,12 @@ import Foundation
 
 final class Round {
     
+    var score : Int = 0 {
+        didSet {
+            scorePresenter?.score = score
+        }
+    }
+    
     var grid : Grid?
     var gridFactory : GridFactory
     
@@ -28,6 +34,7 @@ final class Round {
     }
     
     var statementPresenter : OptionalStatementPresenter?
+    var scorePresenter : ScorePresenter?
     
     var solutionFilter : (Rational) -> Bool = { _ in return true }
 
@@ -68,6 +75,8 @@ extension Round {
         wordSearchView?.dataSource = grid
         wordSearchView?.reloadSymbols()
 
+        // TODO: fade old grid out and new grid in
+        
         showNextTargetSolution()
     }
 }
@@ -121,15 +130,36 @@ extension Round {
         statementPresenter?.statement = statement
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self = self else { return }
             if statement.isTrue {
-                self?.foundSolutions.insert(self!.currentTargetSolution!)
-                self?.showNextTargetSolution()
+                self.foundSolutions.insert(self.currentTargetSolution!)
+                self.showNextTargetSolution()
+                
+                self.score += self.score(for:statement)
             }
             else {
-                self?.presentCurrentTargetSolution()
+                self.presentCurrentTargetSolution()
             }
         }
 
     }
 
 }
+
+// MARK:- Score
+
+extension Round {
+    
+    func score(for statement:Statement) -> Int {
+        guard let expression = statement.expression else { return 0 }
+        var out = 1
+        for i in 0..<expression.count {
+            out *= 2
+        }
+        return out
+//        return (0..<statement.expression.count).reduce(1) {
+//            $0 * 2
+//        }
+    }
+}
+
