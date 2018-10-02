@@ -39,7 +39,6 @@ extension Round {
     
     func begin(with grid:Grid) {
         self.grid = grid
-        self.grid?.findSolutions(filter: solutionFilter)
         wordSearchView?.dataSource = grid
         wordSearchView?.reloadSymbols()
         

@@ -47,7 +47,7 @@ class Grid {
         case dividedeBy = "÷"
     }
     
-    init(size:Int, range:Range<Int>, operators:[Operator]) {
+    init(size:Int, range:Range<Int>, operators:[Operator], solutionFilter:(Rational)->Bool = { _ in true }) {
         let operators = operators.reduce("") { $0 + $1.rawValue }
         
         var ss = [[String]]()
@@ -68,6 +68,8 @@ class Grid {
         }
         
         self.symbols = ss
+        
+        findSolutions(filter:solutionFilter)
     }
     
     // TODO: init from a String
@@ -90,11 +92,11 @@ extension Grid : WordSearchDataSource {
     }
 }
 
-// MARK:-
+// MARK:- Managing Solutions
 
 extension Grid {
     
-    func findSolutions(filter:(Rational)->Bool = { _ in true }) {
+    private func findSolutions(filter:(Rational)->Bool = { _ in true }) {
         
         let start = Date().timeIntervalSinceReferenceDate
         

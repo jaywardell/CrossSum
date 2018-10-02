@@ -90,10 +90,11 @@ extension GameViewController {
         round = Round()
         round?.statementPresenter = statementLabel
         round?.wordSearchView = wordSearchView
-        round?.solutionFilter = {
+        
+        let grid = Grid(size:7, range:0..<10, operators:[.plus, .minus, .times]) {
             $0 > 0
         }
         
-        round?.begin(with: Grid(size:7, range:0..<10, operators:[.plus, .minus, .times]))
+        round?.begin(with: grid)
     }
 }
