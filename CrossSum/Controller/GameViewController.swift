@@ -89,7 +89,7 @@ extension GameViewController {
     
     func startRound() {
         
-        round = Round(gridFactory: SimpleGridFactory())
+        round = Round(gridFactory: GameReadyGridFactory())
         round?.statementPresenter = statementLabel
         round?.wordSearchView = wordSearchView
                 

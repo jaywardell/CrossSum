@@ -17,6 +17,9 @@ class Grid {
         let filter : (Rational) -> Bool
     }
     
+    let size : Int
+    let range : Range<Int>
+    let operators : [Operator]
     let solutionFilter : SolutionFilter
     
     private var _symbols : [[String]] = []
@@ -54,9 +57,16 @@ class Grid {
         case dividedeBy = "÷"
     }
     
+    
+    
     init(size:Int, range:Range<Int>, operators:[Operator], solutionFilter:SolutionFilter) {
-        let operators = operators.reduce("") { $0 + $1.rawValue }
+        self.size = size
+        self.range = range
+        self.operators = operators
+
+        let _operators = operators.reduce("") { $0 + $1.rawValue }
         
+        // randomly build the grid
         var ss = [[String]]()
         var i = 0
         (0..<size).forEach { _ in
@@ -66,7 +76,7 @@ class Grid {
                 row.append(
                     i%2 == 0 ?
                         "\(Int.random(in: range))" :
-                    "\(operators.randomElement()!)"
+                    "\(_operators.randomElement()!)"
                 )
                 
                 i += 1
@@ -77,6 +87,7 @@ class Grid {
         self.solutionFilter = solutionFilter
         self.symbols = ss
         
+        // build the solutions
         findSolutions(filter:solutionFilter.filter)
     }
     

@@ -64,7 +64,7 @@ extension Round {
     private func showNextGrid() {
         foundSolutions.removeAll()
 
-        self.grid = gridFactory.gridAfter(nil)
+        self.grid = gridFactory.gridAfter(grid)
         wordSearchView?.dataSource = grid
         wordSearchView?.reloadSymbols()
 
