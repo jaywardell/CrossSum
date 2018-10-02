@@ -22,6 +22,8 @@ class GameViewController: UIViewController {
         }
     }
     
+    // TODO: Skip Button - displays a way to solve the current target, then advances to the next target
+    
     @IBOutlet weak var wordSearchView: WordSearchView!
     
     
@@ -87,14 +89,10 @@ extension GameViewController {
     
     func startRound() {
         
-        round = Round()
+        round = Round(gridFactory: SimpleGridFactory())
         round?.statementPresenter = statementLabel
         round?.wordSearchView = wordSearchView
-        
-        let grid = Grid(size:7, range:0..<10, operators:[.plus, .minus, .times]) {
-            $0 > 0
-        }
-        
-        round?.begin(with: grid)
+                
+        round?.begin()
     }
 }

@@ -50,6 +50,7 @@
 		7C8BD3DF2161ABAD002BC785 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3DE2161ABAC002BC785 /* Grid.swift */; };
 		7C8BD3E12161C363002BC785 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3E02161C363002BC785 /* Round.swift */; };
 		7C8BD3E42162E10C002BC785 /* ThreadSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3E32162E10C002BC785 /* ThreadSafe.swift */; };
+		7C8BD3E62162F230002BC785 /* GridFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3E52162F230002BC785 /* GridFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		7C8BD3DE2161ABAC002BC785 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		7C8BD3E02161C363002BC785 /* Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
 		7C8BD3E32162E10C002BC785 /* ThreadSafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafe.swift; sourceTree = "<group>"; };
+		7C8BD3E52162F230002BC785 /* GridFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 				7C3C3F6B2159C4E800BD026A /* Rational.swift */,
 				7C84DA83215B240800D3B36F /* Statement.swift */,
 				7C8BD3DE2161ABAC002BC785 /* Grid.swift */,
+				7C8BD3E52162F230002BC785 /* GridFactory.swift */,
 				7C8BD3E02161C363002BC785 /* Round.swift */,
 				7C84DA6D215B20F800D3B36F /* Parser */,
 			);
@@ -452,6 +455,7 @@
 			files = (
 				7C3C3F562159974600BD026A /* Presenters.swift in Sources */,
 				7C8BD3E42162E10C002BC785 /* ThreadSafe.swift in Sources */,
+				7C8BD3E62162F230002BC785 /* GridFactory.swift in Sources */,
 				7C3C3F24215995EE00BD026A /* ViewController.swift in Sources */,
 				7C8BD3D121614789002BC785 /* WordSearchView.swift in Sources */,
 				7C8BD3CC21613900002BC785 /* UIFont+CoreTextConvenience.swift in Sources */,

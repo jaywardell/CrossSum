@@ -11,6 +11,7 @@ import Foundation
 final class Round {
     
     var grid : Grid?
+    var gridFactory : GridFactory
     
     var foundSolutions = Set<Rational>()
     var currentTargetSolution : Rational?
@@ -31,21 +32,21 @@ final class Round {
     var solutionFilter : (Rational) -> Bool = { _ in return true }
 
     private var hint : (Int, Int)?
+    
+    init(gridFactory:GridFactory) {
+        self.gridFactory = gridFactory
+    }
 }
 
 // MARK:- Game Play
 
 extension Round {
     
-    func begin(with grid:Grid) {
-        self.grid = grid
-        wordSearchView?.dataSource = grid
-        wordSearchView?.reloadSymbols()
-        
-        showNextTargetSolution()
+    func begin() {
+        showNextGrid()
     }
     
-    func showNextTargetSolution() {
+    private func showNextTargetSolution() {
         guard let next = availableSolutions.randomElement() else {
             showNextGrid()
             return
@@ -56,12 +57,18 @@ extension Round {
         presentCurrentTargetSolution()
     }
     
-    func presentCurrentTargetSolution() {
+    private func presentCurrentTargetSolution() {
         statementPresenter?.statement = Statement(nil, currentTargetSolution)
     }
     
-    func showNextGrid() {
-        print("\(#function) not yet implemented")
+    private func showNextGrid() {
+        foundSolutions.removeAll()
+
+        self.grid = gridFactory.gridAfter(nil)
+        wordSearchView?.dataSource = grid
+        wordSearchView?.reloadSymbols()
+
+        showNextTargetSolution()
     }
 }
 
