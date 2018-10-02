@@ -154,6 +154,17 @@ extension WordSearchDataSource {
     
     // MARK:- Selection
 
+    static let SelectionColorAlpha : CGFloat = 0.2
+
+    var selectionColor : UIColor = UIColor.orange.withAlphaComponent(WordSearchView.SelectionColorAlpha) {
+        didSet {
+            var alpha : CGFloat = 0
+            selectionColor.getRed(nil, green: nil, blue: nil, alpha: &alpha)
+            if alpha != WordSearchView.SelectionColorAlpha {
+                selectionColor = selectionColor.withAlphaComponent(WordSearchView.SelectionColorAlpha)
+            }
+        }
+    }
     private var selectionLayer : CALayer?
     
     /// Shows a selection over the view at the passed in coordinates
@@ -207,15 +218,20 @@ extension WordSearchDataSource {
         }
     }
     
+    private func createSelectionLayer() -> CALayer {
+        let out = CALayer()
+        out.backgroundColor = selectionColor.cgColor
+        out.masksToBounds = true
+
+        return out
+    }
+    
     private func showSelection(over label:UILabel, animated:Bool = false) {
         removeSelection()
         
-        let newLayer = CALayer()
-        newLayer.backgroundColor = UIColor.orange.withAlphaComponent(0.2).cgColor
-        
+        let newLayer = createSelectionLayer()
         newLayer.frame = convert(label.bounds, from: label)
         newLayer.cornerRadius = newLayer.frame.height/2
-        newLayer.masksToBounds = true
 
         layer.addSublayer(newLayer)
         selectionLayer = newLayer
@@ -233,9 +249,8 @@ extension WordSearchDataSource {
 
         removeSelection()
         
-        let newLayer = CALayer()
-        newLayer.backgroundColor = UIColor.orange.withAlphaComponent(0.2).cgColor
-
+        let newLayer = createSelectionLayer()
+        
         var frame = label1.bounds// convert(label1.bounds, from: label1)
         
         let l1center = convert(label1.center, from:label1.superview)
@@ -281,7 +296,6 @@ extension WordSearchDataSource {
         newLayer.transform = tr
         
         newLayer.cornerRadius = halfHeight
-        newLayer.masksToBounds = true
         
         layer.addSublayer(newLayer)
         selectionLayer = newLayer
@@ -325,7 +339,7 @@ extension WordSearchDataSource {
         guard selectionIsValid(between: label1, and: label2) else {
             if let layer = selectionLayer {
                 layer.backgroundColor = UIColor.clear.cgColor
-                layer.borderColor = UIColor.orange.withAlphaComponent(0.2).cgColor
+                layer.borderColor = selectionColor.cgColor
                 layer.borderWidth = 2
             }
             return

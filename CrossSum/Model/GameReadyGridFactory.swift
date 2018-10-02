@@ -25,11 +25,11 @@ struct GameReadyGridFactory : GridFactory {
         var operators : [Grid.Operator] = lastGrid.operators
         let solutionFilter : Grid.SolutionFilter = lastGrid.solutionFilter
         
-        if lastGrid.size == 5 {
-            size = 7
-        }
-        else if lastGrid.operators.count == 1 {
+        if lastGrid.operators.count == 1 {
             operators = [.plus, .minus]
+        }
+        else if lastGrid.size == 5 {
+            size = 7
         }
         else {
             range = lastGrid.range.first!..<(lastGrid.range.last!+2)
