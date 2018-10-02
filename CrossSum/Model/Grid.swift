@@ -110,11 +110,7 @@ extension Grid {
                     for i in column + 1 ..< columns {
                         if let solution = solution(for: (row, column), to: (row, i)) {
                             if filter(solution) {
-                                solutionsToLocations.atomically { s in
-                                    var array = (s[solution] ?? [(Coordinate, Coordinate)]())
-                                    array.append(((row, column), (row, i)))
-                                    s[solution] = array
-                                }
+                                appendToPossibleSolutions(solution: solution, coordinates: (row, column), end: (row, i))
                             }
                         }
                     }
@@ -123,11 +119,7 @@ extension Grid {
                     for i in stride(from: column - 1, through: 0, by: -1) {
                         if let solution = solution(for: (row, column), to: (row, i)) {
                             if filter(solution) {
-                                solutionsToLocations.atomically { s in
-                                    var array = (s[solution] ?? [(Coordinate, Coordinate)]())
-                                    array.append(((row, column), (row, i)))
-                                    s[solution] = array
-                                }
+                                appendToPossibleSolutions(solution: solution, coordinates: (row, column), end: (row, i))
                             }
                         }
                     }
@@ -138,11 +130,7 @@ extension Grid {
                     for i in row + 1 ..< rows {
                         if let solution = solution(for: (row, column), to: (i, column)) {
                             if filter(solution) {
-                                solutionsToLocations.atomically { s in
-                                    var array = (s[solution] ?? [(Coordinate, Coordinate)]())
-                                    array.append(((row, column), (i, column)))
-                                    s[solution] = array
-                                }
+                                appendToPossibleSolutions(solution: solution, coordinates: (row, column), end: (i, column))
                             }
                         }
                     }
@@ -151,11 +139,7 @@ extension Grid {
                     for i in stride(from: row - 1, through: 0, by: -1) {
                         if let solution = solution(for: (row, column), to: (i, column)) {
                             if filter(solution) {
-                                solutionsToLocations.atomically { s in
-                                    var array = (s[solution] ?? [(Coordinate, Coordinate)]())
-                                    array.append(((row, column), (i, column)))
-                                    s[solution] = array
-                                }
+                                appendToPossibleSolutions(solution: solution, coordinates: (row, column), end: (i, column))
                             }
                         }
                     }
@@ -163,8 +147,16 @@ extension Grid {
             }
         }
         
-        print("solutions: \(self.solutionsToLocations)")
+        print("solutions: \(self.solutionsToLocations.value)")
         print("\(#function) \(Date().timeIntervalSinceReferenceDate - start)")
+    }
+    
+    private func appendToPossibleSolutions(solution:Rational, coordinates start:Coordinate, end:Coordinate) {
+        solutionsToLocations.atomically { s in
+            var array = (s[solution] ?? [(Coordinate, Coordinate)]())
+            array.append((start, end))
+            s[solution] = array
+        }
     }
     
     private func solution (for start:(Int, Int), to end:(Int, Int)) -> Rational? {
