@@ -18,7 +18,8 @@ protocol GridFactory {
 struct SimpleGridFactory : GridFactory {
     func gridAfter(_ grid: Grid?) -> Grid {
         
-        return Grid(size: 7, range: 0..<10, operators: [.plus, .minus, .times]) { $0 > 0 && $0 < 10 }
+        let filter = Grid.SolutionFilter(name: "between one and ten") { $0 > 0 && $0 < 10 }
+        return Grid(size: 7, range: 0..<10, operators: [.plus, .minus, .times], solutionFilter:filter)
     }
     
     

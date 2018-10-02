@@ -12,6 +12,13 @@ import Foundation
 class Grid {
     typealias Coordinate = (Int, Int)
 
+    struct SolutionFilter {
+        let name : String
+        let filter : (Rational) -> Bool
+    }
+    
+    let solutionFilter : SolutionFilter
+    
     private var _symbols : [[String]] = []
     private(set) var symbols : [[String]] {
         get {
@@ -47,7 +54,7 @@ class Grid {
         case dividedeBy = "÷"
     }
     
-    init(size:Int, range:Range<Int>, operators:[Operator], solutionFilter:(Rational)->Bool = { _ in true }) {
+    init(size:Int, range:Range<Int>, operators:[Operator], solutionFilter:SolutionFilter) {
         let operators = operators.reduce("") { $0 + $1.rawValue }
         
         var ss = [[String]]()
@@ -67,9 +74,10 @@ class Grid {
             ss.append(row)
         }
         
+        self.solutionFilter = solutionFilter
         self.symbols = ss
         
-        findSolutions(filter:solutionFilter)
+        findSolutions(filter:solutionFilter.filter)
     }
     
     // TODO: init from a String
