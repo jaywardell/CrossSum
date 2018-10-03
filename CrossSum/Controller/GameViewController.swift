@@ -28,41 +28,67 @@ class GameViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var scoreLabel: UILabel!
-    
-    // TODO: Skip Button - displays a way to solve the current target, then advances to the next target
-    
     @IBOutlet weak var wordSearchView: WordSearchView!
-    
-    
     @IBOutlet weak var statementLabel: StatementLabel!
+    @IBOutlet weak var scoreLabel: UILabel!
+
+    var round : Round? {
+        didSet {
+            connectRoundToUI()
+        }
+    }
     
-    var round : Round?
+    class func createNew() -> GameViewController {
+        return UIStoryboard.Main.instantiate()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        connectRoundToUI()
+        
         statementLabel.backgroundColor = nil
         wordSearchView.backgroundColor = nil
         wordSearchView.selectionColor = view.tintColor
         statementLabel.highlightColor = wordSearchView.selectionColor
         
-        startRound()
-        
-        scoreLabel.font = wordSearchView.choiceFont
-        
         wordSearchView.centerXAnchor.constraint(equalTo: statementLabel.centerXAnchor)
         wordSearchView.topAnchor.constraint(equalTo: statementLabel.topAnchor)
         view.layoutIfNeeded()
-        statementLabel.font = wordSearchView.choiceFont
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Quit", style: .done, target: self, action: #selector(quitButtonPressed))
+        navigationItem.hidesBackButton = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(wordSearchViewChoiceFontDidChange), name: WordSearchView.ChoiceFontDidChange, object: wordSearchView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        statementLabel.isHidden = true
+        scoreLabel.isHidden = true
+        
+        round?.begin()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        statementLabel.isHidden = false
+        scoreLabel.isHidden = false
     }
     
     @IBAction func newGameButtonPressed() {
-        
-        startRound()
+        fatalError("\(#function) should not longer be called here")
     }
 
+    @IBAction func quitButtonPressed() {
+        print(#function)
+        
+        round?.quit()
+    }
+
+    
     @IBAction func showHintButtonPressed() {
         
         round?.showAHint()
@@ -72,46 +98,30 @@ class GameViewController: UIViewController {
         
         round?.showASolution(andAdvance: true)
     }
-
     
-}
-
-// MARK:-
-
-extension GameViewController {
-    
-    
-    func isValidSelection(_:Int, _:Int, string:String?) -> Bool {
-        guard !(string?.isEmpty ?? false) else { return false }
-        if string == "-" { return true }
-        if nil != Int(string!) {
-            return !"+-×÷".contains(string!.last!)
-        }
-        return false
+    @objc func wordSearchViewChoiceFontDidChange(_ notification:Notification) {
+        matchUIToWordSearchUI()
     }
-    
-    func didSelect(_ string: String) {
-        
-        let r = RationalParser.grammar.parse(string[...])
-        let statement = Statement(string, r?.0)
-        statementLabel.statement = statement
-        
+
+    private func matchUIToWordSearchUI() {
+        scoreLabel.font = wordSearchView.choiceFont
+        statementLabel.font = wordSearchView.choiceFont
     }
 }
 
+// MARK:- Round Maintenance
+
 extension GameViewController {
     
-    func startRound() {
+    private func connectRoundToUI() {
         
-        round = Round(gridFactory: GameReadyGridFactory())
         round?.statementPresenter = statementLabel
         round?.scorePresenter = scoreLabel
         round?.wordSearchView = wordSearchView
-                
-        round?.begin()
     }
 }
 
+// MARK:- UILabel : ScorePresenter
 
 extension UILabel : ScorePresenter {
     var score: Int {

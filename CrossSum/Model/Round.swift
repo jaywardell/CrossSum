@@ -80,6 +80,14 @@ extension Round {
         
         showNextTargetSolution()
     }
+    
+    static let DidQuit = Notification.Name("Round.DidQuit")
+
+    func quit() {
+        print("\(#function)")
+        
+        NotificationCenter.default.post(name: Round.DidQuit, object: self)
+    }
 }
 
 // MARK:- Hints
@@ -179,6 +187,7 @@ extension Round {
     func score(for statement:Statement) -> Int {
         guard let expression = statement.expression else { return 0 }
 
+        // length of the expression to the power of 2
         return (1...expression.count).reduce(1) { a,_ in a*2 }
     }
 }

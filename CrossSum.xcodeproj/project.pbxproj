@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C334AF6216454D500AC0CF9 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */; };
+		7C334AF8216454EA00AC0CF9 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */; };
+		7C334AFA2164561200AC0CF9 /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AF92164561200AC0CF9 /* AppFlow.swift */; };
+		7C334AFC21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */; };
 		7C3C3F22215995EE00BD026A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F21215995EE00BD026A /* AppDelegate.swift */; };
 		7C3C3F24215995EE00BD026A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F23215995EE00BD026A /* ViewController.swift */; };
 		7C3C3F27215995EE00BD026A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C3C3F25215995EE00BD026A /* Main.storyboard */; };
@@ -72,6 +76,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
+		7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
+		7C334AF92164561200AC0CF9 /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
+		7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Convenience.swift"; sourceTree = "<group>"; };
 		7C3C3F1E215995EE00BD026A /* CrossSum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrossSum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C3C3F21215995EE00BD026A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C3C3F23215995EE00BD026A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				7C3C3F21215995EE00BD026A /* AppDelegate.swift */,
+				7C334AF92164561200AC0CF9 /* AppFlow.swift */,
 				7C8BD3E22162E0FE002BC785 /* Utility */,
 				7C3C3F702159C76800BD026A /* Controller */,
 				7C3C3F6F2159C76000BD026A /* Model */,
@@ -225,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				7C8BD3D021614789002BC785 /* WordSearchView.swift */,
+				7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */,
 				7C3C3F4F2159961400BD026A /* CenteredLabel.swift */,
 				7C3C3F5721599B8400BD026A /* RationalLabel_old.swift */,
 				7C8BD3DC21615BCD002BC785 /* RationalLabel.swift */,
@@ -258,7 +268,9 @@
 			isa = PBXGroup;
 			children = (
 				7C8BD3D2216147AA002BC785 /* GameViewController.swift */,
+				7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */,
 				7C3C3F23215995EE00BD026A /* ViewController.swift */,
+				7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -457,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C3C3F562159974600BD026A /* Presenters.swift in Sources */,
+				7C334AFA2164561200AC0CF9 /* AppFlow.swift in Sources */,
 				7C8BD3E42162E10C002BC785 /* ThreadSafe.swift in Sources */,
 				7C8BD3E62162F230002BC785 /* GridFactory.swift in Sources */,
 				7C3C3F24215995EE00BD026A /* ViewController.swift in Sources */,
@@ -474,12 +487,15 @@
 				7C84DA75215B210700D3B36F /* Op.swift in Sources */,
 				7C84DA73215B210700D3B36F /* Parser<Double>.swift in Sources */,
 				7C8BD3D521614806002BC785 /* CGPoint+Geomtery.swift in Sources */,
+				7C334AFC21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift in Sources */,
 				7C3C3F5821599B8400BD026A /* RationalLabel_old.swift in Sources */,
 				7C8BD3DB21614857002BC785 /* Collection+SpecialIteration.swift in Sources */,
 				7C8BD3DD21615BCD002BC785 /* RationalLabel.swift in Sources */,
 				7C84DA84215B240800D3B36F /* Statement.swift in Sources */,
 				7C8BD3DF2161ABAD002BC785 /* Grid.swift in Sources */,
+				7C334AF6216454D500AC0CF9 /* WelcomeScreenViewController.swift in Sources */,
 				7C84DA76215B210700D3B36F /* Parser.swift in Sources */,
+				7C334AF8216454EA00AC0CF9 /* WelcomeScreen.swift in Sources */,
 				7C3C3F512159961400BD026A /* CenteredLabel.swift in Sources */,
 				7C84DA74215B210700D3B36F /* Parser<Int>.swift in Sources */,
 				7C84DA80215B217E00D3B36F /* RationalParser.swift in Sources */,

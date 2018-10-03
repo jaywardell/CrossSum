@@ -61,7 +61,7 @@ extension WordSearchDataSource {
     var contentView : UIView { return rowsStackView! }
     
     var choiceFont : UIFont {
-        return labels.first!.font
+        return labels.first?.font ?? textFont
     }
     
     var textColor : UIColor = .black {
@@ -82,11 +82,15 @@ extension WordSearchDataSource {
     
     var dataSource : WordSearchDataSource?
     
+    static let DidReloadSymbols = NSNotification.Name("WordSearchView.DidReloadSymbolds")
+
     public func reloadSymbols() {
         
         updateLayout()
         updateLetters()
         setNeedsLayout()
+        
+        NotificationCenter.default.post(name: WordSearchView.DidReloadSymbols, object: self)
     }
     
     
@@ -425,7 +429,7 @@ extension WordSearchDataSource {
     private var labels : [UILabel] {
         return rowsStackView?.arrangedSubviews.reduce([]) {
             $0 + ($1 as! UIStackView).arrangedSubviews
-            } as! [UILabel]
+            } as? [UILabel] ?? []
     }
     
     private func closestLabel(to point:CGPoint) -> UILabel? {
@@ -451,6 +455,16 @@ extension WordSearchDataSource {
         }
         
         rowsStackView = createRowsStackView(for: rowViews)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(choiceFontDidChange(_:)), name: ProportionalLabel.DidLayoutSubviews, object: labels.first)
+    }
+    
+    static let ChoiceFontDidChange = Notification.Name("WordSearchView.ChoiceFOntDidChange")
+
+    @objc func choiceFontDidChange(_ notification:Notification) {
+        print("\(#function)")
+        // TODO: change this to an actual notification that fits
+        NotificationCenter.default.post(name: WordSearchView.ChoiceFontDidChange, object: self)
     }
     
     private func createRowsStackView(for rowViews:[UIStackView]) -> UIStackView {
@@ -485,7 +499,6 @@ extension WordSearchDataSource {
         out.axis = .horizontal
         return out
     }
-    
 }
 
 
@@ -493,9 +506,13 @@ extension WordSearchDataSource {
 
 private class ProportionalLabel : UILabel {
 
+    static let DidLayoutSubviews = Notification.Name("ProportionalLabel.DidLayoutSubviews")
+
     override func layoutSubviews() {
         super.layoutSubviews()
         
         font = font.withSize(floor(frame.height * 21/34))
+        
+        NotificationCenter.default.post(name: ProportionalLabel.DidLayoutSubviews, object: self)
     }
 }
