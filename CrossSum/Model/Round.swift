@@ -105,6 +105,27 @@ extension Round {
         hint = thisWay.0
         return hint
     }
+    
+    func showASolution(andAdvance advanceToNextTargetSolution:Bool = false) {
+        guard let currentTargetSolution = currentTargetSolution,
+            let ways = grid?.waysToGet(solution: currentTargetSolution),
+            let hint = hintedCoordinate(),
+            let thisWay = ways.first(where:{
+                $0.0 == hint
+        }) else { return }
+
+        wordSearchView?.isUserInteractionEnabled = false
+        wordSearchView?.select(from: thisWay.0.0, thisWay.0.1, to: thisWay.1.0, thisWay.1.1)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.wordSearchView?.removeSelection(animated: true) {
+                if advanceToNextTargetSolution {
+                    self?.advanceToNextTargetSolution()
+                }
+                self?.wordSearchView?.isUserInteractionEnabled = true
+            }
+        }
+    }
 }
 
 
@@ -123,7 +144,8 @@ extension Round {
     
     func didSelect(_ string: String) {
         
-        // a little hysterysis: if the user stopped selecting on an operator, then just drop it and assume he meant to select
+        // a little hysterysis: if the user stopped selecting on an operator,
+        // then just drop it and assume he meant to select
         // the string up to but not including the operator
         let solutionString = "+-×÷".contains(string.last!) ? String(string.dropLast()) : string
         
@@ -133,10 +155,7 @@ extension Round {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             guard let self = self else { return }
             if statement.isTrue {
-                self.foundSolutions.insert(self.currentTargetSolution!)
-                self.showNextTargetSolution()
-                
-                self.score += self.score(for:statement)
+                self.advanceToNextTargetSolution(advancingScoreBy: self.score(for:statement))
             }
             else {
                 self.presentCurrentTargetSolution()
@@ -145,6 +164,12 @@ extension Round {
 
     }
 
+    func advanceToNextTargetSolution(advancingScoreBy scoreForTarget:Int = 0) {
+        self.foundSolutions.insert(self.currentTargetSolution!)
+        self.showNextTargetSolution()
+        
+        self.score += scoreForTarget
+    }
 }
 
 // MARK:- Score
@@ -158,9 +183,6 @@ extension Round {
             out *= 2
         }
         return out
-//        return (0..<statement.expression.count).reduce(1) {
-//            $0 * 2
-//        }
     }
 }
 

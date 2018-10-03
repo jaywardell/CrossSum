@@ -118,14 +118,20 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cw4-a6-YPu">
+                                        <rect key="frame" x="54" y="609" width="30" height="30"/>
+                                        <state key="normal" title="Skip"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90000000000000002" green="0.79999748059999998" blue="0.67500000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="cLN-qW-RPt" firstAttribute="firstBaseline" secondItem="zpK-jk-QGH" secondAttribute="firstBaseline" id="0ll-rT-hnt"/>
                                     <constraint firstAttribute="bottom" secondItem="zpK-jk-QGH" secondAttribute="bottom" constant="8" id="2l8-af-5BW"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="zpK-jk-QGH" secondAttribute="trailing" constant="8" id="3uw-Qi-j9g"/>
+                                    <constraint firstItem="Cw4-a6-YPu" firstAttribute="leading" secondItem="91F-wm-LNm" secondAttribute="trailing" constant="8" id="5X6-TA-Oy0"/>
                                     <constraint firstAttribute="bottom" secondItem="91F-wm-LNm" secondAttribute="bottom" constant="8" id="Iu2-rW-hzy"/>
                                     <constraint firstAttribute="width" secondItem="Fy2-xd-F8H" secondAttribute="height" multiplier="375:647" id="LvP-KX-3fh"/>
+                                    <constraint firstItem="Cw4-a6-YPu" firstAttribute="centerY" secondItem="91F-wm-LNm" secondAttribute="centerY" id="WEV-MW-rF9"/>
                                     <constraint firstItem="91F-wm-LNm" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leadingMargin" constant="8" id="qpE-fC-4ax"/>
                                     <constraint firstItem="cLN-qW-RPt" firstAttribute="centerX" secondItem="Fy2-xd-F8H" secondAttribute="centerX" id="rXw-6N-1Me"/>
                                     <constraint firstItem="ivz-NB-Y3C" firstAttribute="top" secondItem="Fy2-xd-F8H" secondAttribute="topMargin" constant="8" id="zZd-Y7-QOW"/>
@@ -145,6 +151,7 @@
                         <outlet property="newGameButton" destination="zpK-jk-QGH" id="mEm-7M-XgK"/>
                         <outlet property="scoreLabel" destination="cLN-qW-RPt" id="cuj-fY-AdE"/>
                         <outlet property="showHintButton" destination="91F-wm-LNm" id="reu-0N-ipv"/>
+                        <outlet property="skipButton" destination="Cw4-a6-YPu" id="PU4-1q-q73"/>
                         <outlet property="statementLabel" destination="ivz-NB-Y3C" id="BwW-UL-VFa"/>
                         <outlet property="wordSearchView" destination="Fy2-xd-F8H" id="xYu-fd-h5g"/>
                     </connections>

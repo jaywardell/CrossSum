@@ -678,6 +678,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oldjewel.CrossSum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ENABLE_BATCH_MODE = NO;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -696,6 +697,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oldjewel.CrossSum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ENABLE_BATCH_MODE = NO;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

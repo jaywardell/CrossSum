@@ -10,15 +10,21 @@ import UIKit
 
 class GameViewController: UIViewController {
 
-    @IBOutlet weak var newGameButton: UIButton! {
+    @IBOutlet weak var newGameButton: UIButton? {
         didSet {
-            newGameButton.addTarget(self, action: #selector(newGameButtonPressed), for: .touchUpInside)
+            newGameButton?.addTarget(self, action: #selector(newGameButtonPressed), for: .touchUpInside)
         }
     }
     
-    @IBOutlet weak var showHintButton: UIButton! {
+    @IBOutlet weak var showHintButton: UIButton? {
         didSet {
-            showHintButton.addTarget(self, action: #selector(showHintButtonPressed), for: .touchUpInside)
+            showHintButton?.addTarget(self, action: #selector(showHintButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var skipButton: UIButton? {
+        didSet {
+            skipButton?.addTarget(self, action: #selector(skipButtonPressed), for: .touchUpInside)
         }
     }
     
@@ -38,7 +44,6 @@ class GameViewController: UIViewController {
 
         statementLabel.backgroundColor = nil
         wordSearchView.backgroundColor = nil
-//        statementLabel.highlightColor = .orange
         wordSearchView.selectionColor = view.tintColor
         statementLabel.highlightColor = wordSearchView.selectionColor
         
@@ -54,18 +59,21 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func newGameButtonPressed() {
-        print(#function)
         
         startRound()
     }
 
     @IBAction func showHintButtonPressed() {
-        print(#function)
         
         round?.showAHint()
-        // TODO: implement this: highlight the first label needed to get this value
     }
 
+    @IBAction func skipButtonPressed() {
+        
+        round?.showASolution(andAdvance: true)
+    }
+
+    
 }
 
 // MARK:-

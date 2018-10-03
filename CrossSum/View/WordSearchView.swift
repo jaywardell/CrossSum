@@ -196,7 +196,7 @@ extension WordSearchDataSource {
         showSelection(from: l1, to: l2, animated:animated)
     }
     
-    func removeSelection(animated:Bool = false) {
+    func removeSelection(animated:Bool = false, completion:@escaping ()->() = {}) {
         
         if let layer = selectionLayer {
             
@@ -205,6 +205,7 @@ extension WordSearchDataSource {
                     CATransaction.begin()
                     CATransaction.setCompletionBlock {
                         layer.removeFromSuperlayer()
+                        completion()
                     }
                     CATransaction.setAnimationDuration(0.3)
                     
@@ -214,6 +215,7 @@ extension WordSearchDataSource {
                 }
             else {
                 layer.removeFromSuperlayer()
+                completion()
             }
         }
     }
