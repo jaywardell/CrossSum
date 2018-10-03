@@ -178,11 +178,8 @@ extension Round {
     
     func score(for statement:Statement) -> Int {
         guard let expression = statement.expression else { return 0 }
-        var out = 1
-        for i in 0..<expression.count {
-            out *= 2
-        }
-        return out
+
+        return (1...expression.count).reduce(1) { a,_ in a*2 }
     }
 }
 
