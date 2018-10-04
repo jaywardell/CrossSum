@@ -28,6 +28,12 @@ class GameViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var quitButton: UIButton? {
+        didSet {
+            quitButton?.addTarget(self, action: #selector(quitButtonPressed), for: .touchUpInside)
+        }
+    }
+    
     @IBOutlet weak var wordSearchView: WordSearchView!
     @IBOutlet weak var statementLabel: StatementLabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -38,6 +44,8 @@ class GameViewController: UIViewController {
             round?.displayDelegate = self
         }
     }
+    
+    private let displayFont = UIFont(name: "CourierNewPS-BoldMT", size: 24)!
     
     class func createNew() -> GameViewController {
         return UIStoryboard.Main.instantiate()
@@ -52,12 +60,13 @@ class GameViewController: UIViewController {
         wordSearchView.topAnchor.constraint(equalTo: statementLabel.topAnchor)
         view.layoutIfNeeded()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Quit", style: .done, target: self, action: #selector(quitButtonPressed))
-        navigationItem.hidesBackButton = true
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Quit", style: .done, target: self, action: #selector(quitButtonPressed))
+//        navigationItem.hidesBackButton = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(wordSearchViewChoiceFontDidChange), name: WordSearchView.ChoiceFontDidChange, object: wordSearchView)
         
-        navigationController?.view.tintColor = .yellow
+        
+//        navigationController?.view.tintColor = .yellow
         view.tintColor = navigationController?.view.tintColor
         
         view.backgroundColor = .black
@@ -77,6 +86,12 @@ class GameViewController: UIViewController {
         scoreLabel.isHidden = true
         
         round?.begin()
+
+        // TODO: idky this sin't working
+//        wordSearchView.textFont = displayFont
+//        scoreLabel.font = displayFont
+//        [skipButton, showHintButton, quitButton].forEach() { $0?.titleLabel?.font = displayFont }
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -84,6 +99,8 @@ class GameViewController: UIViewController {
         
         statementLabel.isHidden = false
         scoreLabel.isHidden = false
+        
+        print("displayu font: \(wordSearchView.choiceFont)")
     }
     
     @IBAction func newGameButtonPressed() {
