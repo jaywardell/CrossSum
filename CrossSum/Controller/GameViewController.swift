@@ -48,19 +48,26 @@ class GameViewController: UIViewController {
 
         connectRoundToUI()
         
-        statementLabel.backgroundColor = nil
-        wordSearchView.backgroundColor = nil
-        wordSearchView.selectionColor = view.tintColor
-        statementLabel.highlightColor = wordSearchView.selectionColor
-        
         wordSearchView.centerXAnchor.constraint(equalTo: statementLabel.centerXAnchor)
         wordSearchView.topAnchor.constraint(equalTo: statementLabel.topAnchor)
         view.layoutIfNeeded()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Quit", style: .done, target: self, action: #selector(quitButtonPressed))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Quit", style: .done, target: self, action: #selector(quitButtonPressed))
         navigationItem.hidesBackButton = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(wordSearchViewChoiceFontDidChange), name: WordSearchView.ChoiceFontDidChange, object: wordSearchView)
+        
+        navigationController?.view.tintColor = .yellow
+        view.tintColor = navigationController?.view.tintColor
+        
+        view.backgroundColor = .black
+        statementLabel.backgroundColor = nil
+        wordSearchView.backgroundColor = nil
+        statementLabel.textColor = .white
+        wordSearchView.textColor = .white
+        scoreLabel.textColor = .white
+        wordSearchView.selectionColor = view.tintColor
+        statementLabel.highlightColor = wordSearchView.selectionColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,7 +112,13 @@ class GameViewController: UIViewController {
     }
 
     private func matchUIToWordSearchUI() {
-        scoreLabel.font = wordSearchView.choiceFont
+        let supportFont = wordSearchView.choiceFont.withSize(wordSearchView.choiceFont.pointSize * 21/34)
+        scoreLabel.font = supportFont
+        skipButton?.titleLabel?.font = supportFont
+        showHintButton?.titleLabel?.font = supportFont
+//        navigationItem.leftBarButtonItem?.setTitleTextAttributes([
+//            NSAttributedString.Key.font : supportFont
+//            ], for: .normal)
         statementLabel.font = wordSearchView.choiceFont
     }
 }
@@ -141,10 +154,12 @@ extension GameViewController : RoundDisplayDelegate {
 extension UILabel : ScorePresenter {
     var score: Int {
         get {
-            return Int(text ?? "") ?? 0
+            guard let text = text else { return 0 }
+            let t = text.suffix(from:text.index(text.startIndex, offsetBy:7))
+            return Int(t) ?? 0
         }
         set {
-            text = "\(newValue)"
+            text = "score: \(newValue)"
         }
     }
     

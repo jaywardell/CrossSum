@@ -18,16 +18,18 @@ class WelcomeScreen: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         guard nil == playButton.superview else { return }
         
         addSubview(playButton)
-        playButton.constrainToPositionInSuperview(.middle, .center)
+        playButton.constrainToPositionInSuperview(.bottom, .center, padding:UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0),
+                                                  usingSafeLayoutGuides:true)
     }
     
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         
-        backgroundColor = .white
+        backgroundColor = .black
     }
     
 }

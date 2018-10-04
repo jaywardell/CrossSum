@@ -97,7 +97,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ivz-NB-Y3C" customClass="StatementLabel" customModule="CrossSum" customModuleProvider="target">
-                                        <rect key="frame" x="67.5" y="16" width="240" height="22"/>
+                                        <rect key="frame" x="67.5" y="112.5" width="240" height="22"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="7bi-17-146"/>
@@ -105,36 +105,36 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91F-wm-LNm">
-                                        <rect key="frame" x="16" y="609" width="30" height="30"/>
+                                        <rect key="frame" x="28" y="609" width="30" height="30"/>
                                         <state key="normal" title="Hint"/>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cw4-a6-YPu">
+                                        <rect key="frame" x="325" y="609" width="30" height="30"/>
+                                        <state key="normal" title="Skip"/>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLN-qW-RPt">
-                                        <rect key="frame" x="165" y="613.5" width="45" height="21"/>
+                                        <rect key="frame" x="322" y="8" width="45" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cw4-a6-YPu">
-                                        <rect key="frame" x="54" y="609" width="30" height="30"/>
-                                        <state key="normal" title="Skip"/>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90000000000000002" green="0.79999748059999998" blue="0.67500000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Cw4-a6-YPu" firstAttribute="leading" secondItem="91F-wm-LNm" secondAttribute="trailing" constant="8" id="5X6-TA-Oy0"/>
+                                    <constraint firstItem="ivz-NB-Y3C" firstAttribute="centerY" secondItem="Fy2-xd-F8H" secondAttribute="centerY" multiplier="13/34" id="3Jg-Ql-Xxf"/>
+                                    <constraint firstAttribute="trailing" secondItem="cLN-qW-RPt" secondAttribute="trailing" constant="8" id="AC8-uk-flG"/>
                                     <constraint firstAttribute="bottom" secondItem="91F-wm-LNm" secondAttribute="bottom" constant="8" id="Iu2-rW-hzy"/>
-                                    <constraint firstAttribute="width" secondItem="Fy2-xd-F8H" secondAttribute="height" multiplier="375:647" id="LvP-KX-3fh"/>
                                     <constraint firstItem="Cw4-a6-YPu" firstAttribute="centerY" secondItem="91F-wm-LNm" secondAttribute="centerY" id="WEV-MW-rF9"/>
-                                    <constraint firstAttribute="bottom" secondItem="cLN-qW-RPt" secondAttribute="bottom" constant="12.5" id="Z12-cC-VYh"/>
-                                    <constraint firstItem="91F-wm-LNm" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leadingMargin" constant="8" id="qpE-fC-4ax"/>
-                                    <constraint firstItem="cLN-qW-RPt" firstAttribute="centerX" secondItem="Fy2-xd-F8H" secondAttribute="centerX" id="rXw-6N-1Me"/>
-                                    <constraint firstItem="ivz-NB-Y3C" firstAttribute="top" secondItem="Fy2-xd-F8H" secondAttribute="topMargin" constant="8" id="zZd-Y7-QOW"/>
+                                    <constraint firstItem="cLN-qW-RPt" firstAttribute="top" secondItem="Fy2-xd-F8H" secondAttribute="top" constant="8" id="cmD-hk-hhy"/>
+                                    <constraint firstItem="91F-wm-LNm" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leadingMargin" constant="20" id="qpE-fC-4ax"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cw4-a6-YPu" secondAttribute="trailing" constant="20" id="uEz-RV-ytv"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Fy2-xd-F8H" firstAttribute="leading" secondItem="oUT-VS-hdC" secondAttribute="leading" id="7Fl-AS-y3U"/>
+                            <constraint firstItem="Fy2-xd-F8H" firstAttribute="top" secondItem="oUT-VS-hdC" secondAttribute="top" id="EpR-68-gPt"/>
                             <constraint firstItem="ivz-NB-Y3C" firstAttribute="centerX" secondItem="oUT-VS-hdC" secondAttribute="centerX" id="EqO-xX-jkd"/>
                             <constraint firstItem="oUT-VS-hdC" firstAttribute="bottom" secondItem="Fy2-xd-F8H" secondAttribute="bottom" id="QSN-Hs-aRk"/>
                             <constraint firstItem="oUT-VS-hdC" firstAttribute="trailing" secondItem="Fy2-xd-F8H" secondAttribute="trailing" id="iSx-wQ-pJ8"/>

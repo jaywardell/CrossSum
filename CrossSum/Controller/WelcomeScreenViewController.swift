@@ -24,10 +24,20 @@ class WelcomeScreenViewController: UIViewController {
         super.viewDidLoad()
         
         welcomeScreen.playButton.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
+        
+        navigationController?.navigationBar.barStyle = .blackTranslucent
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        welcomeScreen.playButton.fadeIn(duration: animated ? 0.2 : 0)
     }
     
     @IBAction private func playButtonPressed() {
         
-        didHitPlayButton()
+        welcomeScreen.playButton.fadeOut(duration: 0.2) {
+            self.didHitPlayButton()
+        }
     }
 }

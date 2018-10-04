@@ -10,7 +10,7 @@ import UIKit
 
 extension UIView {
     
-    func fadeOut(duration:TimeInterval, after delay:TimeInterval=0, completion:@escaping ()->()) {
+    func fadeOut(duration:TimeInterval, after delay:TimeInterval=0, completion:@escaping ()->() = {}) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             UIView.animate(withDuration: duration, animations: { [weak self] in
                 self?.alpha = 0
@@ -20,7 +20,7 @@ extension UIView {
         }
     }
     
-    func fadeIn(duration:TimeInterval, after delay:TimeInterval=0, completion:@escaping ()->()) {
+    func fadeIn(duration:TimeInterval, after delay:TimeInterval=0, completion:@escaping ()->() = {}) {
         
         alpha = 0
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
