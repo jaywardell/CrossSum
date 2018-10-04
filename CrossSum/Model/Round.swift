@@ -109,7 +109,7 @@ extension Round {
         guard let currentTargetSolution = currentTargetSolution,
             let ways = grid?.waysToGet(solution: currentTargetSolution),
             let thisWay = ways.randomElement()  else { return nil }
-        print("ways to get \(currentTargetSolution): \(ways)")
+//        print("ways to get \(currentTargetSolution): \(ways)")
         hint = thisWay.0
         return hint
     }

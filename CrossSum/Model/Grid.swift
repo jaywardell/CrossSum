@@ -18,9 +18,11 @@ class Grid {
     }
     
     let size : Int
-    let range : Range<Int>
+    let range : ClosedRange<Int>
     let operators : [Operator]
-    let solutionFilter : SolutionFilter
+    let solutionRange : ClosedRange<Rational>
+    let allowsFractionalSolutions : Bool
+//    let solutionFilter : SolutionFilter
     
     private var _symbols : [[String]] = []
     private(set) var symbols : [[String]] {
@@ -59,10 +61,18 @@ class Grid {
     
     
     
-    init(size:Int, range:Range<Int>, operators:[Operator], solutionFilter:SolutionFilter) {
+    init(size:Int,
+         range:ClosedRange<Int>,
+         operators:[Operator],
+//         solutionFilter:SolutionFilter
+        solutionRange:ClosedRange<Rational>,
+        allowsFractionalSolutions:Bool
+        ) {
         self.size = size
         self.range = range
         self.operators = operators
+        self.solutionRange = solutionRange
+        self.allowsFractionalSolutions = allowsFractionalSolutions
 
         let _operators = operators.reduce("") { $0 + $1.rawValue }
         
@@ -84,12 +94,27 @@ class Grid {
             ss.append(row)
         }
         
-        self.solutionFilter = solutionFilter
+//        self.solutionFilter = solutionFilter
         self.symbols = ss
         
         // build the solutions
-        findSolutions(filter:solutionFilter.filter)
+        findSolutions()
     }
+    
+    func mutatedCopy(size:Int? = nil,
+                     range:ClosedRange<Int>? = nil,
+                     operators:[Operator]? = nil,
+                     solutionRange:ClosedRange<Rational>? = nil,
+                     allowsFractionalSolutions:Bool? = nil) -> Grid {
+        
+        return Grid(size: size ?? self.size,
+                    range: range ?? self.range,
+                    operators: operators ?? self.operators,
+                    solutionRange: solutionRange ?? self.solutionRange,
+                    allowsFractionalSolutions: allowsFractionalSolutions ?? self.allowsFractionalSolutions)
+        
+    }
+    
     
     // TODO: init from a String
     // TODO: COdable
@@ -115,9 +140,19 @@ extension Grid : WordSearchDataSource {
 
 extension Grid {
     
-    private func findSolutions(filter:(Rational)->Bool = { _ in true }) {
+    private func accepts(solution:Rational) -> Bool {
+        if !allowsFractionalSolutions && solution.fractionalPart != 0 {
+            return false
+        }
+        if !solutionRange.contains(solution) {
+            return false
+        }
+        return true
+    }
+    
+    private func findSolutions() {
         
-        let start = Date().timeIntervalSinceReferenceDate
+//        let start = Date().timeIntervalSinceReferenceDate
         
         DispatchQueue.concurrentPerform(iterations: rows) { row in
 
@@ -130,7 +165,7 @@ extension Grid {
                     // forward
                     for i in column + 1 ..< columns {
                         if let solution = solution(for: (row, column), to: (row, i)) {
-                            if filter(solution) {
+                            if accepts(solution: solution) {
                                 appendToPossibleSolutions(solution: solution, coordinates: (row, column), end: (row, i))
                             }
                         }
@@ -139,7 +174,7 @@ extension Grid {
                     // backward
                     for i in stride(from: column - 1, through: 0, by: -1) {
                         if let solution = solution(for: (row, column), to: (row, i)) {
-                            if filter(solution) {
+                            if accepts(solution: solution) {
                                 appendToPossibleSolutions(solution: solution, coordinates: (row, column), end: (row, i))
                             }
                         }
@@ -150,7 +185,7 @@ extension Grid {
                     // forward
                     for i in row + 1 ..< rows {
                         if let solution = solution(for: (row, column), to: (i, column)) {
-                            if filter(solution) {
+                            if accepts(solution: solution) {
                                 appendToPossibleSolutions(solution: solution, coordinates: (row, column), end: (i, column))
                             }
                         }
@@ -159,7 +194,7 @@ extension Grid {
                     // backward
                     for i in stride(from: row - 1, through: 0, by: -1) {
                         if let solution = solution(for: (row, column), to: (i, column)) {
-                            if filter(solution) {
+                            if accepts(solution: solution) {
                                 appendToPossibleSolutions(solution: solution, coordinates: (row, column), end: (i, column))
                             }
                         }
@@ -168,8 +203,8 @@ extension Grid {
             }
         }
         
-        print("solutions: \(self.solutionsToLocations.value)")
-        print("\(#function) \(Date().timeIntervalSinceReferenceDate - start)")
+//        print("solutions: \(self.solutionsToLocations.value)")
+//        print("\(#function) \(Date().timeIntervalSinceReferenceDate - start)")
     }
     
     private func appendToPossibleSolutions(solution:Rational, coordinates start:Coordinate, end:Coordinate) {

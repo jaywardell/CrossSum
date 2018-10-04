@@ -27,7 +27,6 @@ class WelcomeScreenViewController: UIViewController {
     }
     
     @IBAction private func playButtonPressed() {
-        print(#function)
         
         didHitPlayButton()
     }

@@ -145,6 +145,10 @@ public struct Rational {
         return Rational(num, den)
     }
     
+    // MARK: Constants
+    static let maximum = Rational(Int.max, 1)
+    static let minimum = Rational(Int.min, 1)
+
     // MARK:- Basic Operations
 
     func addedTo(_ addend:Rational) -> Rational {
@@ -296,6 +300,15 @@ public func >= (lhs: Rational, rhs: Double) -> Bool {
 }
 public func >= (lhs: Double, rhs: Rational) -> Bool {
     return Rational(lhs)! >= rhs
+}
+
+// TODO: add tests for these methods
+func min(_ lhs:Rational, _ rhs:Rational) -> Rational {
+    return lhs < rhs ? lhs : rhs
+}
+
+func max(_ lhs:Rational, _ rhs:Rational) -> Rational {
+    return lhs > rhs ? lhs : rhs
 }
 
 // MARK:- ExpressibleByIntegerLiteral

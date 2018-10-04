@@ -334,6 +334,14 @@ class RationalTests: XCTestCase {
         XCTAssertEqual(Rational("1/0"), Rational(5,0))
     }
     
+    func testMinMax() {
+        
+        XCTAssertEqual(Rational.maximum.numerator, Int.max)
+        XCTAssertEqual(Rational.maximum.denominator, 1)
+
+        XCTAssertEqual(Rational.minimum.numerator, Int.min)
+        XCTAssertEqual(Rational.minimum.denominator, 1)
+    }
     
     func testSyntax() {
         
