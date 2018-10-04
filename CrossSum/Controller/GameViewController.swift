@@ -134,8 +134,6 @@ extension GameViewController : RoundDisplayDelegate {
         skipButton?.isHidden = false
         statementLabel.isHidden = false
     }
-    
-    
 }
 
 // MARK:- UILabel : ScorePresenter

@@ -8,11 +8,6 @@
 
 import UIKit
 
-//protocol WordSearchViewDelegate {
-//    func isSelecting(_ string:String)
-//    func didSelect(_ string:String)
-//}
-
 protocol WordSearchDataSource {
     
     var rows : Int { get }
@@ -110,27 +105,34 @@ extension WordSearchDataSource {
     }
     
     private func fadeInLabels(animated:Bool, _ completion:@escaping ()->()) {
-        let duration = animated ? 0.2 : 0
+        let duration = animated ? 0.6 : 0
         labels.forEach() { $0.alpha = 0 }
         
-        // first animate away the operator labels
-        UIView.animate(withDuration: duration * 5, animations: { [weak self] in
-            self?.labels.filter() {
-                nil != Int($0.text ?? "")
-                }
-                .forEach() { $0.alpha = 1 }
-        }) { _ in
+        // first, animate in the number labels, making it appear like they appear randomly over the course of about a second
+        let group = DispatchGroup()
         
-            UIView.animate(withDuration: duration, animations: { [weak self] in
-                self?.labels.filter() {
-                    nil == Int($0.text ?? "")
-                    }
-                    .forEach() { $0.alpha = 1 }
-
-            }, completion: { _ in
-                completion()
-            })
+        labels
+            .filter() { nil != Int($0.text ?? "") }
+            .forEach() {
+                group.enter()
+                $0.fadeIn(duration: TimeInterval.random(in: 0...duration), after:TimeInterval.random(in: 0...duration)) {
+                    group.leave()
+                }
         }
+        
+        group.notify(queue: DispatchQueue.main) {
+  
+            // then animate in the operator labels all at once
+            UIView.animate(withDuration: duration, animations: { [weak self] in
+                self?.labels
+                    .filter() { nil == Int($0.text ?? "") }
+                    .forEach() { $0.alpha = 1 }
+                }, completion: { _ in
+                    
+                    // and call the completion handler
+                    completion()
+            })
+      }
     }
 
     var allowsDiagonalSelection = true

@@ -11,6 +11,7 @@
 		7C334AF8216454EA00AC0CF9 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */; };
 		7C334AFA2164561200AC0CF9 /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AF92164561200AC0CF9 /* AppFlow.swift */; };
 		7C334AFC21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */; };
+		7C334AFE2165B1C500AC0CF9 /* UIView+AnimationConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AFD2165B1C500AC0CF9 /* UIView+AnimationConvenience.swift */; };
 		7C3C3F22215995EE00BD026A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F21215995EE00BD026A /* AppDelegate.swift */; };
 		7C3C3F24215995EE00BD026A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F23215995EE00BD026A /* ViewController.swift */; };
 		7C3C3F27215995EE00BD026A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C3C3F25215995EE00BD026A /* Main.storyboard */; };
@@ -80,6 +81,7 @@
 		7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		7C334AF92164561200AC0CF9 /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
 		7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Convenience.swift"; sourceTree = "<group>"; };
+		7C334AFD2165B1C500AC0CF9 /* UIView+AnimationConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AnimationConvenience.swift"; sourceTree = "<group>"; };
 		7C3C3F1E215995EE00BD026A /* CrossSum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrossSum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C3C3F21215995EE00BD026A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C3C3F23215995EE00BD026A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				7C8BD3C12160FAB8002BC785 /* UIView+AutolayoutSetup.swift */,
 				7C3C3F502159961400BD026A /* UIView+AutolayoutConvenience.swift */,
 				7C8BD3CB21613900002BC785 /* UIFont+CoreTextConvenience.swift */,
+				7C334AFD2165B1C500AC0CF9 /* UIView+AnimationConvenience.swift */,
 				7C8BD3D421614806002BC785 /* CGPoint+Geomtery.swift */,
 				7C8BD3D62161481E002BC785 /* CGPoint+LinearAlgebra.swift */,
 				7C8BD3D821614833002BC785 /* CGVector+LinearAlgebra.swift */,
@@ -477,6 +480,7 @@
 				7C8BD3CC21613900002BC785 /* UIFont+CoreTextConvenience.swift in Sources */,
 				7C3C3F522159961400BD026A /* UIView+AutolayoutConvenience.swift in Sources */,
 				7C8BD3C22160FAB8002BC785 /* UIView+AutolayoutSetup.swift in Sources */,
+				7C334AFE2165B1C500AC0CF9 /* UIView+AnimationConvenience.swift in Sources */,
 				7C3C3F22215995EE00BD026A /* AppDelegate.swift in Sources */,
 				7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */,
 				7C8BD3D921614833002BC785 /* CGVector+LinearAlgebra.swift in Sources */,
