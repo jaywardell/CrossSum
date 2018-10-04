@@ -35,6 +35,7 @@ class GameViewController: UIViewController {
     var round : Round? {
         didSet {
             connectRoundToUI()
+            round?.displayDelegate = self
         }
     }
     
@@ -119,6 +120,22 @@ extension GameViewController {
         round?.scorePresenter = scoreLabel
         round?.wordSearchView = wordSearchView
     }
+}
+
+extension GameViewController : RoundDisplayDelegate {
+    func willReplaceGrid(_ round: Round) {
+        showHintButton?.isHidden = true
+        skipButton?.isHidden = true
+        statementLabel.isHidden = true
+    }
+    
+    func didReplaceGrid(_ round: Round) {
+        showHintButton?.isHidden = false
+        skipButton?.isHidden = false
+        statementLabel.isHidden = false
+    }
+    
+    
 }
 
 // MARK:- UILabel : ScorePresenter

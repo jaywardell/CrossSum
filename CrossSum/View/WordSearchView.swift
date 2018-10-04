@@ -84,16 +84,55 @@ extension WordSearchDataSource {
     
     static let DidReloadSymbols = NSNotification.Name("WordSearchView.DidReloadSymbolds")
 
-    public func reloadSymbols() {
+    public func reloadSymbols(animated:Bool, _ completion:@escaping ()->()) {
         
-        updateLayout()
-        updateLetters()
-        setNeedsLayout()
-        
-        NotificationCenter.default.post(name: WordSearchView.DidReloadSymbols, object: self)
+        fadeOutLabels(animated: animated) { [weak self] in
+            
+            self?.updateLayout()
+            self?.updateLetters()
+            self?.setNeedsLayout()
+            
+            self?.fadeInLabels(animated: animated) {
+                
+                completion()
+                NotificationCenter.default.post(name: WordSearchView.DidReloadSymbols, object: self)
+            }
+        }
     }
     
+    private func fadeOutLabels(animated:Bool, _ completion:@escaping ()->()) {
+        let duration = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration, animations: { [weak self] in
+            self?.labels.forEach() { $0.alpha = 0 }
+        }) { _ in
+            completion()
+        }
+    }
     
+    private func fadeInLabels(animated:Bool, _ completion:@escaping ()->()) {
+        let duration = animated ? 0.2 : 0
+        labels.forEach() { $0.alpha = 0 }
+        
+        // first animate away the operator labels
+        UIView.animate(withDuration: duration * 5, animations: { [weak self] in
+            self?.labels.filter() {
+                nil != Int($0.text ?? "")
+                }
+                .forEach() { $0.alpha = 1 }
+        }) { _ in
+        
+            UIView.animate(withDuration: duration, animations: { [weak self] in
+                self?.labels.filter() {
+                    nil == Int($0.text ?? "")
+                    }
+                    .forEach() { $0.alpha = 1 }
+
+            }, completion: { _ in
+                completion()
+            })
+        }
+    }
+
     var allowsDiagonalSelection = true
     
     var isSelecting : ((String)->())?

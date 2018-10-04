@@ -8,6 +8,11 @@
 
 import Foundation
 
+protocol RoundDisplayDelegate {
+    func willReplaceGrid(_ round:Round)
+    func didReplaceGrid(_ round:Round)
+}
+
 final class Round {
     
     var score : Int = 0 {
@@ -18,6 +23,8 @@ final class Round {
     
     var grid : Grid?
     var gridFactory : GridFactory
+    
+    var displayDelegate : RoundDisplayDelegate?
     
     var foundSolutions = Set<Rational>()
     var currentTargetSolution : Rational?
@@ -72,13 +79,17 @@ extension Round {
     private func showNextGrid() {
         foundSolutions.removeAll()
 
+        displayDelegate?.willReplaceGrid(self)
+        
         self.grid = gridFactory.gridAfter(grid)
         wordSearchView?.dataSource = grid
-        wordSearchView?.reloadSymbols()
-
-        // TODO: fade old grid out and new grid in
+        wordSearchView?.reloadSymbols(animated:true) { [weak self] in
+            guard let self = self else { return }
         
-        showNextTargetSolution()
+            self.showNextTargetSolution()
+            
+            self.displayDelegate?.didReplaceGrid(self)
+        }
     }
     
     static let DidQuit = Notification.Name("Round.DidQuit")

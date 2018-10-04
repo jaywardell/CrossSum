@@ -131,6 +131,6 @@ struct GameReadyGridFactory : GridFactory {
     }
     
     private func firstGrid() -> Grid {
-        return Grid(size: 5, range: 1...5, operators: [.plus, .minus], solutionRange:0...5, allowsFractionalSolutions:false)
+        return Grid(size: 5, range: 1...5, operators: [.plus], solutionRange:0...5, allowsFractionalSolutions:false)
     }
 }
