@@ -131,16 +131,6 @@ class StatementLabel: UIStackView {
         layoutIfNeeded()
     }
 
-//    private func setupConstraints() {
-//        translatesAutoresizingMaskIntoConstraints = false
-//
-//        // TODO: autolayout constraints are not working well
-//        expressionLabel.trailingAnchor.constraint(equalTo: equalityLabel.leadingAnchor)
-//        equalityLabel.trailingAnchor.constraint(equalTo: solutionLabel.leadingAnchor)
-//
-//        equalityLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
-//        equalityLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
-//    }
 }
 
 extension StatementLabel : OptionalStatementPresenter {}

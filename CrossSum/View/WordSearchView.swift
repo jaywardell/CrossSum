@@ -512,8 +512,6 @@ extension WordSearchDataSource {
     static let ChoiceFontDidChange = Notification.Name("WordSearchView.ChoiceFOntDidChange")
 
     @objc func choiceFontDidChange(_ notification:Notification) {
-        print("\(#function)")
-        // TODO: change this to an actual notification that fits
         NotificationCenter.default.post(name: WordSearchView.ChoiceFontDidChange, object: self)
     }
     

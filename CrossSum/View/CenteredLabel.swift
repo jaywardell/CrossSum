@@ -27,6 +27,7 @@ class CenteredLabel: UIStackView {
     var isHighlighted : Bool = false {
         didSet {
                 label.backgroundColor = isHighlighted ? highlightColor : nil
+            label.layer.cornerRadius = label.frame.height * 8/34
         }
     }
     
@@ -55,6 +56,7 @@ class CenteredLabel: UIStackView {
         let out = UILabel()
         out.font = UIFont.preferredFont(forTextStyle: .body)
         out.isOpaque = false
+        out.layer.masksToBounds = true
 
         return out
     }()
