@@ -60,13 +60,10 @@ class GameViewController: UIViewController {
         wordSearchView.topAnchor.constraint(equalTo: statementLabel.topAnchor)
         view.layoutIfNeeded()
         
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Quit", style: .done, target: self, action: #selector(quitButtonPressed))
-//        navigationItem.hidesBackButton = true
+        navigationItem.hidesBackButton = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(wordSearchViewChoiceFontDidChange), name: WordSearchView.ChoiceFontDidChange, object: wordSearchView)
         
-        
-//        navigationController?.view.tintColor = .yellow
         view.tintColor = navigationController?.view.tintColor
         
         view.backgroundColor = .black
@@ -79,6 +76,7 @@ class GameViewController: UIViewController {
         statementLabel.highlightColor = wordSearchView.selectionColor
     }
     
+    private var navigationBarHiddenAtStart : Bool?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -87,11 +85,10 @@ class GameViewController: UIViewController {
         
         round?.begin()
 
-        // TODO: idky this sin't working
-//        wordSearchView.textFont = displayFont
-//        scoreLabel.font = displayFont
-//        [skipButton, showHintButton, quitButton].forEach() { $0?.titleLabel?.font = displayFont }
-
+        navigationBarHiddenAtStart = navigationController?.isNavigationBarHidden
+        navigationController?.isNavigationBarHidden = true
+        
+        wordSearchView.textFont = displayFont
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -99,8 +96,15 @@ class GameViewController: UIViewController {
         
         statementLabel.isHidden = false
         scoreLabel.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        print("displayu font: \(wordSearchView.choiceFont)")
+        if let navigationBarHiddenAtStart = navigationBarHiddenAtStart,
+            !navigationBarHiddenAtStart {
+            navigationController?.isNavigationBarHidden = false
+        }
     }
     
     @IBAction func newGameButtonPressed() {
@@ -129,14 +133,10 @@ class GameViewController: UIViewController {
     }
 
     private func matchUIToWordSearchUI() {
-        let supportFont = wordSearchView.choiceFont.withSize(wordSearchView.choiceFont.pointSize * 21/34)
+        let supportFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize * 21/34, scoreLabel.font.pointSize))
         scoreLabel.font = supportFont
-        skipButton?.titleLabel?.font = supportFont
-        showHintButton?.titleLabel?.font = supportFont
-//        navigationItem.leftBarButtonItem?.setTitleTextAttributes([
-//            NSAttributedString.Key.font : supportFont
-//            ], for: .normal)
-        statementLabel.font = wordSearchView.choiceFont
+        [skipButton, showHintButton, quitButton].forEach() { $0?.titleLabel?.font = supportFont }
+        statementLabel.font = supportFont
     }
 }
 

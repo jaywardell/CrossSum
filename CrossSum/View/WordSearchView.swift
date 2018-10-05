@@ -69,9 +69,13 @@ extension WordSearchDataSource {
     
     var textFont : UIFont = UIFont.systemFont(ofSize: 24) {
         didSet {
-            labels.forEach { label in
-                label.font = textFont
-            }
+            updateTextFont()
+        }
+    }
+    
+    private func updateTextFont() {
+        labels.forEach { label in
+            label.font = textFont
         }
     }
     
@@ -110,7 +114,6 @@ extension WordSearchDataSource {
         
         // first, animate in the number labels, making it appear like they appear randomly over the course of about a second
         let group = DispatchGroup()
-        
         labels
             .filter() { nil != Int($0.text ?? "") }
             .forEach() {
@@ -121,9 +124,9 @@ extension WordSearchDataSource {
         }
         
         group.notify(queue: DispatchQueue.main) {
-  
-            let group = DispatchGroup()
             
+            // then animate in the other labels in the same way, but quicker
+            let group = DispatchGroup()
             self.labels
                 .filter() { nil == Int($0.text ?? "") }
                 .forEach() {
@@ -132,22 +135,11 @@ extension WordSearchDataSource {
                         group.leave()
                     }
             }
-
+            
             group.notify(queue: DispatchQueue.main) {
                 completion()
             }
-            
-            // then animate in the operator labels all at once
-//            UIView.animate(withDuration: duration, animations: { [weak self] in
-//                self?.labels
-//                    .filter() { nil == Int($0.text ?? "") }
-//                    .forEach() { $0.alpha = 1 }
-//                }, completion: { _ in
-//
-//                    // and call the completion handler
-//                    completion()
-//            })
-      }
+        }
     }
 
     var allowsDiagonalSelection = true
@@ -511,6 +503,8 @@ extension WordSearchDataSource {
         }
         
         rowsStackView = createRowsStackView(for: rowViews)
+        
+        updateTextFont()
         
         NotificationCenter.default.addObserver(self, selector: #selector(choiceFontDidChange(_:)), name: ProportionalLabel.DidLayoutSubviews, object: labels.first)
     }
