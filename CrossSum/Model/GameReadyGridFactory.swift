@@ -15,6 +15,10 @@ struct GridMutator : Equatable, Hashable {
     let canMutate : (Grid) -> Bool
     let mutate : (Grid) -> Grid
 
+    // a mutator that returns a Grid wth the same characteristics
+    // very low probability because it's only used as a stopgap, last ditch
+    static let same = GridMutator(name: "same", probability:0.01, canMutate: { _ in true }, mutate: { $0.mutatedCopy() })
+    
     static func == (lhs: GridMutator, rhs: GridMutator) -> Bool {
         return lhs.name == rhs.name
     }
@@ -24,6 +28,8 @@ struct GridMutator : Equatable, Hashable {
 }
 
 struct GameReadyGridFactory : GridFactory {
+    
+
     
     let mutators : Set<GridMutator> = Set([
         
@@ -45,15 +51,15 @@ struct GameReadyGridFactory : GridFactory {
 
                         // create the new range, growing it slightly
                         let newRange = $0.range.lowerBound...(Int(Double($0.range.upperBound) * 1.25))
-                        
+
                         // ensure that the solutionRange is at least as large as the options range
                         let newSolutionRange = min(Rational($0.range.lowerBound), $0.solutionRange.lowerBound)...max(Rational($0.range.upperBound), $0.solutionRange.upperBound)
-                        
+
                         return $0.mutatedCopy(range: newRange, solutionRange:newSolutionRange)
         }),
-        
+
         // adding more operators
-        GridMutator(name: "add operator", probability:0.5, canMutate: { $0.operators.count < 4 }, mutate: {
+        GridMutator(name: "add operator", probability:1, canMutate: { $0.operators.count < 4 }, mutate: {
             let newOperators : [Grid.Operator]
             switch $0.operators.count {
             case 1:
@@ -67,10 +73,10 @@ struct GameReadyGridFactory : GridFactory {
             }
             return $0.mutatedCopy(operators: newOperators)
         }),
-        
+
         // solutionRange
         GridMutator(name: "allow negative solutions",
-                    probability:0.5,
+                    probability:1,
                     canMutate: {
                         // only if it's not already happened
                         $0.solutionRange.lowerBound >= Int(0) &&
@@ -81,17 +87,17 @@ struct GameReadyGridFactory : GridFactory {
                         // as positive solutions
                         $0.mutatedCopy(solutionRange: -($0.solutionRange.upperBound)...($0.solutionRange.upperBound))
         }),
-        
+
 
         GridMutator(name: "double solution range",
-                    probability:1,
+                    probability:0.5,
                     canMutate: { _ in true },
                     mutate: {
                         // if lower bound is 0, it will still be zero
                         // if it is negative, then it will double in magnitude
                         $0.mutatedCopy(solutionRange: ($0.solutionRange.lowerBound * 2)...($0.solutionRange.upperBound * 2))
                         }),
-        
+
         GridMutator(name: "allow infinite range",
                     probability:0.2,
                     canMutate: { $0.solutionRange.lowerBound < 0 },
@@ -102,13 +108,11 @@ struct GameReadyGridFactory : GridFactory {
         }),
 
         // fractional solutions
-        GridMutator(name: "allow fractional solutions", probability:0.5, canMutate: { !$0.allowsFractionalSolutions && $0.operators.count == 4 }, mutate: { $0.mutatedCopy(allowsFractionalSolutions:true)}),
+        GridMutator(name: "allow fractional solutions", probability:1, canMutate: { !$0.allowsFractionalSolutions && $0.operators.count == 4 }, mutate: { $0.mutatedCopy(allowsFractionalSolutions:true)}),
         
         // if nothing else works, then return a Grid with the same characteristics
         // also, every once in a while, we can have two grds in a row with the same characteristics
-        GridMutator(name: "same", probability:1, canMutate: { _ in true }, mutate: { $0.mutatedCopy() })
-
-        
+        GridMutator.same
         ])
     
     func gridAfter(_ grid: Grid?) -> Grid {
@@ -125,7 +129,9 @@ struct GameReadyGridFactory : GridFactory {
                 return mutator.mutate(lastGrid)
             }
             
-            mutators.remove(mutator)
+            if mutator.name != GridMutator.same.name {
+                mutators.remove(mutator)
+            }
         }
         fatalError("If nothing else, same mutator should work, so control flow should never reach here")
     }
