@@ -122,16 +122,31 @@ extension WordSearchDataSource {
         
         group.notify(queue: DispatchQueue.main) {
   
+            let group = DispatchGroup()
+            
+            self.labels
+                .filter() { nil == Int($0.text ?? "") }
+                .forEach() {
+                    group.enter()
+                    $0.fadeIn(duration: TimeInterval.random(in: 0...duration/3), after:TimeInterval.random(in: 0...duration/3)) {
+                        group.leave()
+                    }
+            }
+
+            group.notify(queue: DispatchQueue.main) {
+                completion()
+            }
+            
             // then animate in the operator labels all at once
-            UIView.animate(withDuration: duration, animations: { [weak self] in
-                self?.labels
-                    .filter() { nil == Int($0.text ?? "") }
-                    .forEach() { $0.alpha = 1 }
-                }, completion: { _ in
-                    
-                    // and call the completion handler
-                    completion()
-            })
+//            UIView.animate(withDuration: duration, animations: { [weak self] in
+//                self?.labels
+//                    .filter() { nil == Int($0.text ?? "") }
+//                    .forEach() { $0.alpha = 1 }
+//                }, completion: { _ in
+//
+//                    // and call the completion handler
+//                    completion()
+//            })
       }
     }
 
