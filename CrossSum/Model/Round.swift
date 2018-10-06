@@ -102,7 +102,12 @@ extension Round {
             
             self.displayDelegate?.didReplaceGrid(self)
         }
-        solutionTime = Round.TimeForEachTargetSolution
+        
+        // give the user all the time he had accumulated by ansering quickly in previous rounds
+        // but also give him an extra standard time allotment
+        solutionTime = Round.TimeForEachTargetSolution +
+            ((solutionTime > TimeInterval(0)) ? (solutionTime - Round.TimeForEachTargetSolution) : 0)
+        print("solutionTime: \(solutionTime)")
     }
     
     static let DidQuit = Notification.Name("Round.DidQuit")
@@ -191,6 +196,7 @@ extension Round {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             guard let self = self else { return }
             if statement.isTrue {
+                self.solutionTime += self.timeKeeper?.timeRemaining ?? 0
                 self.advanceToNextTargetSolution(advancingScoreBy: self.score(for:statement))
             }
             else {

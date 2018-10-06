@@ -17,6 +17,8 @@ final class TimeKeeper {
     
     var done : (TimeKeeper)->() = { _ in }
     
+    var timeRemaining : TimeInterval = 0
+    
     init(_ time:TimeInterval, presenter:TimeRemainingPresenter?, done:@escaping(TimeKeeper)->()) {
         self.totalTime = time
         self.presenter = presenter
@@ -47,9 +49,11 @@ final class TimeKeeper {
         let now = Date().timeIntervalSinceReferenceDate
         let elapsed = now - startTime
         
-        presenter?.remainingTime = totalTime - elapsed
+        timeRemaining = totalTime - elapsed
         
-        if totalTime - elapsed <= TimeInterval(0) {
+        presenter?.remainingTime = timeRemaining
+        
+        if timeRemaining <= TimeInterval(0) {
             done(self)
             timer.invalidate()
         }
