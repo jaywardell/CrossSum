@@ -121,14 +121,24 @@ struct GameReadyGridFactory : GridFactory {
         var mutators = self.mutators
         
         while mutators.count > 0 {
+            // find a mutator that will validly mutate the given grid
             guard let mutator = mutators.randomElement() else  { break }
             if Double.random(in: 0...1) < mutator.probability &&
                 mutator.canMutate(lastGrid) {
                 print("mutator:\(mutator.name)")
                 
-                return mutator.mutate(lastGrid)
+                let result = mutator.mutate(lastGrid)
+                
+                // ensure that the result we return has at least one valid solution,
+                // or else try again
+                if result.solutions.count == 0 {
+                    return gridAfter(grid)
+                }
+                return result
             }
             
+            // remove the mutator we tried since it wasn't valid
+            // unless, of course, it's our mutator of last resort (same)
             if mutator.name != GridMutator.same.name {
                 mutators.remove(mutator)
             }
