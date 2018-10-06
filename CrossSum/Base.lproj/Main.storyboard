@@ -116,6 +116,21 @@
                                         <rect key="frame" x="28" y="20" width="30" height="30"/>
                                         <state key="normal" title="Quit"/>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJS-vc-ux1" customClass="TimeRemainingView" customModule="CrossSum" customModuleProvider="target">
+                                        <rect key="frame" x="28" y="587" width="327" height="2"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="vKn-Bc-0mx"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maxTime">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="remainingTime">
+                                                <real key="value" value="0.69999999999999996"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLN-qW-RPt">
                                         <rect key="frame" x="310" y="24.5" width="45" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -128,12 +143,15 @@
                                     <constraint firstItem="ivz-NB-Y3C" firstAttribute="centerY" secondItem="Fy2-xd-F8H" secondAttribute="centerY" multiplier="13/34" id="3Jg-Ql-Xxf"/>
                                     <constraint firstItem="cLN-qW-RPt" firstAttribute="trailing" secondItem="Cw4-a6-YPu" secondAttribute="trailing" id="3R4-d0-0C1"/>
                                     <constraint firstItem="no7-ZV-DN6" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leading" constant="28" id="BAo-sm-Rug"/>
+                                    <constraint firstItem="91F-wm-LNm" firstAttribute="top" secondItem="pJS-vc-ux1" secondAttribute="bottom" constant="8" id="Fuk-Gv-bzS"/>
                                     <constraint firstAttribute="bottom" secondItem="91F-wm-LNm" secondAttribute="bottom" constant="20" id="Iu2-rW-hzy"/>
                                     <constraint firstItem="Cw4-a6-YPu" firstAttribute="centerY" secondItem="91F-wm-LNm" secondAttribute="centerY" id="WEV-MW-rF9"/>
                                     <constraint firstItem="no7-ZV-DN6" firstAttribute="top" secondItem="Fy2-xd-F8H" secondAttribute="top" constant="20" id="hTQ-N0-2Tm"/>
                                     <constraint firstItem="cLN-qW-RPt" firstAttribute="firstBaseline" secondItem="no7-ZV-DN6" secondAttribute="firstBaseline" id="pFI-lP-x5d"/>
                                     <constraint firstItem="91F-wm-LNm" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leadingMargin" constant="20" id="qpE-fC-4ax"/>
                                     <constraint firstAttribute="trailing" secondItem="Cw4-a6-YPu" secondAttribute="trailing" constant="20" id="uEz-RV-ytv"/>
+                                    <constraint firstItem="pJS-vc-ux1" firstAttribute="leading" secondItem="91F-wm-LNm" secondAttribute="leading" id="yUN-L1-ScK"/>
+                                    <constraint firstItem="pJS-vc-ux1" firstAttribute="trailing" secondItem="Cw4-a6-YPu" secondAttribute="trailing" id="zVe-cc-gzU"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -153,6 +171,7 @@
                         <outlet property="showHintButton" destination="91F-wm-LNm" id="reu-0N-ipv"/>
                         <outlet property="skipButton" destination="Cw4-a6-YPu" id="PU4-1q-q73"/>
                         <outlet property="statementLabel" destination="ivz-NB-Y3C" id="BwW-UL-VFa"/>
+                        <outlet property="timeRemainingView" destination="pJS-vc-ux1" id="nGo-6y-orS"/>
                         <outlet property="wordSearchView" destination="Fy2-xd-F8H" id="xYu-fd-h5g"/>
                     </connections>
                 </viewController>

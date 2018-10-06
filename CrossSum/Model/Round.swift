@@ -42,6 +42,9 @@ final class Round {
     
     var statementPresenter : OptionalStatementPresenter?
     var scorePresenter : ScorePresenter?
+    var timeRemainingPresenter : TimeRemainingPresenter?
+    
+    private var timeKeeper : TimeKeeper?
     
     var solutionFilter : (Rational) -> Bool = { _ in return true }
 
@@ -70,6 +73,11 @@ extension Round {
         hint = nil
         currentTargetSolution = next
         presentCurrentTargetSolution()
+        
+        timeKeeper = TimeKeeper(10, presenter: timeRemainingPresenter) { _ in
+            print("Timer Finished")
+        }
+        timeKeeper?.start()
     }
     
     private func presentCurrentTargetSolution() {
@@ -170,6 +178,8 @@ extension Round {
         
         let statement = Statement(solutionString, currentTargetSolution)
         statementPresenter?.statement = statement
+        
+        timeKeeper?.stop()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             guard let self = self else { return }

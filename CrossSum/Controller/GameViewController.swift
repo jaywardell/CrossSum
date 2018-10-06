@@ -37,7 +37,8 @@ class GameViewController: UIViewController {
     @IBOutlet weak var wordSearchView: WordSearchView!
     @IBOutlet weak var statementLabel: StatementLabel!
     @IBOutlet weak var scoreLabel: UILabel!
-
+    @IBOutlet weak var timeRemainingView: TimeRemainingView!
+    
     var round : Round? {
         didSet {
             connectRoundToUI()
@@ -136,7 +137,7 @@ class GameViewController: UIViewController {
         let supportFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize * 21/34, scoreLabel.font.pointSize))
         scoreLabel.font = supportFont
         [skipButton, showHintButton, quitButton].forEach() { $0?.titleLabel?.font = supportFont }
-        statementLabel.font = supportFont
+        statementLabel.font = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize, statementLabel.font.pointSize))
     }
 }
 
@@ -149,6 +150,7 @@ extension GameViewController {
         round?.statementPresenter = statementLabel
         round?.scorePresenter = scoreLabel
         round?.wordSearchView = wordSearchView
+        round?.timeRemainingPresenter = timeRemainingView
     }
 }
 

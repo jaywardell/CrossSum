@@ -26,6 +26,11 @@ protocol OptionalStatementPresenter {
     var statement : Statement? { get set }
 }
 
+protocol TimeRemainingPresenter {
+    var maxTime : Double{ get set }
+    var remainingTime : Double { get set }
+}
+
 /*
  RationalPresenter
  TimeRemainingPresenter

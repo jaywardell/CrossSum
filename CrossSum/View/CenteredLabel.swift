@@ -48,10 +48,6 @@ class CenteredLabel: UIStackView {
     
     // MARK:- 
 
-//    private lazy var leadingMargin = label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2)
-//    private lazy var trailingMargin = label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2)
-//    private lazy var zeroWidth = widthAnchor.constraint(equalToConstant: 0)
-
     private lazy var label : UILabel = {
         let out = UILabel()
         out.font = UIFont.preferredFont(forTextStyle: .body)
@@ -98,15 +94,6 @@ class CenteredLabel: UIStackView {
         
         addArrangedSubview(label)
         
-//        label.constrain(to: [
-//
-//            label.centerYAnchor.constraint(equalTo: centerYAnchor),
-//
-//            label.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: 0),
-//            label.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: 0)
-//            ])
-
-        
         // ensure that label is in the view hierarchy as soon as init has been called
         label.text = nil
         
@@ -117,14 +104,7 @@ class CenteredLabel: UIStackView {
     
     private func updateLayout() {
 
-        // first turn off these constraints to prevent unnecessary logging of unsatisfiable constriants
-//        [zeroWidth, leadingMargin, trailingMargin].forEach { $0.isActive = false }
-        
         label.sizeToFit()
-
-//        zeroWidth.isActive = text == nil
-//        leadingMargin.isActive = text != nil
-//        trailingMargin.isActive = text != nil
         
         setNeedsLayout()
         layoutIfNeeded()
