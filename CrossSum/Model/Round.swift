@@ -44,6 +44,8 @@ final class Round {
     var scorePresenter : ScorePresenter?
     var timeRemainingPresenter : TimeRemainingPresenter?
     
+    private static let TimeForEachTargetSolution : TimeInterval = 10
+    private var solutionTime : TimeInterval = 0
     private var timeKeeper : TimeKeeper?
     
     var solutionFilter : (Rational) -> Bool = { _ in return true }
@@ -64,8 +66,6 @@ extension Round {
         scorePresenter?.score = 0
     }
     
-    static let TimeForEachTargetSolution : TimeInterval = 60
-
     private func showNextTargetSolution() {
         guard let next = availableSolutions.randomElement() else {
             showNextGrid()
@@ -76,10 +76,12 @@ extension Round {
         currentTargetSolution = next
         presentCurrentTargetSolution()
         
-        timeKeeper = TimeKeeper(Round.TimeForEachTargetSolution, presenter: timeRemainingPresenter) { _ in
+        timeKeeper = TimeKeeper(solutionTime, presenter: timeRemainingPresenter) { _ in
             print("Timer Finished")
         }
         timeKeeper?.start()
+        
+        solutionTime *= 0.95
     }
     
     private func presentCurrentTargetSolution() {
@@ -100,6 +102,7 @@ extension Round {
             
             self.displayDelegate?.didReplaceGrid(self)
         }
+        solutionTime = Round.TimeForEachTargetSolution
     }
     
     static let DidQuit = Notification.Name("Round.DidQuit")
