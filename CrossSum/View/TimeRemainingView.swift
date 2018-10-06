@@ -49,7 +49,10 @@ import UIKit
         let bar = CGRect(origin: bounds.origin, size: CGSize(width: bounds.width * scalar, height: bounds.height))
         let color = UIColor(hue: 1.0/3.0 * scalar, saturation: barColorSaturation, brightness: barColorBrightness, alpha: alpha)
         
+        CATransaction.begin()
+        CATransaction.setDisableActions(remainingTime == maxTime)
         barLayer.frame = bar
+        CATransaction.commit()
         barLayer.backgroundColor = color.cgColor
         barLayer.isHidden = false
     }

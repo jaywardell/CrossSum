@@ -64,6 +64,8 @@ extension Round {
         scorePresenter?.score = 0
     }
     
+    static let TimeForEachTargetSolution : TimeInterval = 60
+
     private func showNextTargetSolution() {
         guard let next = availableSolutions.randomElement() else {
             showNextGrid()
@@ -74,7 +76,7 @@ extension Round {
         currentTargetSolution = next
         presentCurrentTargetSolution()
         
-        timeKeeper = TimeKeeper(10, presenter: timeRemainingPresenter) { _ in
+        timeKeeper = TimeKeeper(Round.TimeForEachTargetSolution, presenter: timeRemainingPresenter) { _ in
             print("Timer Finished")
         }
         timeKeeper?.start()
@@ -179,7 +181,9 @@ extension Round {
         let statement = Statement(solutionString, currentTargetSolution)
         statementPresenter?.statement = statement
         
-        timeKeeper?.stop()
+        if statement.isTrue {
+            timeKeeper?.stop()
+        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             guard let self = self else { return }

@@ -43,7 +43,6 @@ final class TimeKeeper {
     }
     
     @objc private func timerFired(_ timer:Timer) {
-        print("\(#function)")
         
         let now = Date().timeIntervalSinceReferenceDate
         let elapsed = now - startTime

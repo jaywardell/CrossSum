@@ -159,12 +159,14 @@ extension GameViewController : RoundDisplayDelegate {
         showHintButton?.isHidden = true
         skipButton?.isHidden = true
         statementLabel.isHidden = true
+        timeRemainingView.isHidden = true
     }
     
     func didReplaceGrid(_ round: Round) {
         showHintButton?.isHidden = false
         skipButton?.isHidden = false
         statementLabel.isHidden = false
+        timeRemainingView.isHidden = false
     }
 }
 
