@@ -81,7 +81,7 @@ extension Round {
         }
         timeKeeper?.start()
         
-        solutionTime *= 0.95
+//        solutionTime *= 0.95
     }
     
     private func presentCurrentTargetSolution() {
@@ -196,7 +196,13 @@ extension Round {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             guard let self = self else { return }
             if statement.isTrue {
-                self.solutionTime += self.timeKeeper?.timeRemaining ?? 0
+                
+                // reclaim any time that was not spent on this target solution
+                self.solutionTime = Round.TimeForEachTargetSolution +  (self.timeKeeper?.timeRemaining ?? TimeInterval(0))
+                
+                //but reduce the time slightly with each successive target slution
+                self.solutionTime *= 0.95
+
                 self.advanceToNextTargetSolution(advancingScoreBy: self.score(for:statement))
             }
             else {
