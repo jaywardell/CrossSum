@@ -12,6 +12,8 @@ import UIKit
 // when the user increases his score
 class ScoreAddLabel: CenteredLabel {
 
+    @IBOutlet weak var vPosition: NSLayoutConstraint?
+    
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         
@@ -24,10 +26,19 @@ class ScoreAddLabel: CenteredLabel {
         text = "\(prefix)\(scoreAdd)"
         
         isHidden = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.isHidden = true
-            self?.text = nil
+        vPosition!.constant -= frame.height * 3
+
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            self?.superview?.layoutIfNeeded()
+            self?.alpha = 0
+            self?.transform = CGAffineTransform(scaleX: 13/34, y: 13/34)
+        }) { _ in
+            self.vPosition?.constant = 0
+            self.alpha = 1
+            self.isHidden = true
+            self.transform = .identity
         }
+        
     }
 }
 

@@ -138,23 +138,26 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYx-N7-epv" customClass="ScoreAddLabel" customModule="CrossSum" customModuleProvider="target">
-                                        <rect key="frame" x="323.5" y="112.5" width="45" height="22"/>
+                                        <rect key="frame" x="310" y="112.5" width="45" height="22"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="45" id="f0y-Kf-48d"/>
+                                            <constraint firstAttribute="width" constant="45" id="CNO-y6-Q2x"/>
+                                            <constraint firstAttribute="height" constant="22" id="r6k-7n-Wq4"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="vPosition" destination="7cD-Cf-APq" id="O6B-dJ-efn"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90000000000000002" green="0.79999748059999998" blue="0.67500000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="ivz-NB-Y3C" firstAttribute="centerY" secondItem="Fy2-xd-F8H" secondAttribute="centerY" multiplier="13/34" id="3Jg-Ql-Xxf"/>
                                     <constraint firstItem="cLN-qW-RPt" firstAttribute="trailing" secondItem="Cw4-a6-YPu" secondAttribute="trailing" id="3R4-d0-0C1"/>
-                                    <constraint firstItem="PYx-N7-epv" firstAttribute="height" secondItem="ivz-NB-Y3C" secondAttribute="height" id="4N0-uf-Qnh"/>
                                     <constraint firstItem="PYx-N7-epv" firstAttribute="centerY" secondItem="ivz-NB-Y3C" secondAttribute="centerY" id="7cD-Cf-APq"/>
                                     <constraint firstItem="pJS-vc-ux1" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leading" id="9CT-1r-O7Y"/>
                                     <constraint firstItem="no7-ZV-DN6" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leading" constant="28" id="BAo-sm-Rug"/>
                                     <constraint firstAttribute="bottom" secondItem="91F-wm-LNm" secondAttribute="bottom" constant="20" id="Iu2-rW-hzy"/>
-                                    <constraint firstItem="PYx-N7-epv" firstAttribute="leading" secondItem="ivz-NB-Y3C" secondAttribute="trailing" constant="16" id="ORJ-up-qfk"/>
+                                    <constraint firstItem="PYx-N7-epv" firstAttribute="trailing" secondItem="cLN-qW-RPt" secondAttribute="trailing" id="OsN-xi-oTU"/>
                                     <constraint firstItem="Cw4-a6-YPu" firstAttribute="centerY" secondItem="91F-wm-LNm" secondAttribute="centerY" id="WEV-MW-rF9"/>
                                     <constraint firstAttribute="bottom" secondItem="pJS-vc-ux1" secondAttribute="bottom" id="bcy-g6-6bC"/>
                                     <constraint firstItem="no7-ZV-DN6" firstAttribute="top" secondItem="Fy2-xd-F8H" secondAttribute="top" constant="20" id="hTQ-N0-2Tm"/>

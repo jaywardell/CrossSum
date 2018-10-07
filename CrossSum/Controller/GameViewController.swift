@@ -75,7 +75,7 @@ class GameViewController: UIViewController {
         statementLabel.textColor = .white
         wordSearchView.textColor = .white
         scoreLabel.textColor = .white
-        scoreAddLabel.textColor = .white
+        scoreAddLabel.textColor = UIColor(hue: 60/360, saturation: 1, brightness: 21/34, alpha: 1)
         wordSearchView.selectionColor = view.tintColor
         statementLabel.highlightColor = wordSearchView.selectionColor
     }
@@ -141,7 +141,10 @@ class GameViewController: UIViewController {
         scoreLabel.font = supportFont
         scoreAddLabel.font = supportFont
         [skipButton, showHintButton, quitButton].forEach() { $0?.titleLabel?.font = supportFont }
-        statementLabel.font = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize, statementLabel.font.pointSize))
+        
+        let statementFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize, statementLabel.font.pointSize))
+        statementLabel.font = statementFont
+        scoreAddLabel.font = statementFont
     }
 }
 
