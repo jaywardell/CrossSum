@@ -12,13 +12,18 @@ final class CrossSumRouter {
     
     private var initialViewController : UIViewController {
         let out = navigationViewController
-        out.isNavigationBarHidden = true
-        out.navigationBar.barStyle = .blackTranslucent
         return out
     }
     
     private lazy var navigationViewController : UINavigationController = {
-        return UINavigationController(rootViewController: welcomeScreen)
+        let out = UINavigationController(rootViewController: welcomeScreen)
+
+        // using this combination will both hide the naigation bar
+        // AND set the status bar to use light content (other combinations will not)
+        // this way we can keep status bar settings out of the view controller code
+        out.navigationBar.barStyle = .black
+        out.navigationBar.isHidden = true
+        return out
     }()
     
     private lazy var welcomeScreen : WelcomeScreenViewController = {
