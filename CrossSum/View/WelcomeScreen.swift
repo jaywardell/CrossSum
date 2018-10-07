@@ -19,10 +19,14 @@ class WelcomeScreen: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        addPlayButton()
+    }
+    
+    private func addPlayButton() {
         guard nil == playButton.superview else { return }
         
         addSubview(playButton)
-
+        
         playButton.backgroundColor = .orange
         playButton.constrain(to: [
             
