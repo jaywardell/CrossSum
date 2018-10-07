@@ -8,21 +8,23 @@
 
 import UIKit
 
-final class CrossSumRouter {
+final class CrossSumRouter : NSObject {
     
     private var initialViewController : UIViewController {
-        let out = navigationViewController
-        return out
+        return navigationViewController
     }
     
     private lazy var navigationViewController : UINavigationController = {
+        
         let out = UINavigationController(rootViewController: welcomeScreen)
-
+        out.delegate = self
+        
         // using this combination will both hide the naigation bar
         // AND set the status bar to use light content (other combinations will not)
         // this way we can keep status bar settings out of the view controller code
         out.navigationBar.barStyle = .black
         out.navigationBar.isHidden = true
+        
         return out
     }()
     
@@ -64,3 +66,12 @@ extension CrossSumRouter {
     }
 }
 
+// MARK:- UINavigationControllerDelegate
+
+extension CrossSumRouter : UINavigationControllerDelegate {
+    func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
+        // TODO: go back to allowing autorotation, but for now it's off
+        return .all
+       return .portrait
+    }
+}

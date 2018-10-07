@@ -13,8 +13,6 @@ class StageLabel: UILabel {
     var stage : Int = 0 {
         didSet {
             text = "stage: \(stage)"
-            print("stage: \(stage)")
-            print("text: \(text)")
         }
     }
     

@@ -58,3 +58,5 @@ import UIKit
     }
     
 }
+
+extension TimeRemainingView : TimeRemainingPresenter {}

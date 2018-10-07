@@ -27,7 +27,7 @@ class WelcomeScreen: UIView {
         
         addSubview(playButton)
         
-        playButton.backgroundColor = .orange
+//        playButton.backgroundColor = .orange
         playButton.constrain(to: [
             
             playButton.centerXAnchor.constraint(equalTo: centerXAnchor),
