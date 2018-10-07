@@ -129,6 +129,7 @@ class GameViewController: UIViewController {
         scoreLabel.font = supportFont
         stageLabel.font = supportFont
         scoreAddLabel.font = supportFont
+        hintCountLabel.font = supportFont
         [skipButton, showHintButton, quitButton].forEach() { $0?.titleLabel?.font = supportFont }
         
         let statementFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize, statementLabel.font.pointSize))

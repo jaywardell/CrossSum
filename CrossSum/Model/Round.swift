@@ -223,7 +223,8 @@ extension Round {
             scoreAddPresenter?.showScoreAdd(scoreForTarget)
             
             // getting one right gives you a chance to get an extra hint
-            if Int.random(in: 0...100) + scoreForTarget > 100 {
+            // and the chance increases when you use higher-scoring expressions
+            if nil == hint && Int.random(in: 0...100) + scoreForTarget > 100 {
                 hints += 1
             }
         }
