@@ -11,4 +11,11 @@ import Foundation
 struct HighScore : Codable {
     let score:Int
     let stage:Int
+    let date : Date
+    
+    init(score:Int, stage:Int) {
+        self.score = score
+        self.stage = stage
+        self.date = Date()
+    }
 }
