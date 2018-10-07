@@ -30,6 +30,8 @@
 		7C573FDA21699119007C7DF3 /* ScoreAddLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FD921699119007C7DF3 /* ScoreAddLabel.swift */; };
 		7C573FDC2169C007007C7DF3 /* ScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */; };
 		7C573FDE2169C2CF007C7DF3 /* StageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */; };
+		7C573FE2216A7DDB007C7DF3 /* HighScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE1216A7DDB007C7DF3 /* HighScores.swift */; };
+		7C573FE4216A81DC007C7DF3 /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE3216A81DC007C7DF3 /* TableDataSource.swift */; };
 		7C84DA55215B0B3900D3B36F /* StatementLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA54215B0B3900D3B36F /* StatementLabelTests.swift */; };
 		7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA56215B0C6800D3B36F /* StatementLabel.swift */; };
 		7C84DA73215B210700D3B36F /* Parser<Double>.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA6E215B210700D3B36F /* Parser<Double>.swift */; };
@@ -110,6 +112,8 @@
 		7C573FD921699119007C7DF3 /* ScoreAddLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreAddLabel.swift; sourceTree = "<group>"; };
 		7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreLabel.swift; sourceTree = "<group>"; };
 		7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageLabel.swift; sourceTree = "<group>"; };
+		7C573FE1216A7DDB007C7DF3 /* HighScores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScores.swift; sourceTree = "<group>"; };
+		7C573FE3216A81DC007C7DF3 /* TableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataSource.swift; sourceTree = "<group>"; };
 		7C84DA54215B0B3900D3B36F /* StatementLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementLabelTests.swift; sourceTree = "<group>"; };
 		7C84DA56215B0C6800D3B36F /* StatementLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementLabel.swift; sourceTree = "<group>"; };
 		7C84DA6E215B210700D3B36F /* Parser<Double>.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parser<Double>.swift"; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 				7C8BD3E72162F8D9002BC785 /* GameReadyGridFactory.swift */,
 				7C8BD3E02161C363002BC785 /* Round.swift */,
 				7C334B2121682CD000AC0CF9 /* TimeKeeper.swift */,
+				7C573FE1216A7DDB007C7DF3 /* HighScores.swift */,
 				7C84DA6D215B20F800D3B36F /* Parser */,
 			);
 			path = Model;
@@ -272,6 +277,7 @@
 				7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */,
 				7C3C3F23215995EE00BD026A /* ViewController.swift */,
 				7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */,
+				7C573FE3216A81DC007C7DF3 /* TableDataSource.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -512,6 +518,7 @@
 				7C3C3F522159961400BD026A /* UIView+AutolayoutConvenience.swift in Sources */,
 				7C8BD3C22160FAB8002BC785 /* UIView+AutolayoutSetup.swift in Sources */,
 				7C334AFE2165B1C500AC0CF9 /* UIView+AnimationConvenience.swift in Sources */,
+				7C573FE2216A7DDB007C7DF3 /* HighScores.swift in Sources */,
 				7C3C3F22215995EE00BD026A /* AppDelegate.swift in Sources */,
 				7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */,
 				7C8BD3D921614833002BC785 /* CGVector+LinearAlgebra.swift in Sources */,
@@ -525,6 +532,7 @@
 				7C334AFC21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift in Sources */,
 				7C8BD3DB21614857002BC785 /* Collection+SpecialIteration.swift in Sources */,
 				7C8BD3DD21615BCD002BC785 /* RationalLabel.swift in Sources */,
+				7C573FE4216A81DC007C7DF3 /* TableDataSource.swift in Sources */,
 				7C84DA84215B240800D3B36F /* Statement.swift in Sources */,
 				7C334B2221682CD000AC0CF9 /* TimeKeeper.swift in Sources */,
 				7C8BD3DF2161ABAD002BC785 /* Grid.swift in Sources */,

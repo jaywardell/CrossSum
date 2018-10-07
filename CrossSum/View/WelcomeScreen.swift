@@ -16,10 +16,16 @@ class WelcomeScreen: UIView {
         return out
     }()
     
+    lazy var highScoresView : UITableView = {
+        let out = UITableView(frame: .zero, style: .grouped)
+        return out
+    }()
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         addPlayButton()
+        addHighScoresView()
     }
     
     private func addPlayButton() {
@@ -35,6 +41,22 @@ class WelcomeScreen: UIView {
             
             playButton.widthAnchor.constraint(equalTo: widthAnchor, constant: 21/34),
             playButton.heightAnchor.constraint(equalTo: playButton.widthAnchor, constant: 21/34)
+            ])
+    }
+    
+    private func addHighScoresView() {
+        
+        let tableView = highScoresView
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        
+        addSubview(tableView)
+        
+        tableView.constrain(to: [
+            tableView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            tableView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 21/34),
+            tableView.bottomAnchor.constraint(equalTo: playButton.topAnchor),
+            NSLayoutConstraint(item: tableView, attribute: .height, relatedBy: .equal, toItem: playButton, attribute: .height, multiplier: 21/34, constant: 0)
             ])
     }
     

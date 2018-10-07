@@ -31,6 +31,7 @@ final class CrossSumRouter : NSObject {
     private lazy var welcomeScreen : WelcomeScreenViewController = {
         let out = WelcomeScreenViewController()
         out.didHitPlayButton = playGame
+        out.highScores = [(score:100,stage:2), (score:15, stage:3), (score:100,stage:2), (score:15, stage:3)]
         return out
     }()
 }
@@ -71,7 +72,7 @@ extension CrossSumRouter {
 extension CrossSumRouter : UINavigationControllerDelegate {
     func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
         // TODO: go back to allowing autorotation, but for now it's off
-        return .all
+//        return .all
        return .portrait
     }
 }
