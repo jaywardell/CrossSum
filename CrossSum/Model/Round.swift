@@ -15,6 +15,10 @@ protocol RoundDisplayDelegate {
 
 final class Round {
     
+    var highScore : HighScore {
+        return HighScore(score:score, stage:stage)
+    }
+    
     var score : Int = 0 {
         didSet {
             scorePresenter?.score = score

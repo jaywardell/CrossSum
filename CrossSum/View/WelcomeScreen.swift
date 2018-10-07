@@ -16,8 +16,15 @@ class WelcomeScreen: UIView {
         return out
     }()
     
+    lazy var highScoresLabel : UILabel = {
+       let out = UILabel()
+        out.text = "High Scores"
+        out.textColor = .white
+        return out
+    }()
+    
     lazy var highScoresView : UITableView = {
-        let out = UITableView(frame: .zero, style: .grouped)
+        let out = UITableView(frame: .zero, style: .plain)
         return out
     }()
     
@@ -26,6 +33,8 @@ class WelcomeScreen: UIView {
         
         addPlayButton()
         addHighScoresView()
+ 
+        print("highscorelabel: \(highScoresLabel)")
     }
     
     private func addPlayButton() {
@@ -45,7 +54,9 @@ class WelcomeScreen: UIView {
     }
     
     private func addHighScoresView() {
-        
+        guard nil == highScoresView.superview else { return }
+        print("\(#function)")
+
         let tableView = highScoresView
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
@@ -57,6 +68,13 @@ class WelcomeScreen: UIView {
             tableView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 21/34),
             tableView.bottomAnchor.constraint(equalTo: playButton.topAnchor),
             NSLayoutConstraint(item: tableView, attribute: .height, relatedBy: .equal, toItem: playButton, attribute: .height, multiplier: 21/34, constant: 0)
+            ])
+        
+        addSubview(highScoresLabel)
+        highScoresLabel.sizeToFit()
+        highScoresLabel.constrain(to: [
+                highScoresLabel.bottomAnchor.constraint(equalTo: highScoresView.topAnchor, constant: -8),
+                highScoresLabel.centerXAnchor.constraint(equalTo: highScoresView.centerXAnchor)
             ])
     }
     

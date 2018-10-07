@@ -11,7 +11,7 @@ import UIKit
 final class TableDataSource<Object> : NSObject, UITableViewDataSource {
     
     let title : String?
-    let objects : [Object]
+    var objects : [Object]
     let cellStyle : UITableViewCell.CellStyle
     var configure : (UITableViewCell, Object) -> () = { _, _ in }
     var style : (UITableViewCell) -> () = { _ in }

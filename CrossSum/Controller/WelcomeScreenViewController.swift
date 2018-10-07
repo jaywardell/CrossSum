@@ -12,8 +12,13 @@ class WelcomeScreenViewController: UIViewController {
 
     var didHitPlayButton : ()->() = {}
     
-    var highScores : [(score:Int, stage:Int)] = []
-    private var highScoresDS : TableDataSource<(score:Int, stage:Int)>?
+    var highScores : [HighScore] = [] {
+        didSet {
+            highScoresDS?.objects = highScores
+            welcomeScreen.highScoresView.reloadData()
+        }
+    }
+    private var highScoresDS : TableDataSource<HighScore>?
     
     private lazy var welcomeScreen : WelcomeScreen = {
         return WelcomeScreen()
@@ -28,10 +33,10 @@ class WelcomeScreenViewController: UIViewController {
         
         welcomeScreen.playButton.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
         
-        highScoresDS = TableDataSource(highScores, title:"High Scores" , style: .value1)
+        highScoresDS = TableDataSource(highScores, style: .value1)
         highScoresDS?.configure = { cell, score in
             cell.textLabel?.text = "\(score.score)"
-            cell.detailTextLabel?.text = "stage \(score.stage)"
+            cell.detailTextLabel?.text = "Stage \(score.stage)"
         }
         highScoresDS?.style = { cell in
             cell.backgroundColor = nil
@@ -40,12 +45,14 @@ class WelcomeScreenViewController: UIViewController {
         }
         
         welcomeScreen.highScoresView.dataSource = highScoresDS
+        welcomeScreen.highScoresView.allowsSelection = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        welcomeScreen.playButton.fadeIn(duration: animated ? 0.2 : 0)
+        welcomeScreen.playButton.fadeIn(duration: 0.2)
+        welcomeScreen.highScoresLabel.isHidden = highScores.count == 0
     }
     
     @IBAction private func playButtonPressed() {

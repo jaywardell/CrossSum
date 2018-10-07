@@ -31,7 +31,6 @@ final class CrossSumRouter : NSObject {
     private lazy var welcomeScreen : WelcomeScreenViewController = {
         let out = WelcomeScreenViewController()
         out.didHitPlayButton = playGame
-        out.highScores = [(score:100,stage:2), (score:15, stage:3), (score:100,stage:2), (score:15, stage:3)]
         return out
     }()
 }
@@ -41,6 +40,8 @@ final class CrossSumRouter : NSObject {
 extension CrossSumRouter : Router {
     
     func display(in window:UIWindow) {
+        
+        restoreHighScores()
         window.rootViewController = initialViewController
     }
 }
@@ -62,8 +63,17 @@ extension CrossSumRouter {
     @objc private func userDidQuitRound(_ notification:Notification) {
         print("\(#function)")
         
+        let round = notification.object as! Round
+        UserDefaults.standard.addHighScore(round.highScore)
+        
         // TODO: record score for round into a history object
+        
+        restoreHighScores()
         navigationViewController.popToRootViewController(animated: false)
+    }
+    
+    private func restoreHighScores() {
+        welcomeScreen.highScores = UserDefaults.standard.highScores
     }
 }
 
