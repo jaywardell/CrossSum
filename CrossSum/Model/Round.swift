@@ -235,10 +235,34 @@ extension Round {
 extension Round {
     
     func score(for statement:Statement) -> Int {
-        guard let expression = statement.expression else { return 0 }
+        guard let expression = statement.expression,
+        let targetSolution = statement.targetSolution else { return 0 }
 
+        // TODO: write tests for this
+        
         // length of the expression to the power of 2
-        return (1...expression.count).reduce(1) { a,_ in a*2 }
+        var out = (1...expression.count).reduce(1) { a,_ in a*2 }
+        
+        // times a scalar for each operation
+        for char in expression {
+            switch char {
+            case "-":
+                out *= 2
+            case "×":
+                out *= 4
+            case "÷":
+                out *= 8
+            default:
+                out *= 1
+            }
+        }
+        
+        // times 2 if result was negative
+        if targetSolution < 0 {
+            out *= 2
+        }
+        
+        return out
     }
 }
 
