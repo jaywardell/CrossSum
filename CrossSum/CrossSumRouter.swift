@@ -12,6 +12,7 @@ final class CrossSumRouter {
     
     private var initialViewController : UIViewController {
         let out = navigationViewController
+        out.isNavigationBarHidden = true
         out.navigationBar.barStyle = .blackTranslucent
         return out
     }
@@ -47,16 +48,14 @@ extension CrossSumRouter {
         let round = Round(gridFactory: GameReadyGridFactory())
         NotificationCenter.default.addObserver(self, selector: #selector(userDidQuitRound(_:)), name: Round.DidQuit, object: round)
         gvc.round = round
-        navigationViewController.setNavigationBarHidden(true, animated: false)
-        navigationViewController.pushViewController(gvc, animated: true)
+        navigationViewController.pushViewController(gvc, animated: false)
     }
     
     @objc private func userDidQuitRound(_ notification:Notification) {
         print("\(#function)")
         
         // TODO: record score for round into a history object
-        navigationViewController.popToRootViewController(animated: true)
-        navigationViewController.setNavigationBarHidden(false, animated: true)
+        navigationViewController.popToRootViewController(animated: false)
     }
 }
 
