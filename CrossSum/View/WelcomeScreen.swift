@@ -22,8 +22,16 @@ class WelcomeScreen: UIView {
         guard nil == playButton.superview else { return }
         
         addSubview(playButton)
-        playButton.constrainToPositionInSuperview(.bottom, .center, padding:UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0),
-                                                  usingSafeLayoutGuides:true)
+
+        playButton.backgroundColor = .orange
+        playButton.constrain(to: [
+            
+            playButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            NSLayoutConstraint(item: playButton, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 34/21, constant: 0),
+            
+            playButton.widthAnchor.constraint(equalTo: widthAnchor, constant: 21/34),
+            playButton.heightAnchor.constraint(equalTo: playButton.widthAnchor, constant: 21/34)
+            ])
     }
     
     override func didMoveToSuperview() {
