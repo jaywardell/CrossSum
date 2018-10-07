@@ -43,6 +43,7 @@ final class Round {
     var statementPresenter : OptionalStatementPresenter?
     var scorePresenter : ScorePresenter?
     var timeRemainingPresenter : TimeRemainingPresenter?
+    var scoreAddPresenter : ScoreAddPresenter?
     
     private static let TimeForEachTargetSolution : TimeInterval = 10
     private var solutionTime : TimeInterval = 0
@@ -80,8 +81,6 @@ extension Round {
             print("Timer Finished")
         }
         timeKeeper?.start()
-        
-//        solutionTime *= 0.95
     }
     
     private func presentCurrentTargetSolution() {
@@ -138,7 +137,7 @@ extension Round {
         guard let currentTargetSolution = currentTargetSolution,
             let ways = grid?.waysToGet(solution: currentTargetSolution),
             let thisWay = ways.randomElement()  else { return nil }
-//        print("ways to get \(currentTargetSolution): \(ways)")
+
         hint = thisWay.0
         return hint
     }
@@ -191,6 +190,9 @@ extension Round {
         
         if statement.isTrue {
             timeKeeper?.stop()
+            let scoreForTarget = self.score(for:statement)
+            self.score += scoreForTarget
+            scoreAddPresenter?.showScoreAdd(scoreForTarget)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
@@ -203,7 +205,7 @@ extension Round {
                 //but reduce the time slightly with each successive target slution
                 self.solutionTime *= 0.95
 
-                self.advanceToNextTargetSolution(advancingScoreBy: self.score(for:statement))
+                self.advanceToNextTargetSolution()
             }
             else {
                 self.presentCurrentTargetSolution()
@@ -212,11 +214,9 @@ extension Round {
 
     }
 
-    func advanceToNextTargetSolution(advancingScoreBy scoreForTarget:Int = 0) {
+    func advanceToNextTargetSolution() {
         self.foundSolutions.insert(self.currentTargetSolution!)
         self.showNextTargetSolution()
-        
-        self.score += scoreForTarget
     }
 }
 

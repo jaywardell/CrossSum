@@ -137,14 +137,24 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYx-N7-epv" customClass="ScoreAddLabel" customModule="CrossSum" customModuleProvider="target">
+                                        <rect key="frame" x="323.5" y="112.5" width="45" height="22"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="45" id="f0y-Kf-48d"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90000000000000002" green="0.79999748059999998" blue="0.67500000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="ivz-NB-Y3C" firstAttribute="centerY" secondItem="Fy2-xd-F8H" secondAttribute="centerY" multiplier="13/34" id="3Jg-Ql-Xxf"/>
                                     <constraint firstItem="cLN-qW-RPt" firstAttribute="trailing" secondItem="Cw4-a6-YPu" secondAttribute="trailing" id="3R4-d0-0C1"/>
+                                    <constraint firstItem="PYx-N7-epv" firstAttribute="height" secondItem="ivz-NB-Y3C" secondAttribute="height" id="4N0-uf-Qnh"/>
+                                    <constraint firstItem="PYx-N7-epv" firstAttribute="centerY" secondItem="ivz-NB-Y3C" secondAttribute="centerY" id="7cD-Cf-APq"/>
                                     <constraint firstItem="pJS-vc-ux1" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leading" id="9CT-1r-O7Y"/>
                                     <constraint firstItem="no7-ZV-DN6" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leading" constant="28" id="BAo-sm-Rug"/>
                                     <constraint firstAttribute="bottom" secondItem="91F-wm-LNm" secondAttribute="bottom" constant="20" id="Iu2-rW-hzy"/>
+                                    <constraint firstItem="PYx-N7-epv" firstAttribute="leading" secondItem="ivz-NB-Y3C" secondAttribute="trailing" constant="16" id="ORJ-up-qfk"/>
                                     <constraint firstItem="Cw4-a6-YPu" firstAttribute="centerY" secondItem="91F-wm-LNm" secondAttribute="centerY" id="WEV-MW-rF9"/>
                                     <constraint firstAttribute="bottom" secondItem="pJS-vc-ux1" secondAttribute="bottom" id="bcy-g6-6bC"/>
                                     <constraint firstItem="no7-ZV-DN6" firstAttribute="top" secondItem="Fy2-xd-F8H" secondAttribute="top" constant="20" id="hTQ-N0-2Tm"/>
@@ -167,6 +177,7 @@
                     </view>
                     <connections>
                         <outlet property="quitButton" destination="no7-ZV-DN6" id="ngx-L3-tmr"/>
+                        <outlet property="scoreAddLabel" destination="PYx-N7-epv" id="SYI-6X-II8"/>
                         <outlet property="scoreLabel" destination="cLN-qW-RPt" id="cuj-fY-AdE"/>
                         <outlet property="showHintButton" destination="91F-wm-LNm" id="reu-0N-ipv"/>
                         <outlet property="skipButton" destination="Cw4-a6-YPu" id="PU4-1q-q73"/>

@@ -31,6 +31,10 @@ protocol TimeRemainingPresenter {
     var remainingTime : Double { get set }
 }
 
+protocol ScoreAddPresenter {
+    func showScoreAdd(_ scoreAdd:Int)
+}
+
 /*
  RationalPresenter
  TimeRemainingPresenter
