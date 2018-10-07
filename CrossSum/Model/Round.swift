@@ -32,6 +32,12 @@ final class Round {
         }
     }
     
+    var hints : Int = 0 {
+        didSet {
+            hintCountPresenter?.showHints(hints, for: self)
+        }
+    }
+    
     var grid : Grid?
     var gridFactory : GridFactory
     
@@ -56,11 +62,13 @@ final class Round {
     var stagePresenter : StagePresenter?
     var timeRemainingPresenter : TimeRemainingPresenter?
     var scoreAddPresenter : ScoreAddPresenter?
+    var hintCountPresenter : HintCountPresenter?
     
     private static let TimeForEachTargetSolution : TimeInterval = 10
     private var solutionTime : TimeInterval = 0
     private var timeKeeper : TimeKeeper?
-    
+    private(set) var showingGrid = false
+
     var solutionFilter : (Rational) -> Bool = { _ in return true }
 
     private var hint : (Int, Int)?
@@ -76,6 +84,7 @@ extension Round {
     
     func begin() {
         showNextGrid()
+        hints = 5
         scorePresenter?.score = 0
     }
     
@@ -93,6 +102,8 @@ extension Round {
             print("Timer Finished")
         }
         timeKeeper?.start()
+        
+        hintCountPresenter?.showHints(hints, for: self)
     }
     
     private func presentCurrentTargetSolution() {
@@ -102,15 +113,16 @@ extension Round {
     private func showNextGrid() {
         foundSolutions.removeAll()
 
+        showingGrid = false
         displayDelegate?.willReplaceGrid(self)
         
         self.grid = gridFactory.gridAfter(grid)
         wordSearchView?.dataSource = grid
-        wordSearchView?.reloadSymbols(animated:true) { [weak self] in
-            guard let self = self else { return }
+        wordSearchView?.reloadSymbols(animated:true) { [weak self] in guard let self = self else { return }
         
             self.showNextTargetSolution()
             
+            self.showingGrid = true
             self.displayDelegate?.didReplaceGrid(self)
         }
         
@@ -137,9 +149,11 @@ extension Round {
 extension Round {
     /// Tells the WordSearchView to show a selection over the first view of ONE OF the possible ways to get the solution, chosen randomly
     func showAHint() {
+        guard hints > 0 else { return }
         guard let thisWay = hintedCoordinate() else { return }
         
         wordSearchView?.select(thisWay.0, thisWay.1, animated:true)
+        hints -= 1
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
             self?.wordSearchView?.removeSelection(animated: true)
@@ -207,6 +221,11 @@ extension Round {
             let scoreForTarget = self.score(for:statement)
             self.score += scoreForTarget
             scoreAddPresenter?.showScoreAdd(scoreForTarget)
+            
+            // getting one right gives you a chance to get an extra hint
+            if Int.random(in: 0...100) + scoreForTarget > 100 {
+                hints += 1
+            }
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in

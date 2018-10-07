@@ -154,6 +154,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0C-hS-F8f">
+                                        <rect key="frame" x="66" y="601.5" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90000000000000002" green="0.79999748059999998" blue="0.67500000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -168,7 +174,9 @@
                                     <constraint firstItem="PYx-N7-epv" firstAttribute="trailing" secondItem="cLN-qW-RPt" secondAttribute="trailing" id="OsN-xi-oTU"/>
                                     <constraint firstItem="Cw4-a6-YPu" firstAttribute="centerY" secondItem="91F-wm-LNm" secondAttribute="centerY" id="WEV-MW-rF9"/>
                                     <constraint firstAttribute="bottom" secondItem="pJS-vc-ux1" secondAttribute="bottom" id="bcy-g6-6bC"/>
+                                    <constraint firstItem="i0C-hS-F8f" firstAttribute="leading" secondItem="91F-wm-LNm" secondAttribute="trailing" constant="8" id="grl-Xe-odp"/>
                                     <constraint firstItem="no7-ZV-DN6" firstAttribute="top" secondItem="Fy2-xd-F8H" secondAttribute="top" constant="20" id="hTQ-N0-2Tm"/>
+                                    <constraint firstItem="91F-wm-LNm" firstAttribute="centerY" secondItem="i0C-hS-F8f" secondAttribute="centerY" id="j4K-4q-u6Z"/>
                                     <constraint firstItem="cLN-qW-RPt" firstAttribute="firstBaseline" secondItem="no7-ZV-DN6" secondAttribute="firstBaseline" id="pFI-lP-x5d"/>
                                     <constraint firstItem="91F-wm-LNm" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leadingMargin" constant="20" id="qpE-fC-4ax"/>
                                     <constraint firstAttribute="trailing" secondItem="pJS-vc-ux1" secondAttribute="trailing" id="sbg-nu-sGE"/>
@@ -187,6 +195,7 @@
                         <viewLayoutGuide key="safeArea" id="oUT-VS-hdC"/>
                     </view>
                     <connections>
+                        <outlet property="hintCountLabel" destination="i0C-hS-F8f" id="lNW-TM-55j"/>
                         <outlet property="quitButton" destination="no7-ZV-DN6" id="ngx-L3-tmr"/>
                         <outlet property="scoreAddLabel" destination="PYx-N7-epv" id="SYI-6X-II8"/>
                         <outlet property="scoreLabel" destination="6Pe-WG-reh" id="rca-vC-Lf9"/>

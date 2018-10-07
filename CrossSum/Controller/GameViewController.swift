@@ -40,7 +40,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var stageLabel: StageLabel!
     @IBOutlet weak var scoreAddLabel: ScoreAddLabel!
     @IBOutlet weak var timeRemainingView: TimeRemainingView!
-    
+    @IBOutlet weak var hintCountLabel: UILabel!
     
     var round : Round? {
         didSet {
@@ -73,6 +73,7 @@ class GameViewController: UIViewController {
         wordSearchView.textColor = .white
         scoreLabel.textColor = .white
         stageLabel.textColor = .white
+        hintCountLabel.textColor = .white
         scoreAddLabel.textColor = UIColor(hue: 60/360, saturation: 1, brightness: 21/34, alpha: 1)
         wordSearchView.selectionColor = view.tintColor
         statementLabel.highlightColor = wordSearchView.selectionColor
@@ -148,21 +149,54 @@ extension GameViewController {
         round?.scoreAddPresenter = scoreAddLabel
         round?.wordSearchView = wordSearchView
         round?.timeRemainingPresenter = timeRemainingView
+        round?.hintCountPresenter = self
     }
 }
 
 extension GameViewController : RoundDisplayDelegate {
     func willReplaceGrid(_ round: Round) {
         showHintButton?.isHidden = true
+        hintCountLabel.isHidden = true
         skipButton?.isHidden = true
         statementLabel.isHidden = true
         timeRemainingView.isHidden = true
     }
     
     func didReplaceGrid(_ round: Round) {
-        showHintButton?.isHidden = false
+        updateHintUI(round.showingGrid ? round.hints : 0)
         skipButton?.isHidden = false
         statementLabel.isHidden = false
         timeRemainingView.isHidden = false
     }
+    
+    func updateHintUI(_ hintCount:Int) {
+        
+        hintCountLabel.isHidden = hintCount <= 0
+        showHintButton?.isHidden = hintCount <= 0
+    }
+}
+
+// MARK:- HintCountPresenter
+
+extension GameViewController : HintCountPresenter {
+    func showHints(_ hints: Int, for round: Round) {
+        hintCountLabel.text = "\(hints)"
+        if round.showingGrid {
+            updateHintUI(hints)
+        }
+        else {
+            updateHintUI(0)
+        }
+    }
+    
+//    var hints: Int {
+//        get {
+//            return hintCountLabel.text.flatMap { Int($0) } ?? 0
+//        }
+//        set {
+//            hintCountLabel.text = "\(newValue)"
+//            
+//            updateHintUI(newValue)
+//        }
+//    }
 }
