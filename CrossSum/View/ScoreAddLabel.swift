@@ -23,7 +23,7 @@ class ScoreAddLabel: CenteredLabel {
     
     func showScoreAdd(_ scoreAdd:Int) {
         let prefix = scoreAdd > 0 ? "+" : ""
-        text = "\(prefix)\(scoreAdd)"
+        text = "\(prefix)\(scoreAdd)!"
         
         isHidden = false
         vPosition!.constant -= frame.height * 3
