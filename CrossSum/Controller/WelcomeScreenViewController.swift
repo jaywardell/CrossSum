@@ -24,8 +24,6 @@ class WelcomeScreenViewController: UIViewController {
         super.viewDidLoad()
         
         welcomeScreen.playButton.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
-        
-        navigationController?.navigationBar.barStyle = .blackTranslucent
     }
     
     override func viewWillAppear(_ animated: Bool) {

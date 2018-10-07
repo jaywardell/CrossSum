@@ -1,5 +1,5 @@
 //
-//  AppFlow.swift
+//  CrossSumRouter.swift
 //  CrossSum
 //
 //  Created by Joseph Wardell on 10/2/18.
@@ -8,21 +8,38 @@
 
 import UIKit
 
-final class AppFlow {
+final class CrossSumRouter {
     
-    var initialViewController : UIViewController {
-       return navigationViewController
+    private var initialViewController : UIViewController {
+        let out = navigationViewController
+        out.navigationBar.barStyle = .blackTranslucent
+        return out
     }
     
-    lazy var navigationViewController : UINavigationController = {
+    private lazy var navigationViewController : UINavigationController = {
         return UINavigationController(rootViewController: welcomeScreen)
     }()
     
-    lazy var welcomeScreen : WelcomeScreenViewController = {
+    private lazy var welcomeScreen : WelcomeScreenViewController = {
         let out = WelcomeScreenViewController()
         out.didHitPlayButton = playGame
         return out
     }()
+}
+
+// MARK:- Router
+
+extension CrossSumRouter : Router {
+    
+    func display(in window:UIWindow) {
+        window.rootViewController = initialViewController
+    }
+}
+
+
+// MARK:- Game Play
+
+extension CrossSumRouter {
     
     private func playGame() {
 
@@ -30,13 +47,16 @@ final class AppFlow {
         let round = Round(gridFactory: GameReadyGridFactory())
         NotificationCenter.default.addObserver(self, selector: #selector(userDidQuitRound(_:)), name: Round.DidQuit, object: round)
         gvc.round = round
+        navigationViewController.setNavigationBarHidden(true, animated: false)
         navigationViewController.pushViewController(gvc, animated: true)
     }
     
-    @objc func userDidQuitRound(_ notification:Notification) {
+    @objc private func userDidQuitRound(_ notification:Notification) {
         print("\(#function)")
         
         // TODO: record score for round into a history object
         navigationViewController.popToRootViewController(animated: true)
+        navigationViewController.setNavigationBarHidden(false, animated: true)
     }
 }
+

@@ -64,11 +64,7 @@ class GameViewController: UIViewController {
         wordSearchView.topAnchor.constraint(equalTo: statementLabel.topAnchor)
         view.layoutIfNeeded()
         
-        navigationItem.hidesBackButton = true
-        
         NotificationCenter.default.addObserver(self, selector: #selector(wordSearchViewChoiceFontDidChange), name: WordSearchView.ChoiceFontDidChange, object: wordSearchView)
-        
-        view.tintColor = navigationController?.view.tintColor
         
         view.backgroundColor = .black
         statementLabel.backgroundColor = nil
@@ -82,7 +78,6 @@ class GameViewController: UIViewController {
         statementLabel.highlightColor = wordSearchView.selectionColor
     }
     
-    private var navigationBarHiddenAtStart : Bool?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -91,9 +86,6 @@ class GameViewController: UIViewController {
         stageLabel.isHidden = true
         
         round?.begin()
-
-        navigationBarHiddenAtStart = navigationController?.isNavigationBarHidden
-        navigationController?.isNavigationBarHidden = true
         
         wordSearchView.textFont = displayFont
     }
@@ -104,15 +96,6 @@ class GameViewController: UIViewController {
         statementLabel.isHidden = false
         scoreLabel.isHidden = false
         stageLabel.isHidden = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        if let navigationBarHiddenAtStart = navigationBarHiddenAtStart,
-            !navigationBarHiddenAtStart {
-            navigationController?.isNavigationBarHidden = false
-        }
     }
     
     @IBAction func newGameButtonPressed() {
@@ -183,20 +166,3 @@ extension GameViewController : RoundDisplayDelegate {
         timeRemainingView.isHidden = false
     }
 }
-
-// MARK:- UILabel : ScorePresenter
-
-//extension UILabel : ScorePresenter {
-//    var score: Int {
-//        get {
-//            guard let text = text else { return 0 }
-//            let t = text.suffix(from:text.index(text.startIndex, offsetBy:7))
-//            return Int(t) ?? 0
-//        }
-//        set {
-//            text = "score: \(newValue)"
-//        }
-//    }
-//
-//
-//}

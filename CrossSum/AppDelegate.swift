@@ -8,16 +8,25 @@
 
 import UIKit
 
+protocol Router {
+    func display(in window:UIWindow)
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    
+    var router : Router!
     var window: UIWindow?
-    let appFlow = AppFlow()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        // this is the only line of code that's dependent on this code base
+        // everything else can be used in anpther project
+        router = CrossSumRouter()
+        
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = appFlow.initialViewController
+        router.display(in: window!)
         window?.makeKeyAndVisible()
 
         return true
