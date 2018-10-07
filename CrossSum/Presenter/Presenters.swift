@@ -18,6 +18,10 @@ protocol ScorePresenter {
     var score : Int { get set }
 }
 
+protocol StagePresenter {
+    var stage : Int { get set }
+}
+
 protocol RationalPresenter {
     var value : Rational { get set }
 }

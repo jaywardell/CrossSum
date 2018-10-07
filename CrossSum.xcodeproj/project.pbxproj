@@ -30,6 +30,8 @@
 		7C3C3F6A2159C45500BD026A /* RationalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F692159C45500BD026A /* RationalTests.swift */; };
 		7C3C3F6C2159C4E800BD026A /* Rational.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F6B2159C4E800BD026A /* Rational.swift */; };
 		7C573FDA21699119007C7DF3 /* ScoreAddLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FD921699119007C7DF3 /* ScoreAddLabel.swift */; };
+		7C573FDC2169C007007C7DF3 /* ScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */; };
+		7C573FDE2169C2CF007C7DF3 /* StageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */; };
 		7C84DA55215B0B3900D3B36F /* StatementLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA54215B0B3900D3B36F /* StatementLabelTests.swift */; };
 		7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA56215B0C6800D3B36F /* StatementLabel.swift */; };
 		7C84DA73215B210700D3B36F /* Parser<Double>.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA6E215B210700D3B36F /* Parser<Double>.swift */; };
@@ -110,6 +112,8 @@
 		7C3C3F692159C45500BD026A /* RationalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RationalTests.swift; sourceTree = "<group>"; };
 		7C3C3F6B2159C4E800BD026A /* Rational.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rational.swift; sourceTree = "<group>"; };
 		7C573FD921699119007C7DF3 /* ScoreAddLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreAddLabel.swift; sourceTree = "<group>"; };
+		7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreLabel.swift; sourceTree = "<group>"; };
+		7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageLabel.swift; sourceTree = "<group>"; };
 		7C84DA54215B0B3900D3B36F /* StatementLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementLabelTests.swift; sourceTree = "<group>"; };
 		7C84DA56215B0C6800D3B36F /* StatementLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementLabel.swift; sourceTree = "<group>"; };
 		7C84DA6E215B210700D3B36F /* Parser<Double>.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parser<Double>.swift"; sourceTree = "<group>"; };
@@ -246,6 +250,8 @@
 				7C8BD3D021614789002BC785 /* WordSearchView.swift */,
 				7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */,
 				7C3C3F4F2159961400BD026A /* CenteredLabel.swift */,
+				7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */,
+				7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */,
 				7C573FD921699119007C7DF3 /* ScoreAddLabel.swift */,
 				7C3C3F5721599B8400BD026A /* RationalLabel_old.swift */,
 				7C8BD3DC21615BCD002BC785 /* RationalLabel.swift */,
@@ -490,6 +496,7 @@
 				7C3C3F24215995EE00BD026A /* ViewController.swift in Sources */,
 				7C573FDA21699119007C7DF3 /* ScoreAddLabel.swift in Sources */,
 				7C8BD3D121614789002BC785 /* WordSearchView.swift in Sources */,
+				7C573FDE2169C2CF007C7DF3 /* StageLabel.swift in Sources */,
 				7C334B202168223E00AC0CF9 /* TimeRemainingView.swift in Sources */,
 				7C8BD3CC21613900002BC785 /* UIFont+CoreTextConvenience.swift in Sources */,
 				7C3C3F522159961400BD026A /* UIView+AutolayoutConvenience.swift in Sources */,
@@ -514,6 +521,7 @@
 				7C8BD3DF2161ABAD002BC785 /* Grid.swift in Sources */,
 				7C334AF6216454D500AC0CF9 /* WelcomeScreenViewController.swift in Sources */,
 				7C84DA76215B210700D3B36F /* Parser.swift in Sources */,
+				7C573FDC2169C007007C7DF3 /* ScoreLabel.swift in Sources */,
 				7C334B2421682D5C00AC0CF9 /* TimeRemainingView+Presenter.swift in Sources */,
 				7C334AF8216454EA00AC0CF9 /* WelcomeScreen.swift in Sources */,
 				7C3C3F512159961400BD026A /* CenteredLabel.swift in Sources */,

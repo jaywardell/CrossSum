@@ -36,7 +36,8 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var wordSearchView: WordSearchView!
     @IBOutlet weak var statementLabel: StatementLabel!
-    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var scoreLabel: ScoreLabel!
+    @IBOutlet weak var stageLabel: StageLabel!
     @IBOutlet weak var scoreAddLabel: ScoreAddLabel!
     @IBOutlet weak var timeRemainingView: TimeRemainingView!
     
@@ -75,6 +76,7 @@ class GameViewController: UIViewController {
         statementLabel.textColor = .white
         wordSearchView.textColor = .white
         scoreLabel.textColor = .white
+        stageLabel.textColor = .white
         scoreAddLabel.textColor = UIColor(hue: 60/360, saturation: 1, brightness: 21/34, alpha: 1)
         wordSearchView.selectionColor = view.tintColor
         statementLabel.highlightColor = wordSearchView.selectionColor
@@ -86,6 +88,7 @@ class GameViewController: UIViewController {
 
         statementLabel.isHidden = true
         scoreLabel.isHidden = true
+        stageLabel.isHidden = true
         
         round?.begin()
 
@@ -100,6 +103,7 @@ class GameViewController: UIViewController {
         
         statementLabel.isHidden = false
         scoreLabel.isHidden = false
+        stageLabel.isHidden = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -139,6 +143,7 @@ class GameViewController: UIViewController {
     private func matchUIToWordSearchUI() {
         let supportFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize * 21/34, scoreLabel.font.pointSize))
         scoreLabel.font = supportFont
+        stageLabel.font = supportFont
         scoreAddLabel.font = supportFont
         [skipButton, showHintButton, quitButton].forEach() { $0?.titleLabel?.font = supportFont }
         
@@ -156,6 +161,7 @@ extension GameViewController {
         
         round?.statementPresenter = statementLabel
         round?.scorePresenter = scoreLabel
+        round?.stagePresenter = stageLabel
         round?.scoreAddPresenter = scoreAddLabel
         round?.wordSearchView = wordSearchView
         round?.timeRemainingPresenter = timeRemainingView
@@ -180,17 +186,17 @@ extension GameViewController : RoundDisplayDelegate {
 
 // MARK:- UILabel : ScorePresenter
 
-extension UILabel : ScorePresenter {
-    var score: Int {
-        get {
-            guard let text = text else { return 0 }
-            let t = text.suffix(from:text.index(text.startIndex, offsetBy:7))
-            return Int(t) ?? 0
-        }
-        set {
-            text = "score: \(newValue)"
-        }
-    }
-    
-    
-}
+//extension UILabel : ScorePresenter {
+//    var score: Int {
+//        get {
+//            guard let text = text else { return 0 }
+//            let t = text.suffix(from:text.index(text.startIndex, offsetBy:7))
+//            return Int(t) ?? 0
+//        }
+//        set {
+//            text = "score: \(newValue)"
+//        }
+//    }
+//
+//
+//}

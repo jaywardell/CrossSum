@@ -21,6 +21,13 @@ final class Round {
         }
     }
     
+    var stage : Int = 0 {
+        didSet {
+            stagePresenter?.stage = stage
+            print("stage: \(stage)")
+        }
+    }
+    
     var grid : Grid?
     var gridFactory : GridFactory
     
@@ -42,6 +49,7 @@ final class Round {
     
     var statementPresenter : OptionalStatementPresenter?
     var scorePresenter : ScorePresenter?
+    var stagePresenter : StagePresenter?
     var timeRemainingPresenter : TimeRemainingPresenter?
     var scoreAddPresenter : ScoreAddPresenter?
     
@@ -107,6 +115,8 @@ extension Round {
         solutionTime = Round.TimeForEachTargetSolution +
             ((solutionTime > TimeInterval(0)) ? (solutionTime - Round.TimeForEachTargetSolution) : 0)
         print("solutionTime: \(solutionTime)")
+        
+        stage += 1
     }
     
     static let DidQuit = Notification.Name("Round.DidQuit")

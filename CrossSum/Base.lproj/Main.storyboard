@@ -131,7 +131,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLN-qW-RPt">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLN-qW-RPt" customClass="StageLabel" customModule="CrossSum" customModuleProvider="target">
                                         <rect key="frame" x="310" y="24.5" width="45" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -148,14 +148,22 @@
                                             <outlet property="vPosition" destination="7cD-Cf-APq" id="O6B-dJ-efn"/>
                                         </connections>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Pe-WG-reh" customClass="ScoreLabel" customModule="CrossSum" customModuleProvider="target">
+                                        <rect key="frame" x="310" y="53.5" width="45" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90000000000000002" green="0.79999748059999998" blue="0.67500000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="6Pe-WG-reh" firstAttribute="trailing" secondItem="Cw4-a6-YPu" secondAttribute="trailing" id="08Z-Ag-mKK"/>
                                     <constraint firstItem="ivz-NB-Y3C" firstAttribute="centerY" secondItem="Fy2-xd-F8H" secondAttribute="centerY" multiplier="13/34" id="3Jg-Ql-Xxf"/>
-                                    <constraint firstItem="cLN-qW-RPt" firstAttribute="trailing" secondItem="Cw4-a6-YPu" secondAttribute="trailing" id="3R4-d0-0C1"/>
                                     <constraint firstItem="PYx-N7-epv" firstAttribute="centerY" secondItem="ivz-NB-Y3C" secondAttribute="centerY" id="7cD-Cf-APq"/>
                                     <constraint firstItem="pJS-vc-ux1" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leading" id="9CT-1r-O7Y"/>
                                     <constraint firstItem="no7-ZV-DN6" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leading" constant="28" id="BAo-sm-Rug"/>
+                                    <constraint firstItem="cLN-qW-RPt" firstAttribute="leading" secondItem="6Pe-WG-reh" secondAttribute="leading" id="Em5-Fv-kDh"/>
+                                    <constraint firstItem="6Pe-WG-reh" firstAttribute="top" secondItem="cLN-qW-RPt" secondAttribute="bottom" constant="8" id="ILT-rJ-5FF"/>
                                     <constraint firstAttribute="bottom" secondItem="91F-wm-LNm" secondAttribute="bottom" constant="20" id="Iu2-rW-hzy"/>
                                     <constraint firstItem="PYx-N7-epv" firstAttribute="trailing" secondItem="cLN-qW-RPt" secondAttribute="trailing" id="OsN-xi-oTU"/>
                                     <constraint firstItem="Cw4-a6-YPu" firstAttribute="centerY" secondItem="91F-wm-LNm" secondAttribute="centerY" id="WEV-MW-rF9"/>
@@ -181,9 +189,10 @@
                     <connections>
                         <outlet property="quitButton" destination="no7-ZV-DN6" id="ngx-L3-tmr"/>
                         <outlet property="scoreAddLabel" destination="PYx-N7-epv" id="SYI-6X-II8"/>
-                        <outlet property="scoreLabel" destination="cLN-qW-RPt" id="cuj-fY-AdE"/>
+                        <outlet property="scoreLabel" destination="6Pe-WG-reh" id="rca-vC-Lf9"/>
                         <outlet property="showHintButton" destination="91F-wm-LNm" id="reu-0N-ipv"/>
                         <outlet property="skipButton" destination="Cw4-a6-YPu" id="PU4-1q-q73"/>
+                        <outlet property="stageLabel" destination="cLN-qW-RPt" id="4i9-Xx-3RW"/>
                         <outlet property="statementLabel" destination="ivz-NB-Y3C" id="BwW-UL-VFa"/>
                         <outlet property="timeRemainingView" destination="pJS-vc-ux1" id="nGo-6y-orS"/>
                         <outlet property="wordSearchView" destination="Fy2-xd-F8H" id="xYu-fd-h5g"/>
