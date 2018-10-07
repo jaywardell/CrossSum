@@ -23,8 +23,10 @@ extension UserDefaults {
                 let decoded = try? JSONDecoder().decode([HighScore].self, from: d) else { return [] }
             return decoded
                 .sorted() { lhs, rhs in
+                    // sorted by highest score, highest stage, earliest date
                     if lhs.score > rhs.score { return true }
-                    else if lhs.stage > rhs.stage { return true }
+                    else if lhs.score == rhs.score && lhs.stage > rhs.stage { return true }
+                    else if lhs.score == rhs.score && lhs.stage == rhs.stage && lhs.date > rhs.date { return true }
                     return false
                 }
                 .filter {
