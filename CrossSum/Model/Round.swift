@@ -238,7 +238,7 @@ extension Round {
         return hint
     }
     
-    func showASolution(andAdvance advanceToNextTargetSolution:Bool = false) {
+    func showASolution() {
         guard skips > 0,
             let currentTargetSolution = currentTargetSolution,
             let ways = grid?.waysToGet(solution: currentTargetSolution),
@@ -247,6 +247,7 @@ extension Round {
                 $0.0 == hint
         }) else { return }
 
+        timeKeeper?.stop()
         wordSearchView?.isUserInteractionEnabled = false
         wordSearchView?.select(from: thisWay.0.0, thisWay.0.1, to: thisWay.1.0, thisWay.1.1)
         
@@ -255,9 +256,7 @@ extension Round {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             self?.wordSearchView?.removeSelection(animated: true) {
-                if advanceToNextTargetSolution {
-                    self?.advanceToNextTargetSolution()
-                }
+                self?.advanceToNextTargetSolution()
                 self?.wordSearchView?.isUserInteractionEnabled = true
             }
         }

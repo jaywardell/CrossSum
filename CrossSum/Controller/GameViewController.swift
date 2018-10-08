@@ -138,7 +138,7 @@ class GameViewController: UIViewController {
 
     @IBAction func skipButtonPressed() {
         
-        round?.showASolution(andAdvance: true)
+        round?.showASolution()
     }
     
     @objc func wordSearchViewChoiceFontDidChange(_ notification:Notification) {
