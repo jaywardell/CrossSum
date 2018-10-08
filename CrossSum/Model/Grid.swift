@@ -36,13 +36,13 @@ class Grid {
         }
     }
     
-    private var solutionsToLocations = ThreadSafe([Rational:[(Coordinate, Coordinate)]]())
+    var solutionsToExpressionLocations = ThreadSafe([Rational:[(Coordinate, Coordinate)]]())
     var solutions : Set<Rational> {
-        return Set(solutionsToLocations.value.keys)
+        return Set(solutionsToExpressionLocations.value.keys)
     }
     
     func waysToGet(solution:Rational) -> [(Coordinate, Coordinate)] {
-        let d = solutionsToLocations.value[solution]
+        let d = solutionsToExpressionLocations.value[solution]
         return d ?? []
     }
     
@@ -200,7 +200,7 @@ extension Grid {
     }
     
     private func appendToPossibleSolutions(solution:Rational, coordinates start:Coordinate, end:Coordinate) {
-        solutionsToLocations.atomically { s in
+        solutionsToExpressionLocations.atomically { s in
             var array = (s[solution] ?? [(Coordinate, Coordinate)]())
             array.append((start, end))
             s[solution] = array

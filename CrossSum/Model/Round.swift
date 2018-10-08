@@ -58,10 +58,24 @@ final class Round {
     
     var foundSolutions = Set<Rational>()
     var currentTargetSolution : Rational?
-    var availableSolutions : Set<Rational> {
-        return grid?.solutions.subtracting(foundSolutions) ?? Set()
+    var acceptableSolutions : Set<Rational> {
+        guard let solutions = grid?.solutions else { return Set() }
+        // don't offer solutions that can only be gotten from one or two squares (e.g. - and 5 becomes -5)
+        return solutions.filter() {
+            guard let locations = grid?.solutionsToExpressionLocations.value[$0] else { return false }
+            for choice in locations {
+                if abs(choice.0.0 - choice.1.0) >= 2 ||
+                    abs(choice.0.1 - choice.1.1) >= 2 {
+                    return true
+                }
+            }
+            return false
+        }
     }
-    
+    var availableSolutions : Set<Rational> {
+        return acceptableSolutions.subtracting(foundSolutions)
+    }
+
     var wordSearchView : WordSearchView? = nil {
         didSet {
             wordSearchView?.allowsDiagonalSelection = false
@@ -148,6 +162,9 @@ extension Round {
         print("solutionTime: \(solutionTime)")
         
         stage += 1
+        
+        print("accesptable solutions: \(acceptableSolutions)")
+
     }
     
     private func userChoseTrue(statement:Statement) {
@@ -278,6 +295,7 @@ extension Round {
     }
     
     func didSelect(_ string: String) {
+        guard string.count > 2 else { return }
         
         // a little hysterysis: if the user stopped selecting on an operator,
         // then just drop it and assume he meant to select
