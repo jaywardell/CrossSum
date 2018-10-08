@@ -9,12 +9,6 @@
 import UIKit
 
 class GameViewController: UIViewController {
-
-    @IBOutlet weak var newGameButton: UIButton? {
-        didSet {
-            newGameButton?.addTarget(self, action: #selector(newGameButtonPressed), for: .touchUpInside)
-        }
-    }
     
     @IBOutlet weak var showHintButton: UIButton? {
         didSet {
@@ -41,12 +35,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var scoreAddLabel: EventDisplayLabel!
     @IBOutlet weak var timeRemainingView: TimeRemainingView!
     @IBOutlet weak var hintCountLabel: UILabel!
-    @IBOutlet weak var scoreTimeAddLabel: EventDisplayLabel! {
-        didSet {
-            scoreTimeAddLabel.suffix = "second"
-            scoreTimeAddLabel.pluralSuffix = "seconds"
-        }
-    }
+    @IBOutlet weak var skipCountLabel: UILabel!
     @IBOutlet weak var hintCountAddLabel: EventDisplayLabel! {
         didSet {
             // note: in the storyboard, there's a width equal constraint
@@ -57,7 +46,13 @@ class GameViewController: UIViewController {
             hintCountAddLabel.pluralSuffix = "hints"
         }
     }
-    
+    @IBOutlet weak var scoreTimeAddLabel: EventDisplayLabel! {
+        didSet {
+            scoreTimeAddLabel.suffix = "second"
+            scoreTimeAddLabel.pluralSuffix = "seconds"
+        }
+    }
+
     var round : Round? {
         didSet {
             connectRoundToUI()
@@ -90,6 +85,7 @@ class GameViewController: UIViewController {
         scoreLabel.textColor = .white
         stageLabel.textColor = .white
         hintCountLabel.textColor = .white
+        skipCountLabel.textColor = .white
         
         [scoreAddLabel, hintCountAddLabel, scoreTimeAddLabel].forEach() {
             $0?.textColor = UIColor(hue: 60/360, saturation: 1, brightness: 21/34, alpha: 1)
@@ -119,10 +115,6 @@ class GameViewController: UIViewController {
         stageLabel.isHidden = false
     }
     
-    @IBAction func newGameButtonPressed() {
-        fatalError("\(#function) should not longer be called here")
-    }
-
     @IBAction func quitButtonPressed() {
         print(#function)
         
@@ -149,6 +141,7 @@ class GameViewController: UIViewController {
         scoreLabel.font = supportFont
         stageLabel.font = supportFont
         hintCountLabel.font = supportFont
+        skipCountLabel.font = supportFont
         hintCountAddLabel.font = supportFont
         [skipButton, showHintButton, quitButton].forEach() { $0?.titleLabel?.font = supportFont }
         
@@ -174,13 +167,16 @@ extension GameViewController {
         round?.wordSearchView = wordSearchView
         round?.timeRemainingPresenter = timeRemainingView
         round?.hintCountPresenter = self
+        round?.skipsCountPresenter = self
     }
 }
 
 extension GameViewController : RoundDisplayDelegate {
     func willReplaceGrid(_ round: Round) {
+        
         showHintButton?.isHidden = true
         hintCountLabel.isHidden = true
+        skipCountLabel.isHidden = true
         skipButton?.isHidden = true
         statementLabel.isHidden = true
         timeRemainingView.isHidden = true
@@ -188,7 +184,7 @@ extension GameViewController : RoundDisplayDelegate {
     
     func didReplaceGrid(_ round: Round) {
         updateHintUI(round.showingGrid ? round.hints : 0)
-        skipButton?.isHidden = false
+        updateSkipUI(round.showingGrid ? round.skips : 0)
         statementLabel.isHidden = false
         timeRemainingView.isHidden = false
     }
@@ -198,11 +194,18 @@ extension GameViewController : RoundDisplayDelegate {
         hintCountLabel.isHidden = hintCount <= 0
         showHintButton?.isHidden = hintCount <= 0
     }
+    
+    func updateSkipUI(_ skipCount:Int) {
+        
+        skipCountLabel.isHidden = skipCount <= 0
+        skipButton?.isHidden = skipCount <= 0
+    }
 }
 
 // MARK:- HintCountPresenter
 
 extension GameViewController : HintCountPresenter {
+    
     func hintsIncreased(by dHints: Int) {
         print("\(#function) \(dHints)")
         
@@ -218,4 +221,27 @@ extension GameViewController : HintCountPresenter {
             updateHintUI(0)
         }
     }
+}
+
+
+extension GameViewController : SkipCountPresenter {
+    
+    func skipsIncreased(by dSkips: Int) {
+        print("\(#function) \(dSkips)")
+        
+        // TODO: this
+//        skipCOuntAddLabel.showScoreAdd(dSkips)
+    }
+    func showSkips(_ skips: Int, for round: Round) {
+        skipCountLabel.text = "\(skips)"
+        if round.showingGrid {
+            updateSkipUI(skips)
+        }
+        else {
+            updateSkipUI(0)
+        }
+    }
+    
+    
+    
 }

@@ -40,9 +40,15 @@ protocol ScoreAddPresenter {
 }
 
 protocol HintCountPresenter {
-//    var hints : Int { get set }
+
     func showHints(_ hints:Int, for round:Round)
     func hintsIncreased(by dHints:Int)
+}
+
+protocol SkipCountPresenter {
+    
+    func showSkips(_ skips:Int, for round:Round)
+    func skipsIncreased(by dSkips:Int)
 }
 
 /*

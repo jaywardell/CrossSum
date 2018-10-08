@@ -11,18 +11,12 @@ import Foundation
 
 class Grid {
     typealias Coordinate = (Int, Int)
-
-    struct SolutionFilter {
-        let name : String
-        let filter : (Rational) -> Bool
-    }
     
     let size : Int
     let range : ClosedRange<Int>
     let operators : [Operator]
     let solutionRange : ClosedRange<Rational>
     let allowsFractionalSolutions : Bool
-//    let solutionFilter : SolutionFilter
     
     private var _symbols : [[String]] = []
     private(set) var symbols : [[String]] {
@@ -64,7 +58,6 @@ class Grid {
     init(size:Int,
          range:ClosedRange<Int>,
          operators:[Operator],
-//         solutionFilter:SolutionFilter
         solutionRange:ClosedRange<Rational>,
         allowsFractionalSolutions:Bool
         ) {
@@ -94,7 +87,6 @@ class Grid {
             ss.append(row)
         }
         
-//        self.solutionFilter = solutionFilter
         self.symbols = ss
         
         // build the solutions

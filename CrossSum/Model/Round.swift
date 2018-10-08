@@ -15,6 +15,9 @@ protocol RoundDisplayDelegate {
 
 final class Round {
     
+    var grid : Grid?
+    var gridFactory : GridFactory
+
     var highScore : HighScore {
         return HighScore(score:score, stage:stage)
     }
@@ -32,14 +35,24 @@ final class Round {
         }
     }
     
+    private static let TimeForEachTargetSolution : TimeInterval = 10
+    private var solutionTime : TimeInterval = 0
+    private var timeKeeper : TimeKeeper?
+    private(set) var showingGrid = false
+
     var hints : Int = 0 {
         didSet {
             hintCountPresenter?.showHints(hints, for: self)
         }
     }
-    
-    var grid : Grid?
-    var gridFactory : GridFactory
+    private var hint : (Int, Int)?
+
+    var skips : Int = 0 {
+        didSet {
+            skipsCountPresenter?.showSkips(skips, for: self)
+        }
+    }
+    private var canEarnASkipThisGrid = true
     
     var displayDelegate : RoundDisplayDelegate?
     
@@ -64,15 +77,9 @@ final class Round {
     var scoreAddPresenter : ScoreAddPresenter?
     var scoreTimeAddPresenter : ScoreAddPresenter?
     var hintCountPresenter : HintCountPresenter?
+    var skipsCountPresenter : SkipCountPresenter?
     
-    private static let TimeForEachTargetSolution : TimeInterval = 10
-    private var solutionTime : TimeInterval = 0
-    private var timeKeeper : TimeKeeper?
-    private(set) var showingGrid = false
-
     var solutionFilter : (Rational) -> Bool = { _ in return true }
-
-    private var hint : (Int, Int)?
     
     init(gridFactory:GridFactory) {
         self.gridFactory = gridFactory
@@ -86,6 +93,7 @@ extension Round {
     func begin() {
         showNextGrid()
         hints = 5
+        skips = 3
         scorePresenter?.score = 0
     }
     
@@ -105,6 +113,7 @@ extension Round {
         timeKeeper?.start()
         
         hintCountPresenter?.showHints(hints, for: self)
+        skipsCountPresenter?.showSkips(skips, for: self)
     }
     
     private func presentCurrentTargetSolution() {
@@ -114,6 +123,11 @@ extension Round {
     private func showNextGrid() {
         foundSolutions.removeAll()
 
+        if canEarnASkipThisGrid {
+            skips += 1
+        }
+        canEarnASkipThisGrid = true
+        
         showingGrid = false
         displayDelegate?.willReplaceGrid(self)
         
@@ -175,12 +189,12 @@ extension Round {
     }
     
     private func userChoseFalse(statement:Statement) {
+        canEarnASkipThisGrid = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             guard let self = self else { return }
             self.presentCurrentTargetSolution()
         }
     }
-    
     
     func advanceToNextTargetSolution() {
         self.foundSolutions.insert(self.currentTargetSolution!)
@@ -220,11 +234,13 @@ extension Round {
             let thisWay = ways.randomElement()  else { return nil }
 
         hint = thisWay.0
+        canEarnASkipThisGrid = false
         return hint
     }
     
     func showASolution(andAdvance advanceToNextTargetSolution:Bool = false) {
-        guard let currentTargetSolution = currentTargetSolution,
+        guard skips > 0,
+            let currentTargetSolution = currentTargetSolution,
             let ways = grid?.waysToGet(solution: currentTargetSolution),
             let hint = hintedCoordinate(),
             let thisWay = ways.first(where:{
@@ -233,6 +249,9 @@ extension Round {
 
         wordSearchView?.isUserInteractionEnabled = false
         wordSearchView?.select(from: thisWay.0.0, thisWay.0.1, to: thisWay.1.0, thisWay.1.1)
+        
+        skips -= 1
+        canEarnASkipThisGrid = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             self?.wordSearchView?.removeSelection(animated: true) {
