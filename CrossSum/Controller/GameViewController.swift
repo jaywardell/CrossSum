@@ -78,16 +78,25 @@ class GameViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(wordSearchViewChoiceFontDidChange), name: WordSearchView.ChoiceFontDidChange, object: wordSearchView)
         
         view.backgroundColor = .black
-        statementLabel.backgroundColor = nil
-        wordSearchView.backgroundColor = nil
+        [
+        statementLabel,
+        wordSearchView,
+        scoreLabel,
+        stageLabel,
+        hintCountLabel,
+        skipCountLabel
+        ].forEach() { $0.backgroundColor = nil }
+        
         statementLabel.textColor = .white
         wordSearchView.textColor = .white
-        scoreLabel.textColor = .white
-        stageLabel.textColor = .white
-        hintCountLabel.textColor = .white
-        skipCountLabel.textColor = .white
+        [scoreLabel,
+        stageLabel,
+        hintCountLabel,
+        skipCountLabel].forEach() { $0.textColor = .white }
         
-        [scoreAddLabel, hintCountAddLabel, scoreTimeAddLabel].forEach() {
+        [scoreAddLabel,
+         hintCountAddLabel,
+         scoreTimeAddLabel].forEach() {
             $0?.textColor = UIColor(hue: 60/360, saturation: 1, brightness: 21/34, alpha: 1)
         }
         
@@ -138,16 +147,19 @@ class GameViewController: UIViewController {
 
     private func matchUIToWordSearchUI() {
         let supportFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize * 21/34, scoreLabel.font.pointSize))
-        scoreLabel.font = supportFont
-        stageLabel.font = supportFont
-        hintCountLabel.font = supportFont
-        skipCountLabel.font = supportFont
+        [scoreLabel,
+         stageLabel,
+         hintCountLabel,
+         skipCountLabel].forEach() { $0.font = supportFont }
+        [skipButton,
+         showHintButton,
+         quitButton].forEach() { $0?.titleLabel?.font = supportFont }
         hintCountAddLabel.font = supportFont
-        [skipButton, showHintButton, quitButton].forEach() { $0?.titleLabel?.font = supportFont }
-        
+
         let statementFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize, statementLabel.font.pointSize))
         statementLabel.font = statementFont
-        [scoreAddLabel, scoreTimeAddLabel].forEach() {
+        [scoreAddLabel,
+         scoreTimeAddLabel].forEach() {
             $0.font = statementFont
         }
     }
@@ -174,19 +186,18 @@ extension GameViewController {
 extension GameViewController : RoundDisplayDelegate {
     func willReplaceGrid(_ round: Round) {
         
-        showHintButton?.isHidden = true
-        hintCountLabel.isHidden = true
-        skipCountLabel.isHidden = true
-        skipButton?.isHidden = true
-        statementLabel.isHidden = true
-        timeRemainingView.isHidden = true
+        [showHintButton,
+        hintCountLabel,
+        skipCountLabel,
+        skipButton,
+        statementLabel,
+            timeRemainingView].forEach { $0?.isHidden = true }
     }
     
     func didReplaceGrid(_ round: Round) {
         updateHintUI(round.showingGrid ? round.hints : 0)
         updateSkipUI(round.showingGrid ? round.skips : 0)
-        statementLabel.isHidden = false
-        timeRemainingView.isHidden = false
+        [statementLabel, timeRemainingView].forEach { $0?.isHidden = false }
     }
     
     func updateHintUI(_ hintCount:Int) {
