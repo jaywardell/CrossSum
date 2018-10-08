@@ -53,7 +53,7 @@ final class Round {
         didSet {
             wordSearchView?.allowsDiagonalSelection = false
             wordSearchView?.didSelect = didSelect(_:)
-            wordSearchView?.isValidSelection = isValidSelection
+            wordSearchView?.canStartSelectionWith = canStartSelection
         }
     }
     
@@ -136,6 +136,58 @@ extension Round {
         stage += 1
     }
     
+    private func userChoseTrue(statement:Statement) {
+        
+        timeKeeper!.stop()
+        let scoreForTarget = self.score(for:statement)
+        self.score += scoreForTarget
+        scoreAddPresenter?.showScoreAdd(scoreForTarget)
+        
+        let timeScoreAdd = timeKeeper!.timeRemaining
+        self.score += Int(timeScoreAdd)
+        scoreTimeAddPresenter?.showScoreAdd(Int(timeScoreAdd))
+        
+        // getting one right without using a hint  gives you a chance to get an extra hint
+        // and the chance increases when you use higher-scoring expressions
+        if nil == hint && Int.random(in: 0...100) + scoreForTarget > 100 {
+            hints += 1
+            hintCountPresenter?.hintsIncreased(by: 1)
+        }
+        
+        // let the suer see the correct statement he chose for 1 second, then advance to the next one
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            guard let self = self else { return }
+            if statement.isTrue {
+                
+                self.updateSolutionTime()
+                self.advanceToNextTargetSolution()
+            }
+        }
+    }
+    
+    private func updateSolutionTime() {
+        
+        // reclaim any time that was not spent on this target solution
+        self.solutionTime = Round.TimeForEachTargetSolution +  (self.timeKeeper?.timeRemaining ?? TimeInterval(0))
+        
+        //but reduce the time slightly with each successive target slution
+        self.solutionTime *= 0.95
+    }
+    
+    private func userChoseFalse(statement:Statement) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            guard let self = self else { return }
+            self.presentCurrentTargetSolution()
+        }
+    }
+    
+    
+    func advanceToNextTargetSolution() {
+        self.foundSolutions.insert(self.currentTargetSolution!)
+        self.showNextTargetSolution()
+    }
+
+    
     static let DidQuit = Notification.Name("Round.DidQuit")
 
     func quit() {
@@ -198,7 +250,7 @@ extension Round {
 
 extension Round {
     
-    func isValidSelection(_:Int, _:Int, string:String?) -> Bool {
+    func canStartSelection(with string:String?) -> Bool {
         guard !(string?.isEmpty ?? false) else { return false }
         if string == "-" { return true }
         if nil != Int(string!) {
@@ -228,56 +280,6 @@ extension Round {
 
     }
 
-    private func userChoseTrue(statement:Statement) {
-        
-        timeKeeper!.stop()
-        let scoreForTarget = self.score(for:statement)
-        self.score += scoreForTarget
-        scoreAddPresenter?.showScoreAdd(scoreForTarget)
-        
-        let timeScoreAdd = timeKeeper!.timeRemaining
-        self.score += Int(timeScoreAdd)
-        scoreTimeAddPresenter?.showScoreAdd(Int(timeScoreAdd))
-        
-        // getting one right without using a hint  gives you a chance to get an extra hint
-        // and the chance increases when you use higher-scoring expressions
-        if nil == hint && Int.random(in: 0...100) + scoreForTarget > 100 {
-            hints += 1
-            hintCountPresenter?.hintsIncreased(by: 1)
-        }
-        
-        // let the suer see the correct statement he chose for 1 second, then advance to the next one
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            guard let self = self else { return }
-            if statement.isTrue {
-                
-                self.updateSolutionTime()
-                self.advanceToNextTargetSolution()
-            }
-        }
-    }
-    
-    private func updateSolutionTime() {
-        
-        // reclaim any time that was not spent on this target solution
-        self.solutionTime = Round.TimeForEachTargetSolution +  (self.timeKeeper?.timeRemaining ?? TimeInterval(0))
-        
-        //but reduce the time slightly with each successive target slution
-        self.solutionTime *= 0.95
-    }
-    
-    private func userChoseFalse(statement:Statement) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            guard let self = self else { return }
-            self.presentCurrentTargetSolution()
-        }
-    }
-    
-    
-    func advanceToNextTargetSolution() {
-        self.foundSolutions.insert(self.currentTargetSolution!)
-        self.showNextTargetSolution()
-    }
 }
 
 // MARK:- Score

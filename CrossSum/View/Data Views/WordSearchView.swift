@@ -146,7 +146,7 @@ extension WordSearchDataSource {
     
     var isSelecting : ((String)->())?
     var didSelect : ((String)->())?
-    var isValidSelection : (Int, Int, String?)->Bool = { _, _, _ in return true }
+    var canStartSelectionWith : (String?)->Bool = { _ in return true }
 
     private var rowsStackView: UIStackView?
     
@@ -162,41 +162,32 @@ extension WordSearchDataSource {
     private lazy var pan = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
     private var selectionStartLabel : UILabel?
     private var selectionEndLabel : UILabel?
-    private var _isValidSelection = false
+
     @objc private func didPan(_ gestureRecognizer:UIPanGestureRecognizer) {
         switch pan.state {
         case .began:
-            if let closestLabel = closestLabel(to: gestureRecognizer.location(in: self)) {
-                // TODO: hysterysis: coordinatesOfClosstValidLabelToStartSelection (maybe a shorter name, but that's the idea, the closest label that allows for a valid selection)
-                guard let c = coordinates(of: closestLabel) else {
-                    _isValidSelection = false
-                    return
-                }
-                _isValidSelection = isValidSelection(c.row, c.column, closestLabel.text)
-                if _isValidSelection {
-                    selectLabel(closestLabel)
-                    selectionStartLabel = closestLabel
-                }
-            }
+            guard let closestLabel = closestValidSelectionStartLabel(to: gestureRecognizer.location(in: self)) else { return }
+            
+            selectLabel(closestLabel)
+            selectionStartLabel = closestLabel
+
         case .changed:
-            if let closestLabel = closestLabel(to: gestureRecognizer.location(in: self)),
-                let firstSelectionLabel = selectionStartLabel,
-                _isValidSelection {
-                selectLabels(between: firstSelectionLabel, and: closestLabel)
-                selectionEndLabel = closestLabel
-            }
+            guard let closestLabel = closestLabel(to: gestureRecognizer.location(in: self)),
+                let startLabel = selectionStartLabel else { return }
+
+            selectLabels(between: startLabel, and: closestLabel)
+            selectionEndLabel = closestLabel
+
         case .ended:
-            if let startLabel = selectionStartLabel,
-                let endLabel = selectionEndLabel,
-                _isValidSelection {
-                endSelection(between: startLabel, and: endLabel, andReport: true)
-            }
+            guard let startLabel = selectionStartLabel,
+                let endLabel = selectionEndLabel else { return }
+
+            endSelection(between: startLabel, and: endLabel, andReport: true)
+
         case .cancelled, .failed:
-            if let startLabel = selectionStartLabel,
-                let endLabel = selectionEndLabel,
-                _isValidSelection {
-                endSelection(between: startLabel, and: endLabel, andReport: false)
-            }
+            guard let startLabel = selectionStartLabel,
+                let endLabel = selectionEndLabel else { return }
+            endSelection(between: startLabel, and: endLabel, andReport: false)
 
         case .possible:
             break
@@ -480,6 +471,18 @@ extension WordSearchDataSource {
             } as? [UILabel] ?? []
     }
     
+    private func closestValidSelectionStartLabel(to point:CGPoint) -> UILabel? {
+        
+        let closest = labels.elementWithLowestResultOf { label -> CGFloat in
+            if canStartSelectionWith(label.text) {
+                return abs(convert(label.center, from: label.superview).distanceSquared(from: point))
+            }
+            return frame.width * 10000
+        }
+        
+        return closest
+    }
+
     private func closestLabel(to point:CGPoint) -> UILabel? {
         
         let closest = labels.elementWithLowestResultOf {
