@@ -214,41 +214,61 @@ extension Round {
         let solutionString = "+-×÷".contains(string.last!) ? String(string.dropLast()) : string
         
         let statement = Statement(solutionString, currentTargetSolution)
+        
+        // whether it's true or false, display the selected statement
         statementPresenter?.statement = statement
         
         if statement.isTrue {
-            timeKeeper?.stop()
-            let scoreForTarget = self.score(for:statement)
-            self.score += scoreForTarget
-            scoreAddPresenter?.showScoreAdd(scoreForTarget)
-            
-            // getting one right gives you a chance to get an extra hint
-            // and the chance increases when you use higher-scoring expressions
-            if nil == hint && Int.random(in: 0...100) + scoreForTarget > 100 {
-                hints += 1
-                hintCountPresenter?.hintsIncreased(by: 1)
-            }
+            userChoseTrue(statement: statement)
         }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            guard let self = self else { return }
-            if statement.isTrue {
-                
-                // reclaim any time that was not spent on this target solution
-                self.solutionTime = Round.TimeForEachTargetSolution +  (self.timeKeeper?.timeRemaining ?? TimeInterval(0))
-                
-                //but reduce the time slightly with each successive target slution
-                self.solutionTime *= 0.95
-
-                self.advanceToNextTargetSolution()
-            }
-            else {
-                self.presentCurrentTargetSolution()
-            }
+        else {
+            userChoseFalse(statement: statement)
         }
 
     }
 
+    private func userChoseTrue(statement:Statement) {
+        
+        timeKeeper?.stop()
+        let scoreForTarget = self.score(for:statement)
+        self.score += scoreForTarget
+        scoreAddPresenter?.showScoreAdd(scoreForTarget)
+        
+        // getting one right without using a hint  gives you a chance to get an extra hint
+        // and the chance increases when you use higher-scoring expressions
+        if nil == hint && Int.random(in: 0...100) + scoreForTarget > 100 {
+            hints += 1
+            hintCountPresenter?.hintsIncreased(by: 1)
+        }
+        
+        // let the suer see the correct statement he chose for 1 second, then advance to the next one
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            guard let self = self else { return }
+            if statement.isTrue {
+                
+                self.updateSolutionTime()
+                self.advanceToNextTargetSolution()
+            }
+        }
+    }
+    
+    private func updateSolutionTime() {
+        
+        // reclaim any time that was not spent on this target solution
+        self.solutionTime = Round.TimeForEachTargetSolution +  (self.timeKeeper?.timeRemaining ?? TimeInterval(0))
+        
+        //but reduce the time slightly with each successive target slution
+        self.solutionTime *= 0.95
+    }
+    
+    private func userChoseFalse(statement:Statement) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            guard let self = self else { return }
+            self.presentCurrentTargetSolution()
+        }
+    }
+    
+    
     func advanceToNextTargetSolution() {
         self.foundSolutions.insert(self.currentTargetSolution!)
         self.showNextTargetSolution()
