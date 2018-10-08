@@ -170,6 +170,17 @@
                                             <outlet property="vPosition" destination="da1-oJ-r5B" id="aOm-hX-seW"/>
                                         </connections>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4sp-6N-FdS" customClass="EventDisplayLabel" customModule="CrossSum" customModuleProvider="target">
+                                        <rect key="frame" x="165" y="601" width="45" height="22"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="45" id="Vn5-gf-RsE"/>
+                                            <constraint firstAttribute="height" constant="22" id="fWP-cI-zAq"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="vPosition" destination="dU2-co-lUX" id="rLE-g4-kzp"/>
+                                        </connections>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90000000000000002" green="0.79999748059999998" blue="0.67500000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -183,7 +194,9 @@
                                     <constraint firstAttribute="bottom" secondItem="91F-wm-LNm" secondAttribute="bottom" constant="20" id="Iu2-rW-hzy"/>
                                     <constraint firstItem="PYx-N7-epv" firstAttribute="trailing" secondItem="cLN-qW-RPt" secondAttribute="trailing" id="OsN-xi-oTU"/>
                                     <constraint firstItem="Cw4-a6-YPu" firstAttribute="centerY" secondItem="91F-wm-LNm" secondAttribute="centerY" id="WEV-MW-rF9"/>
+                                    <constraint firstItem="4sp-6N-FdS" firstAttribute="centerX" secondItem="Fy2-xd-F8H" secondAttribute="centerX" id="XgJ-5m-x25"/>
                                     <constraint firstAttribute="bottom" secondItem="pJS-vc-ux1" secondAttribute="bottom" id="bcy-g6-6bC"/>
+                                    <constraint firstItem="4sp-6N-FdS" firstAttribute="centerY" secondItem="Cw4-a6-YPu" secondAttribute="centerY" id="dU2-co-lUX"/>
                                     <constraint firstItem="i0C-hS-F8f" firstAttribute="top" secondItem="ptV-qQ-w8y" secondAttribute="bottom" constant="8" id="da1-oJ-r5B"/>
                                     <constraint firstItem="ptV-qQ-w8y" firstAttribute="centerX" secondItem="i0C-hS-F8f" secondAttribute="centerX" id="fdR-1c-JT6"/>
                                     <constraint firstItem="i0C-hS-F8f" firstAttribute="leading" secondItem="91F-wm-LNm" secondAttribute="trailing" constant="8" id="grl-Xe-odp"/>
@@ -214,6 +227,7 @@
                         <outlet property="quitButton" destination="no7-ZV-DN6" id="ngx-L3-tmr"/>
                         <outlet property="scoreAddLabel" destination="PYx-N7-epv" id="SYI-6X-II8"/>
                         <outlet property="scoreLabel" destination="6Pe-WG-reh" id="rca-vC-Lf9"/>
+                        <outlet property="scoreTimeAddLabel" destination="4sp-6N-FdS" id="aB0-pZ-lGq"/>
                         <outlet property="showHintButton" destination="91F-wm-LNm" id="reu-0N-ipv"/>
                         <outlet property="skipButton" destination="Cw4-a6-YPu" id="PU4-1q-q73"/>
                         <outlet property="stageLabel" destination="cLN-qW-RPt" id="4i9-Xx-3RW"/>

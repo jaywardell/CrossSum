@@ -41,6 +41,12 @@ class GameViewController: UIViewController {
     @IBOutlet weak var scoreAddLabel: EventDisplayLabel!
     @IBOutlet weak var timeRemainingView: TimeRemainingView!
     @IBOutlet weak var hintCountLabel: UILabel!
+    @IBOutlet weak var scoreTimeAddLabel: EventDisplayLabel! {
+        didSet {
+            scoreTimeAddLabel.suffix = "second"
+            scoreTimeAddLabel.pluralSuffix = "seconds"
+        }
+    }
     @IBOutlet weak var hintCountAddLabel: EventDisplayLabel! {
         didSet {
             // note: in the storyboard, there's a width equal constraint
@@ -84,8 +90,11 @@ class GameViewController: UIViewController {
         scoreLabel.textColor = .white
         stageLabel.textColor = .white
         hintCountLabel.textColor = .white
-        scoreAddLabel.textColor = UIColor(hue: 60/360, saturation: 1, brightness: 21/34, alpha: 1)
-        hintCountAddLabel.textColor = UIColor(hue: 60/360, saturation: 1, brightness: 21/34, alpha: 1)
+        
+        [scoreAddLabel, hintCountAddLabel, scoreTimeAddLabel].forEach() {
+            $0?.textColor = UIColor(hue: 60/360, saturation: 1, brightness: 21/34, alpha: 1)
+        }
+        
         wordSearchView.selectionColor = view.tintColor
         statementLabel.highlightColor = wordSearchView.selectionColor
     }
@@ -145,7 +154,9 @@ class GameViewController: UIViewController {
         
         let statementFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize, statementLabel.font.pointSize))
         statementLabel.font = statementFont
-        scoreAddLabel.font = statementFont
+        [scoreAddLabel, scoreTimeAddLabel].forEach() {
+            $0.font = statementFont
+        }
     }
 }
 
@@ -159,6 +170,7 @@ extension GameViewController {
         round?.scorePresenter = scoreLabel
         round?.stagePresenter = stageLabel
         round?.scoreAddPresenter = scoreAddLabel
+        round?.scoreTimeAddPresenter = scoreTimeAddLabel
         round?.wordSearchView = wordSearchView
         round?.timeRemainingPresenter = timeRemainingView
         round?.hintCountPresenter = self

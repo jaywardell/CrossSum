@@ -62,6 +62,7 @@ final class Round {
     var stagePresenter : StagePresenter?
     var timeRemainingPresenter : TimeRemainingPresenter?
     var scoreAddPresenter : ScoreAddPresenter?
+    var scoreTimeAddPresenter : ScoreAddPresenter?
     var hintCountPresenter : HintCountPresenter?
     
     private static let TimeForEachTargetSolution : TimeInterval = 10
@@ -229,10 +230,14 @@ extension Round {
 
     private func userChoseTrue(statement:Statement) {
         
-        timeKeeper?.stop()
+        timeKeeper!.stop()
         let scoreForTarget = self.score(for:statement)
         self.score += scoreForTarget
         scoreAddPresenter?.showScoreAdd(scoreForTarget)
+        
+        let timeScoreAdd = timeKeeper!.timeRemaining
+        self.score += Int(timeScoreAdd)
+        scoreTimeAddPresenter?.showScoreAdd(Int(timeScoreAdd))
         
         // getting one right without using a hint  gives you a chance to get an extra hint
         // and the chance increases when you use higher-scoring expressions
