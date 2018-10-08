@@ -27,7 +27,7 @@
 		7C3C3F5A2159A06100BD026A /* RationalLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F592159A06100BD026A /* RationalLabelTests.swift */; };
 		7C3C3F6A2159C45500BD026A /* RationalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F692159C45500BD026A /* RationalTests.swift */; };
 		7C3C3F6C2159C4E800BD026A /* Rational.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F6B2159C4E800BD026A /* Rational.swift */; };
-		7C573FDA21699119007C7DF3 /* ScoreAddLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FD921699119007C7DF3 /* ScoreAddLabel.swift */; };
+		7C573FDA21699119007C7DF3 /* EventDisplayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FD921699119007C7DF3 /* EventDisplayLabel.swift */; };
 		7C573FDC2169C007007C7DF3 /* ScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */; };
 		7C573FDE2169C2CF007C7DF3 /* StageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */; };
 		7C573FE4216A81DC007C7DF3 /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE3216A81DC007C7DF3 /* TableDataSource.swift */; };
@@ -110,7 +110,7 @@
 		7C3C3F592159A06100BD026A /* RationalLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationalLabelTests.swift; sourceTree = "<group>"; };
 		7C3C3F692159C45500BD026A /* RationalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RationalTests.swift; sourceTree = "<group>"; };
 		7C3C3F6B2159C4E800BD026A /* Rational.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rational.swift; sourceTree = "<group>"; };
-		7C573FD921699119007C7DF3 /* ScoreAddLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreAddLabel.swift; sourceTree = "<group>"; };
+		7C573FD921699119007C7DF3 /* EventDisplayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDisplayLabel.swift; sourceTree = "<group>"; };
 		7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreLabel.swift; sourceTree = "<group>"; };
 		7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageLabel.swift; sourceTree = "<group>"; };
 		7C573FE3216A81DC007C7DF3 /* TableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataSource.swift; sourceTree = "<group>"; };
@@ -201,12 +201,12 @@
 			children = (
 				7C3C3F21215995EE00BD026A /* AppDelegate.swift */,
 				7C334AF92164561200AC0CF9 /* CrossSumRouter.swift */,
+				7C3C3F25215995EE00BD026A /* Main.storyboard */,
 				7C3C3F702159C76800BD026A /* Controller */,
 				7C3C3F6F2159C76000BD026A /* Model */,
 				7C3C3F6E2159C74200BD026A /* View */,
 				7C3C3F6D2159C73300BD026A /* Presenter */,
 				7C8BD3E22162E0FE002BC785 /* Utility */,
-				7C3C3F25215995EE00BD026A /* Main.storyboard */,
 				7C3C3F28215995F000BD026A /* Assets.xcassets */,
 				7C3C3F2A215995F000BD026A /* LaunchScreen.storyboard */,
 				7C3C3F2D215995F000BD026A /* Info.plist */,
@@ -306,7 +306,7 @@
 				7C3C3F4F2159961400BD026A /* CenteredLabel.swift */,
 				7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */,
 				7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */,
-				7C573FD921699119007C7DF3 /* ScoreAddLabel.swift */,
+				7C573FD921699119007C7DF3 /* EventDisplayLabel.swift */,
 				7C8BD3DC21615BCD002BC785 /* RationalLabel.swift */,
 				7C84DA56215B0C6800D3B36F /* StatementLabel.swift */,
 				7C334B1F2168223E00AC0CF9 /* TimeRemainingView.swift */,
@@ -513,7 +513,7 @@
 				7C8BD3E42162E10C002BC785 /* ThreadSafe.swift in Sources */,
 				7C8BD3E62162F230002BC785 /* GridFactory.swift in Sources */,
 				7C3C3F24215995EE00BD026A /* ViewController.swift in Sources */,
-				7C573FDA21699119007C7DF3 /* ScoreAddLabel.swift in Sources */,
+				7C573FDA21699119007C7DF3 /* EventDisplayLabel.swift in Sources */,
 				7C8BD3D121614789002BC785 /* WordSearchView.swift in Sources */,
 				7C573FDE2169C2CF007C7DF3 /* StageLabel.swift in Sources */,
 				7C334B202168223E00AC0CF9 /* TimeRemainingView.swift in Sources */,

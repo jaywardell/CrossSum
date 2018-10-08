@@ -38,9 +38,19 @@ class GameViewController: UIViewController {
     @IBOutlet weak var statementLabel: StatementLabel!
     @IBOutlet weak var scoreLabel: ScoreLabel!
     @IBOutlet weak var stageLabel: StageLabel!
-    @IBOutlet weak var scoreAddLabel: ScoreAddLabel!
+    @IBOutlet weak var scoreAddLabel: EventDisplayLabel!
     @IBOutlet weak var timeRemainingView: TimeRemainingView!
     @IBOutlet weak var hintCountLabel: UILabel!
+    @IBOutlet weak var hintCountAddLabel: EventDisplayLabel! {
+        didSet {
+            // note: in the storyboard, there's a width equal constraint
+            // between this label and hintCOuntLabel
+            // which is there just to keep IB from complaining
+            // we ahve it set to be removed at load in IB
+            hintCountAddLabel.suffix = " hint"
+            hintCountAddLabel.pluralSuffix = "hints"
+        }
+    }
     
     var round : Round? {
         didSet {
@@ -75,6 +85,7 @@ class GameViewController: UIViewController {
         stageLabel.textColor = .white
         hintCountLabel.textColor = .white
         scoreAddLabel.textColor = UIColor(hue: 60/360, saturation: 1, brightness: 21/34, alpha: 1)
+        hintCountAddLabel.textColor = UIColor(hue: 60/360, saturation: 1, brightness: 21/34, alpha: 1)
         wordSearchView.selectionColor = view.tintColor
         statementLabel.highlightColor = wordSearchView.selectionColor
     }
@@ -128,8 +139,8 @@ class GameViewController: UIViewController {
         let supportFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize * 21/34, scoreLabel.font.pointSize))
         scoreLabel.font = supportFont
         stageLabel.font = supportFont
-        scoreAddLabel.font = supportFont
         hintCountLabel.font = supportFont
+        hintCountAddLabel.font = supportFont
         [skipButton, showHintButton, quitButton].forEach() { $0?.titleLabel?.font = supportFont }
         
         let statementFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize, statementLabel.font.pointSize))
@@ -180,6 +191,12 @@ extension GameViewController : RoundDisplayDelegate {
 // MARK:- HintCountPresenter
 
 extension GameViewController : HintCountPresenter {
+    func hintsIncreased(by dHints: Int) {
+        print("\(#function) \(dHints)")
+        
+        hintCountAddLabel.showScoreAdd(dHints)
+    }
+    
     func showHints(_ hints: Int, for round: Round) {
         hintCountLabel.text = "\(hints)"
         if round.showingGrid {
@@ -189,15 +206,4 @@ extension GameViewController : HintCountPresenter {
             updateHintUI(0)
         }
     }
-    
-//    var hints: Int {
-//        get {
-//            return hintCountLabel.text.flatMap { Int($0) } ?? 0
-//        }
-//        set {
-//            hintCountLabel.text = "\(newValue)"
-//            
-//            updateHintUI(newValue)
-//        }
-//    }
 }

@@ -226,6 +226,7 @@ extension Round {
             // and the chance increases when you use higher-scoring expressions
             if nil == hint && Int.random(in: 0...100) + scoreForTarget > 100 {
                 hints += 1
+                hintCountPresenter?.hintsIncreased(by: 1)
             }
         }
         

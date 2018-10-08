@@ -65,9 +65,7 @@ extension CrossSumRouter {
         
         let round = notification.object as! Round
         UserDefaults.standard.addHighScore(round.highScore)
-        
-        // TODO: record score for round into a history object
-        
+                
         restoreHighScores()
         navigationViewController.popToRootViewController(animated: false)
     }

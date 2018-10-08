@@ -42,6 +42,7 @@ protocol ScoreAddPresenter {
 protocol HintCountPresenter {
 //    var hints : Int { get set }
     func showHints(_ hints:Int, for round:Round)
+    func hintsIncreased(by dHints:Int)
 }
 
 /*

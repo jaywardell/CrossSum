@@ -137,7 +137,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYx-N7-epv" customClass="ScoreAddLabel" customModule="CrossSum" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYx-N7-epv" customClass="EventDisplayLabel" customModule="CrossSum" customModuleProvider="target">
                                         <rect key="frame" x="310" y="112.5" width="45" height="22"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -155,11 +155,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0C-hS-F8f">
-                                        <rect key="frame" x="66" y="601.5" width="42" height="21"/>
+                                        <rect key="frame" x="66" y="601" width="42" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ptV-qQ-w8y" customClass="EventDisplayLabel" customModule="CrossSum" customModuleProvider="target">
+                                        <rect key="frame" x="66" y="571" width="42" height="22"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="RpI-5M-Bb9"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="vPosition" destination="da1-oJ-r5B" id="aOm-hX-seW"/>
+                                        </connections>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90000000000000002" green="0.79999748059999998" blue="0.67500000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -174,9 +184,13 @@
                                     <constraint firstItem="PYx-N7-epv" firstAttribute="trailing" secondItem="cLN-qW-RPt" secondAttribute="trailing" id="OsN-xi-oTU"/>
                                     <constraint firstItem="Cw4-a6-YPu" firstAttribute="centerY" secondItem="91F-wm-LNm" secondAttribute="centerY" id="WEV-MW-rF9"/>
                                     <constraint firstAttribute="bottom" secondItem="pJS-vc-ux1" secondAttribute="bottom" id="bcy-g6-6bC"/>
+                                    <constraint firstItem="i0C-hS-F8f" firstAttribute="top" secondItem="ptV-qQ-w8y" secondAttribute="bottom" constant="8" id="da1-oJ-r5B"/>
+                                    <constraint firstItem="ptV-qQ-w8y" firstAttribute="centerX" secondItem="i0C-hS-F8f" secondAttribute="centerX" id="fdR-1c-JT6"/>
                                     <constraint firstItem="i0C-hS-F8f" firstAttribute="leading" secondItem="91F-wm-LNm" secondAttribute="trailing" constant="8" id="grl-Xe-odp"/>
                                     <constraint firstItem="no7-ZV-DN6" firstAttribute="top" secondItem="Fy2-xd-F8H" secondAttribute="top" constant="20" id="hTQ-N0-2Tm"/>
                                     <constraint firstItem="91F-wm-LNm" firstAttribute="centerY" secondItem="i0C-hS-F8f" secondAttribute="centerY" id="j4K-4q-u6Z"/>
+                                    <constraint firstItem="ptV-qQ-w8y" firstAttribute="width" secondItem="i0C-hS-F8f" secondAttribute="width" placeholder="YES" id="l1Y-vG-yOO"/>
+                                    <constraint firstItem="ptV-qQ-w8y" firstAttribute="height" secondItem="i0C-hS-F8f" secondAttribute="height" id="mIK-Td-zuT"/>
                                     <constraint firstItem="cLN-qW-RPt" firstAttribute="firstBaseline" secondItem="no7-ZV-DN6" secondAttribute="firstBaseline" id="pFI-lP-x5d"/>
                                     <constraint firstItem="91F-wm-LNm" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leadingMargin" constant="20" id="qpE-fC-4ax"/>
                                     <constraint firstAttribute="trailing" secondItem="pJS-vc-ux1" secondAttribute="trailing" id="sbg-nu-sGE"/>
@@ -195,6 +209,7 @@
                         <viewLayoutGuide key="safeArea" id="oUT-VS-hdC"/>
                     </view>
                     <connections>
+                        <outlet property="hintCountAddLabel" destination="ptV-qQ-w8y" id="Ghg-Uy-f4D"/>
                         <outlet property="hintCountLabel" destination="i0C-hS-F8f" id="lNW-TM-55j"/>
                         <outlet property="quitButton" destination="no7-ZV-DN6" id="ngx-L3-tmr"/>
                         <outlet property="scoreAddLabel" destination="PYx-N7-epv" id="SYI-6X-II8"/>
