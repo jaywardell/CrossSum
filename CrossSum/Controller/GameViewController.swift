@@ -99,7 +99,9 @@ class GameViewController: UIViewController {
          scoreTimeAddLabel].forEach() {
             $0?.textColor = UIColor(hue: 60/360, saturation: 1, brightness: 21/34, alpha: 1)
         }
-        
+
+        // TODO: I shouldn't need this, but right now I do, why?
+        view.tintColor = UIColor(hue: 164/360, saturation: 1, brightness: 21/34, alpha: 1)
         wordSearchView.selectionColor = view.tintColor
         statementLabel.highlightColor = wordSearchView.selectionColor
     }
@@ -110,6 +112,7 @@ class GameViewController: UIViewController {
         statementLabel.isHidden = true
         scoreLabel.isHidden = true
         stageLabel.isHidden = true
+        quitButton?.isHidden = true
         
         round?.begin()
         
@@ -122,8 +125,6 @@ class GameViewController: UIViewController {
         super.viewDidAppear(animated)
         
         statementLabel.isHidden = false
-        scoreLabel.isHidden = false
-        stageLabel.isHidden = false
     }
     
     @IBAction func quitButtonPressed() {
@@ -148,22 +149,9 @@ class GameViewController: UIViewController {
     }
 
     private func matchUIToWordSearchUI() {
-        let supportFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize * 21/34, scoreLabel.font.pointSize))
-        [scoreLabel,
-         stageLabel,
-         hintCountLabel,
-         skipCountLabel].forEach() { $0.font = supportFont }
-        [skipButton,
-         showHintButton,
-         quitButton].forEach() { $0?.titleLabel?.font = supportFont }
-        hintCountAddLabel.font = supportFont
-
-        let statementFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize, statementLabel.font.pointSize))
+        
+        let statementFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize * 34/21, statementLabel.font.pointSize))
         statementLabel.font = statementFont
-        [scoreAddLabel,
-         scoreTimeAddLabel].forEach() {
-            $0.font = statementFont
-        }
     }
 }
 
@@ -189,17 +177,21 @@ extension GameViewController : RoundDisplayDelegate {
     func willReplaceGrid(_ round: Round) {
         
         [showHintButton,
-        hintCountLabel,
-        skipCountLabel,
-        skipButton,
-        statementLabel,
+         hintCountLabel,
+         skipCountLabel,
+         skipButton,
+         statementLabel,
             timeRemainingView].forEach { $0?.isHidden = true }
     }
     
     func didReplaceGrid(_ round: Round) {
         updateHintUI(round.showingGrid ? round.hints : 0)
         updateSkipUI(round.showingGrid ? round.skips : 0)
-        [statementLabel, timeRemainingView].forEach { $0?.isHidden = false }
+        [quitButton,
+         scoreLabel,
+         stageLabel,
+         statementLabel,
+         timeRemainingView].forEach { $0?.isHidden = false }
     }
     
     func updateHintUI(_ hintCount:Int) {

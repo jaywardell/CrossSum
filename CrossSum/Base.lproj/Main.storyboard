@@ -283,14 +283,18 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="404"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#Hints" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wg8-gn-hBt">
-                                        <rect key="frame" x="46" y="371" width="50.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="74" y="379.5" width="40" height="16"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BvG-Ch-3UO">
-                                        <rect key="frame" x="8" y="0.0" width="30" height="30"/>
-                                        <state key="normal" title="Quit"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BvG-Ch-3UO">
+                                        <rect key="frame" x="16" y="8" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="JUb-M0-VCX"/>
+                                            <constraint firstAttribute="height" constant="44" id="z8t-jF-oIE"/>
+                                        </constraints>
+                                        <state key="normal" image="circle-x"/>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBw-4R-Gy7" customClass="StatementLabel" customModule="CrossSum" customModuleProvider="target">
                                         <rect key="frame" x="87" y="191" width="240" height="22"/>
@@ -301,7 +305,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7LX-zG-0bh" customClass="EventDisplayLabel" customModule="CrossSum" customModuleProvider="target">
-                                        <rect key="frame" x="361" y="191" width="45" height="22"/>
+                                        <rect key="frame" x="331" y="191" width="45" height="22"/>
                                         <color key="backgroundColor" red="0.8980392157" green="0.59607843140000005" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" placeholder="YES" id="HNt-IK-jtE"/>
@@ -312,21 +316,23 @@
                                         </connections>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B5e-ud-VoT">
-                                        <rect key="frame" x="376" y="366" width="30" height="30"/>
+                                        <rect key="frame" x="342" y="371" width="34" height="33"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <state key="normal" title="Skip"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#Skips" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugu-Vj-t7A">
-                                        <rect key="frame" x="314" y="371" width="52" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="296.5" y="379.5" width="41.5" height="16"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfi-eO-eSf">
-                                        <rect key="frame" x="8" y="366" width="30" height="30"/>
+                                        <rect key="frame" x="38" y="371" width="32" height="33"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <state key="normal" title="Hint"/>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rol-wr-oMw" customClass="EventDisplayLabel" customModule="CrossSum" customModuleProvider="target">
-                                        <rect key="frame" x="46" y="341" width="50.5" height="22"/>
+                                        <rect key="frame" x="74" y="349.5" width="50.5" height="22"/>
                                         <color key="backgroundColor" red="0.8980392157" green="0.59607843140000005" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" placeholder="YES" id="fF9-Nu-Q8E"/>
@@ -336,39 +342,39 @@
                                             <outlet property="vPosition" destination="1tD-Fz-7z1" id="QRm-Ma-bm8"/>
                                         </connections>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bw5-8v-rmR" customClass="StageLabel" customModule="CrossSum" customModuleProvider="target">
-                                        <rect key="frame" x="361" y="4.5" width="45" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qms-sC-IMo" customClass="ScoreLabel" customModule="CrossSum" customModuleProvider="target">
+                                        <rect key="frame" x="340.5" y="22" width="35.5" height="16"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qms-sC-IMo" customClass="ScoreLabel" customModule="CrossSum" customModuleProvider="target">
-                                        <rect key="frame" x="361" y="33" width="45" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bw5-8v-rmR" customClass="StageLabel" customModule="CrossSum" customModuleProvider="target">
+                                        <rect key="frame" x="289" y="22" width="35.5" height="16"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="rol-wr-oMw" firstAttribute="leading" secondItem="wg8-gn-hBt" secondAttribute="leading" id="1tD-Fz-7z1"/>
+                                    <constraint firstAttribute="trailing" secondItem="B5e-ud-VoT" secondAttribute="trailing" constant="38" id="4SQ-J5-fCy"/>
                                     <constraint firstItem="7LX-zG-0bh" firstAttribute="centerY" secondItem="mBw-4R-Gy7" secondAttribute="centerY" id="65E-CX-JyA"/>
-                                    <constraint firstItem="BvG-Ch-3UO" firstAttribute="leading" secondItem="bSS-Aq-r86" secondAttribute="leading" constant="8" id="88a-tn-seQ"/>
-                                    <constraint firstItem="bw5-8v-rmR" firstAttribute="trailing" secondItem="Qms-sC-IMo" secondAttribute="trailing" id="8A7-S0-DDv"/>
-                                    <constraint firstItem="Qms-sC-IMo" firstAttribute="top" secondItem="bw5-8v-rmR" secondAttribute="bottom" constant="7.5" id="C4C-dW-M2p"/>
-                                    <constraint firstItem="7LX-zG-0bh" firstAttribute="trailing" secondItem="bw5-8v-rmR" secondAttribute="trailing" id="Cym-gC-Shb"/>
+                                    <constraint firstItem="rfi-eO-eSf" firstAttribute="leading" secondItem="BvG-Ch-3UO" secondAttribute="centerX" id="7ue-4K-UOF"/>
+                                    <constraint firstItem="BvG-Ch-3UO" firstAttribute="leading" secondItem="bSS-Aq-r86" secondAttribute="leading" constant="16" id="88a-tn-seQ"/>
                                     <constraint firstItem="Ugu-Vj-t7A" firstAttribute="centerY" secondItem="B5e-ud-VoT" secondAttribute="centerY" id="DLb-Q8-R7C"/>
-                                    <constraint firstItem="B5e-ud-VoT" firstAttribute="leading" secondItem="Ugu-Vj-t7A" secondAttribute="trailing" constant="10" id="LcL-RJ-A7z"/>
-                                    <constraint firstItem="rfi-eO-eSf" firstAttribute="leading" secondItem="BvG-Ch-3UO" secondAttribute="leading" id="MFf-8d-J9k"/>
-                                    <constraint firstItem="B5e-ud-VoT" firstAttribute="trailing" secondItem="bw5-8v-rmR" secondAttribute="trailing" id="R3U-G8-HSo"/>
+                                    <constraint firstItem="B5e-ud-VoT" firstAttribute="leading" secondItem="Ugu-Vj-t7A" secondAttribute="trailing" constant="4" id="LcL-RJ-A7z"/>
+                                    <constraint firstItem="BvG-Ch-3UO" firstAttribute="centerY" secondItem="Qms-sC-IMo" secondAttribute="centerY" id="MlY-nr-neG"/>
+                                    <constraint firstItem="7LX-zG-0bh" firstAttribute="trailing" secondItem="Qms-sC-IMo" secondAttribute="trailing" id="Q2F-hU-LBT"/>
                                     <constraint firstItem="mBw-4R-Gy7" firstAttribute="centerY" secondItem="bSS-Aq-r86" secondAttribute="centerY" id="Rzr-HX-IxP"/>
-                                    <constraint firstAttribute="bottom" secondItem="B5e-ud-VoT" secondAttribute="bottom" constant="8" id="V2I-uV-2tI"/>
-                                    <constraint firstItem="BvG-Ch-3UO" firstAttribute="top" secondItem="bSS-Aq-r86" secondAttribute="top" id="apd-Q2-iuw"/>
+                                    <constraint firstItem="Qms-sC-IMo" firstAttribute="leading" secondItem="bw5-8v-rmR" secondAttribute="trailing" constant="16" id="UnU-3z-MfK"/>
+                                    <constraint firstAttribute="bottom" secondItem="B5e-ud-VoT" secondAttribute="bottom" id="V2I-uV-2tI"/>
+                                    <constraint firstItem="BvG-Ch-3UO" firstAttribute="top" secondItem="bSS-Aq-r86" secondAttribute="top" constant="8" id="apd-Q2-iuw"/>
                                     <constraint firstItem="mBw-4R-Gy7" firstAttribute="centerX" secondItem="bSS-Aq-r86" secondAttribute="centerX" id="bJr-NE-6Q4"/>
-                                    <constraint firstAttribute="trailing" secondItem="bw5-8v-rmR" secondAttribute="trailing" constant="8" id="fRX-nW-kPA"/>
                                     <constraint firstItem="wg8-gn-hBt" firstAttribute="top" secondItem="rol-wr-oMw" secondAttribute="bottom" constant="8" id="fir-33-Rer"/>
-                                    <constraint firstItem="wg8-gn-hBt" firstAttribute="leading" secondItem="rfi-eO-eSf" secondAttribute="trailing" constant="8" id="u5b-Tu-Q0k"/>
-                                    <constraint firstItem="bw5-8v-rmR" firstAttribute="centerY" secondItem="BvG-Ch-3UO" secondAttribute="centerY" id="uP2-5a-mZz"/>
-                                    <constraint firstAttribute="bottom" secondItem="rfi-eO-eSf" secondAttribute="bottom" constant="8" id="wAq-X5-iEL"/>
+                                    <constraint firstAttribute="trailing" secondItem="Qms-sC-IMo" secondAttribute="trailing" constant="38" id="k6g-Ly-uN6"/>
+                                    <constraint firstItem="bw5-8v-rmR" firstAttribute="centerY" secondItem="Qms-sC-IMo" secondAttribute="centerY" id="rKd-Bt-nyg"/>
+                                    <constraint firstItem="wg8-gn-hBt" firstAttribute="leading" secondItem="rfi-eO-eSf" secondAttribute="trailing" constant="4" id="u5b-Tu-Q0k"/>
+                                    <constraint firstAttribute="bottom" secondItem="rfi-eO-eSf" secondAttribute="bottom" id="wAq-X5-iEL"/>
                                     <constraint firstItem="wg8-gn-hBt" firstAttribute="centerY" secondItem="rfi-eO-eSf" secondAttribute="centerY" id="xpF-26-ete"/>
                                 </constraints>
                             </view>
@@ -380,7 +386,7 @@
                                     <constraint firstAttribute="width" constant="45" id="85H-pl-byh"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="vPosition" destination="9c3-lV-bDk" id="kva-YT-DQN"/>
+                                    <outlet property="vPosition" destination="Ocl-oP-Akc" id="fBx-ge-6IZ"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -388,8 +394,8 @@
                         <constraints>
                             <constraint firstItem="2yZ-bQ-LUs" firstAttribute="centerX" secondItem="SRU-7P-tZe" secondAttribute="centerX" id="38x-EX-JX3"/>
                             <constraint firstItem="BSH-5O-qvh" firstAttribute="leading" secondItem="9kh-ai-3r2" secondAttribute="leading" id="7Hd-wb-Kha"/>
-                            <constraint firstItem="BSH-5O-qvh" firstAttribute="top" secondItem="2yZ-bQ-LUs" secondAttribute="bottom" constant="8" id="9c3-lV-bDk" userLabel="Score TIme Add Label - VPosition"/>
                             <constraint firstItem="bSS-Aq-r86" firstAttribute="top" secondItem="24G-rY-wf5" secondAttribute="top" id="ObV-TS-zNI"/>
+                            <constraint firstItem="BSH-5O-qvh" firstAttribute="top" secondItem="2yZ-bQ-LUs" secondAttribute="bottom" constant="8" id="Ocl-oP-Akc" userLabel="Score Time Add Label - VPosition"/>
                             <constraint firstItem="bSS-Aq-r86" firstAttribute="leading" secondItem="24G-rY-wf5" secondAttribute="leading" id="S06-wh-ucB"/>
                             <constraint firstAttribute="trailing" secondItem="BSH-5O-qvh" secondAttribute="trailing" id="Tvu-DG-f5E"/>
                             <constraint firstItem="SRU-7P-tZe" firstAttribute="trailing" secondItem="24G-rY-wf5" secondAttribute="trailing" id="ZsL-8L-bSo"/>
@@ -422,4 +428,7 @@
             <point key="canvasLocation" x="1340.5797101449277" y="78.348214285714278"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="circle-x" width="64" height="64"/>
+    </resources>
 </document>
