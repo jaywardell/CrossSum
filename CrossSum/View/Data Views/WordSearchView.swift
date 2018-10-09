@@ -530,7 +530,7 @@ extension WordSearchDataSource {
 
         out.constrainToPositionInSuperview(.middle, .center)
         out.constrainToLimitSize(of: self, widthMultiplier: 29/34, heightMultiplier: 29/34)
-        out.constrainToMeetOrExceedSize(of: self, widthMultiplier: 13/34, heightMultiplier: 13/34)
+        out.constrainToMeetOrExceedSize(of: self, widthMultiplier: 26/34, heightMultiplier: 26/34)
         out.constrainToAspectRatio(1)
         
         return out

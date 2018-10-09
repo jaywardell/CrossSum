@@ -114,6 +114,8 @@ class GameViewController: UIViewController {
         round?.begin()
         
         wordSearchView.textFont = displayFont
+        
+        print("quit button image: \(quitButton?.imageView?.image)")
     }
     
     override func viewDidAppear(_ animated: Bool) {
