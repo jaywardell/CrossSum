@@ -130,8 +130,9 @@ extension Round {
         currentTargetSolution = next
         presentCurrentTargetSolution()
         
-        timeKeeper = TimeKeeper(solutionTime, presenter: timeRemainingPresenter) { _ in
+        timeKeeper = TimeKeeper(solutionTime, presenter: timeRemainingPresenter) { [weak self] _ in
             print("Timer Finished")
+            self?.quit()
         }
         timeKeeper?.start()
         
