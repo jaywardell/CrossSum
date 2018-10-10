@@ -196,12 +196,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/Model/Round.swift"
-            timestampString = "560773420.22743"
+            timestampString = "560827568.155291"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "showNextTargetSolution()"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "showNextGrid()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -212,11 +212,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/Model/Round.swift"
-            timestampString = "560773420.227487"
+            timestampString = "560827568.155821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "showNextGrid()"
             landmarkType = "7">
          </BreakpointContent>

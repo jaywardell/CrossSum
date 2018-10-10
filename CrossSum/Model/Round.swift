@@ -13,6 +13,8 @@ protocol RoundDisplayDelegate {
     func didReplaceGrid(_ round:Round)
 }
 
+// MARK:-
+
 final class Round {
     
     var grid : Grid?
@@ -76,6 +78,12 @@ final class Round {
         return acceptableSolutions.subtracting(foundSolutions)
     }
 
+    var paused : Bool { return timeKeeper?.isPaused ?? false }
+    
+    // MARK:-
+    
+    // TODO: abstract this into a protocol of things you need to support a wordsearchview
+    // probably a protocol called ExpressionSelector
     var wordSearchView : WordSearchView? = nil {
         didSet {
             wordSearchView?.allowsDiagonalSelection = false
@@ -95,6 +103,7 @@ final class Round {
     
     var solutionFilter : (Rational) -> Bool = { _ in return true }
     
+    // MARK:-
     init(gridFactory:GridFactory) {
         self.gridFactory = gridFactory
     }
@@ -216,6 +225,16 @@ extension Round {
     func advanceToNextTargetSolution() {
         self.foundSolutions.insert(self.currentTargetSolution!)
         self.showNextTargetSolution()
+    }
+
+    func pause() {
+        print("\(#function)")
+        timeKeeper?.pause()
+    }
+    
+    func resume() {
+        print("\(#function)")
+        timeKeeper?.resume()
     }
 
     

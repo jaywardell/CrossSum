@@ -10,24 +10,6 @@ import UIKit
 
 class GameViewController: UIViewController {
     
-    @IBOutlet weak var showHintButton: UIButton? {
-        didSet {
-            showHintButton?.addTarget(self, action: #selector(showHintButtonPressed), for: .touchUpInside)
-        }
-    }
-    
-    @IBOutlet weak var skipButton: UIButton? {
-        didSet {
-            skipButton?.addTarget(self, action: #selector(skipButtonPressed), for: .touchUpInside)
-        }
-    }
-    
-    @IBOutlet weak var quitButton: UIButton? {
-        didSet {
-            quitButton?.addTarget(self, action: #selector(quitButtonPressed), for: .touchUpInside)
-        }
-    }
-    
     @IBOutlet weak var wordSearchView: WordSearchView!
     @IBOutlet weak var statementLabel: StatementLabel!
     @IBOutlet weak var scoreLabel: ScoreLabel!
@@ -53,6 +35,32 @@ class GameViewController: UIViewController {
         }
     }
 
+    @IBOutlet weak var playPauseButton: UIButton! {
+        didSet {
+            playPauseButton.addTarget(self, action: #selector(playPauseButtonTapped), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var showHintButton: UIButton? {
+        didSet {
+            showHintButton?.addTarget(self, action: #selector(showHintButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var skipButton: UIButton? {
+        didSet {
+            skipButton?.addTarget(self, action: #selector(skipButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var quitButton: UIButton? {
+        didSet {
+            quitButton?.addTarget(self, action: #selector(quitButtonPressed), for: .touchUpInside)
+        }
+    }
+
+    // MARK:-
+
     var round : Round? {
         didSet {
             connectRoundToUI()
@@ -60,11 +68,16 @@ class GameViewController: UIViewController {
         }
     }
     
+    // MARK:-
     private let displayFont = UIFont(name: "CourierNewPS-BoldMT", size: 24)!
+    
+    // MARK:-
     
     class func createNew() -> GameViewController {
         return UIStoryboard.Main.instantiate()
     }
+    
+    // MARK:-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,7 +131,7 @@ class GameViewController: UIViewController {
         
         wordSearchView.textFont = displayFont
         
-        print("quit button image: \(quitButton?.imageView?.image)")
+        updatePlayPauseButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -126,7 +139,24 @@ class GameViewController: UIViewController {
         
         statementLabel.isHidden = false
     }
+
+    // MARK:- Actions
     
+    @IBAction func playPauseButtonTapped(_ sender:UIButton) {
+        
+        assert(playPauseButton == sender)
+        guard let round = round else { return }
+        
+        if round.paused {
+            round.resume()
+        }
+        else {
+            round.pause()
+        }
+        
+        updatePlayPauseButton()
+    }
+
     @IBAction func quitButtonPressed() {
         print(#function)
         
@@ -144,15 +174,12 @@ class GameViewController: UIViewController {
         round?.showASolution()
     }
     
+    // MARK:- Notifications
+    
     @objc func wordSearchViewChoiceFontDidChange(_ notification:Notification) {
         matchUIToWordSearchUI()
     }
 
-    private func matchUIToWordSearchUI() {
-        
-        let statementFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize * 34/21, statementLabel.font.pointSize))
-        statementLabel.font = statementFont
-    }
 }
 
 // MARK:- Round Maintenance
@@ -193,17 +220,38 @@ extension GameViewController : RoundDisplayDelegate {
          statementLabel,
          timeRemainingView].forEach { $0?.isHidden = false }
     }
+}
+
+// MARK:- Updating UI
+
+extension GameViewController {
     
-    func updateHintUI(_ hintCount:Int) {
+    private func matchUIToWordSearchUI() {
+        
+        let statementFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize * 34/21, statementLabel.font.pointSize))
+        statementLabel.font = statementFont
+    }
+
+    private func updateHintUI(_ hintCount:Int) {
         
         hintCountLabel.isHidden = hintCount <= 0
         showHintButton?.isHidden = hintCount <= 0
     }
     
-    func updateSkipUI(_ skipCount:Int) {
+    private func updateSkipUI(_ skipCount:Int) {
         
         skipCountLabel.isHidden = skipCount <= 0
         skipButton?.isHidden = skipCount <= 0
+    }
+    
+    private func updatePlayPauseButton() {
+        guard let round = round else { return }
+        
+        
+        playPauseButton.imageView?.contentMode = .scaleAspectFit
+        
+        let preferredImage = round.paused ? #imageLiteral(resourceName: "play-button") : #imageLiteral(resourceName: "pause-button")
+        playPauseButton.setImage(preferredImage, for: .normal)
     }
 }
 
@@ -234,9 +282,10 @@ extension GameViewController : SkipCountPresenter {
     func skipsIncreased(by dSkips: Int) {
         print("\(#function) \(dSkips)")
         
-        // TODO: this
-//        skipCOuntAddLabel.showScoreAdd(dSkips)
+        // I'm choosing to show no special UI for this right now
+        // let the user be surprised when she sees it go up, for now...
     }
+
     func showSkips(_ skips: Int, for round: Round) {
         skipCountLabel.text = "\(skips)"
         if round.showingGrid {

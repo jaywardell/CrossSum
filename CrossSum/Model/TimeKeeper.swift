@@ -19,6 +19,33 @@ final class TimeKeeper {
     
     var timeRemaining : TimeInterval = 0
     
+    enum State {
+        case created
+        case running
+        case paused
+        case finished
+    }
+    
+    var state : State {
+        guard let timer = self.timer else { return .created }
+        
+        if timer.isValid { return .running }
+        return timeRemaining > TimeInterval(0) ? .paused : .finished
+    }
+    
+    var hasStarted : Bool {
+        return state != .created
+    }
+    
+    var isPaused : Bool {
+        return state == .paused
+    }
+
+    var isDone : Bool {
+        return state == .finished
+    }
+
+    
     init(_ time:TimeInterval, presenter:TimeRemainingPresenter?, done:@escaping(TimeKeeper)->()) {
         self.totalTime = time
         self.presenter = presenter
@@ -26,18 +53,41 @@ final class TimeKeeper {
     }
     
     private var timer : Timer!
-    private var startTime : TimeInterval!
+    private var lastTime : TimeInterval!
     func start() {
+        assert(!hasStarted)
         
         presenter?.maxTime = totalTime
         presenter?.remainingTime = totalTime
         
-        startTime = Date().timeIntervalSinceReferenceDate
-        timer = Timer.scheduledTimer(timeInterval: 1/30, target: self, selector: #selector(timerFired(_:)), userInfo: nil, repeats: true)
+        timeRemaining = totalTime
+
+        _resume()
     }
     
     func stop() {
+        assert(hasStarted && !isDone)
+        
         timer.invalidate()
+        timeRemaining = 0   // flag it as done
+    }
+    
+    func pause() {
+        assert(!isPaused)
+        
+        timer.invalidate()
+    }
+    
+    func resume() {
+        assert(isPaused)
+
+        _resume()
+    }
+    
+    private func _resume() {
+        
+        lastTime = Date().timeIntervalSinceReferenceDate
+        timer = Timer.scheduledTimer(timeInterval: 1/30, target: self, selector: #selector(timerFired(_:)), userInfo: nil, repeats: true)
     }
     
     func dealloc() {
@@ -47,9 +97,9 @@ final class TimeKeeper {
     @objc private func timerFired(_ timer:Timer) {
         
         let now = Date().timeIntervalSinceReferenceDate
-        let elapsed = now - startTime
-        
-        timeRemaining = totalTime - elapsed
+
+        timeRemaining -= now - lastTime
+        lastTime = now
         
         presenter?.remainingTime = timeRemaining
         
@@ -58,5 +108,4 @@ final class TimeKeeper {
             timer.invalidate()
         }
     }
-    
 }

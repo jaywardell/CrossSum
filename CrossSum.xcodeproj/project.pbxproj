@@ -259,12 +259,12 @@
 		7C3C3F6F2159C76000BD026A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7C8BD3E02161C363002BC785 /* Round.swift */,
 				7C3C3F6B2159C4E800BD026A /* Rational.swift */,
 				7C84DA83215B240800D3B36F /* Statement.swift */,
 				7C8BD3DE2161ABAC002BC785 /* Grid.swift */,
 				7C8BD3E52162F230002BC785 /* GridFactory.swift */,
 				7C8BD3E72162F8D9002BC785 /* GameReadyGridFactory.swift */,
-				7C8BD3E02161C363002BC785 /* Round.swift */,
 				7C334B2121682CD000AC0CF9 /* TimeKeeper.swift */,
 				7C573FE7216A8C81007C7DF3 /* HighScore.swift */,
 				7C573FE5216A895C007C7DF3 /* UserDefaults+Properties.swift */,

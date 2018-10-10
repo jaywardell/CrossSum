@@ -354,6 +354,10 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ry-bW-dsy">
+                                        <rect key="frame" x="194.5" y="370" width="25" height="35"/>
+                                        <state key="normal" image="play-button"/>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="rol-wr-oMw" firstAttribute="leading" secondItem="wg8-gn-hBt" secondAttribute="leading" id="1tD-Fz-7z1"/>
@@ -361,6 +365,7 @@
                                     <constraint firstItem="7LX-zG-0bh" firstAttribute="centerY" secondItem="mBw-4R-Gy7" secondAttribute="centerY" id="65E-CX-JyA"/>
                                     <constraint firstItem="rfi-eO-eSf" firstAttribute="leading" secondItem="BvG-Ch-3UO" secondAttribute="centerX" id="7ue-4K-UOF"/>
                                     <constraint firstItem="BvG-Ch-3UO" firstAttribute="leading" secondItem="bSS-Aq-r86" secondAttribute="leading" constant="16" id="88a-tn-seQ"/>
+                                    <constraint firstItem="3Ry-bW-dsy" firstAttribute="centerX" secondItem="bSS-Aq-r86" secondAttribute="centerX" id="8gr-fb-s3M"/>
                                     <constraint firstItem="Ugu-Vj-t7A" firstAttribute="centerY" secondItem="B5e-ud-VoT" secondAttribute="centerY" id="DLb-Q8-R7C"/>
                                     <constraint firstItem="B5e-ud-VoT" firstAttribute="leading" secondItem="Ugu-Vj-t7A" secondAttribute="trailing" constant="4" id="LcL-RJ-A7z"/>
                                     <constraint firstItem="BvG-Ch-3UO" firstAttribute="centerY" secondItem="Qms-sC-IMo" secondAttribute="centerY" id="MlY-nr-neG"/>
@@ -369,6 +374,7 @@
                                     <constraint firstItem="Qms-sC-IMo" firstAttribute="leading" secondItem="bw5-8v-rmR" secondAttribute="trailing" constant="16" id="UnU-3z-MfK"/>
                                     <constraint firstAttribute="bottom" secondItem="B5e-ud-VoT" secondAttribute="bottom" id="V2I-uV-2tI"/>
                                     <constraint firstItem="BvG-Ch-3UO" firstAttribute="top" secondItem="bSS-Aq-r86" secondAttribute="top" constant="8" id="apd-Q2-iuw"/>
+                                    <constraint firstItem="3Ry-bW-dsy" firstAttribute="centerY" secondItem="B5e-ud-VoT" secondAttribute="centerY" id="bEr-RD-Ucz"/>
                                     <constraint firstItem="mBw-4R-Gy7" firstAttribute="centerX" secondItem="bSS-Aq-r86" secondAttribute="centerX" id="bJr-NE-6Q4"/>
                                     <constraint firstItem="wg8-gn-hBt" firstAttribute="top" secondItem="rol-wr-oMw" secondAttribute="bottom" constant="8" id="fir-33-Rer"/>
                                     <constraint firstAttribute="trailing" secondItem="Qms-sC-IMo" secondAttribute="trailing" constant="38" id="k6g-Ly-uN6"/>
@@ -410,6 +416,7 @@
                     <connections>
                         <outlet property="hintCountAddLabel" destination="rol-wr-oMw" id="Wkl-8y-KFC"/>
                         <outlet property="hintCountLabel" destination="wg8-gn-hBt" id="SPS-ct-OTm"/>
+                        <outlet property="playPauseButton" destination="3Ry-bW-dsy" id="rAa-GM-CIw"/>
                         <outlet property="quitButton" destination="BvG-Ch-3UO" id="iX8-fs-C2J"/>
                         <outlet property="scoreAddLabel" destination="7LX-zG-0bh" id="fBU-Ko-dWK"/>
                         <outlet property="scoreLabel" destination="Qms-sC-IMo" id="9jw-Sw-zvZ"/>
@@ -429,6 +436,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="circle-x" width="64" height="64"/>
+        <image name="circle-x" width="32" height="32"/>
+        <image name="play-button" width="25" height="35"/>
     </resources>
 </document>
