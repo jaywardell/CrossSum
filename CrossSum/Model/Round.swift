@@ -78,7 +78,7 @@ final class Round {
         return acceptableSolutions.subtracting(foundSolutions)
     }
 
-    var paused : Bool { return timeKeeper?.isPaused ?? false }
+    var isPaused : Bool { return timeKeeper?.isPaused ?? false }
     
     // MARK:-
     

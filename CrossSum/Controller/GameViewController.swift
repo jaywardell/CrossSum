@@ -84,10 +84,11 @@ class GameViewController: UIViewController {
 
         connectRoundToUI()
         
-        wordSearchView.centerXAnchor.constraint(equalTo: statementLabel.centerXAnchor)
-        wordSearchView.topAnchor.constraint(equalTo: statementLabel.topAnchor)
         view.layoutIfNeeded()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: UIApplication.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: UIApplication.shared)
+
         NotificationCenter.default.addObserver(self, selector: #selector(wordSearchViewChoiceFontDidChange), name: WordSearchView.ChoiceFontDidChange, object: wordSearchView)
         
         view.backgroundColor = .black
@@ -134,6 +135,7 @@ class GameViewController: UIViewController {
         updatePlayPauseButton()
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -146,24 +148,15 @@ class GameViewController: UIViewController {
         assert(playPauseButton == sender)
         guard let round = round else { return }
         
-        if round.paused {
-            statementLabel.fadeIn(duration:0.2)
-            wordSearchView.fadeIn(duration: 0.2) {
-                round.resume() { [weak self] in guard let self = self else { return }
-                    self.updatePlayPauseButton()
-                    self.showGamePlayUI()
-                }
-            }
+        if round.isPaused {
+            resumeGame()
         }
         else {
-            round.pause() {// [weak self] in guard let self = self else { return }
-                hideGamePlayUI()
-                wordSearchView.fadeOut(duration: 0.2)
-                updatePlayPauseButton()
-           }
+            pauseGame()
         }
     }
 
+    
     @IBAction func quitButtonPressed() {
         print(#function)
         
@@ -183,10 +176,24 @@ class GameViewController: UIViewController {
     
     // MARK:- Notifications
     
+    @objc func applicationWillResignActive(_ notification:Notification) {
+        
+        pauseGame()
+    }
+
+    @objc func applicationDidBecomeActive(_ notification:Notification) {
+        
+        // yuou would think this would be a good idea,
+        // but it could be jarring to the user
+        // if it's been a while since he played
+        // and he doesn't know the state of the game when he's returning
+        // OR if he had paused the game before leaving the app
+        // resumeGame()
+    }
+
     @objc func wordSearchViewChoiceFontDidChange(_ notification:Notification) {
         matchUIToWordSearchUI()
     }
-
 }
 
 // MARK:- Round Maintenance
@@ -218,6 +225,36 @@ extension GameViewController : RoundDisplayDelegate {
         showGamePlayUI()
     }
 }
+
+// MARK:- Play/Pause
+
+extension GameViewController {
+    
+    private func pauseGame() {
+        guard let round = self.round,
+            !round.isPaused else { return }
+        
+        round.pause() {// [weak self] in guard let self = self else { return }
+            hideGamePlayUI()
+            wordSearchView.fadeOut(duration: 0.2)
+            updatePlayPauseButton()
+        }
+    }
+    
+    private func resumeGame() {
+        guard let round = self.round,
+            round.isPaused else { return }
+        
+        statementLabel.fadeIn(duration:0.2)
+        wordSearchView.fadeIn(duration: 0.2) { [weak self] in
+            self?.round?.resume() { [weak self] in guard let self = self else { return }
+                self.updatePlayPauseButton()
+                self.showGamePlayUI()
+            }
+        }
+    }
+}
+
 
 // MARK:- Updating UI
 
@@ -268,7 +305,7 @@ extension GameViewController {
         
         playPauseButton.imageView?.contentMode = .scaleAspectFit
         
-        let preferredImage = round.paused ? #imageLiteral(resourceName: "play-button") : #imageLiteral(resourceName: "pause-button")
+        let preferredImage = round.isPaused ? #imageLiteral(resourceName: "play-button") : #imageLiteral(resourceName: "pause-button")
         playPauseButton.setImage(preferredImage, for: .normal)
     }
 }
