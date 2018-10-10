@@ -283,7 +283,8 @@ extension GameViewController {
     
     private func matchUIToWordSearchUI() {
         
-        let statementFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize * 34/21, statementLabel.font.pointSize))
+//        let statementFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize * 34/21, statementLabel.font.pointSize))
+        let statementFont = wordSearchView.choiceFont.withSize(wordSearchView.choiceFont.pointSize * 34/21)
         statementLabel.font = statementFont
     }
 
