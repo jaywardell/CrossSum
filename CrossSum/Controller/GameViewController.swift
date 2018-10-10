@@ -150,18 +150,18 @@ class GameViewController: UIViewController {
             statementLabel.fadeIn(duration:0.2)
             wordSearchView.fadeIn(duration: 0.2) {
                 round.resume() { [weak self] in guard let self = self else { return }
+                    self.updatePlayPauseButton()
                     self.showGamePlayUI()
                 }
             }
         }
         else {
-            round.pause() { [weak self] in guard let self = self else { return }
-                self.hideGamePlayUI()
-                self.wordSearchView.fadeOut(duration: 0.2)
-            }
+            round.pause() {// [weak self] in guard let self = self else { return }
+                hideGamePlayUI()
+                wordSearchView.fadeOut(duration: 0.2)
+                updatePlayPauseButton()
+           }
         }
-        
-        updatePlayPauseButton()
     }
 
     @IBAction func quitButtonPressed() {
