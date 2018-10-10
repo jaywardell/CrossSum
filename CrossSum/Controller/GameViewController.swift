@@ -143,15 +143,22 @@ class GameViewController: UIViewController {
     // MARK:- Actions
     
     @IBAction func playPauseButtonTapped(_ sender:UIButton) {
-        
         assert(playPauseButton == sender)
         guard let round = round else { return }
         
         if round.paused {
-            round.resume()
+            statementLabel.fadeIn(duration:0.2)
+            wordSearchView.fadeIn(duration: 0.2) {
+                round.resume() { [weak self] in guard let self = self else { return }
+                    self.showGamePlayUI()
+                }
+            }
         }
         else {
-            round.pause()
+            round.pause() { [weak self] in guard let self = self else { return }
+                self.hideGamePlayUI()
+                self.wordSearchView.fadeOut(duration: 0.2)
+            }
         }
         
         updatePlayPauseButton()
@@ -202,16 +209,23 @@ extension GameViewController {
 
 extension GameViewController : RoundDisplayDelegate {
     func willReplaceGrid(_ round: Round) {
-        
-        [showHintButton,
-         hintCountLabel,
-         skipCountLabel,
-         skipButton,
-         statementLabel,
-            timeRemainingView].forEach { $0?.isHidden = true }
+        assert(round === self.round!)
+        hideGamePlayUI()
     }
     
     func didReplaceGrid(_ round: Round) {
+        assert(round === self.round!)
+        showGamePlayUI()
+    }
+}
+
+// MARK:- Updating UI
+
+extension GameViewController {
+    
+    private func showGamePlayUI() {
+        let round = self.round!
+        
         updateHintUI(round.showingGrid ? round.hints : 0)
         updateSkipUI(round.showingGrid ? round.skips : 0)
         [quitButton,
@@ -220,11 +234,15 @@ extension GameViewController : RoundDisplayDelegate {
          statementLabel,
          timeRemainingView].forEach { $0?.isHidden = false }
     }
-}
-
-// MARK:- Updating UI
-
-extension GameViewController {
+    
+    private func hideGamePlayUI() {
+        [showHintButton,
+         hintCountLabel,
+         skipCountLabel,
+         skipButton,
+         statementLabel,
+         timeRemainingView].forEach { $0?.isHidden = true }
+    }
     
     private func matchUIToWordSearchUI() {
         

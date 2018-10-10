@@ -227,19 +227,20 @@ extension Round {
         self.showNextTargetSolution()
     }
 
-    func pause() {
+    func pause(_ callback:()->()) {
         print("\(#function)")
         timeKeeper?.pause()
+        callback()
     }
     
-    func resume() {
+    func resume(_ callback:()->()) {
         print("\(#function)")
         timeKeeper?.resume()
+        callback()
     }
 
     
     static let DidQuit = Notification.Name("Round.DidQuit")
-
     func quit() {
         print("\(#function)")
         
