@@ -355,7 +355,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ry-bW-dsy">
-                                        <rect key="frame" x="194.5" y="370" width="25" height="35"/>
+                                        <rect key="frame" x="177" y="357.5" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="RDZ-i3-9e5"/>
+                                            <constraint firstAttribute="height" constant="60" id="zV6-Xz-U9Z"/>
+                                        </constraints>
                                         <state key="normal" image="play-button"/>
                                     </button>
                                 </subviews>
