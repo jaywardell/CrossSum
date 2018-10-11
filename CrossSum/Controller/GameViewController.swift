@@ -208,7 +208,7 @@ extension GameViewController {
         round?.scoreAddPresenter = scoreAddLabel
         round?.scoreTimeAddPresenter = scoreTimeAddLabel
         round?.expressionSelector = expressionChooserView
-        round?.expressionSymbolView = expressionChooserView
+        round?.expressionSymbolPresenter = expressionChooserView
         round?.timeRemainingPresenter = timeRemainingView
         round?.hintCountPresenter = self
         round?.skipsCountPresenter = self

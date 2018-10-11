@@ -82,9 +82,9 @@ final class Round {
     
     // MARK:-
     
-    // NOTE: as of Oct 10, 2018, expressionSymbolView and expressionSelector are the same thing in the iOS app
+    // NOTE: as of Oct 10, 2018, expressionSymbolPresenter and expressionSelector are the same thing in the iOS app
     // but they don't tchnically have to be for Round to work
-    var expressionSymbolView : ExpressionSymbolPresenter?
+    var expressionSymbolPresenter : ExpressionSymbolPresenter?
 
     var expressionSelector : ExpressionSelector? {
         didSet {
@@ -158,8 +158,8 @@ extension Round {
         displayDelegate?.willReplaceGrid(self)
         
         self.grid = gridFactory.gridAfter(grid)
-        expressionSymbolView?.symbolDataSource = grid
-        expressionSymbolView?.reloadSymbols(animated:true) { [weak self] in guard let self = self else { return }
+        expressionSymbolPresenter?.symbolDataSource = grid
+        expressionSymbolPresenter?.reloadSymbols(animated:true) { [weak self] in guard let self = self else { return }
         
             self.showNextTargetSolution()
             
