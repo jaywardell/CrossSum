@@ -37,7 +37,7 @@ final class Round {
         }
     }
     
-    private static let TimeForEachTargetSolution : TimeInterval = 10
+    private static let TimeForEachTargetSolution : TimeInterval = 20
     private var solutionTime : TimeInterval = 0
     private var timeKeeper : TimeKeeper?
     private(set) var showingGrid = false
