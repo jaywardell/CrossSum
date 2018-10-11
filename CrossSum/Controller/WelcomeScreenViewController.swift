@@ -45,8 +45,6 @@ class WelcomeScreenViewController: UIViewController {
         }
         highScoresDS?.style = { cell in
             cell.backgroundColor = nil
-//            cell.textLabel?.textColor = .white
-//            cell.detailTextLabel?.textColor = .white
         }
         
         welcomeScreen.highScoresView.dataSource = highScoresDS
@@ -58,6 +56,8 @@ class WelcomeScreenViewController: UIViewController {
         
         welcomeScreen.playButton.fadeIn(duration: 0.2)
         welcomeScreen.highScoresLabel.isHidden = highScores.count == 0
+        
+        // TODO: scroll the high scores list to the last high score
     }
     
     @IBAction private func playButtonPressed() {
