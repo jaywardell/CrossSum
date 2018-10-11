@@ -39,7 +39,11 @@ struct GameReadyGridFactory : GridFactory {
         // expanding range
         GridMutator(name: "include zero options",
                     probability:0.5,
-                    canMutate: { !$0.range.contains(0)},
+                    canMutate: {
+                        !$0.range.contains(0) &&
+                        // until the user can subtract, zero in the range only offers trivial solutions
+                            // e.g. 2+0, 3+0, or worse:0+0
+                        $0.operators.contains(.minus) },
                     mutate: {
             let newRange : ClosedRange<Int> = 0...$0.range.upperBound
             return $0.mutatedCopy(range:newRange)}),

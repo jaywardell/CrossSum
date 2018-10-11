@@ -63,12 +63,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/Model/GameReadyGridFactory.swift"
-            timestampString = "560479736.021049"
+            timestampString = "560913254.253267"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "gridAfter(_:)"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "firstGrid()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
