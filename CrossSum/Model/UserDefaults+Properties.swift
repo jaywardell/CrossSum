@@ -17,10 +17,6 @@ extension UserDefaults {
         highScores.append(newscore)
     }
     
-    ver lastHighscore : HighScore {
-    
-    }
-    
     private(set) var highScores : [HighScore] {
         get {
             guard let d = data(forKey: UserDefaults.HighScoresKey),

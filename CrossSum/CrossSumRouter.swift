@@ -59,6 +59,11 @@ extension CrossSumRouter {
         let round = Round(gridFactory: GameReadyGridFactory())
         NotificationCenter.default.addObserver(self, selector: #selector(userDidQuitRound(_:)), name: Round.DidQuit, object: round)
         gvc.round = round
+        
+        // don't let the navigation controller support pop on swipe
+        // or else let the user can swipe out of the game
+        navigationViewController.interactivePopGestureRecognizer?.isEnabled = false
+        
         navigationViewController.pushViewController(gvc, animated: false)
     }
     
@@ -70,7 +75,10 @@ extension CrossSumRouter {
                 
         restoreHighScores()
         navigationViewController.popToRootViewController(animated: false)
-    }
+        
+        // turn pop on swipe back on here, in case it's needed for another view controller
+        navigationViewController.interactivePopGestureRecognizer?.isEnabled = true
+   }
     
     private func restoreHighScores() {
         welcomeScreen.highScores = UserDefaults.standard.highScores
