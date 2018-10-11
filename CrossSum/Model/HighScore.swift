@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct HighScore : Codable {
+struct HighScore : Codable, Equatable {
     let score:Int
     let stage:Int
     let date : Date

@@ -20,6 +20,8 @@ class WelcomeScreenViewController: UIViewController {
     }
     private var highScoresDS : TableDataSource<HighScore>?
     
+    var lastHighScore : HighScore?
+    
     private lazy var welcomeScreen : WelcomeScreen = {
         return WelcomeScreen()
     }()
@@ -34,14 +36,17 @@ class WelcomeScreenViewController: UIViewController {
         welcomeScreen.playButton.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
         
         highScoresDS = TableDataSource(highScores, style: .value1)
-        highScoresDS?.configure = { cell, score in
+        highScoresDS?.configure = { [weak self] cell, score in
             cell.textLabel?.text = "\(score.score)"
             cell.detailTextLabel?.text = "Stage \(score.stage)"
+
+            cell.textLabel?.textColor = self?.lastHighScore == score ? self?.view.tintColor : .white
+            cell.detailTextLabel?.textColor = self?.lastHighScore == score ? self?.view.tintColor : .white
         }
         highScoresDS?.style = { cell in
             cell.backgroundColor = nil
-            cell.textLabel?.textColor = .white
-            cell.detailTextLabel?.textColor = .white
+//            cell.textLabel?.textColor = .white
+//            cell.detailTextLabel?.textColor = .white
         }
         
         welcomeScreen.highScoresView.dataSource = highScoresDS

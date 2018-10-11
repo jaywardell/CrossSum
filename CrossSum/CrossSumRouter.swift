@@ -82,6 +82,7 @@ extension CrossSumRouter {
     
     private func restoreHighScores() {
         welcomeScreen.highScores = UserDefaults.standard.highScores
+        welcomeScreen.lastHighScore = UserDefaults.standard.lastHighScore
     }
 }
 

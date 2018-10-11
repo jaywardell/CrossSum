@@ -11,10 +11,12 @@ import Foundation
 extension UserDefaults {
     
     private static let HighScoresKey = "highscores"
+    private static let LastHighScoreKey = "lasthighscore"
 
     func addHighScore(_ newscore:HighScore) {
         
         highScores.append(newscore)
+        lastHighScore = newscore
     }
     
     private(set) var highScores : [HighScore] {
@@ -38,4 +40,17 @@ extension UserDefaults {
             set(encoded, forKey: UserDefaults.HighScoresKey)
         }
     }
+    
+    private(set) var lastHighScore : HighScore? {
+        get {
+            guard let d = data(forKey: UserDefaults.LastHighScoreKey),
+                let decoded = try? JSONDecoder().decode(HighScore.self, from: d) else { return nil }
+            return decoded
+        }
+        set {
+            let encoded = try! JSONEncoder().encode(newValue)
+            set(encoded, forKey: UserDefaults.LastHighScoreKey)
+        }
+    }
+
 }
