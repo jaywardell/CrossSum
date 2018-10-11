@@ -114,7 +114,7 @@ class Grid {
 
 // MARK:- WordSearchDataSource
 
-extension Grid : WordSearchDataSource {
+extension Grid : ExpressionSymbolViewDataSource {
     var rows: Int {
         return symbols.count
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol RoundDisplayDelegate {
+protocol RoundDisplayDelegate : NSObjectProtocol {
     func willReplaceGrid(_ round:Round)
     func didReplaceGrid(_ round:Round)
 }
@@ -82,13 +82,15 @@ final class Round {
     
     // MARK:-
     
-    // TODO: abstract this into a protocol of things you need to support a wordsearchview
-    // probably a protocol called ExpressionSelector
-    var wordSearchView : WordSearchView? = nil {
+    // NOTE: as of Oct 10, 2018, expressionSymbolView and expressionSelector are the same thing in the iOS app
+    // but they don't tchnically have to be for Round to work
+    var expressionSymbolView : ExpressionSymbolPresenter?
+
+    var expressionSelector : ExpressionSelector? {
         didSet {
-            wordSearchView?.allowsDiagonalSelection = false
-            wordSearchView?.didSelect = didSelect(_:)
-            wordSearchView?.canStartSelectionWith = canStartSelection
+            expressionSelector?.allowsDiagonalSelection = false
+            expressionSelector?.didSelect = didSelect(_:)
+            expressionSelector?.canStartSelectionWith = canStartSelection
         }
     }
     
@@ -156,8 +158,8 @@ extension Round {
         displayDelegate?.willReplaceGrid(self)
         
         self.grid = gridFactory.gridAfter(grid)
-        wordSearchView?.dataSource = grid
-        wordSearchView?.reloadSymbols(animated:true) { [weak self] in guard let self = self else { return }
+        expressionSymbolView?.symbolDataSource = grid
+        expressionSymbolView?.reloadSymbols(animated:true) { [weak self] in guard let self = self else { return }
         
             self.showNextTargetSolution()
             
@@ -252,16 +254,16 @@ extension Round {
 // MARK:- Hints
 
 extension Round {
-    /// Tells the WordSearchView to show a selection over the first view of ONE OF the possible ways to get the solution, chosen randomly
+    /// Tells the ExpressionSelector to show a selection over the first symbol of ONE OF the possible ways to get the solution, chosen randomly
     func showAHint() {
         guard hints > 0 else { return }
         guard let thisWay = hintedCoordinate() else { return }
         
-        wordSearchView?.select(thisWay.0, thisWay.1, animated:true)
+        expressionSelector?.select(thisWay.0, thisWay.1, animated:true)
         hints -= 1
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            self?.wordSearchView?.removeSelection(animated: true)
+            self?.expressionSelector?.removeSelection(animated: true) {}
         }
     }
     
@@ -286,16 +288,16 @@ extension Round {
         }) else { return }
 
         timeKeeper?.stop()
-        wordSearchView?.isUserInteractionEnabled = false
-        wordSearchView?.select(from: thisWay.0.0, thisWay.0.1, to: thisWay.1.0, thisWay.1.1)
+        expressionSelector?.prepareToSimulateSelection()
+        expressionSelector?.select(from: thisWay.0.0, thisWay.0.1, to: thisWay.1.0, thisWay.1.1, animated:true)
         
         skips -= 1
         canEarnASkipThisGrid = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.wordSearchView?.removeSelection(animated: true) {
+            self?.expressionSelector?.removeSelection(animated: true) {
                 self?.advanceToNextTargetSolution()
-                self?.wordSearchView?.isUserInteractionEnabled = true
+                self?.expressionSelector?.doneSimulatingSelection()
             }
         }
     }
@@ -304,8 +306,9 @@ extension Round {
 
 // TODO: I'm being prompted for 2 character expressions (e.g. -5)
 // this should not happen!!!!!!
+// actually, I think I'm just being shown hints for them, not being prompted for them, there are probably longer solutions available in these cases
 
-// MARK:- WordSearchView Methods
+// MARK:- ExpressionSelector Methods
 
 extension Round {
     

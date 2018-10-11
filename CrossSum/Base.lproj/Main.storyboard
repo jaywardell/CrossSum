@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H7q-YO-3RR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -86,170 +86,6 @@
             <point key="canvasLocation" x="-119" y="79"/>
         </scene>
         <!--Game View Controller-->
-        <scene sceneID="w0i-RD-4pj">
-            <objects>
-                <viewController storyboardIdentifier="GameViewController_old" id="H7q-YO-3RR" customClass="GameViewController" customModule="CrossSum" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fAQ-CG-INI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fy2-xd-F8H" customClass="WordSearchView" customModule="CrossSum" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ivz-NB-Y3C" customClass="StatementLabel" customModule="CrossSum" customModuleProvider="target">
-                                        <rect key="frame" x="40" y="77" width="240" height="22"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="240" id="7bi-17-146"/>
-                                            <constraint firstAttribute="height" constant="22" id="x8P-ZO-aw9"/>
-                                        </constraints>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91F-wm-LNm">
-                                        <rect key="frame" x="28" y="410" width="30" height="30"/>
-                                        <state key="normal" title="Hint"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cw4-a6-YPu">
-                                        <rect key="frame" x="270" y="410" width="30" height="30"/>
-                                        <state key="normal" title="Skip"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="no7-ZV-DN6">
-                                        <rect key="frame" x="28" y="20" width="34" height="34"/>
-                                        <state key="normal" title="Quit"/>
-                                    </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJS-vc-ux1" customClass="TimeRemainingView" customModule="CrossSum" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="458" width="320" height="2"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="vKn-Bc-0mx"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="maxTime">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="remainingTime">
-                                                <real key="value" value="0.69999999999999996"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLN-qW-RPt" customClass="StageLabel" customModule="CrossSum" customModuleProvider="target">
-                                        <rect key="frame" x="255" y="27.5" width="45" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYx-N7-epv" customClass="EventDisplayLabel" customModule="CrossSum" customModuleProvider="target">
-                                        <rect key="frame" x="255" y="77" width="45" height="22"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="45" id="CNO-y6-Q2x"/>
-                                            <constraint firstAttribute="height" constant="22" id="r6k-7n-Wq4"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="vPosition" destination="7cD-Cf-APq" id="O6B-dJ-efn"/>
-                                        </connections>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Pe-WG-reh" customClass="ScoreLabel" customModule="CrossSum" customModuleProvider="target">
-                                        <rect key="frame" x="255" y="56.5" width="45" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0C-hS-F8f">
-                                        <rect key="frame" x="66" y="414" width="42" height="22"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ptV-qQ-w8y" customClass="EventDisplayLabel" customModule="CrossSum" customModuleProvider="target">
-                                        <rect key="frame" x="66" y="384" width="42" height="22"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="RpI-5M-Bb9"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="vPosition" destination="da1-oJ-r5B" id="aOm-hX-seW"/>
-                                        </connections>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4sp-6N-FdS" customClass="EventDisplayLabel" customModule="CrossSum" customModuleProvider="target">
-                                        <rect key="frame" x="137.5" y="414" width="45" height="22"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="45" id="Vn5-gf-RsE"/>
-                                            <constraint firstAttribute="height" constant="22" id="fWP-cI-zAq"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="vPosition" destination="dU2-co-lUX" id="rLE-g4-kzp"/>
-                                        </connections>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQH-Hn-sAB">
-                                        <rect key="frame" x="220" y="415" width="42" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.90000000000000002" green="0.79999748059999998" blue="0.67500000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="6Pe-WG-reh" firstAttribute="trailing" secondItem="Cw4-a6-YPu" secondAttribute="trailing" id="08Z-Ag-mKK"/>
-                                    <constraint firstItem="ivz-NB-Y3C" firstAttribute="centerY" secondItem="Fy2-xd-F8H" secondAttribute="centerY" multiplier="13/34" id="3Jg-Ql-Xxf"/>
-                                    <constraint firstItem="PYx-N7-epv" firstAttribute="centerY" secondItem="ivz-NB-Y3C" secondAttribute="centerY" id="7cD-Cf-APq"/>
-                                    <constraint firstItem="pJS-vc-ux1" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leading" id="9CT-1r-O7Y"/>
-                                    <constraint firstItem="IQH-Hn-sAB" firstAttribute="centerY" secondItem="Cw4-a6-YPu" secondAttribute="centerY" id="9e2-u3-R4D"/>
-                                    <constraint firstItem="no7-ZV-DN6" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leading" constant="28" id="BAo-sm-Rug"/>
-                                    <constraint firstItem="cLN-qW-RPt" firstAttribute="leading" secondItem="6Pe-WG-reh" secondAttribute="leading" id="Em5-Fv-kDh"/>
-                                    <constraint firstItem="6Pe-WG-reh" firstAttribute="top" secondItem="cLN-qW-RPt" secondAttribute="bottom" constant="8" id="ILT-rJ-5FF"/>
-                                    <constraint firstAttribute="bottom" secondItem="91F-wm-LNm" secondAttribute="bottom" constant="20" id="Iu2-rW-hzy"/>
-                                    <constraint firstItem="PYx-N7-epv" firstAttribute="trailing" secondItem="cLN-qW-RPt" secondAttribute="trailing" id="OsN-xi-oTU"/>
-                                    <constraint firstItem="Cw4-a6-YPu" firstAttribute="centerY" secondItem="91F-wm-LNm" secondAttribute="centerY" id="WEV-MW-rF9"/>
-                                    <constraint firstItem="4sp-6N-FdS" firstAttribute="centerX" secondItem="Fy2-xd-F8H" secondAttribute="centerX" id="XgJ-5m-x25"/>
-                                    <constraint firstAttribute="bottom" secondItem="pJS-vc-ux1" secondAttribute="bottom" id="bcy-g6-6bC"/>
-                                    <constraint firstItem="4sp-6N-FdS" firstAttribute="centerY" secondItem="Cw4-a6-YPu" secondAttribute="centerY" id="dU2-co-lUX"/>
-                                    <constraint firstItem="i0C-hS-F8f" firstAttribute="top" secondItem="ptV-qQ-w8y" secondAttribute="bottom" constant="8" id="da1-oJ-r5B"/>
-                                    <constraint firstItem="ptV-qQ-w8y" firstAttribute="centerX" secondItem="i0C-hS-F8f" secondAttribute="centerX" id="fdR-1c-JT6"/>
-                                    <constraint firstItem="i0C-hS-F8f" firstAttribute="leading" secondItem="91F-wm-LNm" secondAttribute="trailing" constant="8" id="grl-Xe-odp"/>
-                                    <constraint firstItem="no7-ZV-DN6" firstAttribute="top" secondItem="Fy2-xd-F8H" secondAttribute="top" constant="20" id="hTQ-N0-2Tm"/>
-                                    <constraint firstItem="91F-wm-LNm" firstAttribute="centerY" secondItem="i0C-hS-F8f" secondAttribute="centerY" id="j4K-4q-u6Z"/>
-                                    <constraint firstItem="ptV-qQ-w8y" firstAttribute="width" secondItem="i0C-hS-F8f" secondAttribute="width" placeholder="YES" id="l1Y-vG-yOO"/>
-                                    <constraint firstItem="ptV-qQ-w8y" firstAttribute="height" secondItem="i0C-hS-F8f" secondAttribute="height" id="mIK-Td-zuT"/>
-                                    <constraint firstItem="cLN-qW-RPt" firstAttribute="firstBaseline" secondItem="no7-ZV-DN6" secondAttribute="firstBaseline" id="pFI-lP-x5d"/>
-                                    <constraint firstItem="91F-wm-LNm" firstAttribute="leading" secondItem="Fy2-xd-F8H" secondAttribute="leadingMargin" constant="20" id="qpE-fC-4ax"/>
-                                    <constraint firstItem="Cw4-a6-YPu" firstAttribute="leading" secondItem="IQH-Hn-sAB" secondAttribute="trailing" constant="8" id="rYT-sG-hSN"/>
-                                    <constraint firstAttribute="trailing" secondItem="pJS-vc-ux1" secondAttribute="trailing" id="sbg-nu-sGE"/>
-                                    <constraint firstAttribute="trailing" secondItem="Cw4-a6-YPu" secondAttribute="trailing" constant="20" id="uEz-RV-ytv"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Fy2-xd-F8H" firstAttribute="leading" secondItem="oUT-VS-hdC" secondAttribute="leading" id="7Fl-AS-y3U"/>
-                            <constraint firstItem="Fy2-xd-F8H" firstAttribute="top" secondItem="oUT-VS-hdC" secondAttribute="top" id="EpR-68-gPt"/>
-                            <constraint firstItem="ivz-NB-Y3C" firstAttribute="centerX" secondItem="oUT-VS-hdC" secondAttribute="centerX" id="EqO-xX-jkd"/>
-                            <constraint firstItem="oUT-VS-hdC" firstAttribute="bottom" secondItem="Fy2-xd-F8H" secondAttribute="bottom" id="QSN-Hs-aRk"/>
-                            <constraint firstItem="oUT-VS-hdC" firstAttribute="trailing" secondItem="Fy2-xd-F8H" secondAttribute="trailing" id="iSx-wQ-pJ8"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="oUT-VS-hdC"/>
-                    </view>
-                    <connections>
-                        <outlet property="hintCountAddLabel" destination="ptV-qQ-w8y" id="Ghg-Uy-f4D"/>
-                        <outlet property="hintCountLabel" destination="i0C-hS-F8f" id="lNW-TM-55j"/>
-                        <outlet property="quitButton" destination="no7-ZV-DN6" id="ngx-L3-tmr"/>
-                        <outlet property="scoreAddLabel" destination="PYx-N7-epv" id="SYI-6X-II8"/>
-                        <outlet property="scoreLabel" destination="6Pe-WG-reh" id="rca-vC-Lf9"/>
-                        <outlet property="scoreTimeAddLabel" destination="4sp-6N-FdS" id="aB0-pZ-lGq"/>
-                        <outlet property="showHintButton" destination="91F-wm-LNm" id="reu-0N-ipv"/>
-                        <outlet property="skipButton" destination="Cw4-a6-YPu" id="PU4-1q-q73"/>
-                        <outlet property="skipCountLabel" destination="IQH-Hn-sAB" id="Xn8-LZ-z7A"/>
-                        <outlet property="stageLabel" destination="cLN-qW-RPt" id="4i9-Xx-3RW"/>
-                        <outlet property="statementLabel" destination="ivz-NB-Y3C" id="BwW-UL-VFa"/>
-                        <outlet property="timeRemainingView" destination="pJS-vc-ux1" id="nGo-6y-orS"/>
-                        <outlet property="wordSearchView" destination="Fy2-xd-F8H" id="xYu-fd-h5g"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q3s-Bf-eaB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="556" y="79"/>
-        </scene>
-        <!--Game View Controller-->
         <scene sceneID="Cj6-8d-dH0">
             <objects>
                 <viewController storyboardIdentifier="GameViewController" id="BS2-bp-rzp" customClass="GameViewController" customModule="CrossSum" customModuleProvider="target" sceneMemberID="viewController">
@@ -257,7 +93,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SRU-7P-tZe" customClass="WordSearchView" customModule="CrossSum" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SRU-7P-tZe" customClass="ExpressionChoserView" customModule="CrossSum" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="160" width="320" height="320"/>
                                 <color key="backgroundColor" red="0.90000000000000002" green="0.79999748059999998" blue="0.67500000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -418,6 +254,7 @@
                         <viewLayoutGuide key="safeArea" id="24G-rY-wf5"/>
                     </view>
                     <connections>
+                        <outlet property="expressionChooserView" destination="SRU-7P-tZe" id="OeQ-86-1Mm"/>
                         <outlet property="hintCountAddLabel" destination="rol-wr-oMw" id="Wkl-8y-KFC"/>
                         <outlet property="hintCountLabel" destination="wg8-gn-hBt" id="SPS-ct-OTm"/>
                         <outlet property="playPauseButton" destination="3Ry-bW-dsy" id="rAa-GM-CIw"/>
@@ -431,7 +268,6 @@
                         <outlet property="stageLabel" destination="bw5-8v-rmR" id="30F-JI-zhL"/>
                         <outlet property="statementLabel" destination="mBw-4R-Gy7" id="MnF-lC-NSf"/>
                         <outlet property="timeRemainingView" destination="BSH-5O-qvh" id="tMv-YJ-2aV"/>
-                        <outlet property="wordSearchView" destination="SRU-7P-tZe" id="yBK-Ic-ZGC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jaT-Ae-lF3" userLabel="First Responder" sceneMemberID="firstResponder"/>

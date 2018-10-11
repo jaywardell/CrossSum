@@ -28,6 +28,8 @@
 		7C3C3F6A2159C45500BD026A /* RationalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F692159C45500BD026A /* RationalTests.swift */; };
 		7C3C3F6C2159C4E800BD026A /* Rational.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F6B2159C4E800BD026A /* Rational.swift */; };
 		7C4136DE216EE22600B92278 /* UIViewController+Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4136DD216EE22600B92278 /* UIViewController+Debugging.swift */; };
+		7C4136E0216EEB9800B92278 /* ExpressionSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4136DF216EEB9800B92278 /* ExpressionSelector.swift */; };
+		7C4136E2216EEBB400B92278 /* ExpressionSymbolPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4136E1216EEBB400B92278 /* ExpressionSymbolPresenter.swift */; };
 		7C573FDA21699119007C7DF3 /* EventDisplayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FD921699119007C7DF3 /* EventDisplayLabel.swift */; };
 		7C573FDC2169C007007C7DF3 /* ScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */; };
 		7C573FDE2169C2CF007C7DF3 /* StageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */; };
@@ -53,7 +55,7 @@
 		7C8BD3C62160FCA4002BC785 /* CenteredLabelTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3C52160FCA4002BC785 /* CenteredLabelTestsViewController.swift */; };
 		7C8BD3C921610D1C002BC785 /* InterceptUnsatisfiableConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3C821610D1C002BC785 /* InterceptUnsatisfiableConstraints.m */; };
 		7C8BD3CC21613900002BC785 /* UIFont+CoreTextConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3CB21613900002BC785 /* UIFont+CoreTextConvenience.swift */; };
-		7C8BD3D121614789002BC785 /* WordSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D021614789002BC785 /* WordSearchView.swift */; };
+		7C8BD3D121614789002BC785 /* ExpressionChoserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D021614789002BC785 /* ExpressionChoserView.swift */; };
 		7C8BD3D3216147AB002BC785 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D2216147AA002BC785 /* GameViewController.swift */; };
 		7C8BD3D521614806002BC785 /* CGPoint+Geomtery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D421614806002BC785 /* CGPoint+Geomtery.swift */; };
 		7C8BD3D72161481E002BC785 /* CGPoint+LinearAlgebra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D62161481E002BC785 /* CGPoint+LinearAlgebra.swift */; };
@@ -112,6 +114,8 @@
 		7C3C3F692159C45500BD026A /* RationalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RationalTests.swift; sourceTree = "<group>"; };
 		7C3C3F6B2159C4E800BD026A /* Rational.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rational.swift; sourceTree = "<group>"; };
 		7C4136DD216EE22600B92278 /* UIViewController+Debugging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Debugging.swift"; sourceTree = "<group>"; };
+		7C4136DF216EEB9800B92278 /* ExpressionSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionSelector.swift; sourceTree = "<group>"; };
+		7C4136E1216EEBB400B92278 /* ExpressionSymbolPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionSymbolPresenter.swift; sourceTree = "<group>"; };
 		7C573FD921699119007C7DF3 /* EventDisplayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDisplayLabel.swift; sourceTree = "<group>"; };
 		7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreLabel.swift; sourceTree = "<group>"; };
 		7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageLabel.swift; sourceTree = "<group>"; };
@@ -139,7 +143,7 @@
 		7C8BD3C821610D1C002BC785 /* InterceptUnsatisfiableConstraints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterceptUnsatisfiableConstraints.m; sourceTree = "<group>"; };
 		7C8BD3CA216122A9002BC785 /* InterceptUnsatisfiableConstraints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterceptUnsatisfiableConstraints.h; sourceTree = "<group>"; };
 		7C8BD3CB21613900002BC785 /* UIFont+CoreTextConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CoreTextConvenience.swift"; sourceTree = "<group>"; };
-		7C8BD3D021614789002BC785 /* WordSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordSearchView.swift; sourceTree = "<group>"; };
+		7C8BD3D021614789002BC785 /* ExpressionChoserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpressionChoserView.swift; sourceTree = "<group>"; };
 		7C8BD3D2216147AA002BC785 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		7C8BD3D421614806002BC785 /* CGPoint+Geomtery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Geomtery.swift"; sourceTree = "<group>"; };
 		7C8BD3D62161481E002BC785 /* CGPoint+LinearAlgebra.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+LinearAlgebra.swift"; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				7C3C3F552159974600BD026A /* Presenters.swift */,
+				7C4136E1216EEBB400B92278 /* ExpressionSymbolPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				7C8BD3E02161C363002BC785 /* Round.swift */,
+				7C4136DF216EEB9800B92278 /* ExpressionSelector.swift */,
 				7C3C3F6B2159C4E800BD026A /* Rational.swift */,
 				7C84DA83215B240800D3B36F /* Statement.swift */,
 				7C8BD3DE2161ABAC002BC785 /* Grid.swift */,
@@ -305,7 +311,7 @@
 		7C573FE0216A77A1007C7DF3 /* Data Views */ = {
 			isa = PBXGroup;
 			children = (
-				7C8BD3D021614789002BC785 /* WordSearchView.swift */,
+				7C8BD3D021614789002BC785 /* ExpressionChoserView.swift */,
 				7C3C3F4F2159961400BD026A /* CenteredLabel.swift */,
 				7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */,
 				7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */,
@@ -517,17 +523,19 @@
 				7C8BD3E62162F230002BC785 /* GridFactory.swift in Sources */,
 				7C3C3F24215995EE00BD026A /* ViewController.swift in Sources */,
 				7C573FDA21699119007C7DF3 /* EventDisplayLabel.swift in Sources */,
-				7C8BD3D121614789002BC785 /* WordSearchView.swift in Sources */,
+				7C8BD3D121614789002BC785 /* ExpressionChoserView.swift in Sources */,
 				7C573FDE2169C2CF007C7DF3 /* StageLabel.swift in Sources */,
 				7C334B202168223E00AC0CF9 /* TimeRemainingView.swift in Sources */,
 				7C8BD3CC21613900002BC785 /* UIFont+CoreTextConvenience.swift in Sources */,
 				7C3C3F522159961400BD026A /* UIView+AutolayoutConvenience.swift in Sources */,
+				7C4136E0216EEB9800B92278 /* ExpressionSelector.swift in Sources */,
 				7C8BD3C22160FAB8002BC785 /* UIView+AutolayoutSetup.swift in Sources */,
 				7C573FE6216A895C007C7DF3 /* UserDefaults+Properties.swift in Sources */,
 				7C334AFE2165B1C500AC0CF9 /* UIView+AnimationConvenience.swift in Sources */,
 				7C3C3F22215995EE00BD026A /* AppDelegate.swift in Sources */,
 				7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */,
 				7C8BD3D921614833002BC785 /* CGVector+LinearAlgebra.swift in Sources */,
+				7C4136E2216EEBB400B92278 /* ExpressionSymbolPresenter.swift in Sources */,
 				7C8BD3E82162F8D9002BC785 /* GameReadyGridFactory.swift in Sources */,
 				7C8BD3D3216147AB002BC785 /* GameViewController.swift in Sources */,
 				7C8BD3E12161C363002BC785 /* Round.swift in Sources */,

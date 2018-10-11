@@ -1,5 +1,5 @@
 //
-//  WordSearchView.swift
+//  ExpressionChoserView.swift
 //  Word Search
 //
 //  Created by Joseph Wardell on 9/11/18.
@@ -8,50 +8,9 @@
 
 import UIKit
 
-protocol WordSearchDataSource {
-    
-    var rows : Int { get }
-    var columns : Int { get }
-    
-    func symbol(at row:Int, _ column:Int) -> String
-}
-
-extension WordSearchDataSource {
-    
-    func stringForSymbols(between cell1:(Int, Int), and cell2:(Int, Int)) -> String {
-        if cell1 == cell2 {
-            return symbol(at: cell1.0, cell1.1)
-        }
-        
-        let (r1, c1) = cell1
-        let (r2, c2) = cell2
-        
-        let dr = r2 - r1
-        let dc = c2 - c1
-        let ddr = dr > 0 ? 1 : dr < 0 ? -1 : 0
-        let ddc = dc > 0 ? 1 : dc < 0 ? -1 : 0
-        
-        var out = ""
-        
-        var c = (row:r1, column:c1)
-        while c != (r2, c2) {
-            
-            out += symbol(at:c.row, c.column)
-            
-            c.row += ddr
-            c.column += ddc
-        }
-        
-        out += symbol(at: r2, c2)
-        
-        return out
-    }
-}
-
-// MARK:-
 
 /// presents a square word search grid
-@IBDesignable class WordSearchView: UIView {
+@IBDesignable class ExpressionChoserView: UIView {
     
     var contentView : UIView { return rowsStackView! }
     
@@ -79,25 +38,8 @@ extension WordSearchDataSource {
         }
     }
     
-    var dataSource : WordSearchDataSource?
+    var symbolDataSource : ExpressionSymbolViewDataSource?
     
-    static let DidReloadSymbols = NSNotification.Name("WordSearchView.DidReloadSymbolds")
-
-    public func reloadSymbols(animated:Bool, _ completion:@escaping ()->()) {
-        
-        fadeOutLabels(animated: animated) { [weak self] in
-            
-            self?.updateLayout()
-            self?.updateLetters()
-            self?.setNeedsLayout()
-            
-            self?.fadeInLabels(animated: animated) {
-                
-                completion()
-                NotificationCenter.default.post(name: WordSearchView.DidReloadSymbols, object: self)
-            }
-        }
-    }
     
     private func fadeOutLabels(animated:Bool, _ completion:@escaping ()->()) {
         let duration = animated ? 0.2 : 0
@@ -142,12 +84,15 @@ extension WordSearchDataSource {
         }
     }
 
+    // MARK:- ExpressionSelector
     var allowsDiagonalSelection = true
     
     var isSelecting : ((String)->())?
     var didSelect : ((String)->())?
     var canStartSelectionWith : (String?)->Bool = { _ in return true }
 
+    // MARK:-
+    
     private var rowsStackView: UIStackView?
     
     override func didMoveToSuperview() {
@@ -199,69 +144,17 @@ extension WordSearchDataSource {
 
     static let SelectionColorAlpha : CGFloat = 0.2
 
-    var selectionColor : UIColor = UIColor.orange.withAlphaComponent(WordSearchView.SelectionColorAlpha) {
+    var selectionColor : UIColor = UIColor.orange.withAlphaComponent(ExpressionChoserView.SelectionColorAlpha) {
         didSet {
             var alpha : CGFloat = 0
             selectionColor.getRed(nil, green: nil, blue: nil, alpha: &alpha)
-            if alpha != WordSearchView.SelectionColorAlpha {
-                selectionColor = selectionColor.withAlphaComponent(WordSearchView.SelectionColorAlpha)
+            if alpha != ExpressionChoserView.SelectionColorAlpha {
+                selectionColor = selectionColor.withAlphaComponent(ExpressionChoserView.SelectionColorAlpha)
             }
         }
     }
     private var selectionLayer : CALayer?
     
-    /// Shows a selection over the view at the passed in coordinates
-    ///
-    /// NOTE: this does not notify listeners of a change in selection.
-    /// It simply displays the selection UI
-    ///
-    /// - Parameters:
-    ///   - row: the row of the view you wish to represent as selected
-    ///   - column: the column of the view you wish to represent as selected
-    func select(_ row:Int, _ column:Int, animated:Bool = false) {
-        let l = label(at: row, column)
-        showSelection(over: l, animated:animated)
-    }
-    
-    /// Shows a selection over the views at the passed in coordinates,
-    /// starting at the view at (row1, column1)
-    /// and extending through the view at (row2, column2)
-    ///
-    /// - Parameters:
-    ///   - row1: the row of the view you wish to represent as the start of the selection
-    ///   - column1: the column of the view you wish to represent as the start of the selection
-    ///   - row2: the row of the view you wish to represent as the end of the selection
-    ///   - column2: the column of the view you wish to represent as the end of the selection
-    func select(from row1:Int, _ column1:Int, to row2:Int, _ column2:Int, animated:Bool = false) {
-        let l1 = label(at: row1, column1)
-        let l2 = label(at: row2, column2)
-        
-        showSelection(from: l1, to: l2, animated:animated)
-    }
-    
-    func removeSelection(animated:Bool = false, completion:@escaping ()->() = {}) {
-        
-        if let layer = selectionLayer {
-            
-            if animated {
-                
-                    CATransaction.begin()
-                    CATransaction.setCompletionBlock {
-                        layer.removeFromSuperlayer()
-                        completion()
-                    }
-                    CATransaction.setAnimationDuration(0.3)
-                    
-                    layer.opacity = 0
-                    
-                    CATransaction.commit()
-                }
-            else {
-                layer.removeFromSuperlayer()
-                completion()
-            }
-        }
-    }
     
     private func createSelectionLayer() -> CALayer {
         let out = CALayer()
@@ -437,13 +330,13 @@ extension WordSearchDataSource {
         let (r1, c1) = coordinates(of: label1)!
         let (r2, c2) = coordinates(of: label2)!
 
-        return dataSource?.stringForSymbols(between: (r1, c1), and: (r2, c2)) ?? ""
+        return symbolDataSource?.stringForSymbols(between: (r1, c1), and: (r2, c2)) ?? ""
    }
     
     // MARK:-
 
     private func updateLetters() {
-        guard let dataSource = dataSource else { return }
+        guard let dataSource = symbolDataSource else { return }
         
         for row in 0..<dataSource.rows {
             for column in 0..<dataSource.columns {
@@ -460,7 +353,7 @@ extension WordSearchDataSource {
     
     private func coordinates(of label:UILabel) -> (row:Int, column:Int)? {
         guard let index = labels.index(of: label),
-        let dataSource = dataSource else { return nil }
+        let dataSource = symbolDataSource else { return nil }
         
         return (row:index/dataSource.columns, column:index%dataSource.columns)
     }
@@ -499,7 +392,7 @@ extension WordSearchDataSource {
     // MARK:- Layout
 
     private func updateLayout() {
-        guard let dataSource = dataSource else { return }
+        guard let dataSource = symbolDataSource else { return }
         
         let rowViews = (0..<dataSource.rows).map() { _ in
             createRowView(width: dataSource.columns)
@@ -512,10 +405,10 @@ extension WordSearchDataSource {
         NotificationCenter.default.addObserver(self, selector: #selector(choiceFontDidChange(_:)), name: ProportionalLabel.DidLayoutSubviews, object: labels.first)
     }
     
-    static let ChoiceFontDidChange = Notification.Name("WordSearchView.ChoiceFOntDidChange")
+    static let ChoiceFontDidChange = Notification.Name("ExpressionChoserView.ChoiceFontDidChange")
 
     @objc func choiceFontDidChange(_ notification:Notification) {
-        NotificationCenter.default.post(name: WordSearchView.ChoiceFontDidChange, object: self)
+        NotificationCenter.default.post(name: ExpressionChoserView.ChoiceFontDidChange, object: self)
     }
     
     private func createRowsStackView(for rowViews:[UIStackView]) -> UIStackView {
@@ -552,6 +445,92 @@ extension WordSearchDataSource {
     }
 }
 
+
+// MARK:- ExpressionSymbolView
+
+extension ExpressionChoserView : ExpressionSymbolPresenter {
+    
+    public func reloadSymbols(animated:Bool, _ completion:@escaping ()->()) {
+        
+        fadeOutLabels(animated: animated) { [weak self] in
+            
+            self?.updateLayout()
+            self?.updateLetters()
+            self?.setNeedsLayout()
+            
+            self?.fadeInLabels(animated: animated) {
+                
+                completion()
+            }
+        }
+    }
+}
+
+// MARK:- ExpressionSelector
+
+extension ExpressionChoserView : ExpressionSelector {
+
+    /// Shows a selection over the view at the passed in coordinates
+    ///
+    /// NOTE: this does not notify listeners of a change in selection.
+    /// It simply displays the selection UI
+    ///
+    /// - Parameters:
+    ///   - row: the row of the view you wish to represent as selected
+    ///   - column: the column of the view you wish to represent as selected
+    func select(_ row:Int, _ column:Int, animated:Bool) {
+        let l = label(at: row, column)
+        showSelection(over: l, animated:animated)
+    }
+    
+    /// Shows a selection over the views at the passed in coordinates,
+    /// starting at the view at (row1, column1)
+    /// and extending through the view at (row2, column2)
+    ///
+    /// - Parameters:
+    ///   - row1: the row of the view you wish to represent as the start of the selection
+    ///   - column1: the column of the view you wish to represent as the start of the selection
+    ///   - row2: the row of the view you wish to represent as the end of the selection
+    ///   - column2: the column of the view you wish to represent as the end of the selection
+    func select(from row1:Int, _ column1:Int, to row2:Int, _ column2:Int, animated:Bool) {
+        let l1 = label(at: row1, column1)
+        let l2 = label(at: row2, column2)
+        
+        showSelection(from: l1, to: l2, animated:animated)
+    }
+    
+    func removeSelection(animated:Bool = false, completion:@escaping ()->() = {}) {
+        
+        if let layer = selectionLayer {
+            
+            if animated {
+                
+                CATransaction.begin()
+                CATransaction.setCompletionBlock {
+                    layer.removeFromSuperlayer()
+                    completion()
+                }
+                CATransaction.setAnimationDuration(0.3)
+                
+                layer.opacity = 0
+                
+                CATransaction.commit()
+            }
+            else {
+                layer.removeFromSuperlayer()
+                completion()
+            }
+        }
+    }
+
+    func prepareToSimulateSelection() {
+        isUserInteractionEnabled = false
+    }
+    
+    func doneSimulatingSelection() {
+        isUserInteractionEnabled = true
+    }
+}
 
 // MARK:-
 

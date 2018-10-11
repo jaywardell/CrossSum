@@ -10,7 +10,7 @@ import UIKit
 
 class GameViewController: UIViewController {
     
-    @IBOutlet weak var wordSearchView: WordSearchView!
+    @IBOutlet weak var expressionChooserView: ExpressionChoserView!
     @IBOutlet weak var statementLabel: StatementLabel!
     @IBOutlet weak var scoreLabel: ScoreLabel!
     @IBOutlet weak var stageLabel: StageLabel!
@@ -89,12 +89,12 @@ class GameViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: UIApplication.shared)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: UIApplication.shared)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(wordSearchViewChoiceFontDidChange), name: WordSearchView.ChoiceFontDidChange, object: wordSearchView)
+        NotificationCenter.default.addObserver(self, selector: #selector(axpressionChooserViewChoiceFontDidChange), name: ExpressionChoserView.ChoiceFontDidChange, object: expressionChooserView)
         
         view.backgroundColor = .black
         [
         statementLabel,
-        wordSearchView,
+        expressionChooserView,
         scoreLabel,
         stageLabel,
         hintCountLabel,
@@ -102,7 +102,7 @@ class GameViewController: UIViewController {
         ].forEach() { $0.backgroundColor = nil }
         
         statementLabel.textColor = .white
-        wordSearchView.textColor = .white
+        expressionChooserView.textColor = .white
         [scoreLabel,
         stageLabel,
         hintCountLabel,
@@ -116,8 +116,8 @@ class GameViewController: UIViewController {
 
         // TODO: I shouldn't need this, but right now I do, why?
         view.tintColor = UIColor(hue: 164/360, saturation: 1, brightness: 21/34, alpha: 1)
-        wordSearchView.selectionColor = view.tintColor
-        statementLabel.highlightColor = wordSearchView.selectionColor
+        expressionChooserView.selectionColor = view.tintColor
+        statementLabel.highlightColor = expressionChooserView.selectionColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,7 +130,7 @@ class GameViewController: UIViewController {
         
         round?.begin()
         
-        wordSearchView.textFont = displayFont
+        expressionChooserView.textFont = displayFont
         
         updatePlayPauseButton()
     }
@@ -191,7 +191,7 @@ class GameViewController: UIViewController {
         // resumeGame()
     }
 
-    @objc func wordSearchViewChoiceFontDidChange(_ notification:Notification) {
+    @objc func axpressionChooserViewChoiceFontDidChange(_ notification:Notification) {
         matchUIToWordSearchUI()
     }
 }
@@ -207,7 +207,8 @@ extension GameViewController {
         round?.stagePresenter = stageLabel
         round?.scoreAddPresenter = scoreAddLabel
         round?.scoreTimeAddPresenter = scoreTimeAddLabel
-        round?.wordSearchView = wordSearchView
+        round?.expressionSelector = expressionChooserView
+        round?.expressionSymbolView = expressionChooserView
         round?.timeRemainingPresenter = timeRemainingView
         round?.hintCountPresenter = self
         round?.skipsCountPresenter = self
@@ -236,7 +237,7 @@ extension GameViewController {
         
         round.pause() {// [weak self] in guard let self = self else { return }
             hideGamePlayUI()
-            wordSearchView.fadeOut(duration: 0.2)
+            expressionChooserView.fadeOut(duration: 0.2)
             updatePlayPauseButton()
         }
     }
@@ -246,7 +247,7 @@ extension GameViewController {
             round.isPaused else { return }
         
         statementLabel.fadeIn(duration:0.2)
-        wordSearchView.fadeIn(duration: 0.2) { [weak self] in
+        expressionChooserView.fadeIn(duration: 0.2) { [weak self] in
             self?.round?.resume() { [weak self] in guard let self = self else { return }
                 self.updatePlayPauseButton()
                 self.showGamePlayUI()
@@ -283,8 +284,7 @@ extension GameViewController {
     
     private func matchUIToWordSearchUI() {
         
-//        let statementFont = wordSearchView.choiceFont.withSize(max(wordSearchView.choiceFont.pointSize * 34/21, statementLabel.font.pointSize))
-        let statementFont = wordSearchView.choiceFont.withSize(wordSearchView.choiceFont.pointSize * 34/21)
+        let statementFont = expressionChooserView.choiceFont.withSize(expressionChooserView.choiceFont.pointSize * 34/21)
         statementLabel.font = statementFont
     }
 
