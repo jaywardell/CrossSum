@@ -27,6 +27,7 @@
 		7C3C3F5A2159A06100BD026A /* RationalLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F592159A06100BD026A /* RationalLabelTests.swift */; };
 		7C3C3F6A2159C45500BD026A /* RationalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F692159C45500BD026A /* RationalTests.swift */; };
 		7C3C3F6C2159C4E800BD026A /* Rational.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C3F6B2159C4E800BD026A /* Rational.swift */; };
+		7C4136DE216EE22600B92278 /* UIViewController+Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4136DD216EE22600B92278 /* UIViewController+Debugging.swift */; };
 		7C573FDA21699119007C7DF3 /* EventDisplayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FD921699119007C7DF3 /* EventDisplayLabel.swift */; };
 		7C573FDC2169C007007C7DF3 /* ScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */; };
 		7C573FDE2169C2CF007C7DF3 /* StageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */; };
@@ -110,6 +111,7 @@
 		7C3C3F592159A06100BD026A /* RationalLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationalLabelTests.swift; sourceTree = "<group>"; };
 		7C3C3F692159C45500BD026A /* RationalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RationalTests.swift; sourceTree = "<group>"; };
 		7C3C3F6B2159C4E800BD026A /* Rational.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rational.swift; sourceTree = "<group>"; };
+		7C4136DD216EE22600B92278 /* UIViewController+Debugging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Debugging.swift"; sourceTree = "<group>"; };
 		7C573FD921699119007C7DF3 /* EventDisplayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDisplayLabel.swift; sourceTree = "<group>"; };
 		7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreLabel.swift; sourceTree = "<group>"; };
 		7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageLabel.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				7C3C3F23215995EE00BD026A /* ViewController.swift */,
 				7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */,
 				7C573FE3216A81DC007C7DF3 /* TableDataSource.swift */,
+				7C4136DD216EE22600B92278 /* UIViewController+Debugging.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				7C8BD3E12161C363002BC785 /* Round.swift in Sources */,
 				7C84DA77215B210700D3B36F /* Parser<Character>.swift in Sources */,
 				7C84DA75215B210700D3B36F /* Op.swift in Sources */,
+				7C4136DE216EE22600B92278 /* UIViewController+Debugging.swift in Sources */,
 				7C84DA73215B210700D3B36F /* Parser<Double>.swift in Sources */,
 				7C8BD3D521614806002BC785 /* CGPoint+Geomtery.swift in Sources */,
 				7C334AFC21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift in Sources */,
