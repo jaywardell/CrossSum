@@ -245,6 +245,8 @@ extension Round {
     func quit() {
         print("\(#function)")
         
+        timeKeeper?.stop()
+        
         NotificationCenter.default.post(name: Round.DidQuit, object: self)
     }
 }
