@@ -37,7 +37,7 @@ import UIKit
         
         backgroundColor = .clear
         
-        guard nil == layer.sublayers || layer.sublayers!.count == 0 else { return }
+        guard nil == layer.sublayers || layer.sublayers!.isEmpty else { return }
         layer.addSublayer(barLayer)
         
         updateBarLayer()

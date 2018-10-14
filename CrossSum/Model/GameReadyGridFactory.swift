@@ -37,30 +37,30 @@ struct GameReadyGridFactory : GridFactory {
         GridMutator(name: "increase size to 7x7", probability:0.8, canMutate: { $0.size == 5}, mutate: { $0.mutatedCopy(size:7)}),
 
         // expanding range
-        GridMutator(name: "include zero options",
-                    probability:0.5,
-                    canMutate: {
-                        !$0.range.contains(0) &&
-                        // until the user can subtract, zero in the range only offers trivial solutions
-                            // e.g. 2+0, 3+0, or worse:0+0
-                        $0.operators.contains(.minus) },
-                    mutate: {
-            let newRange : ClosedRange<Int> = 0...$0.range.upperBound
-            return $0.mutatedCopy(range:newRange)}),
-
-        GridMutator(name: "expand range of options",
-                    probability:1,
-                    canMutate: { _ in true },
-                    mutate: {
-
-                        // create the new range, growing it slightly
-                        let newRange = $0.range.lowerBound...(Int(Double($0.range.upperBound) * 1.25))
-
-                        // ensure that the solutionRange is at least as large as the options range
-                        let newSolutionRange = min(Rational($0.range.lowerBound), $0.solutionRange.lowerBound)...max(Rational($0.range.upperBound), $0.solutionRange.upperBound)
-
-                        return $0.mutatedCopy(range: newRange, solutionRange:newSolutionRange)
-        }),
+//        GridMutator(name: "include zero options",
+//                    probability:0.5,
+//                    canMutate: {
+//                        !$0.range.contains(0) &&
+//                        // until the user can subtract, zero in the range only offers trivial solutions
+//                            // e.g. 2+0, 3+0, or worse:0+0
+//                        $0.operators.contains(.minus) },
+//                    mutate: {
+//            let newRange : ClosedRange<Int> = 0...$0.range.upperBound
+//            return $0.mutatedCopy(range:newRange)}),
+//
+//        GridMutator(name: "expand range of options",
+//                    probability:1,
+//                    canMutate: { _ in true },
+//                    mutate: {
+//
+//                        // create the new range, growing it slightly
+//                        let newRange = $0.range.lowerBound...(Int(Double($0.range.upperBound) * 1.25))
+//
+//                        // ensure that the solutionRange is at least as large as the options range
+//                        let newSolutionRange = min(Rational($0.range.lowerBound), $0.solutionRange.lowerBound)...max(Rational($0.range.upperBound), $0.solutionRange.upperBound)
+//
+//                        return $0.mutatedCopy(range: newRange, solutionRange:newSolutionRange)
+//        }),
 
         // adding more operators
         GridMutator(name: "add operator", probability:1, canMutate: { $0.operators.count < 4 }, mutate: {
@@ -93,26 +93,26 @@ struct GameReadyGridFactory : GridFactory {
         }),
 
 
-        GridMutator(name: "double solution range",
-                    probability:0.5,
-                    canMutate: { _ in true },
-                    mutate: {
-                        // if lower bound is 0, it will still be zero
-                        // if it is negative, then it will double in magnitude
-                        $0.mutatedCopy(solutionRange: ($0.solutionRange.lowerBound * 2)...($0.solutionRange.upperBound * 2))
-                        }),
-
-        GridMutator(name: "allow infinite range",
-                    probability:0.2,
-                    canMutate: { $0.solutionRange.lowerBound < 0 },
-                    mutate: {
-                        // if lower bound is 0, it will still be zero
-                        // if it is negative, then it will double in magnitude
-                        $0.mutatedCopy(solutionRange: Rational.minimum...Rational.maximum)
-        }),
-
-        // fractional solutions
-        GridMutator(name: "allow fractional solutions", probability:1, canMutate: { !$0.allowsFractionalSolutions && $0.operators.count == 4 }, mutate: { $0.mutatedCopy(allowsFractionalSolutions:true)}),
+//        GridMutator(name: "double solution range",
+//                    probability:0.5,
+//                    canMutate: { _ in true },
+//                    mutate: {
+//                        // if lower bound is 0, it will still be zero
+//                        // if it is negative, then it will double in magnitude
+//                        $0.mutatedCopy(solutionRange: ($0.solutionRange.lowerBound * 2)...($0.solutionRange.upperBound * 2))
+//                        }),
+//
+//        GridMutator(name: "allow infinite range",
+//                    probability:0.2,
+//                    canMutate: { $0.solutionRange.lowerBound < 0 },
+//                    mutate: {
+//                        // if lower bound is 0, it will still be zero
+//                        // if it is negative, then it will double in magnitude
+//                        $0.mutatedCopy(solutionRange: Rational.minimum...Rational.maximum)
+//        }),
+//
+//        // fractional solutions
+//        GridMutator(name: "allow fractional solutions", probability:1, canMutate: { !$0.allowsFractionalSolutions && $0.operators.count == 4 }, mutate: { $0.mutatedCopy(allowsFractionalSolutions:true)}),
         
         // if nothing else works, then return a Grid with the same characteristics
         // also, every once in a while, we can have two grds in a row with the same characteristics
@@ -135,7 +135,7 @@ struct GameReadyGridFactory : GridFactory {
                 
                 // ensure that the result we return has at least one valid solution,
                 // or else try again
-                if result.solutions.count == 0 {
+                if result.solutions.isEmpty {
                     return gridAfter(grid)
                 }
                 return result

@@ -60,7 +60,7 @@ class WelcomeScreenViewController: UIViewController {
         super.viewWillAppear(animated)
         
         welcomeScreen.playButton.fadeIn(duration: 0.2)
-        welcomeScreen.highScoresLabel.isHidden = highScores.count == 0
+        welcomeScreen.highScoresLabel.isHidden = highScores.isEmpty
         
         // TODO: scroll the high scores list to the last high score
     }
