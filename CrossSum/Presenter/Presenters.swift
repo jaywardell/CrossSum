@@ -86,19 +86,3 @@ protocol TimeRemainingPresenter {
 protocol ScoreAddPresenter {
     func present(addedScore:Int)
 }
-
-protocol HintCountPresenter {
-
-    func present(hints:Int)
-}
-
-protocol SkipCountPresenter {
-    
-    func present(skips:Int)
-}
-
-/*
- RationalPresenter
- TimeRemainingPresenter
- GridPresenter
- */

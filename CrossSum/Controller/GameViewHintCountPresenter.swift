@@ -43,19 +43,19 @@ final class GameViewHintCountPresenter {
     }
 }
 
-extension GameViewHintCountPresenter : HintCountPresenter {
+extension GameViewHintCountPresenter : IntegerPresenter {
     
-    func present(hints: Int) {
-        hintCountLabel?.text = "\(hints)"
+    func present(integer: Int) {
+        hintCountLabel?.text = "\(integer)"
         
         if let lastHintCount = lastHintCount {
-            let dHints = hints - lastHintCount
+            let dHints = integer - lastHintCount
             if dHints > 0 {
                 hintsIncreased(by: dHints)
             }
         }
         
-        lastHintCount = hints
+        lastHintCount = integer
         update()
     }
 }

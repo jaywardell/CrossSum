@@ -44,14 +44,14 @@ final class Round {
 
     var hints : Int = 0 {
         didSet {
-            hintCountPresenter?.present(hints: hints)
+            hintCountPresenter?.present(integer: hints)
         }
     }
     private var hint : (Int, Int)?
 
     var skips : Int = 0 {
         didSet {
-            skipsCountPresenter?.present(skips: skips)
+            skipsCountPresenter?.present(integer: skips)
         }
     }
     private var canEarnASkipThisGrid = true
@@ -100,8 +100,8 @@ final class Round {
     var timeRemainingPresenter : TimeRemainingPresenter?
     var scoreAddPresenter : ScoreAddPresenter?
     var scoreTimeAddPresenter : ScoreAddPresenter?
-    var hintCountPresenter : HintCountPresenter?
-    var skipsCountPresenter : SkipCountPresenter?
+    var hintCountPresenter : IntegerPresenter?
+    var skipsCountPresenter : IntegerPresenter?
     
     var solutionFilter : (Rational) -> Bool = { _ in return true }
     
@@ -138,8 +138,8 @@ extension Round {
         }
         timeKeeper?.start()
         
-        hintCountPresenter?.present(hints: hints)
-        skipsCountPresenter?.present(skips:skips)
+        hintCountPresenter?.present(integer: hints)
+        skipsCountPresenter?.present(integer:skips)
     }
     
     private func presentCurrentTargetSolution() {

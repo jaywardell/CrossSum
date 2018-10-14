@@ -39,11 +39,11 @@ final class GameViewSkipCountPresenter {
     }
 }
 
-extension GameViewSkipCountPresenter : SkipCountPresenter {
+extension GameViewSkipCountPresenter : IntegerPresenter {
     
-    func present(skips: Int) {
-        skipCountLabel?.text = "\(skips)"
+    func present(integer: Int) {
+        skipCountLabel?.text = "\(integer)"
         update()
-        self.skips = skips
+        self.skips = integer
     }
 }
