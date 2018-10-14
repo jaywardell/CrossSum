@@ -31,11 +31,14 @@ class StatementLabelTests: XCTestCase {
         XCTAssertEqual(sut.expressionLabel.highlightColor, .cyan)
     }
     
+    // NOTE: the question of unsatisfiable constraints was more of an issue when StatementLabel was a custom UIView
+    // that used constraints to manage its subviews
+    // now that it's a UISTackView, I simply test for layout compliance in the UI
     func testSetStatement() {
         
         let sut = createSUT()
         let s = Statement("1+1", 2)
-        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+//        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
 
         sut.statementLabel.statement = s
         XCTAssertEqual(sut.statementLabel.statement?.expression, s.expression)
@@ -52,14 +55,14 @@ class StatementLabelTests: XCTestCase {
         XCTAssertFalse(sut.expressionLabel.isHighlighted)
 
         // we expect six issues with unsatisfiable constraints during the transition step
-        XCTAssertEqual(unsatisfiableConstraintsCount + 6, InterceptUnsatisfiableConstraints.callCount())
+//        XCTAssertEqual(unsatisfiableConstraintsCount + 6, InterceptUnsatisfiableConstraints.callCount())
         // but the layout should be satisfiable after the set
         XCTAssertFalse(sut.statementLabel.hasAmbiguousLayout)
     }
     
     func testLabelsAreEmptyWHenStatementIsNil() {
         let sut = createSUT()
-        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+//        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
 
         // ensure that thigns are nil be default
         XCTAssertNil(sut.expressionLabel.text)
@@ -82,7 +85,7 @@ class StatementLabelTests: XCTestCase {
         XCTAssertFalse(sut.expressionLabel.isHighlighted)
 
         // we expect six issues with unsatisfiable constraints during the transition step
-        XCTAssertEqual(unsatisfiableConstraintsCount + 6, InterceptUnsatisfiableConstraints.callCount())
+//        XCTAssertEqual(unsatisfiableConstraintsCount + 6, InterceptUnsatisfiableConstraints.callCount())
         // but the layout should be satisfiable after the set
         XCTAssertFalse(sut.statementLabel.hasAmbiguousLayout)
   }
@@ -91,7 +94,7 @@ class StatementLabelTests: XCTestCase {
         
         let sut = createSUT()
         let s = Statement("1+1")
-        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+//        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
 
         sut.statementLabel.statement = s
 
@@ -103,7 +106,7 @@ class StatementLabelTests: XCTestCase {
         XCTAssertFalse(sut.expressionLabel.isHighlighted)
 
         // we expect six issues with unsatisfiable constraints during the transition step
-        XCTAssertEqual(unsatisfiableConstraintsCount + 1, InterceptUnsatisfiableConstraints.callCount())
+//        XCTAssertEqual(unsatisfiableConstraintsCount + 1, InterceptUnsatisfiableConstraints.callCount())
         // but the layout should be satisfiable after the set
         XCTAssertFalse(sut.statementLabel.hasAmbiguousLayout)
     }
@@ -112,7 +115,7 @@ class StatementLabelTests: XCTestCase {
         
         let sut = createSUT()
         let s = Statement(nil, 2)
-        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+//        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
 
         sut.statementLabel.statement = s
         
@@ -125,7 +128,7 @@ class StatementLabelTests: XCTestCase {
         XCTAssert(sut.expressionLabel.isHighlighted)
  
         // we expect six issues with unsatisfiable constraints during the transition step
-        XCTAssertEqual(unsatisfiableConstraintsCount + 6, InterceptUnsatisfiableConstraints.callCount())
+//        XCTAssertEqual(unsatisfiableConstraintsCount + 6, InterceptUnsatisfiableConstraints.callCount())
         // but the layout should be satisfiable after the set
         XCTAssertFalse(sut.statementLabel.hasAmbiguousLayout)
     }

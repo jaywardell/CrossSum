@@ -298,10 +298,10 @@ import UIKit
         // we only care about horizontal, vertical and diagonal selections
         // ignore all others
         if abs(dr) != abs(dc) && dr != 0 && dc != 0 {
-            // TODO: flag something to indicate a non-valid selection (diagonal, not at 45° angle)
             return false
         }
         
+        // in fact, sometimes we don't even want diagonal selections (e.g. in CrossSum)
         if !allowsDiagonalSelection && (r1 != r2 && c1 != c2) {
             return false
         }

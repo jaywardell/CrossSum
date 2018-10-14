@@ -154,171 +154,174 @@ class RationalLabelTests: XCTestCase {
     }
     
     // MARK:-
+    
+    // The following tests were more necessary when RationalLabel was a custom view with constraints
+    // now that it's a UIStackView subclass, it appears to work fine in the situations where I need it onscreen
 
-    func testAutolayoutIsValid() {
-        let sut = createSUT()
-
-        XCTAssertFalse(sut.rationalLabel.translatesAutoresizingMaskIntoConstraints)
-        XCTAssertFalse(sut.wholeNumberLabel.translatesAutoresizingMaskIntoConstraints)
-        XCTAssertFalse(sut.numeratorLabel.translatesAutoresizingMaskIntoConstraints)
-        XCTAssertFalse(sut.denominatorLabel.translatesAutoresizingMaskIntoConstraints)
-        XCTAssertFalse(sut.fractionBar.translatesAutoresizingMaskIntoConstraints)
-
-        XCTAssertFalse(sut.rationalLabel.hasAmbiguousLayout)
-        XCTAssertFalse(sut.wholeNumberLabel.hasAmbiguousLayout)
-        XCTAssertFalse(sut.numeratorLabel.hasAmbiguousLayout)
-        XCTAssertFalse(sut.denominatorLabel.hasAmbiguousLayout)
-        XCTAssertFalse(sut.fractionBar.hasAmbiguousLayout)
-   }
+//    func testAutolayoutIsValid() {
+//        let sut = createSUT()
+//
+//        XCTAssertFalse(sut.rationalLabel.translatesAutoresizingMaskIntoConstraints)
+//        XCTAssertFalse(sut.wholeNumberLabel.translatesAutoresizingMaskIntoConstraints)
+//        XCTAssertFalse(sut.numeratorLabel.translatesAutoresizingMaskIntoConstraints)
+//        XCTAssertFalse(sut.denominatorLabel.translatesAutoresizingMaskIntoConstraints)
+//        XCTAssertFalse(sut.fractionBar.translatesAutoresizingMaskIntoConstraints)
+//
+//        XCTAssertFalse(sut.rationalLabel.hasAmbiguousLayout)
+//        XCTAssertFalse(sut.wholeNumberLabel.hasAmbiguousLayout)
+//        XCTAssertFalse(sut.numeratorLabel.hasAmbiguousLayout)
+//        XCTAssertFalse(sut.denominatorLabel.hasAmbiguousLayout)
+//        XCTAssertFalse(sut.fractionBar.hasAmbiguousLayout)
+//   }
 
     // TODO: I may need to test this visually, I'm getting nowhere with the code
-    func testExpandsWhenValueChangesToMixedNumber() {
-        let sut = createSUT()
-        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+//    func testExpandsWhenValueChangesToMixedNumber() {
+//        let sut = createSUT()
+//        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+//
+//        // NOTE: the magic numbers here are more or less arbitrary
+//        // they represent values returned in iOS 12 Simulator as of Sep 25, 2018
+//        // if they change in the future, that's probably okay
+//        // as long as they more or less represent the same relative values
+//        // the only ones that are really important are the metrics that are zero
+//        sut.rationalLabel.value = 5.2
+//        XCTAssertEqual(sut.rationalLabel.frame.width, 26.5+26.5)
+//        XCTAssertEqual(sut.rationalLabel.frame.height, 53.5)
+//
+//        XCTAssertEqual(sut.wholeNumberLabel.frame.width, 26.5)
+//        XCTAssertEqual(sut.wholeNumberLabel.frame.height, 53.5)
+//
+//        XCTAssertEqual(sut.numeratorLabel.frame.width, 26.5)
+//        XCTAssertEqual(sut.numeratorLabel.frame.height, 20.5)
+//
+//        XCTAssertEqual(sut.denominatorLabel.frame.width, 26.5)
+//        XCTAssertEqual(sut.denominatorLabel.frame.height, 20.5)
+//
+//        XCTAssertEqual(sut.numeratorLabel.frame.width, sut.denominatorLabel.frame.width)
+//        XCTAssertEqual(sut.numeratorLabel.frame.height, sut.denominatorLabel.frame.height)
+//
+//        XCTAssertEqual(sut.fractionBar.frame.width, 26.5)
+//        XCTAssertEqual(sut.fractionBar.frame.height, 1)
+//
+//        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
+//        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)
+//        XCTAssert(sut.wholeNumberLabel.frame.origin.x < sut.numeratorLabel.frame.origin.x)
+//
+//        // we expect one issue with unsatisfiable constraints during the transition step
+//        XCTAssertEqual(unsatisfiableConstraintsCount + 1, InterceptUnsatisfiableConstraints.callCount())
+//        // but the layout should be satisfiable after the set
+//        XCTAssertFalse(sut.rationalLabel.hasAmbiguousLayout)
+//    }
 
-        // NOTE: the magic numbers here are more or less arbitrary
-        // they represent values returned in iOS 12 Simulator as of Sep 25, 2018
-        // if they change in the future, that's probably okay
-        // as long as they more or less represent the same relative values
-        // the only ones that are really important are the metrics that are zero
-        sut.rationalLabel.value = 5.2
-        XCTAssertEqual(sut.rationalLabel.frame.width, 26.5+26.5)
-        XCTAssertEqual(sut.rationalLabel.frame.height, 53.5)
+//    func testExpandsWhenValueChangesToFraction() {
+//        let sut = createSUT()
+//        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+//
+//        // NOTE: the magic numbers here are more or less arbitrary
+//        // they represent values returned in iOS 12 Simulator as of Sep 25, 2018
+//        // if they change in the future, that's probably okay
+//        // as long as they more or less represent the same relative values
+//        // the only ones that are really important are the metrics that are zero
+//        sut.rationalLabel.value = 0.2
+//        XCTAssertEqual(sut.rationalLabel.frame.width, 26.5)
+//        XCTAssertEqual(sut.rationalLabel.frame.height, 53.5)
+//
+//        XCTAssertEqual(sut.wholeNumberLabel.frame.width, 0)
+//        XCTAssertEqual(sut.wholeNumberLabel.frame.height, 53.5)
+//
+//        XCTAssertEqual(sut.numeratorLabel.frame.width, 26.5)
+//        XCTAssertEqual(sut.numeratorLabel.frame.height, 20.5)
+//
+//        XCTAssertEqual(sut.denominatorLabel.frame.width, 26.5)
+//        XCTAssertEqual(sut.denominatorLabel.frame.height, 20.5)
+//
+//        XCTAssertEqual(sut.numeratorLabel.frame.width, sut.denominatorLabel.frame.width)
+//        XCTAssertEqual(sut.numeratorLabel.frame.height, sut.denominatorLabel.frame.height)
+//
+//        XCTAssertEqual(sut.fractionBar.frame.width, 26.5)
+//        XCTAssertEqual(sut.fractionBar.frame.height, 1)
+//
+//        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
+//        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)
+//        XCTAssert(sut.wholeNumberLabel.frame.origin.x <= sut.numeratorLabel.frame.origin.x)
+//
+//        // we expect one issue with unsatisfiable constraints during the transition step
+//        XCTAssertEqual(unsatisfiableConstraintsCount + 1, InterceptUnsatisfiableConstraints.callCount())
+//        // but the layout should be satisfiable after the set
+//        XCTAssertFalse(sut.rationalLabel.hasAmbiguousLayout)
+//   }
 
-        XCTAssertEqual(sut.wholeNumberLabel.frame.width, 26.5)
-        XCTAssertEqual(sut.wholeNumberLabel.frame.height, 53.5)
+//    func testExpandsWhenValueChangesToWholeNumber() {
+//        let sut = createSUT()
+//        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+//
+//        // NOTE: the magic numbers here are more or less arbitrary
+//        // they represent values returned in iOS 12 Simulator as of Sep 25, 2018
+//        // if they change in the future, that's probably okay
+//        // as long as they more or less represent the same relative values
+//        // the only ones that are really important are the metrics that are zero
+//        sut.rationalLabel.value = 5
+//
+//
+//
+//        XCTAssertEqual(sut.rationalLabel.frame.width, 26.5)
+//        XCTAssertEqual(sut.rationalLabel.frame.height, 20.5)
+//
+//        XCTAssertEqual(sut.wholeNumberLabel.frame.width, 26.5)
+//        XCTAssertEqual(sut.wholeNumberLabel.frame.height, 20.5)
+//
+//        XCTAssertEqual(sut.numeratorLabel.frame.width, 0)
+//        // NOTE: don't care about numeratorLabel.frame.height, becuase it's invisible
+//
+//        XCTAssertEqual(sut.denominatorLabel.frame.width, 0)
+//        // NOTE: don't care about denominatorLabel.frame.height, becuase it's invisible
+//
+//        XCTAssertEqual(sut.fractionBar.frame.width, 0)
+//        XCTAssertEqual(sut.fractionBar.frame.height, 1)
+//
+//        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
+//        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)
+//        XCTAssert(sut.wholeNumberLabel.frame.origin.x < sut.numeratorLabel.frame.origin.x)
+//
+//        XCTAssertEqual(unsatisfiableConstraintsCount, InterceptUnsatisfiableConstraints.callCount())
+//        // the layout should be satisfiable after the set
+//        XCTAssertFalse(sut.rationalLabel.hasAmbiguousLayout)
+//    }
 
-        XCTAssertEqual(sut.numeratorLabel.frame.width, 26.5)
-        XCTAssertEqual(sut.numeratorLabel.frame.height, 20.5)
-
-        XCTAssertEqual(sut.denominatorLabel.frame.width, 26.5)
-        XCTAssertEqual(sut.denominatorLabel.frame.height, 20.5)
-
-        XCTAssertEqual(sut.numeratorLabel.frame.width, sut.denominatorLabel.frame.width)
-        XCTAssertEqual(sut.numeratorLabel.frame.height, sut.denominatorLabel.frame.height)
-
-        XCTAssertEqual(sut.fractionBar.frame.width, 26.5)
-        XCTAssertEqual(sut.fractionBar.frame.height, 1)
-        
-        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
-        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)
-        XCTAssert(sut.wholeNumberLabel.frame.origin.x < sut.numeratorLabel.frame.origin.x)
- 
-        // we expect one issue with unsatisfiable constraints during the transition step
-        XCTAssertEqual(unsatisfiableConstraintsCount + 1, InterceptUnsatisfiableConstraints.callCount())
-        // but the layout should be satisfiable after the set
-        XCTAssertFalse(sut.rationalLabel.hasAmbiguousLayout)
-    }
-
-    func testExpandsWhenValueChangesToFraction() {
-        let sut = createSUT()
-        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
-
-        // NOTE: the magic numbers here are more or less arbitrary
-        // they represent values returned in iOS 12 Simulator as of Sep 25, 2018
-        // if they change in the future, that's probably okay
-        // as long as they more or less represent the same relative values
-        // the only ones that are really important are the metrics that are zero
-        sut.rationalLabel.value = 0.2
-        XCTAssertEqual(sut.rationalLabel.frame.width, 26.5)
-        XCTAssertEqual(sut.rationalLabel.frame.height, 53.5)
-        
-        XCTAssertEqual(sut.wholeNumberLabel.frame.width, 0)
-        XCTAssertEqual(sut.wholeNumberLabel.frame.height, 53.5)
-        
-        XCTAssertEqual(sut.numeratorLabel.frame.width, 26.5)
-        XCTAssertEqual(sut.numeratorLabel.frame.height, 20.5)
-        
-        XCTAssertEqual(sut.denominatorLabel.frame.width, 26.5)
-        XCTAssertEqual(sut.denominatorLabel.frame.height, 20.5)
-        
-        XCTAssertEqual(sut.numeratorLabel.frame.width, sut.denominatorLabel.frame.width)
-        XCTAssertEqual(sut.numeratorLabel.frame.height, sut.denominatorLabel.frame.height)
-
-        XCTAssertEqual(sut.fractionBar.frame.width, 26.5)
-        XCTAssertEqual(sut.fractionBar.frame.height, 1)
-        
-        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
-        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)
-        XCTAssert(sut.wholeNumberLabel.frame.origin.x <= sut.numeratorLabel.frame.origin.x)
- 
-        // we expect one issue with unsatisfiable constraints during the transition step
-        XCTAssertEqual(unsatisfiableConstraintsCount + 1, InterceptUnsatisfiableConstraints.callCount())
-        // but the layout should be satisfiable after the set
-        XCTAssertFalse(sut.rationalLabel.hasAmbiguousLayout)
-   }
-
-    func testExpandsWhenValueChangesToWholeNumber() {
-        let sut = createSUT()
-        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
-
-        // NOTE: the magic numbers here are more or less arbitrary
-        // they represent values returned in iOS 12 Simulator as of Sep 25, 2018
-        // if they change in the future, that's probably okay
-        // as long as they more or less represent the same relative values
-        // the only ones that are really important are the metrics that are zero
-        sut.rationalLabel.value = 5
-        
-        
-        
-        XCTAssertEqual(sut.rationalLabel.frame.width, 26.5)
-        XCTAssertEqual(sut.rationalLabel.frame.height, 20.5)
-        
-        XCTAssertEqual(sut.wholeNumberLabel.frame.width, 26.5)
-        XCTAssertEqual(sut.wholeNumberLabel.frame.height, 20.5)
-        
-        XCTAssertEqual(sut.numeratorLabel.frame.width, 0)
-        // NOTE: don't care about numeratorLabel.frame.height, becuase it's invisible
-
-        XCTAssertEqual(sut.denominatorLabel.frame.width, 0)
-        // NOTE: don't care about denominatorLabel.frame.height, becuase it's invisible
-        
-        XCTAssertEqual(sut.fractionBar.frame.width, 0)
-        XCTAssertEqual(sut.fractionBar.frame.height, 1)
-        
-        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
-        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)
-        XCTAssert(sut.wholeNumberLabel.frame.origin.x < sut.numeratorLabel.frame.origin.x)
-
-        XCTAssertEqual(unsatisfiableConstraintsCount, InterceptUnsatisfiableConstraints.callCount())
-        // the layout should be satisfiable after the set
-        XCTAssertFalse(sut.rationalLabel.hasAmbiguousLayout)
-    }
-
-    func testExpandsWhenFontChanges() {
-        let sut = createSUT()
-        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
-        
-        sut.rationalLabel.value = 5.2
-        sut.rationalLabel.font = UIFont.systemFont(ofSize: 64)
-
-        XCTAssertEqual(sut.rationalLabel.frame.width, 54+39.5)
-        XCTAssertEqual(sut.rationalLabel.frame.height, 124)
-        
-        XCTAssertEqual(sut.wholeNumberLabel.frame.width, 54)
-        XCTAssertEqual(sut.wholeNumberLabel.frame.height, 124)
-        
-        XCTAssertEqual(sut.numeratorLabel.frame.width, 39.5)
-        XCTAssertEqual(sut.numeratorLabel.frame.height, 47.5)
-        
-        XCTAssertEqual(sut.denominatorLabel.frame.width, 39.5)
-        XCTAssertEqual(sut.denominatorLabel.frame.height, 47.5)
-        
-        XCTAssertEqual(sut.numeratorLabel.frame.width, sut.denominatorLabel.frame.width)
-        XCTAssertEqual(sut.numeratorLabel.frame.height, sut.denominatorLabel.frame.height)
-        
-        XCTAssertEqual(sut.fractionBar.frame.width, 39.5)
-        XCTAssertEqual(sut.fractionBar.frame.height, 3.5)
-        
-        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
-        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)
-        XCTAssert(sut.wholeNumberLabel.frame.origin.x < sut.numeratorLabel.frame.origin.x)
-        
-        // we expect one issue with unsatisfiable constraints during the transition step
-        XCTAssertEqual(unsatisfiableConstraintsCount + 1, InterceptUnsatisfiableConstraints.callCount())
-        // but the layout should be satisfiable after the set
-        XCTAssertFalse(sut.rationalLabel.hasAmbiguousLayout)
-}
+//    func testExpandsWhenFontChanges() {
+//        let sut = createSUT()
+//        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
+//        
+//        sut.rationalLabel.value = 5.2
+//        sut.rationalLabel.font = UIFont.systemFont(ofSize: 64)
+//
+//        XCTAssertEqual(sut.rationalLabel.frame.width, 54+39.5)
+//        XCTAssertEqual(sut.rationalLabel.frame.height, 124)
+//        
+//        XCTAssertEqual(sut.wholeNumberLabel.frame.width, 54)
+//        XCTAssertEqual(sut.wholeNumberLabel.frame.height, 124)
+//        
+//        XCTAssertEqual(sut.numeratorLabel.frame.width, 39.5)
+//        XCTAssertEqual(sut.numeratorLabel.frame.height, 47.5)
+//        
+//        XCTAssertEqual(sut.denominatorLabel.frame.width, 39.5)
+//        XCTAssertEqual(sut.denominatorLabel.frame.height, 47.5)
+//        
+//        XCTAssertEqual(sut.numeratorLabel.frame.width, sut.denominatorLabel.frame.width)
+//        XCTAssertEqual(sut.numeratorLabel.frame.height, sut.denominatorLabel.frame.height)
+//        
+//        XCTAssertEqual(sut.fractionBar.frame.width, 39.5)
+//        XCTAssertEqual(sut.fractionBar.frame.height, 3.5)
+//        
+//        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.denominatorLabel.frame.origin.x)
+//        XCTAssertEqual(sut.numeratorLabel.frame.origin.x, sut.fractionBar.frame.origin.x)
+//        XCTAssert(sut.wholeNumberLabel.frame.origin.x < sut.numeratorLabel.frame.origin.x)
+//        
+//        // we expect one issue with unsatisfiable constraints during the transition step
+//        XCTAssertEqual(unsatisfiableConstraintsCount + 1, InterceptUnsatisfiableConstraints.callCount())
+//        // but the layout should be satisfiable after the set
+//        XCTAssertFalse(sut.rationalLabel.hasAmbiguousLayout)
+//}
     
     // MARK:-
     
