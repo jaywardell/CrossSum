@@ -12,7 +12,7 @@ final class GameViewSkipCountPresenter {
     
     weak var game : GameViewController?
     
-    private var skipCountLabel : UILabel? { return game?.skipCountLabel }
+    private var skipCountPresenter : UIView & IntegerPresenter { return game!.skipCountTally }
     private var skipButton : UIButton? { return game?.skipButton }
     
     private var round : Round? { return game?.round }
@@ -25,7 +25,7 @@ final class GameViewSkipCountPresenter {
     
     func hide() {
         
-        skipCountLabel?.isHidden = true
+        skipCountPresenter.isHidden = true
         skipButton?.isHidden = true
     }
     
@@ -34,7 +34,7 @@ final class GameViewSkipCountPresenter {
         let showingGrid = round?.showingGrid ?? false
         let hide = !showingGrid || (skips == 0)
 
-        skipCountLabel?.isHidden = hide
+        skipCountPresenter.isHidden = hide
         skipButton?.isHidden = hide
     }
 }
@@ -42,7 +42,7 @@ final class GameViewSkipCountPresenter {
 extension GameViewSkipCountPresenter : IntegerPresenter {
     
     func present(integer: Int) {
-        skipCountLabel?.text = "\(integer)"
+        skipCountPresenter.present(integer:integer)
         update()
         self.skips = integer
     }

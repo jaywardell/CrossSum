@@ -69,6 +69,7 @@
 		7CCB79542172E6EE002081F1 /* GameViewHintCountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79532172E6EE002081F1 /* GameViewHintCountPresenter.swift */; };
 		7CCB79562172F07D002081F1 /* GameViewSkipCountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */; };
 		7CCB795921731F30002081F1 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB795821731F30002081F1 /* Background.swift */; };
+		7CCB796521738E48002081F1 /* TallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB796421738E48002081F1 /* TallyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +160,7 @@
 		7CCB79532172E6EE002081F1 /* GameViewHintCountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewHintCountPresenter.swift; sourceTree = "<group>"; };
 		7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewSkipCountPresenter.swift; sourceTree = "<group>"; };
 		7CCB795821731F30002081F1 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		7CCB796421738E48002081F1 /* TallyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TallyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				7C8BD3D021614789002BC785 /* ExpressionChoserView.swift */,
+				7CCB796421738E48002081F1 /* TallyView.swift */,
 				7C3C3F4F2159961400BD026A /* CenteredLabel.swift */,
 				7C573FD921699119007C7DF3 /* EventDisplayLabel.swift */,
 				7C8BD3DC21615BCD002BC785 /* RationalLabel.swift */,
@@ -535,6 +538,7 @@
 				7C334AFA2164561200AC0CF9 /* CrossSumRouter.swift in Sources */,
 				7C8BD3E42162E10C002BC785 /* ThreadSafe.swift in Sources */,
 				7C8BD3E62162F230002BC785 /* GridFactory.swift in Sources */,
+				7CCB796521738E48002081F1 /* TallyView.swift in Sources */,
 				7C3C3F24215995EE00BD026A /* ViewController.swift in Sources */,
 				7C573FDA21699119007C7DF3 /* EventDisplayLabel.swift in Sources */,
 				7C8BD3D121614789002BC785 /* ExpressionChoserView.swift in Sources */,

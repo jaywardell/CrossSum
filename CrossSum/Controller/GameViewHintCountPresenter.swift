@@ -10,10 +10,10 @@ import UIKit
 
 final class GameViewHintCountPresenter {
     
-    weak var game : GameViewController?
+    weak var game : GameViewController!
     
-    private var hintCountLabel : UILabel? { return game?.hintCountLabel }
-    private var showHintButton : UIButton? { return game?.showHintButton }
+    private var hintCountLabel : UIView & IntegerPresenter { return game.hintCountTally }
+    private var showHintButton : UIButton { return game.showHintButton! }
     
     private var round : Round? { return game?.round }
     
@@ -25,8 +25,8 @@ final class GameViewHintCountPresenter {
 
     func hide() {
         
-        hintCountLabel?.isHidden = true
-        showHintButton?.isHidden = true
+        hintCountLabel.isHidden = true
+        showHintButton.isHidden = true
     }
     
     func update() {
@@ -34,8 +34,8 @@ final class GameViewHintCountPresenter {
         let showingGrid = round?.showingGrid ?? false
         let hide = !showingGrid || ((lastHintCount ?? 0) == 0)
         
-        hintCountLabel?.isHidden = hide
-        showHintButton?.isHidden = hide
+        hintCountLabel.isHidden = hide
+        showHintButton.isHidden = hide
     }
 
     private func hintsIncreased(by dHints: Int) {
@@ -46,7 +46,9 @@ final class GameViewHintCountPresenter {
 extension GameViewHintCountPresenter : IntegerPresenter {
     
     func present(integer: Int) {
-        hintCountLabel?.text = "\(integer)"
+//        hintCountLabel?.text = "\(integer)"
+        
+        hintCountLabel.present(integer: integer)
         
         if let lastHintCount = lastHintCount {
             let dHints = integer - lastHintCount

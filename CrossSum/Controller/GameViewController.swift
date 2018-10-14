@@ -16,8 +16,12 @@ class GameViewController: UIViewController {
     @IBOutlet weak var stageLabel: UILabel!
     @IBOutlet weak var scoreAddLabel: EventDisplayLabel!
     @IBOutlet weak var timeRemainingView: TimeRemainingView!
-    @IBOutlet weak var hintCountLabel: UILabel!
-    @IBOutlet weak var skipCountLabel: UILabel!
+//    @IBOutlet weak var hintCountLabel: UILabel!
+//    @IBOutlet weak var skipCountLabel: UILabel!
+
+    @IBOutlet weak var hintCountTally: TallyView!
+    @IBOutlet weak var skipCountTally: TallyView!
+    
     @IBOutlet weak var hintCountAddLabel: EventDisplayLabel! {
         didSet {
             // note: in the storyboard, there's a width equal constraint
@@ -97,16 +101,17 @@ class GameViewController: UIViewController {
         expressionChooserView,
         scoreLabel,
         stageLabel,
-        hintCountLabel,
-        skipCountLabel
+        hintCountTally,
+        skipCountTally
         ].forEach() { $0.backgroundColor = nil }
         
         statementLabel.textColor = .white
         expressionChooserView.textColor = .white
         [scoreLabel,
         stageLabel,
-        hintCountLabel,
-        skipCountLabel].forEach() { $0.textColor = .white }
+//        hintCountLabel,
+//        skipCountLabel
+            ].forEach() { $0.textColor = .white }
         
         [scoreAddLabel,
          hintCountAddLabel,
