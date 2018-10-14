@@ -327,7 +327,7 @@
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLU-rC-INl" customClass="StatementLabel" customModule="CrossSum" customModuleProvider="target">
                                         <rect key="frame" x="40" y="103" width="240" height="22"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.7793782575" green="0.67500000000000004" blue="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" placeholder="YES" id="pyY-zx-UoT"/>
                                             <constraint firstAttribute="height" constant="22" placeholder="YES" id="rXe-hZ-82x"/>
@@ -405,10 +405,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uyf-gV-IMa" customClass="SquareTilesProgressView" customModule="CrossSum" customModuleProvider="target">
-                                        <rect key="frame" x="206.5" y="46" width="75.5" height="46.5"/>
+                                        <rect key="frame" x="206.5" y="46" width="75.5" height="37"/>
                                         <color key="backgroundColor" red="0.8980392157" green="0.59607843140000005" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="Uyf-gV-IMa" secondAttribute="height" multiplier="34/21" id="eeU-BG-sMY"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" secondItem="Uyf-gV-IMa" secondAttribute="height" multiplier="34/21" priority="750" id="eeU-BG-sMY"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="leftToRight" value="NO"/>
@@ -434,6 +434,7 @@
                                     <constraint firstAttribute="trailing" secondItem="ZFe-jE-bhl" secondAttribute="trailing" constant="8" id="S8j-FD-Chb"/>
                                     <constraint firstItem="ZFe-jE-bhl" firstAttribute="centerY" secondItem="Fm8-tT-l6V" secondAttribute="centerY" id="Stc-nF-DW1"/>
                                     <constraint firstItem="nlH-MN-u9R" firstAttribute="centerY" secondItem="T6Y-Y6-ZIW" secondAttribute="centerY" id="SzU-xK-Gvl"/>
+                                    <constraint firstItem="fLU-rC-INl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Uyf-gV-IMa" secondAttribute="bottom" constant="20" id="TWH-w2-H0L"/>
                                     <constraint firstItem="KUE-Nj-kYG" firstAttribute="leading" secondItem="jHn-ws-VRQ" secondAttribute="trailing" constant="16" id="UCm-NF-o80"/>
                                     <constraint firstItem="nlH-MN-u9R" firstAttribute="height" secondItem="T6Y-Y6-ZIW" secondAttribute="height" multiplier="21/34" id="bfT-VB-87v"/>
                                     <constraint firstAttribute="bottom" secondItem="Fm8-tT-l6V" secondAttribute="bottom" id="cMY-Pl-emc"/>
