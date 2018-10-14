@@ -49,6 +49,11 @@ class WelcomeScreenViewController: UIViewController {
         
         welcomeScreen.highScoresView.dataSource = highScoresDS
         welcomeScreen.highScoresView.allowsSelection = false
+        
+        let background = Background()
+        self.view.addSubview(background)
+        
+        background.constrainToFillSuperview()
     }
     
     override func viewWillAppear(_ animated: Bool) {

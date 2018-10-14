@@ -68,6 +68,7 @@
 		7CCB79522172CDEA002081F1 /* UILabel+TextPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79512172CDEA002081F1 /* UILabel+TextPresenter.swift */; };
 		7CCB79542172E6EE002081F1 /* GameViewHintCountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79532172E6EE002081F1 /* GameViewHintCountPresenter.swift */; };
 		7CCB79562172F07D002081F1 /* GameViewSkipCountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */; };
+		7CCB795921731F30002081F1 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB795821731F30002081F1 /* Background.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,7 @@
 		7CCB79512172CDEA002081F1 /* UILabel+TextPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+TextPresenter.swift"; sourceTree = "<group>"; };
 		7CCB79532172E6EE002081F1 /* GameViewHintCountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewHintCountPresenter.swift; sourceTree = "<group>"; };
 		7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewSkipCountPresenter.swift; sourceTree = "<group>"; };
+		7CCB795821731F30002081F1 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +260,7 @@
 		7C3C3F6E2159C74200BD026A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7CCB795721731F0B002081F1 /* Decorative Views */,
 				7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */,
 				7C573FE0216A77A1007C7DF3 /* Data Views */,
 				7C573FDF216A7727007C7DF3 /* Extensions */,
@@ -385,6 +388,14 @@
 				7C8BD3DA21614857002BC785 /* Collection+SpecialIteration.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		7CCB795721731F0B002081F1 /* Decorative Views */ = {
+			isa = PBXGroup;
+			children = (
+				7CCB795821731F30002081F1 /* Background.swift */,
+			);
+			path = "Decorative Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -557,6 +568,7 @@
 				7C84DA84215B240800D3B36F /* Statement.swift in Sources */,
 				7C334B2221682CD000AC0CF9 /* TimeKeeper.swift in Sources */,
 				7C8BD3DF2161ABAD002BC785 /* Grid.swift in Sources */,
+				7CCB795921731F30002081F1 /* Background.swift in Sources */,
 				7C334AF6216454D500AC0CF9 /* WelcomeScreenViewController.swift in Sources */,
 				7C84DA76215B210700D3B36F /* Parser.swift in Sources */,
 				7C334AF8216454EA00AC0CF9 /* WelcomeScreen.swift in Sources */,
