@@ -26,6 +26,22 @@ import UIKit
         }
     }
     
+    var shadowColor : UIColor? = nil {
+        didSet {
+            labels.forEach() { label in
+                label.shadowColor = shadowColor
+            }
+        }
+    }
+    
+    var shadowOffset : CGSize = .zero {
+        didSet {
+            labels.forEach() { label in
+                label.shadowOffset = shadowOffset
+            }
+        }
+    }
+    
     var textFont : UIFont = UIFont.systemFont(ofSize: 24) {
         didSet {
             updateTextFont()
@@ -436,6 +452,8 @@ import UIKit
             out.text = "0"
             out.textAlignment = .center
             out.textColor = textColor
+            out.shadowOffset = shadowOffset
+            out.shadowColor = shadowColor
             return out
         }
         let out = UIStackView(arrangedSubviews: labels)

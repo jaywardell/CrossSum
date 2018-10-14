@@ -114,6 +114,10 @@ class GameViewController: UIViewController {
             $0?.textColor = UIColor(hue: 60/360, saturation: 1, brightness: 21/34, alpha: 1)
         }
 
+        expressionChooserView.shadowOffset = CGSize(width: -1, height: -1)
+        expressionChooserView.shadowColor = UIColor(white: 0.5, alpha: 0.9)
+
+        
         // TODO: I shouldn't need this, but right now I do, why?
         view.tintColor = UIColor(hue: 164/360, saturation: 1, brightness: 21/34, alpha: 1)
         expressionChooserView.selectionColor = view.tintColor
@@ -131,7 +135,7 @@ class GameViewController: UIViewController {
         round?.begin()
         
         expressionChooserView.textFont = displayFont
-        
+
         updatePlayPauseButton()
     }
     
@@ -140,6 +144,8 @@ class GameViewController: UIViewController {
         super.viewDidAppear(animated)
         
         statementLabel.isHidden = false
+        
+
     }
 
     // MARK:- Actions

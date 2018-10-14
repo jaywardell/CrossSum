@@ -14,7 +14,7 @@ class Background: UIImageView {
     
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-
+        
         // TODO: I probably want to get a higher resolution image...
         self.image = #imageLiteral(resourceName: "background")
         
