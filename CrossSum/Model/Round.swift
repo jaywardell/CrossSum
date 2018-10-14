@@ -63,17 +63,19 @@ final class Round {
     var currentTargetSolution : Rational?
     var acceptableSolutions : Set<Rational> {
         guard let solutions = grid?.solutions else { return Set() }
+        return solutions
+        // Round should no longer have to worry about this since it's filtering the acceptable solutions in the delegate method
         // don't offer solutions that can only be gotten from one or two squares (e.g. - and 5 becomes -5)
-        return solutions.filter() {
-            guard let locations = grid?.solutionsToExpressionLocations.value[$0] else { return false }
-            for choice in locations {
-                if abs(choice.0.0 - choice.1.0) >= 2 ||
-                    abs(choice.0.1 - choice.1.1) >= 2 {
-                    return true
-                }
-            }
-            return false
-        }
+//        return solutions.filter() { solution in
+//            guard let locations = grid?.solutionsToExpressionLocations.value[solution] else { return false }
+//            for choice in locations {
+//                if abs(choice.0.0 - choice.1.0) >= 2 ||
+//                    abs(choice.0.1 - choice.1.1) >= 2 {
+//                    return true
+//                }
+//            }
+//            return false
+//        }
     }
     var availableSolutions : Set<Rational> {
         return acceptableSolutions.subtracting(foundSolutions)
@@ -159,6 +161,7 @@ extension Round {
         displayDelegate?.willReplaceGrid(self)
         
         self.grid = gridFactory.gridAfter(grid)
+        self.grid?.solutionClient = self
         expressionSymbolPresenter?.present(grid!, animated: true) { [weak self] in guard let self = self else { return }
         
             self.showNextTargetSolution()
@@ -281,6 +284,7 @@ extension Round {
 
         hint = thisWay.0
         canEarnASkipThisGrid = false
+        print("\(#function) \(thisWay)")
         return hint
     }
     
@@ -391,3 +395,19 @@ extension Round {
     }
 }
 
+// MARK:- GridSolutionClient
+
+extension Round : GridSolutionClient {
+    func willAcceptSolution(solution: Rational, in grid:Grid, from start: Grid.Coordinate, to end: Grid.Coordinate) -> Bool {
+        
+        // don't offer solutions that can only be gotten from one or two squares (e.g. - and 5 becomes -5)
+        guard let locations = grid.solutionsToExpressionLocations.value[solution] else { return false }
+        for choice in locations {
+            if abs(choice.0.0 - choice.1.0) >= 2 ||
+                abs(choice.0.1 - choice.1.1) >= 2 {
+                return true
+            }
+        }
+        return false
+    }
+}

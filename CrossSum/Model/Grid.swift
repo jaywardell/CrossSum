@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol GridSolutionClient {
+    func willAcceptSolution(solution:Rational, in grid:Grid, from start:Grid.Coordinate, to end:Grid.Coordinate) -> Bool
+}
+
 
 class Grid {
     typealias Coordinate = (Int, Int)
@@ -17,6 +21,8 @@ class Grid {
     let operators : [Operator]
     let solutionRange : ClosedRange<Rational>
     let allowsFractionalSolutions : Bool
+    
+    var solutionClient : GridSolutionClient?
     
     private var _symbols : [[String]] = []
     private(set) var symbols : [[String]] {
@@ -43,7 +49,11 @@ class Grid {
     
     func waysToGet(solution:Rational) -> [(Coordinate, Coordinate)] {
         let d = solutionsToExpressionLocations.value[solution]
-        return d ?? []
+        let filteredD = d?.filter() { coordinates in
+            guard let client = solutionClient else { return true } // no solution client, so no need to filter...
+            return client.willAcceptSolution(solution: solution, in: self, from: coordinates.0, to: coordinates.1)
+        }
+        return filteredD ?? []
     }
     
     enum Operator : String {
@@ -130,14 +140,22 @@ extension Grid : ExpressionSymbolViewDataSource {
 
 // MARK:- Managing Solutions
 
+
 extension Grid {
     
-    private func accepts(solution:Rational) -> Bool {
+    private func accepts(solution:Rational, from start:Coordinate, to end:Coordinate) -> Bool {
         if !allowsFractionalSolutions && solution.fractionalPart != 0 {
             return false
         }
         if !solutionRange.contains(solution) {
             return false
+        }
+        
+        // let the client have a go at it
+        if let client =  solutionClient {
+            if !client.willAcceptSolution(solution: solution, in:self, from: start, to: end) {
+                return false
+            }
         }
         return true
     }
@@ -156,18 +174,22 @@ extension Grid {
                     
                     // forward
                     for i in column + 1 ..< columns {
-                        if let solution = solution(for: (row, column), to: (row, i)) {
-                            if accepts(solution: solution) {
-                                appendToPossibleSolutions(solution: solution, coordinates: (row, column), end: (row, i))
+                        let start = (row, column)
+                        let end = (row, i)
+                        if let solution = solution(for: start, to: end) {
+                            if accepts(solution: solution, from:start, to:end) {
+                                appendToPossibleSolutions(solution: solution, coordinates: start, end: end)
                             }
                         }
                     }
                     
                     // backward
                     for i in stride(from: column - 1, through: 0, by: -1) {
-                        if let solution = solution(for: (row, column), to: (row, i)) {
-                            if accepts(solution: solution) {
-                                appendToPossibleSolutions(solution: solution, coordinates: (row, column), end: (row, i))
+                        let start = (row, column)
+                        let end = (row, i)
+                        if let solution = solution(for: start, to: end) {
+                            if accepts(solution: solution, from:start, to:end) {
+                                appendToPossibleSolutions(solution: solution, coordinates: start, end: end)
                             }
                         }
                     }
@@ -176,18 +198,22 @@ extension Grid {
                     
                     // forward
                     for i in row + 1 ..< rows {
-                        if let solution = solution(for: (row, column), to: (i, column)) {
-                            if accepts(solution: solution) {
-                                appendToPossibleSolutions(solution: solution, coordinates: (row, column), end: (i, column))
+                        let start = (row, column)
+                        let end = (i, column)
+                        if let solution = solution(for: start, to: end) {
+                            if accepts(solution: solution, from:start, to:end) {
+                                appendToPossibleSolutions(solution: solution, coordinates: start, end: end)
                             }
                         }
                     }
                     
                     // backward
                     for i in stride(from: row - 1, through: 0, by: -1) {
-                        if let solution = solution(for: (row, column), to: (i, column)) {
-                            if accepts(solution: solution) {
-                                appendToPossibleSolutions(solution: solution, coordinates: (row, column), end: (i, column))
+                        let start = (row, column)
+                        let end = (i, column)
+                        if let solution = solution(for: start, to: end) {
+                            if accepts(solution: solution, from:start, to:end) {
+                                appendToPossibleSolutions(solution: solution, coordinates: start, end: end)
                             }
                         }
                     }
