@@ -65,7 +65,6 @@ final class TimeKeeper {
     }
     
     func stop() {
-        #warning("this assert can be triggered if we hit the skip button while the skip UI is still visible: disable the skip ubtton in this case")
         assert(hasStarted && !isDone)
         
         timer.invalidate()

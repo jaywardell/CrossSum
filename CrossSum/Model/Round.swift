@@ -41,7 +41,8 @@ final class Round {
     private var solutionTime : TimeInterval = 0
     private var timeKeeper : TimeKeeper?
     private(set) var showingGrid = false
-
+    private(set) var showingSkip = false
+    
     var hints : Int = 0 {
         didSet {
             hintCountPresenter?.present(integer: hints)
@@ -193,7 +194,6 @@ extension Round {
         // and the chance increases when you use higher-scoring expressions
         if nil == hint && Int.random(in: 0...100) + scoreForTarget > 100 {
             hints += 1
-//            hintCountPresenter?.hintsIncreased(by: 1)
         }
         
         // let the suer see the correct statement he chose for 1 second, then advance to the next one
@@ -279,6 +279,7 @@ extension Round {
     
     func showASolution() {
         guard skips > 0,
+            !showingSkip,
             let currentTargetSolution = currentTargetSolution,
             let ways = grid?.waysToGet(solution: currentTargetSolution),
             let hint = hintedCoordinate(),
@@ -286,6 +287,7 @@ extension Round {
                 $0.0 == hint
         }) else { return }
 
+        showingSkip = true
         timeKeeper?.stop()
         expressionSelector?.prepareToSimulateSelection()
         expressionSelector?.select(from: thisWay.0.0, thisWay.0.1, to: thisWay.1.0, thisWay.1.1, animated:true)
@@ -297,6 +299,8 @@ extension Round {
             self?.expressionSelector?.removeSelection(animated: true) {
                 self?.advanceToNextTargetSolution()
                 self?.expressionSelector?.doneSimulatingSelection()
+                
+                self?.showingSkip = false
             }
         }
     }
