@@ -70,6 +70,7 @@
 		7CCB79562172F07D002081F1 /* GameViewSkipCountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */; };
 		7CCB795921731F30002081F1 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB795821731F30002081F1 /* Background.swift */; };
 		7CCB796521738E48002081F1 /* TallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB796421738E48002081F1 /* TallyView.swift */; };
+		7CCB79BF2173C130002081F1 /* SquareTilesProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79BE2173C130002081F1 /* SquareTilesProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +162,7 @@
 		7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewSkipCountPresenter.swift; sourceTree = "<group>"; };
 		7CCB795821731F30002081F1 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		7CCB796421738E48002081F1 /* TallyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TallyView.swift; sourceTree = "<group>"; };
+		7CCB79BE2173C130002081F1 /* SquareTilesProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareTilesProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +324,7 @@
 			children = (
 				7C8BD3D021614789002BC785 /* ExpressionChoserView.swift */,
 				7CCB796421738E48002081F1 /* TallyView.swift */,
+				7CCB79BE2173C130002081F1 /* SquareTilesProgressView.swift */,
 				7C3C3F4F2159961400BD026A /* CenteredLabel.swift */,
 				7C573FD921699119007C7DF3 /* EventDisplayLabel.swift */,
 				7C8BD3DC21615BCD002BC785 /* RationalLabel.swift */,
@@ -560,6 +563,7 @@
 				7C8BD3D3216147AB002BC785 /* GameViewController.swift in Sources */,
 				7C8BD3E12161C363002BC785 /* Round.swift in Sources */,
 				7C84DA77215B210700D3B36F /* Parser<Character>.swift in Sources */,
+				7CCB79BF2173C130002081F1 /* SquareTilesProgressView.swift in Sources */,
 				7C84DA75215B210700D3B36F /* Op.swift in Sources */,
 				7C4136DE216EE22600B92278 /* UIViewController+Debugging.swift in Sources */,
 				7C84DA73215B210700D3B36F /* Parser<Double>.swift in Sources */,

@@ -86,3 +86,11 @@ protocol TimeRemainingPresenter {
 protocol ScoreAddPresenter {
     func present(addedScore:Int)
 }
+
+// MARK:-
+
+protocol DiscreteProgressPresenter {
+    
+    func present(progress:Int, of maxProgress:Int)
+}
+

@@ -16,9 +16,8 @@ class GameViewController: UIViewController {
     @IBOutlet weak var stageLabel: UILabel!
     @IBOutlet weak var scoreAddLabel: EventDisplayLabel!
     @IBOutlet weak var timeRemainingView: TimeRemainingView!
-//    @IBOutlet weak var hintCountLabel: UILabel!
-//    @IBOutlet weak var skipCountLabel: UILabel!
 
+    @IBOutlet weak var gridProgressView: SquareTilesProgressView!
     @IBOutlet weak var hintCountTally: TallyView!
     @IBOutlet weak var skipCountTally: TallyView!
     
@@ -102,7 +101,8 @@ class GameViewController: UIViewController {
         scoreLabel,
         stageLabel,
         hintCountTally,
-        skipCountTally
+        skipCountTally,
+        gridProgressView
         ].forEach() { $0.backgroundColor = nil }
         
         statementLabel.textColor = .white
@@ -136,6 +136,7 @@ class GameViewController: UIViewController {
         scoreLabel.isHidden = true
         stageLabel.isHidden = true
         quitButton?.isHidden = true
+        gridProgressView.isHidden = true
         
         round?.begin()
         
@@ -233,6 +234,7 @@ extension GameViewController {
         round?.timeRemainingPresenter = timeRemainingView
         round?.hintCountPresenter = hintCountPresenter
         round?.skipsCountPresenter = skipCountPresenter
+        round?.gridProgressPresenter = gridProgressView
     }
 }
 
@@ -290,7 +292,8 @@ extension GameViewController {
          scoreLabel,
          stageLabel,
          statementLabel,
-         timeRemainingView].forEach { $0?.isHidden = false }
+         timeRemainingView,
+         gridProgressView].forEach { $0?.isHidden = false }
     }
     
     private func hideGamePlayUI() {
@@ -299,7 +302,8 @@ extension GameViewController {
         skipCountPresenter.hide()
         [
          statementLabel,
-         timeRemainingView].forEach { $0?.isHidden = true }
+         timeRemainingView,
+         gridProgressView].forEach { $0?.isHidden = true }
     }
     
     private func matchUIToWordSearchUI() {

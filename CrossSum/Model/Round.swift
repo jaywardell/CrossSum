@@ -103,6 +103,7 @@ final class Round {
     var scoreTimeAddPresenter : ScoreAddPresenter?
     var hintCountPresenter : IntegerPresenter?
     var skipsCountPresenter : IntegerPresenter?
+    var gridProgressPresenter : DiscreteProgressPresenter?
     
     var solutionFilter : (Rational) -> Bool = { _ in return true }
     
@@ -121,7 +122,7 @@ extension Round {
         hints = 5
         skips = 3
         scorePresenter?.present(integer:0)
-    }
+   }
     
     private func showNextTargetSolution() {
         guard let next = availableSolutions.randomElement() else {
@@ -176,6 +177,7 @@ extension Round {
         
         print("accesptable solutions: \(acceptableSolutions)")
 
+        gridProgressPresenter?.present(progress: foundSolutions.count, of: acceptableSolutions.count)
     }
     
     private func userChoseTrue(statement:Statement) {
@@ -188,13 +190,17 @@ extension Round {
         let timeScoreAdd = timeKeeper!.timeRemaining
         self.score += Int(timeScoreAdd)
         scoreTimeAddPresenter?.present(addedScore: Int(timeScoreAdd))
-        
+
+        // we know that another foundSolution is going to be added, so present it now with a cout of +1
+        gridProgressPresenter?.present(progress: foundSolutions.count + 1, of: acceptableSolutions.count)
+
         // getting one right without using a hint  gives you a chance to get an extra hint
         // and the chance increases when you use higher-scoring expressions
         if nil == hint && Int.random(in: 0...100) + scoreForTarget > 100 {
             hints += 1
         }
         
+
         // let the suer see the correct statement he chose for 1 second, then advance to the next one
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             guard let self = self else { return }
@@ -202,7 +208,7 @@ extension Round {
                 
                 self.updateSolutionTime()
                 self.advanceToNextTargetSolution()
-            }
+          }
         }
     }
     
