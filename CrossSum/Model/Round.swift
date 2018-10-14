@@ -158,8 +158,7 @@ extension Round {
         displayDelegate?.willReplaceGrid(self)
         
         self.grid = gridFactory.gridAfter(grid)
-        expressionSymbolPresenter?.symbolDataSource = grid
-        expressionSymbolPresenter?.presentSymbols(animated:true) { [weak self] in guard let self = self else { return }
+        expressionSymbolPresenter?.present(grid!, animated: true) { [weak self] in guard let self = self else { return }
         
             self.showNextTargetSolution()
             

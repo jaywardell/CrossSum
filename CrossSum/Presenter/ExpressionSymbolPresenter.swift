@@ -9,8 +9,26 @@
 import Foundation
 
 protocol ExpressionSymbolPresenter {
+    // NOTE: these two methods are meant to be called from the present() method in the extension below
+    // your implementation should implement them, but you should not call them
     var symbolDataSource : ExpressionSymbolViewDataSource? { get set }
     func presentSymbols(animated:Bool, _ completion:@escaping ()->())
+}
+
+extension ExpressionSymbolPresenter {
+    
+    /// The method your model objects want to call
+    /// sets symbolDataSource and also calls presentSymbols
+    /// This method lets this presenter act as much as possible like other presenters, with a single preset(...) method
+    ///
+    /// - Parameters:
+    ///   - dataSource: an object of type ExpressionSymbolViewDataSource
+    ///   - animated: whether to animate the transition
+    ///   - completion: a closure to be called when the transition has completed
+    mutating func present(_ dataSource:ExpressionSymbolViewDataSource, animated:Bool, _ completion:@escaping ()->()) {
+        self.symbolDataSource = dataSource
+        presentSymbols(animated: animated, completion)
+    }
 }
 
 // MARK:- 
