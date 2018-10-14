@@ -450,7 +450,7 @@ import UIKit
 
 extension ExpressionChoserView : ExpressionSymbolPresenter {
     
-    public func reloadSymbols(animated:Bool, _ completion:@escaping ()->()) {
+    public func presentSymbols(animated:Bool, _ completion:@escaping ()->()) {
         
         fadeOutLabels(animated: animated) { [weak self] in
             
@@ -501,14 +501,19 @@ extension ExpressionChoserView : ExpressionSelector {
     
     func removeSelection(animated:Bool = false, completion:@escaping ()->() = {}) {
         
+        
         if let layer = selectionLayer {
             
+            func done() {
+                layer.removeFromSuperlayer()
+                completion()
+            }
+
             if animated {
                 
                 CATransaction.begin()
                 CATransaction.setCompletionBlock {
-                    layer.removeFromSuperlayer()
-                    completion()
+                    done()
                 }
                 CATransaction.setAnimationDuration(0.3)
                 
@@ -517,8 +522,7 @@ extension ExpressionChoserView : ExpressionSelector {
                 CATransaction.commit()
             }
             else {
-                layer.removeFromSuperlayer()
-                completion()
+                done()
             }
         }
     }

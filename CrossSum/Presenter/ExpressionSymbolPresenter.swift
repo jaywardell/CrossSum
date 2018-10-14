@@ -10,7 +10,7 @@ import Foundation
 
 protocol ExpressionSymbolPresenter {
     var symbolDataSource : ExpressionSymbolViewDataSource? { get set }
-    func reloadSymbols(animated:Bool, _ completion:@escaping ()->())
+    func presentSymbols(animated:Bool, _ completion:@escaping ()->())
 }
 
 // MARK:- 

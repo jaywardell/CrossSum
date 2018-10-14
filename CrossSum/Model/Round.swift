@@ -26,13 +26,13 @@ final class Round {
     
     var score : Int = 0 {
         didSet {
-            scorePresenter?.score = score
+            scorePresenter?.present(integer:score)
         }
     }
     
     var stage : Int = 0 {
         didSet {
-            stagePresenter?.stage = stage
+            stagePresenter?.present(integer:stage)
             print("stage: \(stage)")
         }
     }
@@ -44,14 +44,14 @@ final class Round {
 
     var hints : Int = 0 {
         didSet {
-            hintCountPresenter?.showHints(hints, for: self)
+            hintCountPresenter?.present(hints: hints)
         }
     }
     private var hint : (Int, Int)?
 
     var skips : Int = 0 {
         didSet {
-            skipsCountPresenter?.showSkips(skips, for: self)
+            skipsCountPresenter?.present(skips: skips)
         }
     }
     private var canEarnASkipThisGrid = true
@@ -95,8 +95,8 @@ final class Round {
     }
     
     var statementPresenter : OptionalStatementPresenter?
-    var scorePresenter : ScorePresenter?
-    var stagePresenter : StagePresenter?
+    var scorePresenter : IntegerPresenter?
+    var stagePresenter : IntegerPresenter?
     var timeRemainingPresenter : TimeRemainingPresenter?
     var scoreAddPresenter : ScoreAddPresenter?
     var scoreTimeAddPresenter : ScoreAddPresenter?
@@ -119,7 +119,7 @@ extension Round {
         showNextGrid()
         hints = 5
         skips = 3
-        scorePresenter?.score = 0
+        scorePresenter?.present(integer:0)
     }
     
     private func showNextTargetSolution() {
@@ -138,17 +138,16 @@ extension Round {
         }
         timeKeeper?.start()
         
-        hintCountPresenter?.showHints(hints, for: self)
-        skipsCountPresenter?.showSkips(skips, for: self)
+        hintCountPresenter?.present(hints: hints)
+        skipsCountPresenter?.present(skips:skips)
     }
     
     private func presentCurrentTargetSolution() {
-        statementPresenter?.statement = Statement(nil, currentTargetSolution)
+        statementPresenter?.present(statement: Statement(nil, currentTargetSolution))
     }
     
     private func showNextGrid() {
         foundSolutions.removeAll()
-
         if canEarnASkipThisGrid {
             skips += 1
         }
@@ -159,7 +158,7 @@ extension Round {
         
         self.grid = gridFactory.gridAfter(grid)
         expressionSymbolPresenter?.symbolDataSource = grid
-        expressionSymbolPresenter?.reloadSymbols(animated:true) { [weak self] in guard let self = self else { return }
+        expressionSymbolPresenter?.presentSymbols(animated:true) { [weak self] in guard let self = self else { return }
         
             self.showNextTargetSolution()
             
@@ -184,17 +183,17 @@ extension Round {
         timeKeeper!.stop()
         let scoreForTarget = self.score(for:statement)
         self.score += scoreForTarget
-        scoreAddPresenter?.showScoreAdd(scoreForTarget)
+        scoreAddPresenter?.present(addedScore: scoreForTarget)
         
         let timeScoreAdd = timeKeeper!.timeRemaining
         self.score += Int(timeScoreAdd)
-        scoreTimeAddPresenter?.showScoreAdd(Int(timeScoreAdd))
+        scoreTimeAddPresenter?.present(addedScore: Int(timeScoreAdd))
         
         // getting one right without using a hint  gives you a chance to get an extra hint
         // and the chance increases when you use higher-scoring expressions
         if nil == hint && Int.random(in: 0...100) + scoreForTarget > 100 {
             hints += 1
-            hintCountPresenter?.hintsIncreased(by: 1)
+//            hintCountPresenter?.hintsIncreased(by: 1)
         }
         
         // let the suer see the correct statement he chose for 1 second, then advance to the next one
@@ -332,7 +331,7 @@ extension Round {
         let statement = Statement(solutionString, currentTargetSolution)
         
         // whether it's true or false, display the selected statement
-        statementPresenter?.statement = statement
+        statementPresenter?.present(statement: statement)
         
         if statement.isTrue {
             userChoseTrue(statement: statement)

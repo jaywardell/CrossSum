@@ -56,9 +56,8 @@ final class TimeKeeper {
     private var lastTime : TimeInterval!
     func start() {
         assert(!hasStarted)
-        
-        presenter?.maxTime = totalTime
-        presenter?.remainingTime = totalTime
+
+        presenter?.present(totalTime: totalTime)
         
         timeRemaining = totalTime
 
@@ -66,6 +65,7 @@ final class TimeKeeper {
     }
     
     func stop() {
+        #warning("this assert can be triggered if we hit the skip button while the skip UI is still visible: disable the skip ubtton in this case")
         assert(hasStarted && !isDone)
         
         timer.invalidate()
@@ -101,7 +101,7 @@ final class TimeKeeper {
         timeRemaining -= now - lastTime
         lastTime = now
         
-        presenter?.remainingTime = timeRemaining
+        presenter?.present(remainingTime: timeRemaining)
         
         if timeRemaining <= TimeInterval(0) {
             done(self)

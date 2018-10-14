@@ -12,8 +12,8 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var expressionChooserView: ExpressionChoserView!
     @IBOutlet weak var statementLabel: StatementLabel!
-    @IBOutlet weak var scoreLabel: ScoreLabel!
-    @IBOutlet weak var stageLabel: StageLabel!
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var stageLabel: UILabel!
     @IBOutlet weak var scoreAddLabel: EventDisplayLabel!
     @IBOutlet weak var timeRemainingView: TimeRemainingView!
     @IBOutlet weak var hintCountLabel: UILabel!
@@ -194,6 +194,15 @@ class GameViewController: UIViewController {
     @objc func axpressionChooserViewChoiceFontDidChange(_ notification:Notification) {
         matchUIToWordSearchUI()
     }
+    
+    
+    private lazy var hintCountPresenter : GameViewHintCountPresenter = {
+       return GameViewHintCountPresenter(self)
+    }()
+
+    private lazy var skipCountPresenter : GameViewSkipCountPresenter = {
+        return GameViewSkipCountPresenter(self)
+    }()
 }
 
 // MARK:- Round Maintenance
@@ -201,17 +210,18 @@ class GameViewController: UIViewController {
 extension GameViewController {
     
     private func connectRoundToUI() {
+        guard isViewLoaded else { return }
         
         round?.statementPresenter = statementLabel
-        round?.scorePresenter = scoreLabel
-        round?.stagePresenter = stageLabel
+        round?.scorePresenter = ScorePresenter(scoreLabel)
+        round?.stagePresenter = StagePresenter(stageLabel)
         round?.scoreAddPresenter = scoreAddLabel
         round?.scoreTimeAddPresenter = scoreTimeAddLabel
         round?.expressionSelector = expressionChooserView
         round?.expressionSymbolPresenter = expressionChooserView
         round?.timeRemainingPresenter = timeRemainingView
-        round?.hintCountPresenter = self
-        round?.skipsCountPresenter = self
+        round?.hintCountPresenter = hintCountPresenter
+        round?.skipsCountPresenter = skipCountPresenter
     }
 }
 
@@ -262,10 +272,9 @@ extension GameViewController {
 extension GameViewController {
     
     private func showGamePlayUI() {
-        let round = self.round!
         
-        updateHintUI(round.showingGrid ? round.hints : 0)
-        updateSkipUI(round.showingGrid ? round.skips : 0)
+        hintCountPresenter.update()
+        skipCountPresenter.update()
         [quitButton,
          scoreLabel,
          stageLabel,
@@ -274,10 +283,10 @@ extension GameViewController {
     }
     
     private func hideGamePlayUI() {
-        [showHintButton,
-         hintCountLabel,
-         skipCountLabel,
-         skipButton,
+        
+        hintCountPresenter.hide()
+        skipCountPresenter.hide()
+        [
          statementLabel,
          timeRemainingView].forEach { $0?.isHidden = true }
     }
@@ -286,18 +295,6 @@ extension GameViewController {
         
         let statementFont = expressionChooserView.choiceFont.withSize(expressionChooserView.choiceFont.pointSize * 34/21)
         statementLabel.font = statementFont
-    }
-
-    private func updateHintUI(_ hintCount:Int) {
-        
-        hintCountLabel.isHidden = hintCount <= 0
-        showHintButton?.isHidden = hintCount <= 0
-    }
-    
-    private func updateSkipUI(_ skipCount:Int) {
-        
-        skipCountLabel.isHidden = skipCount <= 0
-        skipButton?.isHidden = skipCount <= 0
     }
     
     private func updatePlayPauseButton() {
@@ -313,45 +310,12 @@ extension GameViewController {
 
 // MARK:- HintCountPresenter
 
-extension GameViewController : HintCountPresenter {
+extension GameViewController {
     
+    #warning("there's got to be a better way to do this. My way is ugly and stilted")
     func hintsIncreased(by dHints: Int) {
         print("\(#function) \(dHints)")
         
-        hintCountAddLabel.showScoreAdd(dHints)
+        hintCountAddLabel.present(addedScore: dHints)
     }
-    
-    func showHints(_ hints: Int, for round: Round) {
-        hintCountLabel.text = "\(hints)"
-        if round.showingGrid {
-            updateHintUI(hints)
-        }
-        else {
-            updateHintUI(0)
-        }
-    }
-}
-
-
-extension GameViewController : SkipCountPresenter {
-    
-    func skipsIncreased(by dSkips: Int) {
-        print("\(#function) \(dSkips)")
-        
-        // I'm choosing to show no special UI for this right now
-        // let the user be surprised when she sees it go up, for now...
-    }
-
-    func showSkips(_ skips: Int, for round: Round) {
-        skipCountLabel.text = "\(skips)"
-        if round.showingGrid {
-            updateSkipUI(skips)
-        }
-        else {
-            updateSkipUI(0)
-        }
-    }
-    
-    
-    
 }

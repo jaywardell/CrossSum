@@ -24,13 +24,17 @@ class EventDisplayLabel: CenteredLabel {
         backgroundColor = .clear
     }
     
-    func showScoreAdd(_ scoreAdd:Int) {
-        let prefix = scoreAdd > 0 ? "+" : ""
-        text = "\(prefix)\(scoreAdd)\(scoreAdd == 1 ? suffix : pluralSuffix)!"
+}
+
+extension EventDisplayLabel : ScoreAddPresenter {
+    func present(addedScore: Int) {
+        
+        let prefix = addedScore > 0 ? "+" : ""
+        text = "\(prefix)\(addedScore)\(addedScore == 1 ? suffix : pluralSuffix)!"
         
         isHidden = false
         vPosition!.constant -= frame.height * 21/34
-
+        
         UIView.animate(withDuration: 0.4, animations: { [weak self] in
             self?.superview?.layoutIfNeeded()
             self?.alpha = 0
@@ -41,9 +45,7 @@ class EventDisplayLabel: CenteredLabel {
             self.isHidden = true
             self.transform = .identity
         }
-        
     }
 }
 
-extension EventDisplayLabel : ScoreAddPresenter {}
 

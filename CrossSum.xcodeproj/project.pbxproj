@@ -31,8 +31,6 @@
 		7C4136E0216EEB9800B92278 /* ExpressionSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4136DF216EEB9800B92278 /* ExpressionSelector.swift */; };
 		7C4136E2216EEBB400B92278 /* ExpressionSymbolPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4136E1216EEBB400B92278 /* ExpressionSymbolPresenter.swift */; };
 		7C573FDA21699119007C7DF3 /* EventDisplayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FD921699119007C7DF3 /* EventDisplayLabel.swift */; };
-		7C573FDC2169C007007C7DF3 /* ScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */; };
-		7C573FDE2169C2CF007C7DF3 /* StageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */; };
 		7C573FE4216A81DC007C7DF3 /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE3216A81DC007C7DF3 /* TableDataSource.swift */; };
 		7C573FE6216A895C007C7DF3 /* UserDefaults+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE5216A895C007C7DF3 /* UserDefaults+Properties.swift */; };
 		7C573FE8216A8C81007C7DF3 /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE7216A8C81007C7DF3 /* HighScore.swift */; };
@@ -67,6 +65,9 @@
 		7C8BD3E42162E10C002BC785 /* ThreadSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3E32162E10C002BC785 /* ThreadSafe.swift */; };
 		7C8BD3E62162F230002BC785 /* GridFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3E52162F230002BC785 /* GridFactory.swift */; };
 		7C8BD3E82162F8D9002BC785 /* GameReadyGridFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3E72162F8D9002BC785 /* GameReadyGridFactory.swift */; };
+		7CCB79522172CDEA002081F1 /* UILabel+TextPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79512172CDEA002081F1 /* UILabel+TextPresenter.swift */; };
+		7CCB79542172E6EE002081F1 /* GameViewHintCountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79532172E6EE002081F1 /* GameViewHintCountPresenter.swift */; };
+		7CCB79562172F07D002081F1 /* GameViewSkipCountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,8 +118,6 @@
 		7C4136DF216EEB9800B92278 /* ExpressionSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionSelector.swift; sourceTree = "<group>"; };
 		7C4136E1216EEBB400B92278 /* ExpressionSymbolPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionSymbolPresenter.swift; sourceTree = "<group>"; };
 		7C573FD921699119007C7DF3 /* EventDisplayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDisplayLabel.swift; sourceTree = "<group>"; };
-		7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreLabel.swift; sourceTree = "<group>"; };
-		7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageLabel.swift; sourceTree = "<group>"; };
 		7C573FE3216A81DC007C7DF3 /* TableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataSource.swift; sourceTree = "<group>"; };
 		7C573FE5216A895C007C7DF3 /* UserDefaults+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Properties.swift"; sourceTree = "<group>"; };
 		7C573FE7216A8C81007C7DF3 /* HighScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
@@ -155,6 +154,9 @@
 		7C8BD3E32162E10C002BC785 /* ThreadSafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafe.swift; sourceTree = "<group>"; };
 		7C8BD3E52162F230002BC785 /* GridFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridFactory.swift; sourceTree = "<group>"; };
 		7C8BD3E72162F8D9002BC785 /* GameReadyGridFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameReadyGridFactory.swift; sourceTree = "<group>"; };
+		7CCB79512172CDEA002081F1 /* UILabel+TextPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+TextPresenter.swift"; sourceTree = "<group>"; };
+		7CCB79532172E6EE002081F1 /* GameViewHintCountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewHintCountPresenter.swift; sourceTree = "<group>"; };
+		7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewSkipCountPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +287,8 @@
 			isa = PBXGroup;
 			children = (
 				7C8BD3D2216147AA002BC785 /* GameViewController.swift */,
+				7CCB79532172E6EE002081F1 /* GameViewHintCountPresenter.swift */,
+				7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */,
 				7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */,
 				7C3C3F23215995EE00BD026A /* ViewController.swift */,
 				7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */,
@@ -313,12 +317,11 @@
 			children = (
 				7C8BD3D021614789002BC785 /* ExpressionChoserView.swift */,
 				7C3C3F4F2159961400BD026A /* CenteredLabel.swift */,
-				7C573FDB2169C007007C7DF3 /* ScoreLabel.swift */,
-				7C573FDD2169C2CF007C7DF3 /* StageLabel.swift */,
 				7C573FD921699119007C7DF3 /* EventDisplayLabel.swift */,
 				7C8BD3DC21615BCD002BC785 /* RationalLabel.swift */,
 				7C84DA56215B0C6800D3B36F /* StatementLabel.swift */,
 				7C334B1F2168223E00AC0CF9 /* TimeRemainingView.swift */,
+				7CCB79512172CDEA002081F1 /* UILabel+TextPresenter.swift */,
 			);
 			path = "Data Views";
 			sourceTree = "<group>";
@@ -524,7 +527,6 @@
 				7C3C3F24215995EE00BD026A /* ViewController.swift in Sources */,
 				7C573FDA21699119007C7DF3 /* EventDisplayLabel.swift in Sources */,
 				7C8BD3D121614789002BC785 /* ExpressionChoserView.swift in Sources */,
-				7C573FDE2169C2CF007C7DF3 /* StageLabel.swift in Sources */,
 				7C334B202168223E00AC0CF9 /* TimeRemainingView.swift in Sources */,
 				7C8BD3CC21613900002BC785 /* UIFont+CoreTextConvenience.swift in Sources */,
 				7C3C3F522159961400BD026A /* UIView+AutolayoutConvenience.swift in Sources */,
@@ -532,11 +534,14 @@
 				7C8BD3C22160FAB8002BC785 /* UIView+AutolayoutSetup.swift in Sources */,
 				7C573FE6216A895C007C7DF3 /* UserDefaults+Properties.swift in Sources */,
 				7C334AFE2165B1C500AC0CF9 /* UIView+AnimationConvenience.swift in Sources */,
+				7CCB79522172CDEA002081F1 /* UILabel+TextPresenter.swift in Sources */,
 				7C3C3F22215995EE00BD026A /* AppDelegate.swift in Sources */,
 				7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */,
+				7CCB79562172F07D002081F1 /* GameViewSkipCountPresenter.swift in Sources */,
 				7C8BD3D921614833002BC785 /* CGVector+LinearAlgebra.swift in Sources */,
 				7C4136E2216EEBB400B92278 /* ExpressionSymbolPresenter.swift in Sources */,
 				7C8BD3E82162F8D9002BC785 /* GameReadyGridFactory.swift in Sources */,
+				7CCB79542172E6EE002081F1 /* GameViewHintCountPresenter.swift in Sources */,
 				7C8BD3D3216147AB002BC785 /* GameViewController.swift in Sources */,
 				7C8BD3E12161C363002BC785 /* Round.swift in Sources */,
 				7C84DA77215B210700D3B36F /* Parser<Character>.swift in Sources */,
@@ -554,7 +559,6 @@
 				7C8BD3DF2161ABAD002BC785 /* Grid.swift in Sources */,
 				7C334AF6216454D500AC0CF9 /* WelcomeScreenViewController.swift in Sources */,
 				7C84DA76215B210700D3B36F /* Parser.swift in Sources */,
-				7C573FDC2169C007007C7DF3 /* ScoreLabel.swift in Sources */,
 				7C334AF8216454EA00AC0CF9 /* WelcomeScreen.swift in Sources */,
 				7C3C3F512159961400BD026A /* CenteredLabel.swift in Sources */,
 				7C84DA74215B210700D3B36F /* Parser<Int>.swift in Sources */,

@@ -11,44 +11,90 @@ import Foundation
 // Presenters provide a generic way to set a value of a given type
 // we use them to allow view-layer objects to be passed around other layers generically
 protocol TextPresenter {
-    var text : String { get set }
+    func present(text:String)
 }
 
-protocol ScorePresenter {
-    var score : Int { get set }
+// MARK:-
+
+protocol IntegerPresenter {
+    func present(integer:Int)
 }
 
-protocol StagePresenter {
-    var stage : Int { get set }
+// MARK:-
+
+private struct SemanticIntegerPresenter : IntegerPresenter {
+    
+    let presenter : TextPresenter
+
+    let formatString : String
+    let replacedString : String
+    
+    func present(integer: Int) {
+        presenter.present(text:formatString.replacingOccurrences(of: replacedString, with: "\(integer)"))
+    }
 }
 
-protocol RationalPresenter {
-    var value : Rational { get set }
+private struct PrefixedPresenter : IntegerPresenter {
+    
+    let semanticPresenter : SemanticIntegerPresenter
+    
+    init(_ presenter:TextPresenter, prefix:String) {
+        self.semanticPresenter = SemanticIntegerPresenter(presenter: presenter, formatString: "\(prefix): XXXX", replacedString: "XXXX")
+    }
+    
+    func present(integer: Int) {
+        semanticPresenter.present(integer: integer)
+    }
 }
+
+// MARK:-
+
+func ScorePresenter(_ presenter:TextPresenter) -> IntegerPresenter {
+    return PrefixedPresenter(presenter, prefix: "score")
+}
+
+func StagePresenter(_ presenter:TextPresenter) -> IntegerPresenter {
+    return PrefixedPresenter(presenter, prefix: "stage")
+}
+
+// MARK:-
 
 protocol OptionalStatementPresenter {
-    var statement : Statement? { get set }
+//    var statement : Statement? { get set }
+    func present(statement:Statement?)
 }
+
+// MARK:-
 
 protocol TimeRemainingPresenter {
-    var maxTime : Double{ get set }
-    var remainingTime : Double { get set }
+    
+    /// tells the presenter to present a new total time
+    /// the presenter can assume that remainingtime is now the same as totaltime
+    ///
+    /// - Parameter totalTime: total time in seconds
+    func present(totalTime:Double)
+    
+    /// tells the presenter to present a new remaining time
+    /// the presenter should assume that the total time has not changed
+    ///
+    /// - Parameter remainingTime: remaining time in seconds
+    func present(remainingTime:Double)
 }
 
+// MARK:-
+
 protocol ScoreAddPresenter {
-    func showScoreAdd(_ scoreAdd:Int)
+    func present(addedScore:Int)
 }
 
 protocol HintCountPresenter {
 
-    func showHints(_ hints:Int, for round:Round)
-    func hintsIncreased(by dHints:Int)
+    func present(hints:Int)
 }
 
 protocol SkipCountPresenter {
     
-    func showSkips(_ skips:Int, for round:Round)
-    func skipsIncreased(by dSkips:Int)
+    func present(skips:Int)
 }
 
 /*
