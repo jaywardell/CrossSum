@@ -133,9 +133,3 @@ class StatementLabel: UIStackView {
 
 }
 
-extension StatementLabel : OptionalStatementPresenter {
-    
-    func present(statement: Statement?) {
-        self.statement = statement
-    }
-}

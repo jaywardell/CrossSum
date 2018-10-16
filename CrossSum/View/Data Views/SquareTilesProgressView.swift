@@ -127,18 +127,3 @@ func smallestPerfectSquareGreaterThanOrEqualTo(_ number:Int) -> Int {
 }
 
 
-// MARK:-
-
-extension SquareTilesProgressView : DiscreteProgressPresenter {
-    
-    func present(progress: Int, of maxProgress: Int) {
-        
-        if maxProgress != maxItems {
-            // only set this if necessary
-            maxItems = maxProgress
-        }
-        
-        completedItems = progress
-    }
-}
-

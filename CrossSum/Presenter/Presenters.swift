@@ -8,8 +8,23 @@
 
 import Foundation
 
-// Presenters provide a generic way to set a value of a given type
-// we use them to allow view-layer objects to be passed around other layers generically
+// Presenters provide a generic way to present a value of a given type
+// We use them to allow view-layer objects to be passed to the model layer generically
+//
+// Presenter protocols are typically implemented by views or view controllers
+// but the protocols are completely agnostic to and ignorant of the view layer
+//
+// This file defines protocols for presenters of different types
+// and some simple generic presenters that can be composed into other presenters
+//
+// Presenters may act as decorators, wrapping other presenters
+// and a concrete class may implement more than one presenter protocol
+//
+// An important note: Presenters are not inspectable.
+// Thye're told to present something, and they're expected to do it
+// Clients of a presenter are not given information on how a presenter does its job
+// or even when or if it does.
+
 protocol TextPresenter {
     func present(text:String)
 }
@@ -22,7 +37,9 @@ protocol IntegerPresenter {
 
 // MARK:-
 
-private struct SemanticIntegerPresenter : IntegerPresenter {
+/// presents an integer within a string
+/// instances of a replacedString are replaced by the integer in the formatString
+struct SemanticIntegerPresenter : IntegerPresenter {
     
     let presenter : TextPresenter
 
@@ -34,7 +51,8 @@ private struct SemanticIntegerPresenter : IntegerPresenter {
     }
 }
 
-private struct PrefixedPresenter : IntegerPresenter {
+/// presents an integer with a prefix label of some time in a standardized format
+struct PrefixedPresenter : IntegerPresenter {
     
     let semanticPresenter : SemanticIntegerPresenter
     
@@ -47,50 +65,11 @@ private struct PrefixedPresenter : IntegerPresenter {
     }
 }
 
-// MARK:-
 
-func ScorePresenter(_ presenter:TextPresenter) -> IntegerPresenter {
-    return PrefixedPresenter(presenter, prefix: "score")
-}
-
-func StagePresenter(_ presenter:TextPresenter) -> IntegerPresenter {
-    return PrefixedPresenter(presenter, prefix: "stage")
-}
-
-// MARK:-
-
-protocol OptionalStatementPresenter {
-//    var statement : Statement? { get set }
-    func present(statement:Statement?)
-}
-
-// MARK:-
-
-protocol TimeRemainingPresenter {
-    
-    /// tells the presenter to present a new total time
-    /// the presenter can assume that remainingtime is now the same as totaltime
+/// A presenter that can hide itself
+protocol HidingPresenter {
+    /// tells the presenter to begin or ending presenting whatever value it is currently displaying
     ///
-    /// - Parameter totalTime: total time in seconds
-    func present(totalTime:Double)
-    
-    /// tells the presenter to present a new remaining time
-    /// the presenter should assume that the total time has not changed
-    ///
-    /// - Parameter remainingTime: remaining time in seconds
-    func present(remainingTime:Double)
+    /// - Parameter shouldPresent: true if the presenter should show its current value, otherwise false
+    func setIsPresenting(_ shouldPresent:Bool)
 }
-
-// MARK:-
-
-protocol ScoreAddPresenter {
-    func present(addedScore:Int)
-}
-
-// MARK:-
-
-protocol DiscreteProgressPresenter {
-    
-    func present(progress:Int, of maxProgress:Int)
-}
-

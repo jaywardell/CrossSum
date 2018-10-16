@@ -72,6 +72,13 @@
 		7CCB796521738E48002081F1 /* TallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB796421738E48002081F1 /* TallyView.swift */; };
 		7CCB79BF2173C130002081F1 /* SquareTilesProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79BE2173C130002081F1 /* SquareTilesProgressView.swift */; };
 		7CCB7A56217583D6002081F1 /* GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A55217583D6002081F1 /* GridTests.swift */; };
+		7CCB7A58217687D1002081F1 /* GameRelatedPresenters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A57217687D1002081F1 /* GameRelatedPresenters.swift */; };
+		7CCB7A5B21768B6F002081F1 /* UIView+HidingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A5A21768B6F002081F1 /* UIView+HidingPresenter.swift */; };
+		7CCB7A5F21768D5F002081F1 /* TallyView+IntegerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A5E21768D5F002081F1 /* TallyView+IntegerPresenter.swift */; };
+		7CCB7A6121768DA7002081F1 /* SquareTilesProgressView+DiscreteProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A6021768DA7002081F1 /* SquareTilesProgressView+DiscreteProgressPresenter.swift */; };
+		7CCB7A6321768E0D002081F1 /* EventDisplayLabel+ScoreAddPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A6221768E0D002081F1 /* EventDisplayLabel+ScoreAddPresenter.swift */; };
+		7CCB7A6521768E47002081F1 /* StatementLabel+OptionalStatementPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A6421768E47002081F1 /* StatementLabel+OptionalStatementPresenter.swift */; };
+		7CCB7A6721768E67002081F1 /* TimeRemainingView+TimeRemainingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A6621768E67002081F1 /* TimeRemainingView+TimeRemainingPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +172,13 @@
 		7CCB796421738E48002081F1 /* TallyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TallyView.swift; sourceTree = "<group>"; };
 		7CCB79BE2173C130002081F1 /* SquareTilesProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareTilesProgressView.swift; sourceTree = "<group>"; };
 		7CCB7A55217583D6002081F1 /* GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTests.swift; sourceTree = "<group>"; };
+		7CCB7A57217687D1002081F1 /* GameRelatedPresenters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRelatedPresenters.swift; sourceTree = "<group>"; };
+		7CCB7A5A21768B6F002081F1 /* UIView+HidingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+HidingPresenter.swift"; sourceTree = "<group>"; };
+		7CCB7A5E21768D5F002081F1 /* TallyView+IntegerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TallyView+IntegerPresenter.swift"; sourceTree = "<group>"; };
+		7CCB7A6021768DA7002081F1 /* SquareTilesProgressView+DiscreteProgressPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SquareTilesProgressView+DiscreteProgressPresenter.swift"; sourceTree = "<group>"; };
+		7CCB7A6221768E0D002081F1 /* EventDisplayLabel+ScoreAddPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventDisplayLabel+ScoreAddPresenter.swift"; sourceTree = "<group>"; };
+		7CCB7A6421768E47002081F1 /* StatementLabel+OptionalStatementPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StatementLabel+OptionalStatementPresenter.swift"; sourceTree = "<group>"; };
+		7CCB7A6621768E67002081F1 /* TimeRemainingView+TimeRemainingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeRemainingView+TimeRemainingPresenter.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,7 +272,11 @@
 			isa = PBXGroup;
 			children = (
 				7C3C3F552159974600BD026A /* Presenters.swift */,
+				7CCB7A57217687D1002081F1 /* GameRelatedPresenters.swift */,
 				7C4136E1216EEBB400B92278 /* ExpressionSymbolPresenter.swift */,
+				7CCB79532172E6EE002081F1 /* GameViewHintCountPresenter.swift */,
+				7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */,
+				7CCB7A5921768B48002081F1 /* Views that implement Presenter */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -266,9 +284,9 @@
 		7C3C3F6E2159C74200BD026A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7CCB795721731F0B002081F1 /* Decorative Views */,
 				7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */,
 				7C573FE0216A77A1007C7DF3 /* Data Views */,
+				7CCB795721731F0B002081F1 /* Decorative Views */,
 				7C573FDF216A7727007C7DF3 /* Extensions */,
 			);
 			path = View;
@@ -296,8 +314,6 @@
 			isa = PBXGroup;
 			children = (
 				7C8BD3D2216147AA002BC785 /* GameViewController.swift */,
-				7CCB79532172E6EE002081F1 /* GameViewHintCountPresenter.swift */,
-				7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */,
 				7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */,
 				7C3C3F23215995EE00BD026A /* ViewController.swift */,
 				7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */,
@@ -332,7 +348,6 @@
 				7C8BD3DC21615BCD002BC785 /* RationalLabel.swift */,
 				7C84DA56215B0C6800D3B36F /* StatementLabel.swift */,
 				7C334B1F2168223E00AC0CF9 /* TimeRemainingView.swift */,
-				7CCB79512172CDEA002081F1 /* UILabel+TextPresenter.swift */,
 			);
 			path = "Data Views";
 			sourceTree = "<group>";
@@ -405,6 +420,20 @@
 				7CCB795821731F30002081F1 /* Background.swift */,
 			);
 			path = "Decorative Views";
+			sourceTree = "<group>";
+		};
+		7CCB7A5921768B48002081F1 /* Views that implement Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7CCB79512172CDEA002081F1 /* UILabel+TextPresenter.swift */,
+				7CCB7A5A21768B6F002081F1 /* UIView+HidingPresenter.swift */,
+				7CCB7A5E21768D5F002081F1 /* TallyView+IntegerPresenter.swift */,
+				7CCB7A6021768DA7002081F1 /* SquareTilesProgressView+DiscreteProgressPresenter.swift */,
+				7CCB7A6221768E0D002081F1 /* EventDisplayLabel+ScoreAddPresenter.swift */,
+				7CCB7A6421768E47002081F1 /* StatementLabel+OptionalStatementPresenter.swift */,
+				7CCB7A6621768E67002081F1 /* TimeRemainingView+TimeRemainingPresenter.swift */,
+			);
+			path = "Views that implement Presenter";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -540,13 +569,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CCB7A5B21768B6F002081F1 /* UIView+HidingPresenter.swift in Sources */,
 				7C3C3F562159974600BD026A /* Presenters.swift in Sources */,
 				7C334AFA2164561200AC0CF9 /* CrossSumRouter.swift in Sources */,
+				7CCB7A6521768E47002081F1 /* StatementLabel+OptionalStatementPresenter.swift in Sources */,
 				7C8BD3E42162E10C002BC785 /* ThreadSafe.swift in Sources */,
 				7C8BD3E62162F230002BC785 /* GridFactory.swift in Sources */,
 				7CCB796521738E48002081F1 /* TallyView.swift in Sources */,
 				7C3C3F24215995EE00BD026A /* ViewController.swift in Sources */,
 				7C573FDA21699119007C7DF3 /* EventDisplayLabel.swift in Sources */,
+				7CCB7A58217687D1002081F1 /* GameRelatedPresenters.swift in Sources */,
 				7C8BD3D121614789002BC785 /* ExpressionChoserView.swift in Sources */,
 				7C334B202168223E00AC0CF9 /* TimeRemainingView.swift in Sources */,
 				7C8BD3CC21613900002BC785 /* UIFont+CoreTextConvenience.swift in Sources */,
@@ -565,7 +597,9 @@
 				7CCB79542172E6EE002081F1 /* GameViewHintCountPresenter.swift in Sources */,
 				7C8BD3D3216147AB002BC785 /* GameViewController.swift in Sources */,
 				7C8BD3E12161C363002BC785 /* Round.swift in Sources */,
+				7CCB7A6121768DA7002081F1 /* SquareTilesProgressView+DiscreteProgressPresenter.swift in Sources */,
 				7C84DA77215B210700D3B36F /* Parser<Character>.swift in Sources */,
+				7CCB7A5F21768D5F002081F1 /* TallyView+IntegerPresenter.swift in Sources */,
 				7CCB79BF2173C130002081F1 /* SquareTilesProgressView.swift in Sources */,
 				7C84DA75215B210700D3B36F /* Op.swift in Sources */,
 				7C4136DE216EE22600B92278 /* UIViewController+Debugging.swift in Sources */,
@@ -574,6 +608,8 @@
 				7C334AFC21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift in Sources */,
 				7C8BD3DB21614857002BC785 /* Collection+SpecialIteration.swift in Sources */,
 				7C8BD3DD21615BCD002BC785 /* RationalLabel.swift in Sources */,
+				7CCB7A6321768E0D002081F1 /* EventDisplayLabel+ScoreAddPresenter.swift in Sources */,
+				7CCB7A6721768E67002081F1 /* TimeRemainingView+TimeRemainingPresenter.swift in Sources */,
 				7C573FE4216A81DC007C7DF3 /* TableDataSource.swift in Sources */,
 				7C573FE8216A8C81007C7DF3 /* HighScore.swift in Sources */,
 				7C84DA84215B240800D3B36F /* Statement.swift in Sources */,

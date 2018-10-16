@@ -465,6 +465,9 @@ import UIKit
 
 
 // MARK:- ExpressionSymbolView
+// Yes, in most parts of the app, a presenter is in a separate implementation file
+// but the ExpressionChooseView is very important to our app and its presenting properties
+// are interinsic to the way it works, so I keep them in the same file as the main class
 
 extension ExpressionChoserView : ExpressionSymbolPresenter {
     

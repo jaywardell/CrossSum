@@ -59,13 +59,3 @@ import UIKit
     
 }
 
-extension TimeRemainingView : TimeRemainingPresenter {
-    func present(totalTime: Double) {
-        self.maxTime = totalTime
-        self.remainingTime = totalTime
-    }
-    
-    func present(remainingTime: Double) {
-        self.remainingTime = remainingTime
-    }
-}

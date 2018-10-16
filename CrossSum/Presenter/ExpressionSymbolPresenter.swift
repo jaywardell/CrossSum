@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Presents a set of symbols using a data source
 protocol ExpressionSymbolPresenter {
     // NOTE: these two methods are meant to be called from the present() method in the extension below
     // your implementation should implement them, but you should not call them

@@ -6,14 +6,14 @@
 //  Copyright © 2018 Joseph Wardell. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 final class GameViewSkipCountPresenter {
     
     weak var game : GameViewController?
     
-    private var skipCountPresenter : UIView & IntegerPresenter { return game!.skipCountTally }
-    private var skipButton : UIButton? { return game?.skipButton }
+    private var skipCountPresenter : HidingPresenter & IntegerPresenter { return game!.skipCountTally }
+    private var skipButton : HidingPresenter { return game!.skipButton! }
     
     private var round : Round? { return game?.round }
 
@@ -25,8 +25,8 @@ final class GameViewSkipCountPresenter {
     
     func hide() {
         
-        skipCountPresenter.isHidden = true
-        skipButton?.isHidden = true
+        skipCountPresenter.setIsPresenting(false)
+        skipButton.setIsPresenting(false)
     }
     
     func update() {
@@ -34,8 +34,8 @@ final class GameViewSkipCountPresenter {
         let showingGrid = round?.showingGrid ?? false
         let hide = !showingGrid || (skips == 0)
 
-        skipCountPresenter.isHidden = hide
-        skipButton?.isHidden = hide
+        skipCountPresenter.setIsPresenting(!hide)
+        skipButton.setIsPresenting(!hide)
     }
 }
 
