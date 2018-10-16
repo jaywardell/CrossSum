@@ -113,5 +113,13 @@ class StatementTests: XCTestCase {
         XCTAssert(Statement("1-2*3",-5, Statement.greatherthanorequal).isTrue)
         XCTAssert(Statement("0*3",0, Statement.greatherthanorequal).isTrue)
         XCTAssert(Statement("25",25, Statement.greatherthanorequal).isTrue)
-    }    
+    }
+    
+    func testMalformed() {
+        // CrossSUm itself will let me select this and will interpret it as being equal to "-6"
+        // This test is just to verify that the issue doesnt derive at the model layer, whch it appears to not do
+        XCTAssertNil(Statement("-6+", -6, Statement.equal).calculation)
+        XCTAssertFalse(Statement("-6+", -6, Statement.equal).isTrue)
+        XCTAssertFalse(Statement("-6+", 6, Statement.equal).isTrue)
+    }
 }

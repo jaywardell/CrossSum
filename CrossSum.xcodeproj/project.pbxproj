@@ -71,6 +71,7 @@
 		7CCB795921731F30002081F1 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB795821731F30002081F1 /* Background.swift */; };
 		7CCB796521738E48002081F1 /* TallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB796421738E48002081F1 /* TallyView.swift */; };
 		7CCB79BF2173C130002081F1 /* SquareTilesProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79BE2173C130002081F1 /* SquareTilesProgressView.swift */; };
+		7CCB7A56217583D6002081F1 /* GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A55217583D6002081F1 /* GridTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,7 @@
 		7CCB795821731F30002081F1 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		7CCB796421738E48002081F1 /* TallyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TallyView.swift; sourceTree = "<group>"; };
 		7CCB79BE2173C130002081F1 /* SquareTilesProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareTilesProgressView.swift; sourceTree = "<group>"; };
+		7CCB7A55217583D6002081F1 /* GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,6 +384,7 @@
 			children = (
 				7C3C3F692159C45500BD026A /* RationalTests.swift */,
 				7C8BD3BF21605A60002BC785 /* StatementTests.swift */,
+				7CCB7A55217583D6002081F1 /* GridTests.swift */,
 				7C8BD3CD21614223002BC785 /* Parser Tests */,
 			);
 			path = "Model Layer Tests";
@@ -599,6 +602,7 @@
 				7C84DA7B215B211600D3B36F /* ParserTests.swift in Sources */,
 				7C3C3F5A2159A06100BD026A /* RationalLabelTests.swift in Sources */,
 				7C8BD3C021605A60002BC785 /* StatementTests.swift in Sources */,
+				7CCB7A56217583D6002081F1 /* GridTests.swift in Sources */,
 				7C84DA7D215B211600D3B36F /* IntParserTests.swift in Sources */,
 				7C8BD3C62160FCA4002BC785 /* CenteredLabelTestsViewController.swift in Sources */,
 				7C84DA82215B226000D3B36F /* RationalParserTests.swift in Sources */,

@@ -110,4 +110,38 @@ class ParserTests: XCTestCase {
         XCTAssertNil(r3?.1)
     }
     
+    func testStringParser() {
+        let sut = Parser.character(in: "a").string()
+
+        let r1 = sut.parse("a")
+        XCTAssertEqual(r1!.0, "a")
+        XCTAssertEqual(r1!.1, "")
+
+        let r2 = sut.parse("ab")
+        XCTAssertEqual(r2!.0, "a")
+        XCTAssertEqual(r2!.1, "b")
+        
+        let r3 = sut.parse("aaaab")
+        XCTAssertEqual(r3!.0, "aaaa")
+        XCTAssertEqual(r3!.1, "b")
+
+    }
+    
+    func testLengthLimitedStringParser() {
+        let sut = Parser.character(in: "a").string(length:1)
+        
+        let r1 = sut.parse("a")
+        XCTAssertEqual(r1!.0, "a")
+        XCTAssertEqual(r1!.1, "")
+        
+        let r2 = sut.parse("ab")
+        XCTAssertEqual(r2!.0, "a")
+        XCTAssertEqual(r2!.1, "b")
+        
+        let r3 = sut.parse("aaaab")
+        XCTAssertEqual(r3!.0, "a")
+        XCTAssertEqual(r3!.1, "aaab")
+        
+    }
+
 }

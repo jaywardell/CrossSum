@@ -85,12 +85,15 @@ class Grid {
         case minus = "-"
         case times = "×"
         case dividedeBy = "÷"
+        
+        static var all : String {
+            return self.plus.rawValue + self.minus.rawValue + self.times.rawValue + self.dividedeBy.rawValue
+        }
     }
     
     
     
-    init(_ specification:GridSpecification)
-    {
+    init(_ specification:GridSpecification) {
         self.specification = specification
         
         let _operators = specification.operators.reduce("") { $0 + $1.rawValue }
@@ -119,8 +122,54 @@ class Grid {
         findSolutions()
     }
     
+    init(_ string:String, _ specification:GridSpecification) throws {
+        self.specification = specification
+        
+        // parse the string into alternating integer/oeration array
+        var parts = [String]()
+        
+        let integers = Parser<Character>.pos_negDigits
+        let operators = Parser.character(in: Operator.all).string(length:1)
+        
+        var remainder = string[...]
+        var parsingInt = true
+        var parser = integers
+        while !remainder.isEmpty {
+            guard let r = parser.parse(remainder) else {
+                throw(NSError(domain: "Grid", code: 5, userInfo: [NSLocalizedDescriptionKey:"Couldn't parse string"]))
+            }
+            guard r.1 != remainder else {
+                throw(NSError(domain: "Grid", code: 1, userInfo: [NSLocalizedDescriptionKey:"parser did not parse anything, malformed string: \(remainder)"]))
+            }
+            parts.append(r.0)
+            remainder = r.1
+            
+            parsingInt.toggle()
+            parser = parsingInt ? integers : operators
+        }
+        
+        guard(parts.count == size*size) else {
+            throw(NSError(domain: "Grid", code: 2, userInfo: [NSLocalizedDescriptionKey:"expect a square grid"]))
+        }
+        
+        // massage the parts array into an array of arrays of string
+        var symbols = [[String]]()
+        for i in stride(from: 0, to: parts.count-size+1, by: size) {
+            let arr = Array(parts[i..<i+size])
+            guard arr.count == size else {
+                throw(NSError(domain: "Grid", code: 3, userInfo: [NSLocalizedDescriptionKey:"expect each line to have \(size) items"]))
+            }
+            symbols.append(arr)
+        }
+        guard symbols.count == size else {
+            throw(NSError(domain: "Grid", code: 4, userInfo: [NSLocalizedDescriptionKey:"expect the grid to have \(size) rows"]))
+        }
+        self.symbols = symbols
+        print("symbolds: \(self.symbols)")
+        
+        findSolutions()
+    }
     
-    // TODO: init from a String
     // TODO: COdable
 }
 

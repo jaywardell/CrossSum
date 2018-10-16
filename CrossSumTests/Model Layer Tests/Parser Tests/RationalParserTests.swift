@@ -50,6 +50,8 @@ class RationalParserTests: XCTestCase {
         XCTAssertNil(d().parse("*+9"))
         XCTAssertNil(d().parse("*9"))
         XCTAssertNil(d().parse("3*3=9"))
+        XCTAssertNil(d().parse("-4x"))
+        XCTAssertNil(d().parse("-3+"))
     }
     
     // MARK:-
