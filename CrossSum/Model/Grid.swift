@@ -12,15 +12,39 @@ protocol GridSolutionClient {
     func willAcceptSolution(solution:Rational, in grid:Grid, from start:Grid.Coordinate, to end:Grid.Coordinate) -> Bool
 }
 
+struct GridSpecification {
+    
+    let size : Int
+    let range : ClosedRange<Int>
+    let operators : [Grid.Operator]
+    let solutionRange : ClosedRange<Rational>
+    let allowsFractionalSolutions : Bool
+    
+    func mutatedCopy(size:Int? = nil,
+                     range:ClosedRange<Int>? = nil,
+                     operators:[Grid.Operator]? = nil,
+                     solutionRange:ClosedRange<Rational>? = nil,
+                     allowsFractionalSolutions:Bool? = nil) -> GridSpecification {
+        
+        return GridSpecification(size: size ?? self.size,
+                    range: range ?? self.range,
+                    operators: operators ?? self.operators,
+                    solutionRange: solutionRange ?? self.solutionRange,
+                    allowsFractionalSolutions: allowsFractionalSolutions ?? self.allowsFractionalSolutions)
+        
+    }
+}
 
 class Grid {
     typealias Coordinate = (Int, Int)
     
-    let size : Int
-    let range : ClosedRange<Int>
-    let operators : [Operator]
-    let solutionRange : ClosedRange<Rational>
-    let allowsFractionalSolutions : Bool
+    let specification : GridSpecification
+
+    var size : Int { return specification.size }
+    var range : ClosedRange<Int> { return specification.range }
+    var operators : [Operator] { return specification.operators }
+    var solutionRange : ClosedRange<Rational> { return specification.solutionRange }
+    var allowsFractionalSolutions : Bool { return specification.allowsFractionalSolutions }
     
     var solutionClient : GridSolutionClient?
     
@@ -65,30 +89,22 @@ class Grid {
     
     
     
-    init(size:Int,
-         range:ClosedRange<Int>,
-         operators:[Operator],
-        solutionRange:ClosedRange<Rational>,
-        allowsFractionalSolutions:Bool
-        ) {
-        self.size = size
-        self.range = range
-        self.operators = operators
-        self.solutionRange = solutionRange
-        self.allowsFractionalSolutions = allowsFractionalSolutions
-
-        let _operators = operators.reduce("") { $0 + $1.rawValue }
+    init(_ specification:GridSpecification)
+    {
+        self.specification = specification
+        
+        let _operators = specification.operators.reduce("") { $0 + $1.rawValue }
         
         // randomly build the grid
         var ss = [[String]]()
         var i = 0
-        (0..<size).forEach { _ in
+        (0..<specification.size).forEach { _ in
             var row = [String]()
-            (0..<size).forEach { _ in
+            (0..<specification.size).forEach { _ in
                 
                 row.append(
                     i%2 == 0 ?
-                        "\(Int.random(in: range))" :
+                        "\(Int.random(in: specification.range))" :
                     "\(_operators.randomElement()!)"
                 )
                 
@@ -101,20 +117,6 @@ class Grid {
         
         // build the solutions
         findSolutions()
-    }
-    
-    func mutatedCopy(size:Int? = nil,
-                     range:ClosedRange<Int>? = nil,
-                     operators:[Operator]? = nil,
-                     solutionRange:ClosedRange<Rational>? = nil,
-                     allowsFractionalSolutions:Bool? = nil) -> Grid {
-        
-        return Grid(size: size ?? self.size,
-                    range: range ?? self.range,
-                    operators: operators ?? self.operators,
-                    solutionRange: solutionRange ?? self.solutionRange,
-                    allowsFractionalSolutions: allowsFractionalSolutions ?? self.allowsFractionalSolutions)
-        
     }
     
     
@@ -161,8 +163,6 @@ extension Grid {
     }
     
     private func findSolutions() {
-        
-//        let start = Date().timeIntervalSinceReferenceDate
         
         DispatchQueue.concurrentPerform(iterations: rows) { row in
 
@@ -220,9 +220,6 @@ extension Grid {
                 }
             }
         }
-        
-//        print("solutions: \(self.solutionsToLocations.value)")
-//        print("\(#function) \(Date().timeIntervalSinceReferenceDate - start)")
     }
     
     private func appendToPossibleSolutions(solution:Rational, coordinates start:Coordinate, end:Coordinate) {
