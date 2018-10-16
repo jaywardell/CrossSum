@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIView : HidingPresenter {
+extension UIView : ToggleablePresenter {
     func setIsPresenting(_ shouldPresent: Bool) {
         isHidden = !shouldPresent
     }

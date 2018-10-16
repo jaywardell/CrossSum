@@ -12,30 +12,34 @@ final class GameViewHintCountPresenter {
     
     weak var game : GameViewController!
     
-    private var hintCountTally : HidingPresenter & IntegerPresenter { return game.hintCountTally }
-    private var showHintButton : HidingPresenter { return game.showHintButton! }
-    
-    private var round : Round? { return game?.round }
+    private var hintCountPresenter : ToggleablePresenter & IntegerPresenter
+    private let toggleable : ToggleablePresenterGroup
+
+    private weak var round : Round?
     
     private var lastHintCount : Int?
     
     init(_ game:GameViewController) {
         self.game = game
+        
+        self.round = game.round
+        
+        self.hintCountPresenter = game.hintCountTally
+        
+        self.toggleable = ToggleablePresenterGroup([game.hintCountTally, game.showHintButton!])
     }
 
     func hide() {
-        
-        hintCountTally.setIsPresenting(false)
-        showHintButton.setIsPresenting(false)
+
+        toggleable.setIsPresenting(false)
     }
     
     func update() {
         
         let showingGrid = round?.showingGrid ?? false
         let hide = !showingGrid || ((lastHintCount ?? 0) == 0)
-        
-        hintCountTally.setIsPresenting(!hide)
-        showHintButton.setIsPresenting(!hide)
+
+        toggleable.setIsPresenting(!hide)
     }
 
     private func hintsIncreased(by dHints: Int) {
@@ -47,7 +51,7 @@ extension GameViewHintCountPresenter : IntegerPresenter {
     
     func present(integer: Int) {
         
-        hintCountTally.present(integer: integer)
+        hintCountPresenter.present(integer: integer)
         
         if let lastHintCount = lastHintCount {
             let dHints = integer - lastHintCount

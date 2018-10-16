@@ -66,10 +66,26 @@ struct PrefixedPresenter : IntegerPresenter {
 }
 
 
-/// A presenter that can hide itself
-protocol HidingPresenter {
-    /// tells the presenter to begin or ending presenting whatever value it is currently displaying
+/// A presenter that can have its presenting state turned on or off
+protocol ToggleablePresenter {
+    
+    /// tells the presenter to begin or end presenting whatever value it is currently displaying
     ///
     /// - Parameter shouldPresent: true if the presenter should show its current value, otherwise false
     func setIsPresenting(_ shouldPresent:Bool)
+}
+
+/// A wrapper for a series of HidingPresenters
+struct ToggleablePresenterGroup : ToggleablePresenter {
+    
+    private var toggleables : [ToggleablePresenter]
+    
+    init(_ toggleables:[ToggleablePresenter]) {
+        self.toggleables = toggleables
+    }
+    
+    func setIsPresenting(_ shouldPresent: Bool) {
+        
+        toggleables.forEach() { $0.setIsPresenting(shouldPresent)}
+    }
 }

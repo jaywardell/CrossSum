@@ -10,23 +10,23 @@ import Foundation
 
 final class GameViewSkipCountPresenter {
     
-    weak var game : GameViewController?
+    private var skipCountPresenter : ToggleablePresenter & IntegerPresenter
+    private var toggleable : ToggleablePresenterGroup
     
-    private var skipCountPresenter : HidingPresenter & IntegerPresenter { return game!.skipCountTally }
-    private var skipButton : HidingPresenter { return game!.skipButton! }
-    
-    private var round : Round? { return game?.round }
+    private weak var round : Round?
 
     private var skips = 0
     
     init(_ game:GameViewController) {
-        self.game = game
+        
+        self.skipCountPresenter = game.skipCountTally
+        self.round = game.round
+        self.toggleable = ToggleablePresenterGroup([game.skipButton!, game.skipCountTally])
     }
     
     func hide() {
-        
-        skipCountPresenter.setIsPresenting(false)
-        skipButton.setIsPresenting(false)
+
+        toggleable.setIsPresenting(false)
     }
     
     func update() {
@@ -34,8 +34,7 @@ final class GameViewSkipCountPresenter {
         let showingGrid = round?.showingGrid ?? false
         let hide = !showingGrid || (skips == 0)
 
-        skipCountPresenter.setIsPresenting(!hide)
-        skipButton.setIsPresenting(!hide)
+        toggleable.setIsPresenting(!hide)
     }
 }
 

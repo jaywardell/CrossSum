@@ -184,6 +184,7 @@ extension Round {
     }
     
     private func userChoseTrue(statement:Statement) {
+        if let timeKeeper = self.timeKeeper, timeKeeper.isDone { return }
         
         timeKeeper!.stop()
         let scoreForTarget = self.score(for:statement)
