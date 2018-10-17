@@ -27,6 +27,17 @@ class Grid {
         var raw : (Int, Int) { return (x,y) }
     }
     
+    enum Operator : String {
+        case plus = "+"
+        case minus = "-"
+        case times = "×"
+        case dividedeBy = "÷"
+        
+        static var all : String {
+            return self.plus.rawValue + self.minus.rawValue + self.times.rawValue + self.dividedeBy.rawValue
+        }
+    }
+
     struct Specification {
         
         let size : Int
@@ -92,16 +103,6 @@ class Grid {
         return filteredD ?? []
     }
     
-    enum Operator : String {
-        case plus = "+"
-        case minus = "-"
-        case times = "×"
-        case dividedeBy = "÷"
-        
-        static var all : String {
-            return self.plus.rawValue + self.minus.rawValue + self.times.rawValue + self.dividedeBy.rawValue
-        }
-    }
     
     
     
