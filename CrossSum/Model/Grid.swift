@@ -12,33 +12,45 @@ protocol GridSolutionClient {
     func willAcceptSolution(solution:Rational, in grid:Grid, from start:Grid.Coordinate, to end:Grid.Coordinate) -> Bool
 }
 
-struct GridSpecification {
-    
-    let size : Int
-    let range : ClosedRange<Int>
-    let operators : [Grid.Operator]
-    let solutionRange : ClosedRange<Rational>
-    let allowsFractionalSolutions : Bool
-    
-    func mutatedCopy(size:Int? = nil,
-                     range:ClosedRange<Int>? = nil,
-                     operators:[Grid.Operator]? = nil,
-                     solutionRange:ClosedRange<Rational>? = nil,
-                     allowsFractionalSolutions:Bool? = nil) -> GridSpecification {
-        
-        return GridSpecification(size: size ?? self.size,
-                    range: range ?? self.range,
-                    operators: operators ?? self.operators,
-                    solutionRange: solutionRange ?? self.solutionRange,
-                    allowsFractionalSolutions: allowsFractionalSolutions ?? self.allowsFractionalSolutions)
-        
-    }
-}
 
 class Grid {
-    typealias Coordinate = (Int, Int)
     
-    let specification : GridSpecification
+    struct Coordinate : Equatable {
+        let x : Int
+        let y : Int
+        
+        init(_ x:Int, _ y:Int) {
+            self.x = x
+            self.y = y
+        }
+        
+        var raw : (Int, Int) { return (x,y) }
+    }
+    
+    struct Specification {
+        
+        let size : Int
+        let range : ClosedRange<Int>
+        let operators : [Grid.Operator]
+        let solutionRange : ClosedRange<Rational>
+        let allowsFractionalSolutions : Bool
+        
+        func mutatedCopy(size:Int? = nil,
+                         range:ClosedRange<Int>? = nil,
+                         operators:[Grid.Operator]? = nil,
+                         solutionRange:ClosedRange<Rational>? = nil,
+                         allowsFractionalSolutions:Bool? = nil) -> Specification {
+            
+            return Specification(size: size ?? self.size,
+                                     range: range ?? self.range,
+                                     operators: operators ?? self.operators,
+                                     solutionRange: solutionRange ?? self.solutionRange,
+                                     allowsFractionalSolutions: allowsFractionalSolutions ?? self.allowsFractionalSolutions)
+            
+        }
+    }
+
+    let specification : Specification
 
     var size : Int { return specification.size }
     var range : ClosedRange<Int> { return specification.range }
@@ -93,7 +105,7 @@ class Grid {
     
     
     
-    init(_ specification:GridSpecification) {
+    init(_ specification:Specification) {
         self.specification = specification
         
         let _operators = specification.operators.reduce("") { $0 + $1.rawValue }
@@ -122,7 +134,7 @@ class Grid {
         findSolutions()
     }
     
-    init(_ string:String, _ specification:GridSpecification) throws {
+    init(_ string:String, _ specification:Specification) throws {
         self.specification = specification
         
         // parse the string into alternating integer/oeration array
@@ -177,7 +189,7 @@ class Grid {
     // TODO: COdable
 }
 
-// MARK:- WordSearchDataSource
+// MARK:- ExpressionSymbolViewDataSource
 
 extension Grid : ExpressionSymbolViewDataSource {
     var rows: Int {
@@ -228,8 +240,8 @@ extension Grid {
                     
                     // forward
                     for i in column + 1 ..< columns {
-                        let start = (row, column)
-                        let end = (row, i)
+                        let start = Coordinate(row, column)
+                        let end = Coordinate(row, i)
                         if let solution = solution(for: start, to: end) {
                             if accepts(solution: solution, from:start, to:end) {
                                 appendToPossibleSolutions(solution: solution, coordinates: start, end: end)
@@ -239,8 +251,8 @@ extension Grid {
                     
                     // backward
                     for i in stride(from: column - 1, through: 0, by: -1) {
-                        let start = (row, column)
-                        let end = (row, i)
+                        let start = Coordinate(row, column)
+                        let end = Coordinate(row, i)
                         if let solution = solution(for: start, to: end) {
                             if accepts(solution: solution, from:start, to:end) {
                                 appendToPossibleSolutions(solution: solution, coordinates: start, end: end)
@@ -252,8 +264,8 @@ extension Grid {
                     
                     // forward
                     for i in row + 1 ..< rows {
-                        let start = (row, column)
-                        let end = (i, column)
+                        let start = Coordinate(row, column)
+                        let end = Coordinate(i, column)
                         if let solution = solution(for: start, to: end) {
                             if accepts(solution: solution, from:start, to:end) {
                                 appendToPossibleSolutions(solution: solution, coordinates: start, end: end)
@@ -263,8 +275,8 @@ extension Grid {
                     
                     // backward
                     for i in stride(from: row - 1, through: 0, by: -1) {
-                        let start = (row, column)
-                        let end = (i, column)
+                        let start = Coordinate(row, column)
+                        let end = Coordinate(i, column)
                         if let solution = solution(for: start, to: end) {
                             if accepts(solution: solution, from:start, to:end) {
                                 appendToPossibleSolutions(solution: solution, coordinates: start, end: end)
@@ -284,8 +296,8 @@ extension Grid {
         }
     }
     
-    private func solution (for start:(Int, Int), to end:(Int, Int)) -> Rational? {
-        let s = stringForSymbols(between: start, and: end)
+    private func solution(for start:Coordinate, to end:Coordinate) -> Rational? {
+        let s = stringForSymbols(between: start.raw, and: end.raw)
         let statement = Statement(s)
         if statement.isValid, let solution = statement.calculation {
             return solution
@@ -294,4 +306,3 @@ extension Grid {
     }
 
 }
-

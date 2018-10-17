@@ -18,7 +18,7 @@ protocol GridFactory {
 struct SimpleGridFactory : GridFactory {
     func gridAfter(_ grid: Grid?) -> Grid {
         
-        let simple = GridSpecification(size: 7,
+        let simple = Grid.Specification(size: 7,
                                        range: 1...10,
                                        operators:[.plus, .minus, .times],
                                        solutionRange:0...10,

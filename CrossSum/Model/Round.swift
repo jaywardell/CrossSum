@@ -48,7 +48,7 @@ final class Round {
             hintCountPresenter?.present(integer: hints)
         }
     }
-    private var hint : (Int, Int)?
+    private var hint : Grid.Coordinate?
 
     var skips : Int = 0 {
         didSet {
@@ -267,9 +267,9 @@ extension Round {
     /// Tells the ExpressionSelector to show a selection over the first symbol of ONE OF the possible ways to get the solution, chosen randomly
     func showAHint() {
         guard hints > 0 else { return }
-        guard let thisWay = hintedCoordinate() else { return }
+        guard let thisFirstSelectedCoordinate = hintedCoordinate() else { return }
         
-        expressionSelector?.select(thisWay.0, thisWay.1, animated:true)
+        expressionSelector?.select(thisFirstSelectedCoordinate.x, thisFirstSelectedCoordinate.y, animated:true)
         hints -= 1
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
@@ -277,7 +277,7 @@ extension Round {
         }
     }
     
-    private func hintedCoordinate() -> (Int, Int)? {
+    private func hintedCoordinate() -> Grid.Coordinate? {
         if let hint = hint { return hint}
         guard let currentTargetSolution = currentTargetSolution,
             let ways = grid?.waysToGet(solution: currentTargetSolution),
@@ -302,7 +302,7 @@ extension Round {
         showingSkip = true
         timeKeeper?.stop()
         expressionSelector?.prepareToSimulateSelection()
-        expressionSelector?.select(from: thisWay.0.0, thisWay.0.1, to: thisWay.1.0, thisWay.1.1, animated:true)
+        expressionSelector?.select(from: thisWay.0.x, thisWay.0.y, to: thisWay.1.x, thisWay.1.y, animated:true)
         
         skips -= 1
         canEarnASkipThisGrid = false
@@ -404,8 +404,8 @@ extension Round : GridSolutionClient {
         // don't offer solutions that can only be gotten from one or two squares (e.g. - and 5 becomes -5)
         guard let locations = grid.solutionsToExpressionLocations.value[solution] else { return false }
         for choice in locations {
-            if abs(choice.0.0 - choice.1.0) >= 2 ||
-                abs(choice.0.1 - choice.1.1) >= 2 {
+            if abs(choice.0.x - choice.1.x) >= 2 ||
+                abs(choice.0.y - choice.1.y) >= 2 {
                 return true
             }
         }

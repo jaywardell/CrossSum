@@ -13,7 +13,7 @@ struct GridMutator : Equatable, Hashable {
     let name : String
     let probability : Double // a value between 0 and 1
     let canMutate : (Grid) -> Bool
-    let mutate : (GridSpecification) -> GridSpecification
+    let mutate : (Grid.Specification) -> Grid.Specification
 
     // a mutator that returns a Grid wth the same characteristics
     // very low probability because it's only used as a stopgap, last ditch
@@ -151,7 +151,7 @@ struct GameReadyGridFactory : GridFactory {
         fatalError("If nothing else, same mutator should work, so control flow should never reach here")
     }
     
-    static let BeginningGridSpecifications = GridSpecification(size: 5,
+    static let BeginningGridSpecifications = Grid.Specification(size: 5,
                                                         range: 1...5,
                                                         operators:[.plus],
                                                         solutionRange:0...5,
