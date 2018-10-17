@@ -128,7 +128,7 @@ class ParserTests: XCTestCase {
     }
     
     func testLengthLimitedStringParser() {
-        let sut = Parser.character(in: "a").string(length:1)
+        let sut = Parser.character(in: "a").string(maxLength:1)
         
         let r1 = sut.parse("a")
         XCTAssertEqual(r1!.0, "a")

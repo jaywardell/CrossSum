@@ -49,9 +49,7 @@ import UIKit
         _completed = items
         for (i, tile) in tiles.enumerated() {
             configure(tile: tile, at: i)
-            print("tile: \(tile) \(tile.frame)")
         }
-        
     }
     
     private var tiles = [CAShapeLayer]()
@@ -64,8 +62,6 @@ import UIKit
     
     private func updateTiles() {
         let dimension = smallestPerfectSquareGreaterThanOrEqualTo(maxItems)
-        
-        print("\(#function) \(frame)")
         
         tiles.forEach() { tile in
             tile.removeFromSuperlayer()

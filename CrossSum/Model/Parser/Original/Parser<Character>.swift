@@ -52,15 +52,15 @@ extension Parser where A == Character {
         }
     }
     
-    func string(length:Int?=nil) -> Parser<String> {
-        return Parser<String> { stream in
+    func string(maxLength:Int?=nil) -> Parser<String?> {
+        return Parser<String?> { stream in
             
             var characters = [Character]()
             var str = stream
             while let r = self.parse(str) {
                 characters.append(r.0)
                 str = r.1
-                if let length = length,
+                if let length = maxLength,
                     characters.count >= length {
                     break
                 }

@@ -128,10 +128,14 @@ class Grid {
         // parse the string into alternating integer/oeration array
         var parts = [String]()
         
-        let integers = Parser<Character>.pos_negDigits
-        let operators = Parser.character(in: Operator.all).string(length:1)
+        let integers = Parser<Character>.digits
+        let operators = Parser.character(in: Operator.all).string(maxLength:1)
         
-        var remainder = string[...]
+        let str = string.replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: "\n", with: "")
+            .replacingOccurrences(of: "\t", with: "")
+        
+        var remainder = str[...]
         var parsingInt = true
         var parser = integers
         while !remainder.isEmpty {
@@ -141,7 +145,7 @@ class Grid {
             guard r.1 != remainder else {
                 throw(NSError(domain: "Grid", code: 1, userInfo: [NSLocalizedDescriptionKey:"parser did not parse anything, malformed string: \(remainder)"]))
             }
-            parts.append(r.0)
+            parts.append(r.0!)
             remainder = r.1
             
             parsingInt.toggle()
@@ -204,6 +208,7 @@ extension Grid {
         
         // let the client have a go at it
         if let client =  solutionClient {
+            // NOTE: not being called b/c solutionCLient is not set at init when this is called
             if !client.willAcceptSolution(solution: solution, in:self, from: start, to: end) {
                 return false
             }
