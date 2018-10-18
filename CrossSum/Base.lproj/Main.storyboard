@@ -405,20 +405,29 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uyf-gV-IMa" customClass="SquareTilesProgressView" customModule="CrossSum" customModuleProvider="target">
-                                        <rect key="frame" x="206.5" y="46" width="75.5" height="37"/>
-                                        <color key="backgroundColor" red="0.8980392157" green="0.59607843140000005" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="46" width="320" height="29"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" secondItem="Uyf-gV-IMa" secondAttribute="height" multiplier="34/21" priority="750" id="eeU-BG-sMY"/>
+                                            <constraint firstAttribute="width" secondItem="Uyf-gV-IMa" secondAttribute="height" multiplier="144:13" id="9D0-tF-HwC"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="leftToRight" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="leftToRight" value="YES"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="topToBottom" value="YES"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="horizontalFirst" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maxItems">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="completedItems">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="geometryAsInt">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="T6Y-Y6-ZIW" secondAttribute="bottom" id="2zZ-Ft-Euo"/>
+                                    <constraint firstItem="Uyf-gV-IMa" firstAttribute="leading" secondItem="7Xm-Rt-T74" secondAttribute="leading" id="6Bl-Cm-eti"/>
                                     <constraint firstItem="na2-n4-LdX" firstAttribute="centerX" secondItem="nlH-MN-u9R" secondAttribute="centerX" id="AkC-bQ-DqE"/>
                                     <constraint firstItem="nlH-MN-u9R" firstAttribute="top" secondItem="na2-n4-LdX" secondAttribute="bottom" constant="1.5" id="CY2-eh-YOd" userLabel="Hint COunt Add Label - VPosition"/>
                                     <constraint firstItem="ZFe-jE-bhl" firstAttribute="leading" secondItem="Fm8-tT-l6V" secondAttribute="trailing" constant="8" id="DRp-bF-opt"/>
@@ -430,7 +439,6 @@
                                     <constraint firstAttribute="trailing" secondItem="KUE-Nj-kYG" secondAttribute="trailing" constant="38" id="JwN-cg-dji"/>
                                     <constraint firstItem="T6Y-Y6-ZIW" firstAttribute="leading" secondItem="nlH-MN-u9R" secondAttribute="trailing" constant="8" id="L40-sq-OAI"/>
                                     <constraint firstItem="jHn-ws-VRQ" firstAttribute="centerY" secondItem="KUE-Nj-kYG" secondAttribute="centerY" id="QBg-0U-s9a"/>
-                                    <constraint firstItem="Uyf-gV-IMa" firstAttribute="trailing" secondItem="KUE-Nj-kYG" secondAttribute="trailing" id="RQ8-PK-kcE"/>
                                     <constraint firstAttribute="trailing" secondItem="ZFe-jE-bhl" secondAttribute="trailing" constant="8" id="S8j-FD-Chb"/>
                                     <constraint firstItem="ZFe-jE-bhl" firstAttribute="centerY" secondItem="Fm8-tT-l6V" secondAttribute="centerY" id="Stc-nF-DW1"/>
                                     <constraint firstItem="nlH-MN-u9R" firstAttribute="centerY" secondItem="T6Y-Y6-ZIW" secondAttribute="centerY" id="SzU-xK-Gvl"/>
@@ -438,10 +446,10 @@
                                     <constraint firstItem="KUE-Nj-kYG" firstAttribute="leading" secondItem="jHn-ws-VRQ" secondAttribute="trailing" constant="16" id="UCm-NF-o80"/>
                                     <constraint firstItem="nlH-MN-u9R" firstAttribute="height" secondItem="T6Y-Y6-ZIW" secondAttribute="height" multiplier="21/34" id="bfT-VB-87v"/>
                                     <constraint firstAttribute="bottom" secondItem="Fm8-tT-l6V" secondAttribute="bottom" id="cMY-Pl-emc"/>
-                                    <constraint firstItem="Uyf-gV-IMa" firstAttribute="width" secondItem="7Xm-Rt-T74" secondAttribute="width" multiplier="8/34" id="e21-Vt-N8m"/>
                                     <constraint firstItem="NDX-Xl-sGH" firstAttribute="centerX" secondItem="7Xm-Rt-T74" secondAttribute="centerX" id="fl9-tk-a9a"/>
                                     <constraint firstItem="nlH-MN-u9R" firstAttribute="leading" secondItem="7Xm-Rt-T74" secondAttribute="leading" constant="8" id="gbE-Ff-Sfv"/>
                                     <constraint firstItem="NDX-Xl-sGH" firstAttribute="leading" secondItem="T6Y-Y6-ZIW" secondAttribute="trailing" constant="24" id="hJy-q6-1pl"/>
+                                    <constraint firstAttribute="trailing" secondItem="Uyf-gV-IMa" secondAttribute="trailing" id="hUE-t1-LqS"/>
                                     <constraint firstItem="k4V-DD-zOG" firstAttribute="leading" secondItem="7Xm-Rt-T74" secondAttribute="leading" constant="16" id="jPR-tH-F0D"/>
                                     <constraint firstItem="Uyf-gV-IMa" firstAttribute="top" secondItem="KUE-Nj-kYG" secondAttribute="bottom" constant="8" id="pPk-Fe-q4T"/>
                                     <constraint firstItem="fLU-rC-INl" firstAttribute="centerX" secondItem="7Xm-Rt-T74" secondAttribute="centerX" id="sjp-Cg-kkS"/>
