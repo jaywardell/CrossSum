@@ -311,6 +311,9 @@ extension Round {
         skips -= 1
         canEarnASkipThisGrid = false
         
+        // we know that another foundSolution is going to be added, so present it now with a cout of +1
+        gridProgressPresenter?.present(progress: foundSolutions.count + 1, of: acceptableSolutions.count)
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             self?.expressionSelector?.removeSelection(animated: true) {
                 self?.advanceToNextTargetSolution()
