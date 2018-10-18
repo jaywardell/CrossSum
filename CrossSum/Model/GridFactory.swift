@@ -9,14 +9,26 @@
 import Foundation
 
 // an object that creates grids, perhaps based on what grids were created before (to allow for progressively harder grids)
+// it also calculates the solutions for the grid, based on the filter function passed in
 protocol GridFactory {
     
-    func gridAfter(_ grid:Grid?) -> Grid
+    func gridAfter(_ grid:Grid?, using filter:@escaping GridSolutionFilter) -> SolvedGrid
+}
+
+extension GridFactory {
+    
+    func solved(_ grid:Grid, _ filter:@escaping GridSolutionFilter) -> SolvedGrid {
+        
+        let solver = GridSolver(grid:grid, solutionFilter:filter)
+        let solutions = solver.findSolutions()
+        
+        return SolvedGrid(grid:grid, solutions:solutions)
+    }
 }
 
 
 struct SimpleGridFactory : GridFactory {
-    func gridAfter(_ grid: Grid?) -> Grid {
+    func gridAfter(_ grid: Grid?, using filter:@escaping GridSolutionFilter) -> SolvedGrid {
         
         let simple = Grid.Specification(size: 7,
                                        range: 1...10,
@@ -24,7 +36,9 @@ struct SimpleGridFactory : GridFactory {
                                        solutionRange:0...10,
                                        allowsFractionalSolutions:false)
         
-        return Grid(simple)
+        let grid = Grid(simple)
+
+        return solved(grid, filter)
     }
 }
 

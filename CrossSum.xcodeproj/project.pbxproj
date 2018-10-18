@@ -79,6 +79,9 @@
 		7CCB7A6321768E0D002081F1 /* EventDisplayLabel+ScoreAddPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A6221768E0D002081F1 /* EventDisplayLabel+ScoreAddPresenter.swift */; };
 		7CCB7A6521768E47002081F1 /* StatementLabel+OptionalStatementPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A6421768E47002081F1 /* StatementLabel+OptionalStatementPresenter.swift */; };
 		7CCB7A6721768E67002081F1 /* TimeRemainingView+TimeRemainingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A6621768E67002081F1 /* TimeRemainingView+TimeRemainingPresenter.swift */; };
+		7CCB7A692177F600002081F1 /* GridSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A682177F600002081F1 /* GridSolver.swift */; };
+		7CCB7A6B21781B6A002081F1 /* SolvedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A6A21781B6A002081F1 /* SolvedGrid.swift */; };
+		7CCB7A6D21782A44002081F1 /* GridSolutions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A6C21782A44002081F1 /* GridSolutions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +182,9 @@
 		7CCB7A6221768E0D002081F1 /* EventDisplayLabel+ScoreAddPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventDisplayLabel+ScoreAddPresenter.swift"; sourceTree = "<group>"; };
 		7CCB7A6421768E47002081F1 /* StatementLabel+OptionalStatementPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StatementLabel+OptionalStatementPresenter.swift"; sourceTree = "<group>"; };
 		7CCB7A6621768E67002081F1 /* TimeRemainingView+TimeRemainingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeRemainingView+TimeRemainingPresenter.swift"; sourceTree = "<group>"; };
+		7CCB7A682177F600002081F1 /* GridSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridSolver.swift; sourceTree = "<group>"; };
+		7CCB7A6A21781B6A002081F1 /* SolvedGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolvedGrid.swift; sourceTree = "<group>"; };
+		7CCB7A6C21782A44002081F1 /* GridSolutions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridSolutions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +306,9 @@
 				7C3C3F6B2159C4E800BD026A /* Rational.swift */,
 				7C84DA83215B240800D3B36F /* Statement.swift */,
 				7C8BD3DE2161ABAC002BC785 /* Grid.swift */,
+				7CCB7A6C21782A44002081F1 /* GridSolutions.swift */,
+				7CCB7A6A21781B6A002081F1 /* SolvedGrid.swift */,
+				7CCB7A682177F600002081F1 /* GridSolver.swift */,
 				7C8BD3E52162F230002BC785 /* GridFactory.swift */,
 				7C8BD3E72162F8D9002BC785 /* GameReadyGridFactory.swift */,
 				7C334B2121682CD000AC0CF9 /* TimeKeeper.swift */,
@@ -605,14 +614,17 @@
 				7C4136DE216EE22600B92278 /* UIViewController+Debugging.swift in Sources */,
 				7C84DA73215B210700D3B36F /* Parser<Double>.swift in Sources */,
 				7C8BD3D521614806002BC785 /* CGPoint+Geomtery.swift in Sources */,
+				7CCB7A6D21782A44002081F1 /* GridSolutions.swift in Sources */,
 				7C334AFC21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift in Sources */,
 				7C8BD3DB21614857002BC785 /* Collection+SpecialIteration.swift in Sources */,
 				7C8BD3DD21615BCD002BC785 /* RationalLabel.swift in Sources */,
 				7CCB7A6321768E0D002081F1 /* EventDisplayLabel+ScoreAddPresenter.swift in Sources */,
 				7CCB7A6721768E67002081F1 /* TimeRemainingView+TimeRemainingPresenter.swift in Sources */,
 				7C573FE4216A81DC007C7DF3 /* TableDataSource.swift in Sources */,
+				7CCB7A6B21781B6A002081F1 /* SolvedGrid.swift in Sources */,
 				7C573FE8216A8C81007C7DF3 /* HighScore.swift in Sources */,
 				7C84DA84215B240800D3B36F /* Statement.swift in Sources */,
+				7CCB7A692177F600002081F1 /* GridSolver.swift in Sources */,
 				7C334B2221682CD000AC0CF9 /* TimeKeeper.swift in Sources */,
 				7C8BD3DF2161ABAD002BC785 /* Grid.swift in Sources */,
 				7CCB795921731F30002081F1 /* Background.swift in Sources */,

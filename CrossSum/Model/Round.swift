@@ -18,6 +18,8 @@ protocol RoundDisplayDelegate : NSObjectProtocol {
 final class Round {
     
     var grid : Grid?
+    var solutions : GridSolutions?
+    
     var gridFactory : GridFactory
 
     var highScore : HighScore {
@@ -62,8 +64,8 @@ final class Round {
     var foundSolutions = Set<Rational>()
     var currentTargetSolution : Rational?
     var acceptableSolutions : Set<Rational> {
-        guard let solutions = grid?.solutions else { return Set() }
-        return solutions
+        guard let solutions = solutions else { return Set() }
+        return solutions.solutions
         // Round should no longer have to worry about this since it's filtering the acceptable solutions in the delegate method
         // don't offer solutions that can only be gotten from one or two squares (e.g. - and 5 becomes -5)
 //        return solutions.filter() { solution in
@@ -160,8 +162,10 @@ extension Round {
         showingGrid = false
         displayDelegate?.willReplaceGrid(self)
         
-        self.grid = gridFactory.gridAfter(grid)
-        self.grid?.solutionClient = self
+        let solvedGrid = gridFactory.gridAfter(grid, using: shouldAcceptSolution(solution:in:from:to:))
+        self.grid = solvedGrid.grid
+        self.solutions = solvedGrid.solutions
+//        self.grid?.solutionClient = self
         expressionSymbolPresenter?.present(grid!, animated: true) { [weak self] in guard let self = self else { return }
         
             self.showNextTargetSolution()
@@ -280,7 +284,7 @@ extension Round {
     private func hintedCoordinate() -> Grid.Coordinate? {
         if let hint = hint { return hint}
         guard let currentTargetSolution = currentTargetSolution,
-            let ways = grid?.waysToGet(solution: currentTargetSolution),
+            let ways = solutions?.waysToGet(solution: currentTargetSolution),
             let thisWay = ways.randomElement()  else { return nil }
 
         hint = thisWay.0
@@ -293,7 +297,7 @@ extension Round {
         guard skips > 0,
             !showingSkip,
             let currentTargetSolution = currentTargetSolution,
-            let ways = grid?.waysToGet(solution: currentTargetSolution),
+            let ways = solutions?.waysToGet(solution: currentTargetSolution),
             let hint = hintedCoordinate(),
             let thisWay = ways.first(where:{
                 $0.0 == hint
@@ -398,17 +402,22 @@ extension Round {
 
 // MARK:- GridSolutionClient
 
-extension Round : GridSolutionClient {
-    func willAcceptSolution(solution: Rational, in grid:Grid, from start: Grid.Coordinate, to end: Grid.Coordinate) -> Bool {
+extension Round /*: GridSolverClient*/ {
+    func shouldAcceptSolution(solution: Rational, in grid:Grid, from start: Grid.Coordinate, to end: Grid.Coordinate) -> Bool {
         
-        // don't offer solutions that can only be gotten from one or two squares (e.g. - and 5 becomes -5)
-        guard let locations = grid.solutionsToExpressionLocations.value[solution] else { return false }
-        for choice in locations {
-            if abs(choice.0.x - choice.1.x) >= 2 ||
-                abs(choice.0.y - choice.1.y) >= 2 {
-                return true
-            }
+        if abs(end.x - start.x) >= 2 || abs(end.y - start.y) >= 2 {
+            return true
         }
         return false
+        
+        // don't offer solutions that can only be gotten from one or two squares (e.g. - and 5 becomes -5)
+//        guard let locations = grid.solutionsToExpressionLocations.value[solution] else { return false }
+//        for choice in locations {
+//            if abs(choice.0.x - choice.1.x) >= 2 ||
+//                abs(choice.0.y - choice.1.y) >= 2 {
+//                return true
+//            }
+//        }
+//        return false
     }
 }

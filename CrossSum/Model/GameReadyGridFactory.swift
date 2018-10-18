@@ -119,9 +119,10 @@ struct GameReadyGridFactory : GridFactory {
         GridMutator.same
         ])
     
-    func gridAfter(_ grid: Grid?) -> Grid {
+//    func gridAfter(_ grid: Grid?) -> Grid {
+    func gridAfter(_ grid:Grid?, using filter:@escaping GridSolutionFilter) -> SolvedGrid {
 
-        guard let lastGrid = grid else { return firstGrid() }
+        guard let lastGrid = grid else { return solved(firstGrid(), filter) }
         var mutators = self.mutators
         
         while mutators.count > 0 {
@@ -132,14 +133,16 @@ struct GameReadyGridFactory : GridFactory {
                 print("mutator:\(mutator.name)")
                 
                 let specification = mutator.mutate(lastGrid.specification)
-                let result = Grid(specification)
+                let newGrid = Grid(specification)
                 
+                let solvedGrid = solved(newGrid, filter)
+ 
                 // ensure that the result we return has at least one valid solution,
                 // or else try again
-                if result.solutions.isEmpty {
-                    return gridAfter(grid)
+                if solvedGrid.solutions.isEmpty {
+                    return gridAfter(newGrid, using:filter)
                 }
-                return result
+                return solvedGrid
             }
             
             // remove the mutator we tried since it wasn't valid
