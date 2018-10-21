@@ -304,8 +304,6 @@ class GamePlayView: UIView {
     var play_pauseButtonAction : ()->() = {}
     @IBAction func play_pauseButtonTapped() {
         
-        print("expressionchooser frame: \(expressionChooser.frame)")
-        print("expressionchooser ishidden: \(expressionChooser.isHidden)")
         play_pauseButtonAction()
     }
 

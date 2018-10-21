@@ -83,7 +83,6 @@ extension CrossSumRouter {
     }
     
     @objc private func userDidQuitRound(_ notification:Notification) {
-        print("\(#function)")
         
         // TODO: this is being called sometimes for unexpected reasons
         // probably a timer is not being stopped when it should be, but I'm not sure

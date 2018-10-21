@@ -45,6 +45,7 @@ class NewGameViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: UIApplication.shared)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: UIApplication.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(userTookScreenshot(_:)), name: UIApplication.userDidTakeScreenshotNotification, object: nil)
 
         round?.begin()
     }
@@ -52,15 +53,8 @@ class NewGameViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        print("statementLabel.isHidden: \(gamePlayView.statementLabel.isHidden)")
         gamePlayView.statementLabel.isHidden = false
-        print("statementLabel.isHidden: \(gamePlayView.statementLabel.isHidden)")
         gamePlayView.statementLabel.layoutIfNeeded()
-        print("statementlabel frame: \(gamePlayView.statementLabel.frame)")
-        
-        print("expression chooser frame: \(gamePlayView.expressionChooser.frame)")
-        
-        print("progress view: \(gamePlayView.gameProgressView.frame)")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -92,6 +86,15 @@ class NewGameViewController: UIViewController {
         // resumeGame()
     }
 
+    @objc private func userTookScreenshot(_ notification:Notification) {
+        
+        // in iOS 12 and later, taking a screenshot brings up a spearate UI
+        // so we want to automatically pause
+        if #available(iOS 11.0, *) {
+            pauseGame()
+        }
+    }
+    
     // MARK:- Actions
     
     func playPauseButtonTapped() {

@@ -35,7 +35,6 @@ final class Round {
     var stage : Int = 0 {
         didSet {
             stagePresenter?.present(integer:stage)
-            print("stage: \(stage)")
         }
     }
     
@@ -178,12 +177,9 @@ extension Round {
         // but also give him an extra standard time allotment
         solutionTime = Round.TimeForEachTargetSolution +
             ((solutionTime > TimeInterval(0)) ? (solutionTime - Round.TimeForEachTargetSolution) : 0)
-        print("solutionTime: \(solutionTime)")
         
         stage += 1
         
-        print("accesptable solutions: \(acceptableSolutions)")
-
         gridProgressPresenter?.present(progress: foundSolutions.count, of: acceptableSolutions.count)
     }
     
