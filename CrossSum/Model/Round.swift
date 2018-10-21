@@ -8,10 +8,10 @@
 
 import Foundation
 
-protocol RoundDisplayDelegate : NSObjectProtocol {
-    func willReplaceGrid(_ round:Round)
-    func didReplaceGrid(_ round:Round)
-}
+//protocol RoundDisplayDelegate : NSObjectProtocol {
+//    func willReplaceGrid(_ round:Round)
+//    func didReplaceGrid(_ round:Round)
+//}
 
 // MARK:-
 
@@ -38,6 +38,19 @@ final class Round {
         }
     }
     
+    enum State : Int {
+        case starting   // the round is starting up, its begin() method has not been called yet
+        case advancing  // the round is calculating its next grid
+        case playing    // the round is presenting a grid that the user is playing
+        case paused     // the round is paused
+        case quitting   // the round is finishing because the user has failed or has hit the quit button
+    }
+    var state : State {
+        didSet {
+            statePresenter?.present(roundState: state)
+        }
+    }
+    
     private static let TimeForEachTargetSolution : TimeInterval = 20
     private var solutionTime : TimeInterval = 0
     private var timeKeeper : TimeKeeper?
@@ -58,7 +71,7 @@ final class Round {
     }
     private var canEarnASkipThisGrid = true
     
-    var displayDelegate : RoundDisplayDelegate?
+//    var displayDelegate : RoundDisplayDelegate?
     
     var foundSolutions = Set<Rational>()
     var currentTargetSolution : Rational?
@@ -82,7 +95,8 @@ final class Round {
         return acceptableSolutions.subtracting(foundSolutions)
     }
 
-    var isPaused : Bool { return timeKeeper?.isPaused ?? false }
+//    var isPaused : Bool { return timeKeeper?.isPaused ?? false }
+    var isPaused : Bool { return state == .paused }
     
     // MARK:-
     
@@ -98,6 +112,7 @@ final class Round {
         }
     }
     
+    var statePresenter : RoundStatePresenter?
     var statementPresenter : OptionalStatementPresenter?
     var scorePresenter : IntegerPresenter?
     var stagePresenter : IntegerPresenter?
@@ -113,6 +128,7 @@ final class Round {
     // MARK:-
     init(gridFactory:GridFactory) {
         self.gridFactory = gridFactory
+        self.state = .starting
     }
 }
 
@@ -133,6 +149,8 @@ extension Round {
             return
         }
         
+        self.state = .playing
+        
         hint = nil
         currentTargetSolution = next
         presentCurrentTargetSolution()
@@ -152,6 +170,8 @@ extension Round {
     }
     
     private func showNextGrid() {
+        self.state = .advancing
+        
         foundSolutions.removeAll()
         if canEarnASkipThisGrid {
             skips += 1
@@ -159,7 +179,7 @@ extension Round {
         canEarnASkipThisGrid = true
         
         showingGrid = false
-        displayDelegate?.willReplaceGrid(self)
+//        displayDelegate?.willReplaceGrid(self)
         
         let solvedGrid = gridFactory.gridAfter(grid, using: shouldAcceptSolution(solution:in:from:to:))
         self.grid = solvedGrid.grid
@@ -170,7 +190,7 @@ extension Round {
             self.showNextTargetSolution()
             
             self.showingGrid = true
-            self.displayDelegate?.didReplaceGrid(self)
+//            self.displayDelegate?.didReplaceGrid(self)
         }
         
         // give the user all the time he had accumulated by ansering quickly in previous rounds
@@ -241,12 +261,14 @@ extension Round {
     func pause(_ callback:()->()) {
         print("\(#function)")
         timeKeeper?.pause()
+        self.state = .paused
         callback()
     }
     
     func resume(_ callback:()->()) {
         print("\(#function)")
         timeKeeper?.resume()
+        self.state = .playing
         callback()
     }
 
@@ -254,6 +276,7 @@ extension Round {
     static let DidQuit = Notification.Name("Round.DidQuit")
     func quit() {
         print("\(#function)")
+        self.state = .quitting
         
         timeKeeper?.stop()
         

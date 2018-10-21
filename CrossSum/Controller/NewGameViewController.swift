@@ -12,20 +12,16 @@ class NewGameViewController: UIViewController {
 
     private lazy var gamePlayView : GamePlayView = {
         let out = GamePlayView()
-        out.play_pauseButtonAction = playPauseButtonTapped
-        out.quitButtonAction = quitButtonTapped
-        out.skipButtonAction = skipButtonTapped
-        out.hintButtonAction = showHintButtonTapped
+        out.play_pauseButtonAction = play_pauseInRound
+        out.quitButtonAction = quitRound
+        out.skipButtonAction = skipInRound
+        out.hintButtonAction = hintInRound
         return out
     }()
     
     // MARK:-
     
-    var round : Round? {
-        didSet {
-            round?.displayDelegate = self
-        }
-    }
+    var round : Round?
 
     // MARK:-
     
@@ -53,7 +49,6 @@ class NewGameViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        gamePlayView.statementLabel.isHidden = false
         gamePlayView.statementLabel.layoutIfNeeded()
     }
     
@@ -97,10 +92,9 @@ class NewGameViewController: UIViewController {
     
     // MARK:- Actions
     
-    func playPauseButtonTapped() {
-        guard let round = round else { return }
+    func play_pauseInRound() {
         
-        if round.isPaused {
+        if round!.isPaused {
             resumeGame()
         }
         else {
@@ -109,57 +103,22 @@ class NewGameViewController: UIViewController {
     }
     
     
-    func quitButtonTapped() {
+    func quitRound() {
 
         round?.quit()
     }
     
     
-    func showHintButtonTapped() {
+    func hintInRound() {
 
         round?.showAHint()
     }
     
-    func skipButtonTapped() {
+    func skipInRound() {
 
         round?.showASolution()
     }
 
-    // MARK:- UI Updating
-    private func showGamePlayUI() {
-        
-        // TODO: bring this back in some capacity
-//        hintCountPresenter.update()
-//        skipCountPresenter.update()
-        [gamePlayView.quitButton,
-         gamePlayView.scoreLabel,
-         gamePlayView.stageLabel,
-         gamePlayView.statementLabel,
-         gamePlayView.stageProgressView,
-         gamePlayView.gameProgressView
-            ].forEach { $0?.isHidden = false }
-    }
-    
-    private func hideGamePlayUI() {
-
-        // TODO: bring this back in some capacity
-//        hintCountPresenter.hide()
-//        skipCountPresenter.hide()
-        [
-            gamePlayView.statementLabel,
-            gamePlayView.stageProgressView,
-            gamePlayView.gameProgressView].forEach { $0?.isHidden = true }
-    }
-
-    private func updatePlayPauseButton() {
-        guard let round = round else { return }
-        
-        
-        gamePlayView.play_pauseButton.imageView?.contentMode = .scaleAspectFit
-        
-        let preferredImage = round.isPaused ? #imageLiteral(resourceName: "play-button") : #imageLiteral(resourceName: "pause-button")
-        gamePlayView.play_pauseButton.setImage(preferredImage, for: .normal)
-    }
 
 // MARK:- Play/Pause
     
@@ -168,9 +127,7 @@ class NewGameViewController: UIViewController {
             !round.isPaused else { return }
         
         round.pause() {// [weak self] in guard let self = self else { return }
-            hideGamePlayUI()
             gamePlayView.expressionChooser.fadeOut(duration: 0.2)
-            updatePlayPauseButton()
         }
     }
     
@@ -180,20 +137,47 @@ class NewGameViewController: UIViewController {
         
         gamePlayView.statementLabel.fadeIn(duration:0.2)
         gamePlayView.expressionChooser.fadeIn(duration: 0.2) { [weak self] in
-            self?.round?.resume() { [weak self] in guard let self = self else { return }
-                self.updatePlayPauseButton()
-                self.showGamePlayUI()
-            }
+            self?.round?.resume() {}
         }
     }
-//}
 
 // MARK:- Round Maintenance
 
-//extension NewGameViewController {
     
     private func connectRoundToUI() {
         guard isViewLoaded else { return }
+        
+        let statePresenters : [RoundStatePresenter] = [
+            
+            // the quit button should always be present, unless the round is quitting
+            ToggleBasedOnStatePresenter(gamePlayView.quitButton, [.advancing, .playing, .paused, .starting]),
+            
+            // the stage label and score label should be visible as soon as the round is being played, even if paused
+            ToggleBasedOnStatePresenter(gamePlayView.stageLabel, [.advancing, .playing, .paused]),
+            ToggleBasedOnStatePresenter(gamePlayView.scoreLabel, [.advancing, .playing, .paused]),
+
+            // the hint and skip UI should be visible unless the round if paused
+            ToggleBasedOnStatePresenter(gamePlayView.hintButton, [.playing, .advancing]),
+            ToggleBasedOnStatePresenter(gamePlayView.hintTally, [.playing, .advancing]),
+            ToggleBasedOnStatePresenter(gamePlayView.skipButton, [.playing, .advancing]),
+            ToggleBasedOnStatePresenter(gamePlayView.skipTally, [.playing, .advancing]),
+ 
+            // but when the round is advancing, the buttons shouldn't be enabled
+            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.hintButton, key: \UIButton.isEnabled), [.playing]),
+            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.skipButton, key: \UIButton.isEnabled), [.playing]),
+            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.play_pauseButton, key: \UIButton.isEnabled), [.playing]),
+
+            // the progress views and the statement label should only be visible when the round is being played,
+            // not even when the round is advancing to a new grid
+            ToggleBasedOnStatePresenter(gamePlayView.statementLabel, [.playing]),
+            ToggleBasedOnStatePresenter(gamePlayView.stageProgressView, [.playing]),
+            ToggleBasedOnStatePresenter(gamePlayView.gameProgressView, [.playing]),
+            
+            // the play button should be selected (showing pause) when the game is paused
+            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.play_pauseButton, key:\UIButton.image, on:#imageLiteral(resourceName: "play-button"), off:#imageLiteral(resourceName: "pause-button")), [.paused])
+        ]
+        let statePresenter = RoundStatePresenterGroup(statePresenters)
+        round?.statePresenter = statePresenter
         
         round?.statementPresenter = gamePlayView.statementLabel
         round?.scorePresenter = ScorePresenter(gamePlayView.scoreLabel)
@@ -211,22 +195,4 @@ class NewGameViewController: UIViewController {
         round?.skipsCountPresenter = gamePlayView.skipTally
         round?.gridProgressPresenter = gamePlayView.gameProgressView
     }
-}
-
-// MARK:- RoundDisplayDelegate
-
-extension NewGameViewController : RoundDisplayDelegate {
-    func willReplaceGrid(_ round: Round) {
-        assert(round === self.round!)
-        // TODO: this should be done via a presenter object
-        hideGamePlayUI()
-    }
-
-    func didReplaceGrid(_ round: Round) {
-        assert(round === self.round!)
-        // TODO: this should be done via a presenter object
-        showGamePlayUI()
-    }
-
-
 }

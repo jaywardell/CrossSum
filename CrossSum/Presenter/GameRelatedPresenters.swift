@@ -27,6 +27,42 @@ protocol OptionalStatementPresenter {
 
 // MARK:-
 
+protocol RoundStatePresenter {
+    func present(roundState:Round.State)
+}
+
+struct ToggleBasedOnStatePresenter : RoundStatePresenter {
+    
+    let presentedStates : [Round.State]
+    let toggleable : ToggleablePresenter
+    
+    init(_ toggleable:ToggleablePresenter, _ presentedStates:[Round.State]) {
+        self.toggleable = toggleable
+        self.presentedStates = presentedStates
+    }
+
+    func present(roundState: Round.State) {
+        toggleable.setIsPresenting(presentedStates.contains(roundState))
+    }
+}
+
+struct RoundStatePresenterGroup : RoundStatePresenter {
+
+    let presenters : [RoundStatePresenter]
+    
+    init(_ presenters:[RoundStatePresenter]) {
+        self.presenters = presenters
+    }
+    
+    func present(roundState: Round.State) {
+        presenters.forEach() {
+            $0.present(roundState: roundState)
+        }
+    }
+}
+
+// MARK:-
+
 protocol TimeRemainingPresenter {
     
     /// tells the presenter to present a new total time

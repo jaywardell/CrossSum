@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C245CD6217D3EFE00670CC1 /* UIButton+QuickSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C245CD5217D3EFE00670CC1 /* UIButton+QuickSet.swift */; };
 		7C334AF6216454D500AC0CF9 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */; };
 		7C334AF8216454EA00AC0CF9 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */; };
 		7C334AFA2164561200AC0CF9 /* CrossSumRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AF92164561200AC0CF9 /* CrossSumRouter.swift */; };
@@ -65,7 +66,6 @@
 		7C8BD3C921610D1C002BC785 /* InterceptUnsatisfiableConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3C821610D1C002BC785 /* InterceptUnsatisfiableConstraints.m */; };
 		7C8BD3CC21613900002BC785 /* UIFont+CoreTextConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3CB21613900002BC785 /* UIFont+CoreTextConvenience.swift */; };
 		7C8BD3D121614789002BC785 /* ExpressionChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D021614789002BC785 /* ExpressionChooserView.swift */; };
-		7C8BD3D3216147AB002BC785 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D2216147AA002BC785 /* GameViewController.swift */; };
 		7C8BD3D521614806002BC785 /* CGPoint+Geomtery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D421614806002BC785 /* CGPoint+Geomtery.swift */; };
 		7C8BD3D72161481E002BC785 /* CGPoint+LinearAlgebra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D62161481E002BC785 /* CGPoint+LinearAlgebra.swift */; };
 		7C8BD3D921614833002BC785 /* CGVector+LinearAlgebra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D821614833002BC785 /* CGVector+LinearAlgebra.swift */; };
@@ -77,8 +77,6 @@
 		7C8BD3E62162F230002BC785 /* GridFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3E52162F230002BC785 /* GridFactory.swift */; };
 		7C8BD3E82162F8D9002BC785 /* GameReadyGridFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3E72162F8D9002BC785 /* GameReadyGridFactory.swift */; };
 		7CCB79522172CDEA002081F1 /* UILabel+TextPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79512172CDEA002081F1 /* UILabel+TextPresenter.swift */; };
-		7CCB79542172E6EE002081F1 /* GameViewHintCountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79532172E6EE002081F1 /* GameViewHintCountPresenter.swift */; };
-		7CCB79562172F07D002081F1 /* GameViewSkipCountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */; };
 		7CCB795921731F30002081F1 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB795821731F30002081F1 /* Background.swift */; };
 		7CCB796521738E48002081F1 /* TallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB796421738E48002081F1 /* TallyView.swift */; };
 		7CCB79BF2173C130002081F1 /* SquareTilesProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB79BE2173C130002081F1 /* SquareTilesProgressView.swift */; };
@@ -113,6 +111,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7C245CD5217D3EFE00670CC1 /* UIButton+QuickSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+QuickSet.swift"; sourceTree = "<group>"; };
 		7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
 		7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		7C334AF92164561200AC0CF9 /* CrossSumRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossSumRouter.swift; sourceTree = "<group>"; };
@@ -179,7 +178,7 @@
 		7C8BD3CA216122A9002BC785 /* InterceptUnsatisfiableConstraints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterceptUnsatisfiableConstraints.h; sourceTree = "<group>"; };
 		7C8BD3CB21613900002BC785 /* UIFont+CoreTextConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CoreTextConvenience.swift"; sourceTree = "<group>"; };
 		7C8BD3D021614789002BC785 /* ExpressionChooserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpressionChooserView.swift; sourceTree = "<group>"; };
-		7C8BD3D2216147AA002BC785 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		7C8BD3D2216147AA002BC785 /* OldGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldGameViewController.swift; sourceTree = "<group>"; };
 		7C8BD3D421614806002BC785 /* CGPoint+Geomtery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Geomtery.swift"; sourceTree = "<group>"; };
 		7C8BD3D62161481E002BC785 /* CGPoint+LinearAlgebra.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+LinearAlgebra.swift"; sourceTree = "<group>"; };
 		7C8BD3D821614833002BC785 /* CGVector+LinearAlgebra.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+LinearAlgebra.swift"; sourceTree = "<group>"; };
@@ -234,6 +233,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C245CD3217D336000670CC1 /* defunct */ = {
+			isa = PBXGroup;
+			children = (
+				7CCB79532172E6EE002081F1 /* GameViewHintCountPresenter.swift */,
+				7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */,
+			);
+			path = defunct;
+			sourceTree = "<group>";
+		};
+		7C245CD4217D337400670CC1 /* defunct */ = {
+			isa = PBXGroup;
+			children = (
+				7C8BD3D2216147AA002BC785 /* OldGameViewController.swift */,
+			);
+			path = defunct;
+			sourceTree = "<group>";
+		};
 		7C3C3F15215995EE00BD026A = {
 			isa = PBXGroup;
 			children = (
@@ -303,8 +319,7 @@
 				7C3C3F552159974600BD026A /* Presenters.swift */,
 				7CCB7A57217687D1002081F1 /* GameRelatedPresenters.swift */,
 				7C4136E1216EEBB400B92278 /* ExpressionSymbolPresenter.swift */,
-				7CCB79532172E6EE002081F1 /* GameViewHintCountPresenter.swift */,
-				7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */,
+				7C245CD3217D336000670CC1 /* defunct */,
 				7CCB7A5921768B48002081F1 /* Views that implement Presenter */,
 			);
 			path = Presenter;
@@ -346,7 +361,7 @@
 		7C3C3F702159C76800BD026A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7C8BD3D2216147AA002BC785 /* GameViewController.swift */,
+				7C245CD4217D337400670CC1 /* defunct */,
 				7C7A529E217BADA80035A959 /* NewGameViewController.swift */,
 				7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */,
 				7C3C3F23215995EE00BD026A /* ViewController.swift */,
@@ -369,6 +384,7 @@
 				7C8BD3D821614833002BC785 /* CGVector+LinearAlgebra.swift */,
 				7C7A52A9217CAF510035A959 /* UIFont+Reporting.swift */,
 				7C7A52AB217CB2F70035A959 /* UIFont+Custom.swift */,
+				7C245CD5217D3EFE00670CC1 /* UIButton+QuickSet.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -642,18 +658,16 @@
 				7C8BD3CC21613900002BC785 /* UIFont+CoreTextConvenience.swift in Sources */,
 				7C3C3F522159961400BD026A /* UIView+AutolayoutConvenience.swift in Sources */,
 				7C4136E0216EEB9800B92278 /* ExpressionSelector.swift in Sources */,
+				7C245CD6217D3EFE00670CC1 /* UIButton+QuickSet.swift in Sources */,
 				7C8BD3C22160FAB8002BC785 /* UIView+AutolayoutSetup.swift in Sources */,
 				7C573FE6216A895C007C7DF3 /* UserDefaults+Properties.swift in Sources */,
 				7C334AFE2165B1C500AC0CF9 /* UIView+AnimationConvenience.swift in Sources */,
 				7CCB79522172CDEA002081F1 /* UILabel+TextPresenter.swift in Sources */,
 				7C3C3F22215995EE00BD026A /* AppDelegate.swift in Sources */,
 				7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */,
-				7CCB79562172F07D002081F1 /* GameViewSkipCountPresenter.swift in Sources */,
 				7C8BD3D921614833002BC785 /* CGVector+LinearAlgebra.swift in Sources */,
 				7C4136E2216EEBB400B92278 /* ExpressionSymbolPresenter.swift in Sources */,
 				7C8BD3E82162F8D9002BC785 /* GameReadyGridFactory.swift in Sources */,
-				7CCB79542172E6EE002081F1 /* GameViewHintCountPresenter.swift in Sources */,
-				7C8BD3D3216147AB002BC785 /* GameViewController.swift in Sources */,
 				7C8BD3E12161C363002BC785 /* Round.swift in Sources */,
 				7C7A52A1217BAE010035A959 /* GamePlayView.swift in Sources */,
 				7CCB7A6121768DA7002081F1 /* SquareTilesProgressView+DiscreteProgressPresenter.swift in Sources */,

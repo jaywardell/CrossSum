@@ -78,7 +78,7 @@ protocol ToggleablePresenter {
 /// A wrapper for a series of HidingPresenters
 struct ToggleablePresenterGroup : ToggleablePresenter {
     
-    private var toggleables : [ToggleablePresenter]
+    private let toggleables : [ToggleablePresenter]
     
     init(_ toggleables:[ToggleablePresenter]) {
         self.toggleables = toggleables
@@ -87,5 +87,32 @@ struct ToggleablePresenterGroup : ToggleablePresenter {
     func setIsPresenting(_ shouldPresent: Bool) {
         
         toggleables.forEach() { $0.setIsPresenting(shouldPresent)}
+    }
+}
+
+struct ToggleableKeyedPresenter<Element, KeyValue> : ToggleablePresenter {
+    
+    let key : ReferenceWritableKeyPath<Element, KeyValue>
+    let canvass : Element
+    let onValue : KeyValue
+    let offValue : KeyValue
+    
+    init(_ canvass:Element, key:ReferenceWritableKeyPath<Element, KeyValue>, on onValue:KeyValue, off offValue:KeyValue) {
+        self.canvass = canvass
+        self.key = key
+        self.onValue = onValue
+        self.offValue = offValue
+    }
+    
+    
+    func setIsPresenting(_ shouldPresent: Bool) {
+        canvass[keyPath:key] = shouldPresent ? onValue : offValue
+    }
+}
+
+extension ToggleableKeyedPresenter where KeyValue == Bool {
+    
+    init(_ canvass:Element, key:ReferenceWritableKeyPath<Element, Bool>, inverted:Bool=false) {
+        self.init(canvass, key: key, on:inverted ? false : true, off:inverted ? true : false)
     }
 }

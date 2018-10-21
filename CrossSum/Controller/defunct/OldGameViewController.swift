@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameViewController: UIViewController {
+class OldGameViewController: UIViewController {
     
     @IBOutlet weak var expressionChooserView: ExpressionChooserView!
     @IBOutlet weak var statementLabel: StatementLabel!
