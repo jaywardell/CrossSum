@@ -76,9 +76,17 @@ class GamePlayView: UIView {
         let out = ExpressionChooserView()
         out.textColor = .white
         out.textFont = displayFont
+        NotificationCenter.default.addObserver(self, selector: #selector(expressionChooserFontDidChange(_:)), name: ExpressionChooserView.ChoiceFontDidChange, object: out)
         return out
     }()
 
+    @objc private func expressionChooserFontDidChange(_ notification:Notification) {
+        assert(notification.object as! ExpressionChooserView == expressionChooser)
+        
+        let statementFont = expressionChooser.choiceFont.withSize(expressionChooser.choiceFont.pointSize * 34/21)
+        statementLabel.font = statementFont
+    }
+    
     lazy var quitButton : UIButton = {
         let out = UIButton(type: .system)
         out.setImage(#imageLiteral(resourceName: "circle-x"), for: .normal)
@@ -88,12 +96,16 @@ class GamePlayView: UIView {
 
     lazy var scoreLabel : UILabel = {
         let out = UILabel()
+        out.font = UIFont.preferredFont(forTextStyle: .footnote)
+        out.adjustsFontForContentSizeCategory = true
         out.text = "score:"
         return out
     }()
 
     lazy var stageLabel : UILabel = {
         let out = UILabel()
+        out.font = UIFont.preferredFont(forTextStyle: .footnote)
+        out.adjustsFontForContentSizeCategory = true
         out.text = "stage:"
         return out
     }()
@@ -109,8 +121,6 @@ class GamePlayView: UIView {
 
         return out
     }()
-    
-    // TODO: need Hint and Skip buttons
     
     lazy var ui : [UIView] = {
         return [
@@ -129,6 +139,8 @@ class GamePlayView: UIView {
         ]
     }()
     
+    // MARK:-
+
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         
@@ -156,6 +168,8 @@ class GamePlayView: UIView {
         skipTally.tallyColor = tintColor
     }
     
+    // MARK:- Constraints
+    
     // TODO: I'd love to support landscape modes,
     // but I can't get the constraints to take in that case
     // need to research programmatic autolayout more
@@ -177,7 +191,7 @@ class GamePlayView: UIView {
         stageProgressView.constrain(to: [
             stageProgressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant:2),
             stageProgressView.trailingAnchor.constraint(equalTo: trailingAnchor, constant:-2),
-            stageProgressView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1.0/55),
+            stageProgressView.heightAnchor.constraint(equalToConstant: 1),
             stageProgressView.bottomAnchor.constraint(equalTo: gameProgressView.topAnchor, constant: -4)
             ])
 
@@ -193,6 +207,9 @@ class GamePlayView: UIView {
         skipButton.anchor(leading: play_pauseButton.trailingAnchor,
                           middle: play_pauseButton.centerYAnchor,
                           padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0))
+        skipButton.constrain(to: [
+            skipButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 3.0/34),
+            ])
 
         skipTally.removeConstraints(skipTally.constraints)
         skipTally.anchor(leading: skipButton.trailingAnchor, middle: skipButton.centerYAnchor, padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0))
@@ -205,6 +222,9 @@ class GamePlayView: UIView {
         hintButton.anchor(trailing: play_pauseButton.leadingAnchor,
                           middle: play_pauseButton.centerYAnchor,
                           padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0))
+        hintButton.constrain(to: [
+            hintButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 3.0/34),
+            ])
 
         hintTally.removeConstraints(hintTally.constraints)
         hintTally.anchor(trailing: hintButton.leadingAnchor, middle: hintButton.centerYAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8))
@@ -223,7 +243,7 @@ class GamePlayView: UIView {
 
         expressionChooser.removeConstraints(expressionChooser.constraints)
         expressionChooser.anchor(leading:gridContainer.leadingAnchor, trailing: gridContainer.trailingAnchor, top:gridContainer.topAnchor, bottom: gridContainer.bottomAnchor)
-//        expressionChooser.constrainToAspectRatio(1)
+        expressionChooser.constrainToAspectRatio(1)
 
         quitButton.removeConstraints(quitButton.constraints)
         quitButton.anchor(leading: safeAreaLayoutGuide.leadingAnchor,
@@ -244,7 +264,11 @@ class GamePlayView: UIView {
                                 padding:UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0))
 
         statementLabel.removeConstraints(statementLabel.constraints)
-        statementLabel.anchor(center: statementPlacard.centerXAnchor, middle: statementPlacard.centerYAnchor)
+//        statementLabel.anchor(center: statementPlacard.centerXAnchor, middle: statementPlacard.centerYAnchor)
+        statementLabel.constrain(to: [
+                statementLabel.centerXAnchor.constraint(equalTo: statementPlacard.centerXAnchor),
+                statementLabel.centerYAnchor.constraint(equalTo: statementPlacard.bottomAnchor)
+            ])
         
         setNeedsLayout()
         ui.forEach() { $0.setNeedsLayout() }
