@@ -112,7 +112,7 @@ class GamePlayView: UIView {
 
     lazy var statementPlacard : UIView = {
         let out = UIView()
-        out.addSubview(statementLabel)
+//        out.addSubview(statementLabel)
         return out
     }()
 
@@ -122,7 +122,7 @@ class GamePlayView: UIView {
         return out
     }()
     
-    lazy var ui : [UIView] = {
+    lazy var layout : [UIView] = {
         return [
             gameProgressView,
             stageProgressView,
@@ -135,7 +135,7 @@ class GamePlayView: UIView {
             quitButton,
             scoreLabel,
             stageLabel,
-            statementPlacard
+            statementLabel
         ]
     }()
     
@@ -146,19 +146,13 @@ class GamePlayView: UIView {
         
         backgroundColor = .black
 
-        ui.forEach() { addSubview($0) }
+        layout.forEach() { addSubview($0) }
 
         statementLabel.textColor = .white
-        
         scoreLabel.textColor = .white
         stageLabel.textColor = .white
         
         setupConstraints()
-        
-        UIFont.reportAvailable("mono")
-        UIFont.reportAvailable("Mono")
-        UIFont.reportAvailable("BP")
-
     }
     
     override func tintColorDidChange() {
@@ -166,6 +160,8 @@ class GamePlayView: UIView {
         
         hintTally.tallyColor = tintColor
         skipTally.tallyColor = tintColor
+        
+        statementLabel.highlightColor = tintColor
     }
     
     // MARK:- Constraints
@@ -178,29 +174,43 @@ class GamePlayView: UIView {
         
         removeConstraints(constraints)
         
-        // build from botton to top
-        gameProgressView.removeConstraints(gameProgressView.constraints)
-        gameProgressView.constrain(to: [
-            gameProgressView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            gameProgressView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            gameProgressView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 3.0/55),
-            gameProgressView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
-            ])
+        // three sections:
+        // top: quit button, stage and score labels
+        // middle: expression chooser, statement label, play/pause button, hint and skip UI
+        // bottom: game and stage progress
         
-        stageProgressView.removeConstraints(stageProgressView.constraints)
-        stageProgressView.constrain(to: [
-            stageProgressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant:2),
-            stageProgressView.trailingAnchor.constraint(equalTo: trailingAnchor, constant:-2),
-            stageProgressView.heightAnchor.constraint(equalToConstant: 1),
-            stageProgressView.bottomAnchor.constraint(equalTo: gameProgressView.topAnchor, constant: -4)
-            ])
+        // TOP
+        quitButton.removeConstraints(quitButton.constraints)
+        quitButton.anchor(leading: safeAreaLayoutGuide.leadingAnchor,
+                          top: safeAreaLayoutGuide.topAnchor,
+                          padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0))
+        
+        scoreLabel.removeConstraints(scoreLabel.constraints)
+        scoreLabel.anchor(trailing: safeAreaLayoutGuide.trailingAnchor, top: safeAreaLayoutGuide.topAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8))
+        
+        stageLabel.removeConstraints(stageLabel.constraints)
+        stageLabel.anchor(trailing: scoreLabel.leadingAnchor, middle: scoreLabel.centerYAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8))
 
+
+        // MIDDLE
+        
+        gridContainer.removeConstraints(gridContainer.constraints)
+        gridContainer.constrainToPositionInSuperview(.middle, .center)
+        gridContainer.anchor(leading: safeAreaLayoutGuide.leadingAnchor,
+                             trailing: safeAreaLayoutGuide.trailingAnchor)
+        gridContainer.constrainToAspectRatio(1)
+        
+        expressionChooser.removeConstraints(expressionChooser.constraints)
+        expressionChooser.anchor(leading:gridContainer.leadingAnchor, trailing: gridContainer.trailingAnchor, top:gridContainer.topAnchor, bottom: gridContainer.bottomAnchor)
+        expressionChooser.constrainToAspectRatio(1)
+
+        
         play_pauseButton.removeConstraints(play_pauseButton.constraints)
         play_pauseButton.constrain(to: [
             play_pauseButton.heightAnchor.constraint(equalTo: play_pauseButton.widthAnchor),
             play_pauseButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             play_pauseButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 5.0/34),
-            play_pauseButton.bottomAnchor.constraint(equalTo: stageProgressView.topAnchor, constant: -4)
+            play_pauseButton.topAnchor.constraint(equalTo: gridContainer.bottomAnchor)
             ])
         
         skipButton.removeConstraints(skipButton.constraints)
@@ -208,7 +218,7 @@ class GamePlayView: UIView {
                           middle: play_pauseButton.centerYAnchor,
                           padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0))
         skipButton.constrain(to: [
-            skipButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 3.0/34),
+            skipButton.widthAnchor.constraint(greaterThanOrEqualTo: widthAnchor, multiplier: 3.0/34),
             ])
 
         skipTally.removeConstraints(skipTally.constraints)
@@ -223,7 +233,7 @@ class GamePlayView: UIView {
                           middle: play_pauseButton.centerYAnchor,
                           padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0))
         hintButton.constrain(to: [
-            hintButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 3.0/34),
+            hintButton.widthAnchor.constraint(greaterThanOrEqualTo: widthAnchor, multiplier: 3.0/34),
             ])
 
         hintTally.removeConstraints(hintTally.constraints)
@@ -233,45 +243,31 @@ class GamePlayView: UIView {
                 hintTally.widthAnchor.constraint(equalTo: hintTally.heightAnchor, multiplier: 55.0/21.0)
             ])
 
-        gridContainer.removeConstraints(gridContainer.constraints)
-        gridContainer.constrain(to: [
-            gridContainer.heightAnchor.constraint(equalTo: gridContainer.widthAnchor),
-            gridContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
-            gridContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
-            gridContainer.bottomAnchor.constraint(equalTo: play_pauseButton.centerYAnchor)
-            ])
-
-        expressionChooser.removeConstraints(expressionChooser.constraints)
-        expressionChooser.anchor(leading:gridContainer.leadingAnchor, trailing: gridContainer.trailingAnchor, top:gridContainer.topAnchor, bottom: gridContainer.bottomAnchor)
-        expressionChooser.constrainToAspectRatio(1)
-
-        quitButton.removeConstraints(quitButton.constraints)
-        quitButton.anchor(leading: safeAreaLayoutGuide.leadingAnchor,
-                          top: safeAreaLayoutGuide.topAnchor,
-                          padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0))
-        
-        scoreLabel.removeConstraints(scoreLabel.constraints)
-        scoreLabel.anchor(trailing: safeAreaLayoutGuide.trailingAnchor, top: safeAreaLayoutGuide.topAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8))
-
-        stageLabel.removeConstraints(stageLabel.constraints)
-        stageLabel.anchor(trailing: scoreLabel.leadingAnchor, middle: scoreLabel.centerYAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8))
-        
-        statementPlacard.removeConstraints(statementPlacard.constraints)
-        statementPlacard.anchor(leading: leadingAnchor,
-                                trailing: trailingAnchor,
-                                top: quitButton.bottomAnchor,
-                                bottom: gridContainer.topAnchor,
-                                padding:UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0))
-
         statementLabel.removeConstraints(statementLabel.constraints)
-//        statementLabel.anchor(center: statementPlacard.centerXAnchor, middle: statementPlacard.centerYAnchor)
         statementLabel.constrain(to: [
-                statementLabel.centerXAnchor.constraint(equalTo: statementPlacard.centerXAnchor),
-                statementLabel.centerYAnchor.constraint(equalTo: statementPlacard.bottomAnchor)
+                statementLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+                statementLabel.centerYAnchor.constraint(equalTo: gridContainer.topAnchor, constant: 0)
             ])
         
+        // BOTTOM
+        gameProgressView.removeConstraints(gameProgressView.constraints)
+        gameProgressView.constrain(to: [
+            gameProgressView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            gameProgressView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            gameProgressView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 2.0/55),
+            gameProgressView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+            ])
+        
+        stageProgressView.removeConstraints(stageProgressView.constraints)
+        stageProgressView.constrain(to: [
+            stageProgressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant:2),
+            stageProgressView.trailingAnchor.constraint(equalTo: trailingAnchor, constant:-2),
+            stageProgressView.heightAnchor.constraint(equalToConstant: 1),
+            stageProgressView.bottomAnchor.constraint(equalTo: gameProgressView.topAnchor, constant: -4)
+            ])
+
         setNeedsLayout()
-        ui.forEach() { $0.setNeedsLayout() }
+        layout.forEach() { $0.setNeedsLayout() }
     }
 
     // MARK:- Actions
