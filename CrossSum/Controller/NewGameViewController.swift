@@ -43,6 +43,9 @@ class NewGameViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: UIApplication.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: UIApplication.shared)
+
         round?.begin()
     }
     
@@ -60,10 +63,33 @@ class NewGameViewController: UIViewController {
         print("progress view: \(gamePlayView.gameProgressView.frame)")
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK:-
     
     class func createNew() -> NewGameViewController {
         return NewGameViewController()
+    }
+
+    // MARK:- Notifications
+    
+    @objc private func applicationWillResignActive(_ notification:Notification) {
+        
+        pauseGame()
+    }
+    
+    @objc private func applicationDidBecomeActive(_ notification:Notification) {
+        
+        // yuou would think this would be a good idea,
+        // but it could be jarring to the user
+        // if it's been a while since he played
+        // and he doesn't know the state of the game when he's returning
+        // OR if he had paused the game before leaving the app
+        // resumeGame()
     }
 
     // MARK:- Actions

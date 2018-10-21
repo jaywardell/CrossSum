@@ -79,13 +79,6 @@ class GamePlayView: UIView {
         NotificationCenter.default.addObserver(self, selector: #selector(expressionChooserFontDidChange(_:)), name: ExpressionChooserView.ChoiceFontDidChange, object: out)
         return out
     }()
-
-    @objc private func expressionChooserFontDidChange(_ notification:Notification) {
-        assert(notification.object as! ExpressionChooserView == expressionChooser)
-        
-        let statementFont = expressionChooser.choiceFont.withSize(expressionChooser.choiceFont.pointSize * 34/21)
-        statementLabel.font = statementFont
-    }
     
     lazy var quitButton : UIButton = {
         let out = UIButton(type: .system)
@@ -270,6 +263,15 @@ class GamePlayView: UIView {
         layout.forEach() { $0.setNeedsLayout() }
     }
 
+    // MARK:- Notifications
+    
+    @objc private func expressionChooserFontDidChange(_ notification:Notification) {
+        assert(notification.object as! ExpressionChooserView == expressionChooser)
+        
+        let statementFont = expressionChooser.choiceFont.withSize(expressionChooser.choiceFont.pointSize * 34/21)
+        statementLabel.font = statementFont
+    }
+    
     // MARK:- Actions
     
     var play_pauseButtonAction : ()->() = {}
