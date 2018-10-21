@@ -26,6 +26,16 @@
 	<string>snapshots are taken for debugging purposes only - if you&apos;re an end user, please let us know if you see this mesage</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Hermit-bold.otf</string>
+		<string>Hermit-medium.otf</string>
+		<string>Hermit-light.otf</string>
+		<string>UbuntuMono-R.ttf</string>
+		<string>UbuntuMono-B.ttf</string>
+		<string>BPmono.ttf</string>
+		<string>BPmonoBold.ttf</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

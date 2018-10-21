@@ -1,5 +1,5 @@
 //
-//  ExpressionChoserView.swift
+//  ExpressionChooserView.swift
 //  Word Search
 //
 //  Created by Joseph Wardell on 9/11/18.
@@ -9,8 +9,9 @@
 import UIKit
 
 
-/// presents a square word search grid
-@IBDesignable class ExpressionChoserView: UIView {
+/// presents a square search grid for choosing mathematical expressions
+/// or anything really, but we use it for mathematical expressions
+@IBDesignable class ExpressionChooserView: UIView {
     
     var contentView : UIView { return rowsStackView! }
     
@@ -160,12 +161,12 @@ import UIKit
 
     static let SelectionColorAlpha : CGFloat = 0.2
 
-    var selectionColor : UIColor = UIColor.orange.withAlphaComponent(ExpressionChoserView.SelectionColorAlpha) {
+    var selectionColor : UIColor = UIColor.orange.withAlphaComponent(ExpressionChooserView.SelectionColorAlpha) {
         didSet {
             var alpha : CGFloat = 0
             selectionColor.getRed(nil, green: nil, blue: nil, alpha: &alpha)
-            if alpha != ExpressionChoserView.SelectionColorAlpha {
-                selectionColor = selectionColor.withAlphaComponent(ExpressionChoserView.SelectionColorAlpha)
+            if alpha != ExpressionChooserView.SelectionColorAlpha {
+                selectionColor = selectionColor.withAlphaComponent(ExpressionChooserView.SelectionColorAlpha)
             }
         }
     }
@@ -424,7 +425,7 @@ import UIKit
     static let ChoiceFontDidChange = Notification.Name("ExpressionChoserView.ChoiceFontDidChange")
 
     @objc func choiceFontDidChange(_ notification:Notification) {
-        NotificationCenter.default.post(name: ExpressionChoserView.ChoiceFontDidChange, object: self)
+        NotificationCenter.default.post(name: ExpressionChooserView.ChoiceFontDidChange, object: self)
     }
     
     private func createRowsStackView(for rowViews:[UIStackView]) -> UIStackView {
@@ -469,7 +470,7 @@ import UIKit
 // but the ExpressionChooseView is very important to our app and its presenting properties
 // are interinsic to the way it works, so I keep them in the same file as the main class
 
-extension ExpressionChoserView : ExpressionSymbolPresenter {
+extension ExpressionChooserView : ExpressionSymbolPresenter {
     
     public func presentSymbols(animated:Bool, _ completion:@escaping ()->()) {
         
@@ -489,7 +490,7 @@ extension ExpressionChoserView : ExpressionSymbolPresenter {
 
 // MARK:- ExpressionSelector
 
-extension ExpressionChoserView : ExpressionSelector {
+extension ExpressionChooserView : ExpressionSelector {
 
     /// Shows a selection over the view at the passed in coordinates
     ///

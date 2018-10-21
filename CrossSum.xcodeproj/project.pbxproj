@@ -36,6 +36,15 @@
 		7C573FE8216A8C81007C7DF3 /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE7216A8C81007C7DF3 /* HighScore.swift */; };
 		7C7A529F217BADA80035A959 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A529E217BADA80035A959 /* NewGameViewController.swift */; };
 		7C7A52A1217BAE010035A959 /* GamePlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A52A0217BAE010035A959 /* GamePlayView.swift */; };
+		7C7A52A6217CA9DF0035A959 /* Hermit-bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A52A4217CA9CB0035A959 /* Hermit-bold.otf */; };
+		7C7A52A7217CA9DF0035A959 /* Hermit-light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A52A3217CA9CB0035A959 /* Hermit-light.otf */; };
+		7C7A52A8217CA9DF0035A959 /* Hermit-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A52A5217CA9CB0035A959 /* Hermit-medium.otf */; };
+		7C7A52AA217CAF510035A959 /* UIFont+Reporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A52A9217CAF510035A959 /* UIFont+Reporting.swift */; };
+		7C7A52AC217CB2F70035A959 /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A52AB217CB2F70035A959 /* UIFont+Custom.swift */; };
+		7C7A52B1217CB4EC0035A959 /* UbuntuMono-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A52AD217CB4EB0035A959 /* UbuntuMono-B.ttf */; };
+		7C7A52B4217CB4EC0035A959 /* UbuntuMono-R.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A52B0217CB4EB0035A959 /* UbuntuMono-R.ttf */; };
+		7C7A52B7217CB7160035A959 /* BPmono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A52B5217CB7160035A959 /* BPmono.ttf */; };
+		7C7A52B8217CB7160035A959 /* BPmonoBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A52B6217CB7160035A959 /* BPmonoBold.ttf */; };
 		7C84DA55215B0B3900D3B36F /* StatementLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA54215B0B3900D3B36F /* StatementLabelTests.swift */; };
 		7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA56215B0C6800D3B36F /* StatementLabel.swift */; };
 		7C84DA73215B210700D3B36F /* Parser<Double>.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA6E215B210700D3B36F /* Parser<Double>.swift */; };
@@ -55,7 +64,7 @@
 		7C8BD3C62160FCA4002BC785 /* CenteredLabelTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3C52160FCA4002BC785 /* CenteredLabelTestsViewController.swift */; };
 		7C8BD3C921610D1C002BC785 /* InterceptUnsatisfiableConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3C821610D1C002BC785 /* InterceptUnsatisfiableConstraints.m */; };
 		7C8BD3CC21613900002BC785 /* UIFont+CoreTextConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3CB21613900002BC785 /* UIFont+CoreTextConvenience.swift */; };
-		7C8BD3D121614789002BC785 /* ExpressionChoserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D021614789002BC785 /* ExpressionChoserView.swift */; };
+		7C8BD3D121614789002BC785 /* ExpressionChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D021614789002BC785 /* ExpressionChooserView.swift */; };
 		7C8BD3D3216147AB002BC785 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D2216147AA002BC785 /* GameViewController.swift */; };
 		7C8BD3D521614806002BC785 /* CGPoint+Geomtery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D421614806002BC785 /* CGPoint+Geomtery.swift */; };
 		7C8BD3D72161481E002BC785 /* CGPoint+LinearAlgebra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BD3D62161481E002BC785 /* CGPoint+LinearAlgebra.swift */; };
@@ -139,6 +148,15 @@
 		7C573FE7216A8C81007C7DF3 /* HighScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
 		7C7A529E217BADA80035A959 /* NewGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 		7C7A52A0217BAE010035A959 /* GamePlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayView.swift; sourceTree = "<group>"; };
+		7C7A52A3217CA9CB0035A959 /* Hermit-light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hermit-light.otf"; sourceTree = "<group>"; };
+		7C7A52A4217CA9CB0035A959 /* Hermit-bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hermit-bold.otf"; sourceTree = "<group>"; };
+		7C7A52A5217CA9CB0035A959 /* Hermit-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hermit-medium.otf"; sourceTree = "<group>"; };
+		7C7A52A9217CAF510035A959 /* UIFont+Reporting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Reporting.swift"; sourceTree = "<group>"; };
+		7C7A52AB217CB2F70035A959 /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
+		7C7A52AD217CB4EB0035A959 /* UbuntuMono-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UbuntuMono-B.ttf"; sourceTree = "<group>"; };
+		7C7A52B0217CB4EB0035A959 /* UbuntuMono-R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UbuntuMono-R.ttf"; sourceTree = "<group>"; };
+		7C7A52B5217CB7160035A959 /* BPmono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BPmono.ttf; sourceTree = "<group>"; };
+		7C7A52B6217CB7160035A959 /* BPmonoBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BPmonoBold.ttf; sourceTree = "<group>"; };
 		7C84DA54215B0B3900D3B36F /* StatementLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementLabelTests.swift; sourceTree = "<group>"; };
 		7C84DA56215B0C6800D3B36F /* StatementLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementLabel.swift; sourceTree = "<group>"; };
 		7C84DA6E215B210700D3B36F /* Parser<Double>.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parser<Double>.swift"; sourceTree = "<group>"; };
@@ -160,7 +178,7 @@
 		7C8BD3C821610D1C002BC785 /* InterceptUnsatisfiableConstraints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterceptUnsatisfiableConstraints.m; sourceTree = "<group>"; };
 		7C8BD3CA216122A9002BC785 /* InterceptUnsatisfiableConstraints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterceptUnsatisfiableConstraints.h; sourceTree = "<group>"; };
 		7C8BD3CB21613900002BC785 /* UIFont+CoreTextConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CoreTextConvenience.swift"; sourceTree = "<group>"; };
-		7C8BD3D021614789002BC785 /* ExpressionChoserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpressionChoserView.swift; sourceTree = "<group>"; };
+		7C8BD3D021614789002BC785 /* ExpressionChooserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpressionChooserView.swift; sourceTree = "<group>"; };
 		7C8BD3D2216147AA002BC785 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		7C8BD3D421614806002BC785 /* CGPoint+Geomtery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Geomtery.swift"; sourceTree = "<group>"; };
 		7C8BD3D62161481E002BC785 /* CGPoint+LinearAlgebra.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+LinearAlgebra.swift"; sourceTree = "<group>"; };
@@ -248,6 +266,7 @@
 				7C3C3F6D2159C73300BD026A /* Presenter */,
 				7C8BD3E22162E0FE002BC785 /* Utility */,
 				7C3C3F28215995F000BD026A /* Assets.xcassets */,
+				7C7A52A2217CA9B80035A959 /* Fonts */,
 				7C3C3F2A215995F000BD026A /* LaunchScreen.storyboard */,
 				7C3C3F2D215995F000BD026A /* Info.plist */,
 			);
@@ -348,6 +367,8 @@
 				7C8BD3D421614806002BC785 /* CGPoint+Geomtery.swift */,
 				7C8BD3D62161481E002BC785 /* CGPoint+LinearAlgebra.swift */,
 				7C8BD3D821614833002BC785 /* CGVector+LinearAlgebra.swift */,
+				7C7A52A9217CAF510035A959 /* UIFont+Reporting.swift */,
+				7C7A52AB217CB2F70035A959 /* UIFont+Custom.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -355,7 +376,7 @@
 		7C573FE0216A77A1007C7DF3 /* Data Views */ = {
 			isa = PBXGroup;
 			children = (
-				7C8BD3D021614789002BC785 /* ExpressionChoserView.swift */,
+				7C8BD3D021614789002BC785 /* ExpressionChooserView.swift */,
 				7CCB796421738E48002081F1 /* TallyView.swift */,
 				7CCB79BE2173C130002081F1 /* SquareTilesProgressView.swift */,
 				7C3C3F4F2159961400BD026A /* CenteredLabel.swift */,
@@ -365,6 +386,20 @@
 				7C334B1F2168223E00AC0CF9 /* TimeRemainingView.swift */,
 			);
 			path = "Data Views";
+			sourceTree = "<group>";
+		};
+		7C7A52A2217CA9B80035A959 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7C7A52A4217CA9CB0035A959 /* Hermit-bold.otf */,
+				7C7A52A3217CA9CB0035A959 /* Hermit-light.otf */,
+				7C7A52A5217CA9CB0035A959 /* Hermit-medium.otf */,
+				7C7A52AD217CB4EB0035A959 /* UbuntuMono-B.ttf */,
+				7C7A52B0217CB4EB0035A959 /* UbuntuMono-R.ttf */,
+				7C7A52B5217CB7160035A959 /* BPmono.ttf */,
+				7C7A52B6217CB7160035A959 /* BPmonoBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		7C84DA6D215B20F800D3B36F /* Parser */ = {
@@ -557,8 +592,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C3C3F2C215995F000BD026A /* LaunchScreen.storyboard in Resources */,
+				7C7A52A6217CA9DF0035A959 /* Hermit-bold.otf in Resources */,
+				7C7A52B4217CB4EC0035A959 /* UbuntuMono-R.ttf in Resources */,
+				7C7A52B1217CB4EC0035A959 /* UbuntuMono-B.ttf in Resources */,
+				7C7A52A7217CA9DF0035A959 /* Hermit-light.otf in Resources */,
+				7C7A52A8217CA9DF0035A959 /* Hermit-medium.otf in Resources */,
 				7C3C3F29215995F000BD026A /* Assets.xcassets in Resources */,
 				7C3C3F27215995EE00BD026A /* Main.storyboard in Resources */,
+				7C7A52B8217CB7160035A959 /* BPmonoBold.ttf in Resources */,
+				7C7A52B7217CB7160035A959 /* BPmono.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,9 +634,10 @@
 				7C8BD3E62162F230002BC785 /* GridFactory.swift in Sources */,
 				7CCB796521738E48002081F1 /* TallyView.swift in Sources */,
 				7C3C3F24215995EE00BD026A /* ViewController.swift in Sources */,
+				7C7A52AA217CAF510035A959 /* UIFont+Reporting.swift in Sources */,
 				7C573FDA21699119007C7DF3 /* EventDisplayLabel.swift in Sources */,
 				7CCB7A58217687D1002081F1 /* GameRelatedPresenters.swift in Sources */,
-				7C8BD3D121614789002BC785 /* ExpressionChoserView.swift in Sources */,
+				7C8BD3D121614789002BC785 /* ExpressionChooserView.swift in Sources */,
 				7C334B202168223E00AC0CF9 /* TimeRemainingView.swift in Sources */,
 				7C8BD3CC21613900002BC785 /* UIFont+CoreTextConvenience.swift in Sources */,
 				7C3C3F522159961400BD026A /* UIView+AutolayoutConvenience.swift in Sources */,
@@ -638,6 +681,7 @@
 				7CCB795921731F30002081F1 /* Background.swift in Sources */,
 				7C334AF6216454D500AC0CF9 /* WelcomeScreenViewController.swift in Sources */,
 				7C84DA76215B210700D3B36F /* Parser.swift in Sources */,
+				7C7A52AC217CB2F70035A959 /* UIFont+Custom.swift in Sources */,
 				7C334AF8216454EA00AC0CF9 /* WelcomeScreen.swift in Sources */,
 				7C3C3F512159961400BD026A /* CenteredLabel.swift in Sources */,
 				7C84DA74215B210700D3B36F /* Parser<Int>.swift in Sources */,

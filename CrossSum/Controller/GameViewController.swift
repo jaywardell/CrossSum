@@ -10,7 +10,7 @@ import UIKit
 
 class GameViewController: UIViewController {
     
-    @IBOutlet weak var expressionChooserView: ExpressionChoserView!
+    @IBOutlet weak var expressionChooserView: ExpressionChooserView!
     @IBOutlet weak var statementLabel: StatementLabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var stageLabel: UILabel!
@@ -92,7 +92,7 @@ class GameViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: UIApplication.shared)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: UIApplication.shared)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(axpressionChooserViewChoiceFontDidChange), name: ExpressionChoserView.ChoiceFontDidChange, object: expressionChooserView)
+        NotificationCenter.default.addObserver(self, selector: #selector(axpressionChooserViewChoiceFontDidChange), name: ExpressionChooserView.ChoiceFontDidChange, object: expressionChooserView)
         
         view.backgroundColor = .black
         [

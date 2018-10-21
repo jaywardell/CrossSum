@@ -8,6 +8,8 @@
 
 import UIKit
 
+/// A container view for the game play UI
+/// vends objects to the controller layer and manages appearance
 class GamePlayView: UIView {
     
     lazy var gameProgressView : SquareTilesProgressView = {
@@ -67,11 +69,11 @@ class GamePlayView: UIView {
         return out
     }()
 
-    private let displayFont = UIFont(name: "CourierNewPS-BoldMT", size: 24)!
+    private let displayFont = UIFont(name: UIFont.BPMono, size: 24)!
 
     
-    lazy var expressionChooser : ExpressionChoserView = {
-        let out = ExpressionChoserView()
+    lazy var expressionChooser : ExpressionChooserView = {
+        let out = ExpressionChooserView()
         out.textColor = .white
         out.textFont = displayFont
         return out
@@ -140,6 +142,11 @@ class GamePlayView: UIView {
         stageLabel.textColor = .white
         
         setupConstraints()
+        
+        UIFont.reportAvailable("mono")
+        UIFont.reportAvailable("Mono")
+        UIFont.reportAvailable("BP")
+
     }
     
     override func tintColorDidChange() {

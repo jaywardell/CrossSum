@@ -31,10 +31,11 @@ struct GameReadyGridFactory : GridFactory {
     
 
     
+    #warning("bring back commented mutators")
     let mutators : Set<GridMutator> = Set([
         
         // increasing size
-        GridMutator(name: "increase size to 7x7", probability:0.8, canMutate: { $0.size == 5}, mutate: { $0.mutatedCopy(size:7)}),
+//        GridMutator(name: "increase size to 7x7", probability:0.8, canMutate: { $0.size == 5}, mutate: { $0.mutatedCopy(size:7)}),
 
         // expanding range
         GridMutator(name: "include zero options",
@@ -112,7 +113,10 @@ struct GameReadyGridFactory : GridFactory {
         }),
 
         // fractional solutions
-        GridMutator(name: "allow fractional solutions", probability:1, canMutate: { !$0.allowsFractionalSolutions && $0.operators.count == 4 }, mutate: { $0.mutatedCopy(allowsFractionalSolutions:true)}),
+        GridMutator(name: "allow fractional solutions",
+                    probability:1,
+                    canMutate: { !$0.allowsFractionalSolutions && $0.operators.count == 4 },
+                    mutate: { $0.mutatedCopy(allowsFractionalSolutions:true)}),
         
         // if nothing else works, then return a Grid with the same characteristics
         // also, every once in a while, we can have two grds in a row with the same characteristics
