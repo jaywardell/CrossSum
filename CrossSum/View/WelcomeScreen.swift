@@ -33,8 +33,6 @@ class WelcomeScreen: UIView {
         
         addPlayButton()
         addHighScoresView()
- 
-        print("highscorelabel: \(highScoresLabel)")
     }
     
     private func addPlayButton() {
@@ -42,7 +40,6 @@ class WelcomeScreen: UIView {
         
         addSubview(playButton)
         
-//        playButton.backgroundColor = .orange
         playButton.constrain(to: [
             
             playButton.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -55,7 +52,6 @@ class WelcomeScreen: UIView {
     
     private func addHighScoresView() {
         guard nil == highScoresView.superview else { return }
-        print("\(#function)")
 
         let tableView = highScoresView
         tableView.backgroundColor = .clear

@@ -408,19 +408,11 @@ extension Round {
 extension Round /*: GridSolverClient*/ {
     func shouldAcceptSolution(solution: Rational, in grid:Grid, from start: Grid.Coordinate, to end: Grid.Coordinate) -> Bool {
         
-        if abs(end.x - start.x) >= 2 || abs(end.y - start.y) >= 2 {
+        // don't offer solutions that can only be gotten
+        // from one or two squares (e.g. - and 5 becomes -5)
+       if abs(end.x - start.x) >= 2 || abs(end.y - start.y) >= 2 {
             return true
         }
         return false
-        
-        // don't offer solutions that can only be gotten from one or two squares (e.g. - and 5 becomes -5)
-//        guard let locations = grid.solutionsToExpressionLocations.value[solution] else { return false }
-//        for choice in locations {
-//            if abs(choice.0.x - choice.1.x) >= 2 ||
-//                abs(choice.0.y - choice.1.y) >= 2 {
-//                return true
-//            }
-//        }
-//        return false
     }
 }

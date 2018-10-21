@@ -34,6 +34,8 @@
 		7C573FE4216A81DC007C7DF3 /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE3216A81DC007C7DF3 /* TableDataSource.swift */; };
 		7C573FE6216A895C007C7DF3 /* UserDefaults+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE5216A895C007C7DF3 /* UserDefaults+Properties.swift */; };
 		7C573FE8216A8C81007C7DF3 /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE7216A8C81007C7DF3 /* HighScore.swift */; };
+		7C7A529F217BADA80035A959 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A529E217BADA80035A959 /* NewGameViewController.swift */; };
+		7C7A52A1217BAE010035A959 /* GamePlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A52A0217BAE010035A959 /* GamePlayView.swift */; };
 		7C84DA55215B0B3900D3B36F /* StatementLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA54215B0B3900D3B36F /* StatementLabelTests.swift */; };
 		7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA56215B0C6800D3B36F /* StatementLabel.swift */; };
 		7C84DA73215B210700D3B36F /* Parser<Double>.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84DA6E215B210700D3B36F /* Parser<Double>.swift */; };
@@ -135,6 +137,8 @@
 		7C573FE3216A81DC007C7DF3 /* TableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataSource.swift; sourceTree = "<group>"; };
 		7C573FE5216A895C007C7DF3 /* UserDefaults+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Properties.swift"; sourceTree = "<group>"; };
 		7C573FE7216A8C81007C7DF3 /* HighScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
+		7C7A529E217BADA80035A959 /* NewGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
+		7C7A52A0217BAE010035A959 /* GamePlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayView.swift; sourceTree = "<group>"; };
 		7C84DA54215B0B3900D3B36F /* StatementLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementLabelTests.swift; sourceTree = "<group>"; };
 		7C84DA56215B0C6800D3B36F /* StatementLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementLabel.swift; sourceTree = "<group>"; };
 		7C84DA6E215B210700D3B36F /* Parser<Double>.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parser<Double>.swift"; sourceTree = "<group>"; };
@@ -291,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */,
+				7C7A52A0217BAE010035A959 /* GamePlayView.swift */,
 				7C573FE0216A77A1007C7DF3 /* Data Views */,
 				7CCB795721731F0B002081F1 /* Decorative Views */,
 				7C573FDF216A7727007C7DF3 /* Extensions */,
@@ -323,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				7C8BD3D2216147AA002BC785 /* GameViewController.swift */,
+				7C7A529E217BADA80035A959 /* NewGameViewController.swift */,
 				7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */,
 				7C3C3F23215995EE00BD026A /* ViewController.swift */,
 				7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */,
@@ -606,6 +612,7 @@
 				7CCB79542172E6EE002081F1 /* GameViewHintCountPresenter.swift in Sources */,
 				7C8BD3D3216147AB002BC785 /* GameViewController.swift in Sources */,
 				7C8BD3E12161C363002BC785 /* Round.swift in Sources */,
+				7C7A52A1217BAE010035A959 /* GamePlayView.swift in Sources */,
 				7CCB7A6121768DA7002081F1 /* SquareTilesProgressView+DiscreteProgressPresenter.swift in Sources */,
 				7C84DA77215B210700D3B36F /* Parser<Character>.swift in Sources */,
 				7CCB7A5F21768D5F002081F1 /* TallyView+IntegerPresenter.swift in Sources */,
@@ -620,6 +627,7 @@
 				7C8BD3DD21615BCD002BC785 /* RationalLabel.swift in Sources */,
 				7CCB7A6321768E0D002081F1 /* EventDisplayLabel+ScoreAddPresenter.swift in Sources */,
 				7CCB7A6721768E67002081F1 /* TimeRemainingView+TimeRemainingPresenter.swift in Sources */,
+				7C7A529F217BADA80035A959 /* NewGameViewController.swift in Sources */,
 				7C573FE4216A81DC007C7DF3 /* TableDataSource.swift in Sources */,
 				7CCB7A6B21781B6A002081F1 /* SolvedGrid.swift in Sources */,
 				7C573FE8216A8C81007C7DF3 /* HighScore.swift in Sources */,

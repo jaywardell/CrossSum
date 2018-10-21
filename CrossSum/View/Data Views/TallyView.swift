@@ -262,5 +262,12 @@ import UIKit
             removeLayer()
         }
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let oldtally = tally
+        self.tally = 0
+        self.tally = oldtally
+    }
 }
-

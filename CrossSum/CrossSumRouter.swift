@@ -32,7 +32,7 @@ final class CrossSumRouter : NSObject {
     
     private lazy var welcomeScreen : WelcomeScreenViewController = {
         let out = WelcomeScreenViewController()
-        out.didHitPlayButton = playGame
+        out.didHitPlayButton = showNewGamePlayUI
         return out
     }()
 }
@@ -53,6 +53,21 @@ extension CrossSumRouter : Router {
 
 extension CrossSumRouter {
     
+    private func showNewGamePlayUI() {
+        
+        let gvc = NewGameViewController.createNew()
+        let round = Round(gridFactory: GameReadyGridFactory())
+        NotificationCenter.default.addObserver(self, selector: #selector(userDidQuitRound(_:)), name: Round.DidQuit, object: round)
+        gvc.round = round
+
+        // don't let the navigation controller support pop on swipe
+        // or else the user can swipe out of the game
+        navigationViewController.interactivePopGestureRecognizer?.isEnabled = false
+        
+        navigationViewController.pushViewController(gvc, animated: false)
+
+    }
+    
     private func playGame() {
 
         let gvc = GameViewController.createNew()
@@ -61,7 +76,7 @@ extension CrossSumRouter {
         gvc.round = round
         
         // don't let the navigation controller support pop on swipe
-        // or else let the user can swipe out of the game
+        // or else the user can swipe out of the game
         navigationViewController.interactivePopGestureRecognizer?.isEnabled = false
         
         navigationViewController.pushViewController(gvc, animated: false)
@@ -98,7 +113,7 @@ extension CrossSumRouter {
 extension CrossSumRouter : UINavigationControllerDelegate {
     func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
         // TODO: go back to allowing autorotation, but for now it's off
-//        return .all
-       return .portrait
+        return .all
+//       return .portrait
     }
 }
