@@ -168,10 +168,10 @@ class GamePlayView: UIView {
         
         stageProgressView.removeConstraints(stageProgressView.constraints)
         stageProgressView.constrain(to: [
-            stageProgressView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stageProgressView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stageProgressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant:2),
+            stageProgressView.trailingAnchor.constraint(equalTo: trailingAnchor, constant:-2),
             stageProgressView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1.0/55),
-            stageProgressView.bottomAnchor.constraint(equalTo: gameProgressView.topAnchor)
+            stageProgressView.bottomAnchor.constraint(equalTo: gameProgressView.topAnchor, constant: -4)
             ])
 
         play_pauseButton.removeConstraints(play_pauseButton.constraints)
@@ -179,7 +179,7 @@ class GamePlayView: UIView {
             play_pauseButton.heightAnchor.constraint(equalTo: play_pauseButton.widthAnchor),
             play_pauseButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             play_pauseButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 5.0/34),
-            play_pauseButton.bottomAnchor.constraint(equalTo: stageProgressView.topAnchor)
+            play_pauseButton.bottomAnchor.constraint(equalTo: stageProgressView.topAnchor, constant: -4)
             ])
         
         skipButton.removeConstraints(skipButton.constraints)
@@ -211,7 +211,7 @@ class GamePlayView: UIView {
             gridContainer.heightAnchor.constraint(equalTo: gridContainer.widthAnchor),
             gridContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
             gridContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
-            gridContainer.bottomAnchor.constraint(equalTo: play_pauseButton.topAnchor)
+            gridContainer.bottomAnchor.constraint(equalTo: play_pauseButton.centerYAnchor)
             ])
 
         expressionChooser.removeConstraints(expressionChooser.constraints)

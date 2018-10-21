@@ -128,7 +128,7 @@ class StatementLabel: UIStackView {
         equalityLabel.sizeToFit()
         solutionLabel.sizeToFit()
         setNeedsLayout()
-        layoutIfNeeded()
+//        layoutIfNeeded()
     }
 
 }
