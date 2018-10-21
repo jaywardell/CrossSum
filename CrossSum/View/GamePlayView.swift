@@ -90,7 +90,9 @@ class GamePlayView: UIView {
         let out = ExpressionChooserView()
         out.textColor = .white
         out.textFont = displayFont
-        NotificationCenter.default.addObserver(self, selector: #selector(expressionChooserFontDidChange(_:)), name: ExpressionChooserView.ChoiceFontDidChange, object: out)
+        out.shadowOffset = CGSize(width: 1, height: 1)
+        out.shadowColor = UIColor(white: 0.5, alpha: 0.9)
+       NotificationCenter.default.addObserver(self, selector: #selector(expressionChooserFontDidChange(_:)), name: ExpressionChooserView.ChoiceFontDidChange, object: out)
         return out
     }()
     
@@ -169,6 +171,7 @@ class GamePlayView: UIView {
         hintTally.tallyColor = tintColor
         skipTally.tallyColor = tintColor
         
+        expressionChooser.selectionColor = tintColor
         statementLabel.highlightColor = tintColor
     }
     

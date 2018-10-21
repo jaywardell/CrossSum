@@ -158,11 +158,7 @@ class NewGameViewController: UIViewController {
         gamePlayView.play_pauseButton.setImage(preferredImage, for: .normal)
     }
 
-//}
-//
-//// MARK:- Play/Pause
-//
-//extension GameViewController {
+// MARK:- Play/Pause
     
     private func pauseGame() {
         guard let round = self.round,
