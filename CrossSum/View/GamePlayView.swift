@@ -40,6 +40,11 @@ class GamePlayView: UIView {
        let out = UIButton(type: .system)
         out.setTitle("Skip", for: .normal)
         out.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
+        if let titleLabel = out.titleLabel {
+            titleLabel.font = UIFontMetrics.default.scaledFont(for: titleLabel.font)
+            titleLabel.adjustsFontForContentSizeCategory = true
+        }
+
         return out
     }()
 
@@ -53,6 +58,10 @@ class GamePlayView: UIView {
         let out = UIButton(type: .system)
         out.setTitle("Hint", for: .normal)
         out.addTarget(self, action: #selector(hintButtonTapped), for: .touchUpInside)
+        if let titleLabel = out.titleLabel {
+            titleLabel.font = UIFontMetrics.default.scaledFont(for: titleLabel.font)
+            titleLabel.adjustsFontForContentSizeCategory = true
+        }
         return out
     }()
 
@@ -173,16 +182,22 @@ class GamePlayView: UIView {
         // bottom: game and stage progress
         
         // TOP
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        
         quitButton.removeConstraints(quitButton.constraints)
         quitButton.anchor(leading: safeAreaLayoutGuide.leadingAnchor,
                           top: safeAreaLayoutGuide.topAnchor,
-                          padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0))
+                          padding: UIEdgeInsets(top: statusBarHeight, left: statusBarHeight, bottom: 0, right: 0))
         
         scoreLabel.removeConstraints(scoreLabel.constraints)
-        scoreLabel.anchor(trailing: safeAreaLayoutGuide.trailingAnchor, top: safeAreaLayoutGuide.topAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8))
+        scoreLabel.anchor(trailing: safeAreaLayoutGuide.trailingAnchor,
+                          middle: quitButton.centerYAnchor,
+                          padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: statusBarHeight))
         
         stageLabel.removeConstraints(stageLabel.constraints)
-        stageLabel.anchor(trailing: scoreLabel.leadingAnchor, middle: scoreLabel.centerYAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8))
+        stageLabel.anchor(trailing: scoreLabel.leadingAnchor,
+                          middle: scoreLabel.centerYAnchor,
+                          padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8))
 
 
         // MIDDLE

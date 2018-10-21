@@ -13,12 +13,16 @@ class WelcomeScreen: UIView {
     lazy var playButton : UIButton = {
         let out = UIButton(type: .system)
         out.setTitle("Play", for: .normal)
+        out.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        out.titleLabel?.adjustsFontForContentSizeCategory = true
         return out
     }()
     
     lazy var highScoresLabel : UILabel = {
        let out = UILabel()
         out.text = "High Scores"
+        out.font = UIFont.preferredFont(forTextStyle: .headline)
+        out.adjustsFontForContentSizeCategory = true
         out.textColor = .white
         return out
     }()
@@ -45,8 +49,8 @@ class WelcomeScreen: UIView {
             playButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             NSLayoutConstraint(item: playButton, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 34/21, constant: 0),
             
-            playButton.widthAnchor.constraint(equalTo: widthAnchor, constant: 21/34),
-            playButton.heightAnchor.constraint(equalTo: playButton.widthAnchor, constant: 21/34)
+            playButton.widthAnchor.constraint(greaterThanOrEqualTo: widthAnchor, constant: 21/34),
+            playButton.heightAnchor.constraint(greaterThanOrEqualTo: playButton.widthAnchor, constant: 21/34)
             ])
     }
     
@@ -78,6 +82,17 @@ class WelcomeScreen: UIView {
         super.didMoveToSuperview()
         
         backgroundColor = .black
+        
+        if superview == nil {
+            NotificationCenter.default.removeObserver(self)
+        }
+        else {
+            NotificationCenter.default.addObserver(self, selector: #selector(contentSizeCategoryDidChange(_:)), name: UIContentSizeCategory.didChangeNotification, object: nil)
+        }
+    }
+    
+    @objc private func contentSizeCategoryDidChange(_ notification:Notification) {
+        setNeedsLayout()
     }
     
 }
