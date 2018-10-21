@@ -12,6 +12,11 @@ import UIKit
 /// vends objects to the controller layer and manages appearance
 class GamePlayView: UIView {
     
+    lazy var backgroundView : UIView = {
+        let out = Background()
+        return out
+    }()
+    
     lazy var gameProgressView : SquareTilesProgressView = {
         let out = SquareTilesProgressView()
         out.geometry = .horizontal
@@ -126,6 +131,7 @@ class GamePlayView: UIView {
     
     lazy var layout : [UIView] = {
         return [
+            backgroundView,
             gameProgressView,
             stageProgressView,
             play_pauseButton,
@@ -175,6 +181,9 @@ class GamePlayView: UIView {
     func setupConstraints() {
         
         removeConstraints(constraints)
+        
+        backgroundView.removeConstraints(backgroundView.constraints)
+        backgroundView.constrainToFillSuperview()
         
         // three sections:
         // top: quit button, stage and score labels
