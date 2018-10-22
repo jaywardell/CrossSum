@@ -171,6 +171,10 @@ class NewGameViewController: UIViewController {
             // the quit button should always be present, unless the round is quitting
             ToggleBasedOnStatePresenter(gamePlayView.quitButton, [.advancing, .playing, .paused, .starting]),
             
+            // but it cannot be enabled between grids, since that ma cause conflicts with the time keeper
+            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.quitButton, key: \UIButton.isEnabled), [.playing, .paused, .starting]),
+
+            
             // the stage label and score label should be visible as soon as the round is being played, even if paused
             ToggleBasedOnStatePresenter(gamePlayView.stageLabel, [.advancing, .playing, .paused]),
             ToggleBasedOnStatePresenter(gamePlayView.scoreLabel, [.advancing, .playing, .paused]),

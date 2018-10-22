@@ -12,7 +12,8 @@ class WelcomeScreen: UIView {
 
     lazy var playButton : UIButton = {
         let out = UIButton(type: .system)
-        out.setTitle("Play", for: .normal)
+//        out.setTitle("Play", for: .normal)
+        out.setImage(#imageLiteral(resourceName: "play-button.pdf"), for: .normal)
         out.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         out.titleLabel?.adjustsFontForContentSizeCategory = true
         return out

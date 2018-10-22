@@ -13,7 +13,7 @@ final class TableDataSource<Object> : NSObject, UITableViewDataSource {
     let title : String?
     var objects : [Object]
     let cellStyle : UITableViewCell.CellStyle
-    var configure : (UITableViewCell, Object) -> () = { _, _ in }
+    var configure : (Int, UITableViewCell, Object) -> () = { _, _, _ in }
     var style : (UITableViewCell) -> () = { _ in }
 
     init(_ objects:[Object], title:String? = nil, style:UITableViewCell.CellStyle = .default) {
@@ -28,7 +28,7 @@ final class TableDataSource<Object> : NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell(style: cellStyle, reuseIdentifier: "cell")
-        configure(cell, objects[indexPath.row])
+        configure(indexPath.row, cell, objects[indexPath.row])
         style(cell)
         return cell
     }

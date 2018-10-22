@@ -36,8 +36,8 @@ class WelcomeScreenViewController: UIViewController {
         welcomeScreen.playButton.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
         
         highScoresDS = TableDataSource(highScores, style: .value1)
-        highScoresDS?.configure = { [weak self] cell, score in
-            cell.textLabel?.text = "\(score.score)"
+        highScoresDS?.configure = { [weak self] row, cell, score in
+            cell.textLabel?.text = "\(row + 1): \(score.score)"
             cell.detailTextLabel?.text = "Stage \(score.stage)"
 
             cell.textLabel?.textColor = self?.lastHighScore == score ? self?.view.tintColor : .white
@@ -45,6 +45,8 @@ class WelcomeScreenViewController: UIViewController {
         }
         highScoresDS?.style = { cell in
             cell.backgroundColor = nil
+            cell.textLabel?.font = UIFontMetrics.default.scaledFont(for: UIFont(name: UIFont.BPMono, size: 21)!)
+            cell.detailTextLabel?.font = UIFontMetrics.default.scaledFont(for: UIFont(name: UIFont.BPMono, size: 21)!)
         }
         
         welcomeScreen.highScoresView.dataSource = highScoresDS
@@ -54,6 +56,9 @@ class WelcomeScreenViewController: UIViewController {
         self.view.addSubview(background)
         
         background.constrainToFillSuperview()
+        
+        welcomeScreen.highScoresView.reloadData()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +68,16 @@ class WelcomeScreenViewController: UIViewController {
         welcomeScreen.highScoresLabel.isHidden = highScores.isEmpty
         
         // TODO: scroll the high scores list to the last high score
+        let rollToScroll : Int
+        if let highscore = lastHighScore,
+            let index = highScores.firstIndex(of: highscore) {
+            rollToScroll = index
+        }
+        else {
+            rollToScroll = 0
+        }
+        welcomeScreen.highScoresView.scrollToRow(at: IndexPath(item: rollToScroll, section: 0), at: .top, animated: false)
+
     }
     
     @IBAction private func playButtonPressed() {

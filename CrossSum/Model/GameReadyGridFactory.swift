@@ -29,13 +29,10 @@ struct GridMutator : Equatable, Hashable {
 
 struct GameReadyGridFactory : GridFactory {
     
-
-    
-    #warning("bring back commented mutators")
     let mutators : Set<GridMutator> = Set([
         
         // increasing size
-//        GridMutator(name: "increase size to 7x7", probability:0.8, canMutate: { $0.size == 5}, mutate: { $0.mutatedCopy(size:7)}),
+        GridMutator(name: "increase size to 7x7", probability:0.8, canMutate: { $0.size == 5}, mutate: { $0.mutatedCopy(size:7)}),
 
         // expanding range
         GridMutator(name: "include zero options",
