@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         // this is the only line of code that's dependent on this code base
-        // everything else can be used in anpther project
+        // everything else can be used in another project
         router = CrossSumRouter()
         
         window = UIWindow(frame: UIScreen.main.bounds)

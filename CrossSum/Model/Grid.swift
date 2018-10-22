@@ -84,20 +84,6 @@ class Grid {
         }
     }
     
-//    var solutionsToExpressionLocations = ThreadSafe([Rational:[(Coordinate, Coordinate)]]())
-//    var solutions : Set<Rational> {
-//        return Set(solutionsToExpressionLocations.value.keys)
-//    }
-    
-//    func waysToGet(solution:Rational) -> [(Coordinate, Coordinate)] {
-//        let d = solutionsToExpressionLocations.value[solution]
-//        let filteredD = d?.filter() { coordinates in
-//            guard let client = solutionClient else { return true } // no solution client, so no need to filter...
-//            return client.willAcceptSolution(solution: solution, in: self, from: coordinates.0, to: coordinates.1)
-//        }
-//        return filteredD ?? []
-//    }
-    
     
     
     
@@ -125,9 +111,6 @@ class Grid {
         }
         
         self.symbols = ss
-        
-        // build the solutions
-//        findSolutions()
     }
     
     init(_ string:String, _ specification:Specification) throws {
@@ -177,9 +160,6 @@ class Grid {
             throw(NSError(domain: "Grid", code: 4, userInfo: [NSLocalizedDescriptionKey:"expect the grid to have \(size) rows"]))
         }
         self.symbols = symbols
-        print("symbolds: \(self.symbols)")
-        
-//        findSolutions()
     }
     
     
@@ -210,97 +190,3 @@ extension Grid : ExpressionSymbolViewDataSource {
         return symbols[row][column]
     }
 }
-
-// MARK:- Managing Solutions
-
-
-//extension Grid {
-//    
-//    private func accepts(solution:Rational, from start:Coordinate, to end:Coordinate) -> Bool {
-//        if !allowsFractionalSolutions && solution.fractionalPart != 0 {
-//            return false
-//        }
-//        if !solutionRange.contains(solution) {
-//            return false
-//        }
-//        
-//        // let the client have a go at it
-//        if let client =  client {
-//            // NOTE: not being called b/c solutionCLient is not set at init when this is called
-//            if !client.willAcceptSolution(solution: solution, in:self, from: start, to: end) {
-//                return false
-//            }
-//        }
-//        return true
-//    }
-//    
-//    private func findSolutions() {
-//        
-//        DispatchQueue.concurrentPerform(iterations: rows) { row in
-//
-//            for column in 0..<columns {
-//                let s = symbol(at: row, column)
-//                if nil != Rational(s) || "-" == s {
-//                    
-//                    // solutions on the same row
-//                    
-//                    // forward
-//                    for i in column + 1 ..< columns {
-//                        let start = Coordinate(row, column)
-//                        let end = Coordinate(row, i)
-//                        if let solution = solution(for: start, to: end) {
-//                            if accepts(solution: solution, from:start, to:end) {
-//                                appendToPossibleSolutions(solution: solution, coordinates: start, end: end)
-//                            }
-//                        }
-//                    }
-//                    
-//                    // backward
-//                    for i in stride(from: column - 1, through: 0, by: -1) {
-//                        let start = Coordinate(row, column)
-//                        let end = Coordinate(row, i)
-//                        if let solution = solution(for: start, to: end) {
-//                            if accepts(solution: solution, from:start, to:end) {
-//                                appendToPossibleSolutions(solution: solution, coordinates: start, end: end)
-//                            }
-//                        }
-//                    }
-//
-//                    // solutions on the same column
-//                    
-//                    // forward
-//                    for i in row + 1 ..< rows {
-//                        let start = Coordinate(row, column)
-//                        let end = Coordinate(i, column)
-//                        if let solution = solution(for: start, to: end) {
-//                            if accepts(solution: solution, from:start, to:end) {
-//                                appendToPossibleSolutions(solution: solution, coordinates: start, end: end)
-//                            }
-//                        }
-//                    }
-//                    
-//                    // backward
-//                    for i in stride(from: row - 1, through: 0, by: -1) {
-//                        let start = Coordinate(row, column)
-//                        let end = Coordinate(i, column)
-//                        if let solution = solution(for: start, to: end) {
-//                            if accepts(solution: solution, from:start, to:end) {
-//                                appendToPossibleSolutions(solution: solution, coordinates: start, end: end)
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-//    
-//    private func appendToPossibleSolutions(solution:Rational, coordinates start:Coordinate, end:Coordinate) {
-//        solutionsToExpressionLocations.atomically { s in
-//            var array = (s[solution] ?? [(Coordinate, Coordinate)]())
-//            array.append((start, end))
-//            s[solution] = array
-//        }
-//    }
-//    
-//
-//}

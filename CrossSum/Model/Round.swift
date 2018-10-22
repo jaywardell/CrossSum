@@ -8,13 +8,6 @@
 
 import Foundation
 
-//protocol RoundDisplayDelegate : NSObjectProtocol {
-//    func willReplaceGrid(_ round:Round)
-//    func didReplaceGrid(_ round:Round)
-//}
-
-// MARK:-
-
 final class Round {
     
     var grid : Grid?
@@ -70,8 +63,6 @@ final class Round {
         }
     }
     private var canEarnASkipThisGrid = true
-    
-//    var displayDelegate : RoundDisplayDelegate?
     
     var foundSolutions = Set<Rational>()
     var currentTargetSolution : Rational?
@@ -350,6 +341,7 @@ extension Round {
 // TODO: I'm being prompted for 2 character expressions (e.g. -5)
 // this should not happen!!!!!!
 // actually, I think I'm just being shown hints for them, not being prompted for them, there are probably longer solutions available in these cases
+// as of Oct 21, 2018, I believe that this has been fixed
 
 // MARK:- ExpressionSelector Methods
 

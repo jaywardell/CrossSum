@@ -32,7 +32,6 @@ import UIKit
         case vertical
     }
     
-    // TODO: make inspectable wrapper
     var geometry : Geometry = .square {
         didSet {
             updateTiles()
