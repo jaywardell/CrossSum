@@ -45,6 +45,7 @@ final class AnimatingLabel {
         startingSuperview.addSubview(label)
         label.center = startingView.center
         
+        //TODO: start and end can be anywhere in the associated views
         let start = startingSuperview.convert(startingView.center, to: startingView.superview)
         let end = endingSuperview.convert(endingView.center, to: startingView.superview)
         

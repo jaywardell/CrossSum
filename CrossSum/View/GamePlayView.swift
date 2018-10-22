@@ -37,6 +37,7 @@ class GamePlayView: UIView {
         let out = UIButton(type: .system)
         out.setImage(#imageLiteral(resourceName: "pause-button"), for: .normal)
         out.setImage(#imageLiteral(resourceName: "play-button"), for: .selected)
+        out.contentMode = .scaleAspectFit
         out.addTarget(self, action: #selector(play_pauseButtonTapped), for: .touchUpInside)
         return out
     }()

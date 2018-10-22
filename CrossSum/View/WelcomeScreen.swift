@@ -50,6 +50,7 @@ class WelcomeScreen: UIView {
             playButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             NSLayoutConstraint(item: playButton, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 34/21, constant: 0),
             
+            // tODO: this is ridiculous, especially on an iPad, with its squarer shape
             playButton.widthAnchor.constraint(greaterThanOrEqualTo: widthAnchor, constant: 21/34),
             playButton.heightAnchor.constraint(greaterThanOrEqualTo: playButton.widthAnchor, constant: 21/34)
             ])

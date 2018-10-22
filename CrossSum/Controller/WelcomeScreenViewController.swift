@@ -67,7 +67,12 @@ class WelcomeScreenViewController: UIViewController {
         welcomeScreen.playButton.fadeIn(duration: 0.2)
         welcomeScreen.highScoresLabel.isHidden = highScores.isEmpty
         
-        // TODO: scroll the high scores list to the last high score
+        scrollLastScoreIntoView()
+    }
+    
+    private func scrollLastScoreIntoView() {
+        guard !highScores.isEmpty else { return }
+        
         let rollToScroll : Int
         if let highscore = lastHighScore,
             let index = highScores.firstIndex(of: highscore) {
@@ -77,7 +82,6 @@ class WelcomeScreenViewController: UIViewController {
             rollToScroll = 0
         }
         welcomeScreen.highScoresView.scrollToRow(at: IndexPath(item: rollToScroll, section: 0), at: .top, animated: false)
-
     }
     
     @IBAction private func playButtonPressed() {
