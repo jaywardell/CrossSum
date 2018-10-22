@@ -19,6 +19,14 @@ class NewGameViewController: UIViewController {
         return out
     }()
     
+    private lazy var scoreAddAnimator = {
+        return AnimatingLabel(gamePlayView.statementLabel, endingView: gamePlayView.scoreLabel)
+    }()
+
+    private lazy var timeScoreAddAnimator = {
+        return AnimatingLabel(gamePlayView.stageProgressView, endingView: gamePlayView.scoreLabel)
+    }()
+
     // MARK:-
     
     var round : Round?
@@ -43,6 +51,8 @@ class NewGameViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: UIApplication.shared)
         NotificationCenter.default.addObserver(self, selector: #selector(userTookScreenshot(_:)), name: UIApplication.userDidTakeScreenshotNotification, object: nil)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(expressionChooserFontDidChange(_:)), name: ExpressionChooserView.ChoiceFontDidChange, object: gamePlayView.expressionChooser)
+
         round?.begin()
     }
     
@@ -50,6 +60,9 @@ class NewGameViewController: UIViewController {
         super.viewDidAppear(animated)
 
         gamePlayView.statementLabel.layoutIfNeeded()
+        
+        scoreAddAnimator.textColor = view.tintColor
+        timeScoreAddAnimator.textColor = view.tintColor
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -88,6 +101,12 @@ class NewGameViewController: UIViewController {
         if #available(iOS 11.0, *) {
             pauseGame()
         }
+    }
+    
+    @objc private func expressionChooserFontDidChange(_ notification:Notification) {
+        guard let expressionchooser = notification.object as? ExpressionChooserView else { return }
+        scoreAddAnimator.font = expressionchooser.choiceFont
+        timeScoreAddAnimator.font = expressionchooser.choiceFont
     }
     
     // MARK:- Actions
@@ -165,7 +184,9 @@ class NewGameViewController: UIViewController {
             // but when the round is advancing, the buttons shouldn't be enabled
             ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.hintButton, key: \UIButton.isEnabled), [.playing]),
             ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.skipButton, key: \UIButton.isEnabled), [.playing]),
-            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.play_pauseButton, key: \UIButton.isEnabled), [.playing]),
+            
+            // except the play_pause button should be enabled when the round is paused also
+            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.play_pauseButton, key: \UIButton.isEnabled), [.playing, .paused]),
 
             // the progress views and the statement label should only be visible when the round is being played,
             // not even when the round is advancing to a new grid
@@ -183,10 +204,8 @@ class NewGameViewController: UIViewController {
         round?.scorePresenter = ScorePresenter(gamePlayView.scoreLabel)
         round?.stagePresenter = StagePresenter(gamePlayView.stageLabel)
         
-// TODO: bring this back
-//        round?.scoreAddPresenter = gamePlayView.scoreAddLabel
-// TODO: bring this back
-//        round?.scoreTimeAddPresenter = gamePlayView.scoreTimeAddLabel
+        round?.scoreAddPresenter = scoreAddAnimator
+        round?.scoreTimeAddPresenter = timeScoreAddAnimator
 
         round?.expressionSelector = gamePlayView.expressionChooser
         round?.expressionSymbolPresenter = gamePlayView.expressionChooser

@@ -206,12 +206,14 @@ extension Round {
     private func userChoseTrue(statement:Statement) {
         if let timeKeeper = self.timeKeeper, timeKeeper.isDone { return }
         
+        let timeScoreAdd = timeKeeper!.timeRemaining
+        print("timeScoreAdd: \(timeScoreAdd)")
+
         timeKeeper!.stop()
         let scoreForTarget = self.score(for:statement)
         self.score += scoreForTarget
         scoreAddPresenter?.present(addedScore: scoreForTarget)
         
-        let timeScoreAdd = timeKeeper!.timeRemaining
         self.score += Int(timeScoreAdd)
         scoreTimeAddPresenter?.present(addedScore: Int(timeScoreAdd))
 

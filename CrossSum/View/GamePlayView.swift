@@ -92,7 +92,7 @@ class GamePlayView: UIView {
         out.textFont = displayFont
         out.shadowOffset = CGSize(width: 1, height: 1)
         out.shadowColor = UIColor(white: 0.5, alpha: 0.9)
-       NotificationCenter.default.addObserver(self, selector: #selector(expressionChooserFontDidChange(_:)), name: ExpressionChooserView.ChoiceFontDidChange, object: out)
+        NotificationCenter.default.addObserver(self, selector: #selector(expressionChooserFontDidChange(_:)), name: ExpressionChooserView.ChoiceFontDidChange, object: out)
         return out
     }()
     
