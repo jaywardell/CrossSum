@@ -67,21 +67,7 @@ extension CrossSumRouter {
         navigationViewController.pushViewController(gvc, animated: false)
 
     }
-    
-//    private func playGame() {
-//
-//        let gvc = GameViewController.createNew()
-//        let round = Round(gridFactory: GameReadyGridFactory())
-//        NotificationCenter.default.addObserver(self, selector: #selector(userDidQuitRound(_:)), name: Round.DidQuit, object: round)
-//        gvc.round = round
-//        
-//        // don't let the navigation controller support pop on swipe
-//        // or else the user can swipe out of the game
-//        navigationViewController.interactivePopGestureRecognizer?.isEnabled = false
-//        
-//        navigationViewController.pushViewController(gvc, animated: false)
-//    }
-    
+        
     @objc private func userDidQuitRound(_ notification:Notification) {
         
         // TODO: this is being called sometimes for unexpected reasons

@@ -357,18 +357,29 @@ extension Round {
     }
     
     func didSelect(_ string: String) {
+        
+        // if the user only selected one or two squares (e.g. "-2" for -2)
+        // then consider it illegal
         guard string.count > 2 else { return }
+
+        // if the user selected a single number surrounded by operators (e.g. "-3+" for 3)
+        // then consider it illegal
+        if string.count == 3 && "+-×÷".contains(string.first!) && "+-×÷".contains(string.last!) {
+            return
+        }
         
         // a little hysterysis: if the user stopped selecting on an operator,
         // then just drop it and assume he meant to select
         // the string up to but not including the operator
         let solutionString = "+-×÷".contains(string.last!) ? String(string.dropLast()) : string
         
+        // calculate the value of the statement passed in
         let statement = Statement(solutionString, currentTargetSolution)
         
         // whether it's true or false, display the selected statement
         statementPresenter?.present(statement: statement)
         
+        // and use the truth of the statement to determine whatto do next
         if statement.isTrue {
             userChoseTrue(statement: statement)
         }

@@ -63,11 +63,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/Model/GameReadyGridFactory.swift"
-            timestampString = "561865432.81577"
+            timestampString = "561866917.502896"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "firstGrid()"
             landmarkType = "7">
          </BreakpointContent>
@@ -180,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/Model/Grid.swift"
-            timestampString = "561789111.038215"
+            timestampString = "561866917.502998"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "init(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -196,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/Model/Grid.swift"
-            timestampString = "561789111.038548"
+            timestampString = "561866917.503069"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "init(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -233,11 +233,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/Model/Grid.swift"
-            timestampString = "561789111.038873"
+            timestampString = "561866917.503106"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "symbol(at:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -313,11 +313,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/Model/Round.swift"
-            timestampString = "561865432.815984"
+            timestampString = "561866917.5032279"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "userChoseTrue(statement:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -329,7 +329,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/Controller/NewGameViewController.swift"
-            timestampString = "561865432.816041"
+            timestampString = "561866917.503668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
