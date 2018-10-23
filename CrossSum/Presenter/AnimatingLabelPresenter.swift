@@ -46,9 +46,12 @@ final class AnimatingLabel {
         label.center = startingView.center
         
         //TODO: start and end can be anywhere in the associated views
-        let start = startingSuperview.convert(startingView.center, to: startingView.superview)
-        let end = endingSuperview.convert(endingView.center, to: startingView.superview)
-        
+        let start = CGPoint(x: CGFloat.random(in: startingView.frame.minX...startingView.frame.maxX),
+                            y: CGFloat.random(in: startingView.frame.minY...startingView.frame.maxY))
+//        let end = endingSuperview.convert(endingView.center, to: startingView.superview)
+        let end = CGPoint(x: CGFloat.random(in: endingView.frame.minX...endingView.frame.maxX),
+                            y: CGFloat.random(in: endingView.frame.minY...endingView.frame.maxY))
+
         let paths = UIBezierPath()
         paths.move(to: start)
         
