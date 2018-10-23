@@ -24,7 +24,7 @@ final class AnimatingLabel {
         self.endingView = endingView
     }
     
-    private func createLabelToAnimate(_ string:String) -> UIView {
+    private func createLabelToAnimate(_ string:String) -> UILabel {
         let out = UILabel()
         out.textColor = .yellow
         out.text = string
@@ -64,6 +64,8 @@ final class AnimatingLabel {
         animatePosition.path = paths.cgPath
         animatePosition.duration = duration
         animatePosition.beginTime = CACurrentMediaTime() + delay
+        animatePosition.isRemovedOnCompletion = false
+        animatePosition.fillMode = .both
 
         let animateAlpha = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
         animateAlpha.fromValue = 1
@@ -71,6 +73,8 @@ final class AnimatingLabel {
         animateAlpha.timingFunction = CAMediaTimingFunction(name: .easeIn)
         animateAlpha.duration = duration
         animateAlpha.beginTime = CACurrentMediaTime() + delay
+        animateAlpha.isRemovedOnCompletion = false
+        animateAlpha.fillMode = .both
 
         let animateTransform = CABasicAnimation(keyPath: #keyPath(CALayer.transform))
         animateTransform.fromValue = CATransform3DIdentity
@@ -78,6 +82,8 @@ final class AnimatingLabel {
         animateTransform.timingFunction = CAMediaTimingFunction(name: .easeIn)
         animateTransform.duration = duration
         animateTransform.beginTime = CACurrentMediaTime() + delay
+        animateTransform.isRemovedOnCompletion = false
+        animateTransform.fillMode = .both
 
         CATransaction.begin()
         CATransaction.setCompletionBlock {

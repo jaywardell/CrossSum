@@ -198,7 +198,6 @@ extension Round {
         if let timeKeeper = self.timeKeeper, timeKeeper.isDone { return }
         
         let timeScoreAdd = timeKeeper!.timeRemaining
-        print("timeScoreAdd: \(timeScoreAdd)")
 
         timeKeeper!.stop()
         let scoreForTarget = self.score(for:statement)

@@ -313,11 +313,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/Model/Round.swift"
-            timestampString = "561873509.3724411"
+            timestampString = "561962657.011639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
             landmarkName = "userChoseTrue(statement:)"
             landmarkType = "7">
          </BreakpointContent>
