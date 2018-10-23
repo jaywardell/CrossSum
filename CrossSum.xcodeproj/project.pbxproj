@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7C245CD6217D3EFE00670CC1 /* UIButton+QuickSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C245CD5217D3EFE00670CC1 /* UIButton+QuickSet.swift */; };
 		7C245CD8217D44F600670CC1 /* AnimatingLabelPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C245CD7217D44F600670CC1 /* AnimatingLabelPresenter.swift */; };
+		7C245D2E217EC0EE00670CC1 /* CaretView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C245D2D217EC0EE00670CC1 /* CaretView.swift */; };
 		7C334AF6216454D500AC0CF9 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */; };
 		7C334AF8216454EA00AC0CF9 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */; };
 		7C334AFA2164561200AC0CF9 /* CrossSumRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AF92164561200AC0CF9 /* CrossSumRouter.swift */; };
@@ -114,6 +115,7 @@
 /* Begin PBXFileReference section */
 		7C245CD5217D3EFE00670CC1 /* UIButton+QuickSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+QuickSet.swift"; sourceTree = "<group>"; };
 		7C245CD7217D44F600670CC1 /* AnimatingLabelPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingLabelPresenter.swift; sourceTree = "<group>"; };
+		7C245D2D217EC0EE00670CC1 /* CaretView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaretView.swift; sourceTree = "<group>"; };
 		7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
 		7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		7C334AF92164561200AC0CF9 /* CrossSumRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossSumRouter.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				7C573FD921699119007C7DF3 /* EventDisplayLabel.swift */,
 				7C8BD3DC21615BCD002BC785 /* RationalLabel.swift */,
 				7C84DA56215B0C6800D3B36F /* StatementLabel.swift */,
+				7C245D2D217EC0EE00670CC1 /* CaretView.swift */,
 				7C334B1F2168223E00AC0CF9 /* TimeRemainingView.swift */,
 			);
 			path = "Data Views";
@@ -669,6 +672,7 @@
 				7C3C3F22215995EE00BD026A /* AppDelegate.swift in Sources */,
 				7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */,
 				7C8BD3D921614833002BC785 /* CGVector+LinearAlgebra.swift in Sources */,
+				7C245D2E217EC0EE00670CC1 /* CaretView.swift in Sources */,
 				7C4136E2216EEBB400B92278 /* ExpressionSymbolPresenter.swift in Sources */,
 				7C8BD3E82162F8D9002BC785 /* GameReadyGridFactory.swift in Sources */,
 				7C8BD3E12161C363002BC785 /* Round.swift in Sources */,

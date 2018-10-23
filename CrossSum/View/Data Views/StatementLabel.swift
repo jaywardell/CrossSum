@@ -10,7 +10,7 @@ import UIKit
 
 class StatementLabel: UIStackView {
 
-    static let PromptSpace = " "
+//    static let PromptSpace = " "
 
     
     var statement : Statement? {
@@ -24,7 +24,9 @@ class StatementLabel: UIStackView {
                 return
             }
             
-            expressionLabel.text = statement.expression ?? StatementLabel.PromptSpace
+//            expressionLabel.text = statement.expression ?? StatementLabel.PromptSpace
+            expressionLabel.text = statement.expression
+            caret.isHidden = statement.expression != nil
             expressionLabel.isHighlighted = isPromptingForExpression
             equalityLabel.text = statement.hasExpression ? statement.title : statement.promptTitle
             solutionLabel.value = statement.targetSolution
@@ -84,6 +86,8 @@ class StatementLabel: UIStackView {
         return out
     }()
 
+    private lazy var caret : CaretView = CaretView()
+    
     // MARK:-
 
     override init(frame: CGRect) {
@@ -111,6 +115,7 @@ class StatementLabel: UIStackView {
         spacing = 6
         
         [
+            caret,
             expressionLabel,
             equalityLabel,
             solutionLabel
