@@ -112,7 +112,6 @@ class StatementLabel: UIStackView {
     
     private func setup() {
         axis = .horizontal
-        spacing = 6
         
         [
             caret,

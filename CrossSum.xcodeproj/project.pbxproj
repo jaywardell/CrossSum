@@ -366,13 +366,13 @@
 		7C3C3F702159C76800BD026A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7C245CD4217D337400670CC1 /* defunct */,
 				7C7A529E217BADA80035A959 /* NewGameViewController.swift */,
 				7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */,
 				7C3C3F23215995EE00BD026A /* ViewController.swift */,
 				7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */,
 				7C573FE3216A81DC007C7DF3 /* TableDataSource.swift */,
 				7C4136DD216EE22600B92278 /* UIViewController+Debugging.swift */,
+				7C245CD4217D337400670CC1 /* defunct */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
