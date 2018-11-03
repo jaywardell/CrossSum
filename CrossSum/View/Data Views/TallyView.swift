@@ -11,7 +11,11 @@ import UIKit
 @IBDesignable class TallyView: UIView {
     
     @IBInspectable var numberOfLines : Int = 1
-    @IBInspectable var isReversed : Bool = false
+    @IBInspectable var isReversed : Bool = false {
+        didSet {
+            updateTallyLayout(animated: false)
+        }
+    }
     
     enum Messiness : Int {
         case immaculate
@@ -128,6 +132,14 @@ import UIKit
         }
     }
     
+    private func updateTallyLayout(animated:Bool) {
+        tallyMarks.forEach() {
+            $0.removeFromSuperlayer()
+        }
+        tallyMarks.removeAll()
+        
+        synchronizeTally(animated: animated)
+    }
     
     
     private func points(for tally:Int) -> (CGPoint, CGPoint) {

@@ -10,21 +10,15 @@ import UIKit
 
 extension UIView {
     
-    func constrain(to constraints:[NSLayoutConstraint]) {
-        
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate(constraints)
-    }
     
-    func anchor(leading:NSLayoutXAxisAnchor? = nil,
+    func constraintsToPin(leading:NSLayoutXAxisAnchor? = nil,
                 center:NSLayoutXAxisAnchor? = nil,
                 trailing:NSLayoutXAxisAnchor? = nil,
                 top:NSLayoutYAxisAnchor? = nil,
                 middle:NSLayoutYAxisAnchor? = nil,
                 bottom:NSLayoutYAxisAnchor? = nil,
                 size:CGSize = .zero,
-                padding:UIEdgeInsets = .zero) {
+                padding:UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
         
         var constraints = [NSLayoutConstraint]()
         
@@ -60,14 +54,14 @@ extension UIView {
             constraints.append(heightAnchor.constraint(equalToConstant: size.height))
         }
         
-        constrain(to:constraints)
+        return constraints
     }
     
-    func constrainToFillSuperview(insets:UIEdgeInsets = .zero, usingSafeLayoutGuides:Bool = false) {
+    func constraintsToFillSuperview(insets:UIEdgeInsets = .zero, usingSafeLayoutGuides:Bool = false) -> [NSLayoutConstraint] {
         
         let guide : LayoutPositioning = usingSafeLayoutGuides ? superview!.safeAreaLayoutGuide : superview!
         
-        anchor(leading: guide.leadingAnchor,
+        return constraintsToPin(leading: guide.leadingAnchor,
                trailing: guide.trailingAnchor,
                top: guide.topAnchor,
                bottom: guide.bottomAnchor,
@@ -86,65 +80,68 @@ extension UIView {
         case bottom
     }
     
-    func constrainToPositionInSuperview(_ verticalPosition:VerticalPosition,
+    func constraintsToPositionInSuperview(_ verticalPosition:VerticalPosition,
                                         _ horizontalPosition:HorizontalPosition,
                                         size:CGSize = .zero,
                                         padding:UIEdgeInsets = .zero,
-                                        usingSafeLayoutGuides:Bool = false) {
+                                        usingSafeLayoutGuides:Bool = false) -> [NSLayoutConstraint] {
         
         let guide : LayoutPositioning = usingSafeLayoutGuides ? superview!.safeAreaLayoutGuide : superview!
+        
+        var constraints = [NSLayoutConstraint]()
         
         switch horizontalPosition
         {
         case .leading:
             switch verticalPosition {
             case .top:
-                anchor(leading: guide.leadingAnchor, center: nil, trailing: nil,
+                constraints.append(contentsOf:constraintsToPin(leading: guide.leadingAnchor, center: nil, trailing: nil,
                        top: guide.topAnchor, middle: nil, bottom: nil,
-                       size: size, padding:padding)
+                       size: size, padding:padding))
             case .middle:
-                anchor(leading: guide.leadingAnchor, center: nil, trailing: nil,
+                constraints.append(contentsOf:constraintsToPin(leading: guide.leadingAnchor, center: nil, trailing: nil,
                        top: nil, middle: guide.centerYAnchor, bottom: nil,
-                       size: size, padding:padding)
+                       size: size, padding:padding))
             case .bottom:
-                anchor(leading: guide.leadingAnchor, center: nil, trailing: nil,
+                constraints.append(contentsOf:constraintsToPin(leading: guide.leadingAnchor, center: nil, trailing: nil,
                        top: nil, middle: nil, bottom: guide.bottomAnchor,
-                       size: size, padding:padding)
+                       size: size, padding:padding))
             }
         case .center:
             switch verticalPosition {
             case .top:
-                anchor(leading: nil, center: guide.centerXAnchor, trailing: nil,
+                constraints.append(contentsOf:constraintsToPin(leading: nil, center: guide.centerXAnchor, trailing: nil,
                        top: guide.topAnchor, middle: nil, bottom: nil,
-                       size: size, padding:padding)
+                       size: size, padding:padding))
             case .middle:
-                anchor(leading: nil, center: guide.centerXAnchor, trailing: nil,
+                constraints.append(contentsOf:constraintsToPin(leading: nil, center: guide.centerXAnchor, trailing: nil,
                        top: nil, middle: guide.centerYAnchor, bottom: nil,
-                       size: size, padding:padding)
+                       size: size, padding:padding))
             case .bottom:
-                anchor(leading: nil, center: guide.centerXAnchor, trailing: nil,
+                constraints.append(contentsOf:constraintsToPin(leading: nil, center: guide.centerXAnchor, trailing: nil,
                        top: nil, middle: nil, bottom: guide.bottomAnchor,
-                       size: size, padding:padding)
+                       size: size, padding:padding))
             }
         case .trailing:
             switch verticalPosition {
             case .top:
-                anchor(leading: nil, center: nil, trailing: guide.trailingAnchor,
+                constraints.append(contentsOf:constraintsToPin(leading: nil, center: nil, trailing: guide.trailingAnchor,
                        top: guide.topAnchor, middle: nil, bottom: nil,
-                       size: size, padding:padding)
+                       size: size, padding:padding))
             case .middle:
-                anchor(leading: nil, center: nil, trailing: guide.trailingAnchor,
+                constraints.append(contentsOf:constraintsToPin(leading: nil, center: nil, trailing: guide.trailingAnchor,
                        top: nil, middle: guide.centerYAnchor, bottom: nil,
-                       size: size, padding:padding)
+                       size: size, padding:padding))
             case .bottom:
-                anchor(leading: nil, center: nil, trailing: guide.trailingAnchor,
+                constraints.append(contentsOf:constraintsToPin(leading: nil, center: nil, trailing: guide.trailingAnchor,
                        top: nil, middle: nil, bottom: guide.bottomAnchor,
-                       size: size, padding:padding)
+                       size: size, padding:padding))
             }
         }
+        return constraints
     }
     
-    func constrainToLimitSize(of viewOrGuide:LayoutPositioning, widthMultiplier:CGFloat? = nil, heightMultiplier:CGFloat? = nil) {
+    func constraintsToLimitSize(of viewOrGuide:LayoutPositioning, widthMultiplier:CGFloat? = nil, heightMultiplier:CGFloat? = nil) -> [NSLayoutConstraint] {
         
         var constraints = [NSLayoutConstraint]()
         
@@ -156,10 +153,10 @@ extension UIView {
             constraints.append(heightAnchor.constraint(lessThanOrEqualTo: viewOrGuide.heightAnchor, multiplier: heightMultiplier))
         }
         
-        constrain(to: constraints)
+        return constraints
     }
     
-    func constrainToMeetOrExceedSize(of viewOrGuide:LayoutPositioning, widthMultiplier:CGFloat? = nil, heightMultiplier:CGFloat? = nil) {
+    func constraintsToMeetOrExceedSize(of viewOrGuide:LayoutPositioning, widthMultiplier:CGFloat? = nil, heightMultiplier:CGFloat? = nil) -> [NSLayoutConstraint] {
         
         var constraints = [NSLayoutConstraint]()
         
@@ -171,10 +168,10 @@ extension UIView {
             constraints.append(heightAnchor.constraint(greaterThanOrEqualTo: viewOrGuide.heightAnchor, multiplier: heightMultiplier))
         }
         
-        constrain(to: constraints)
+        return constraints
     }
 
-    func constrainToMatchSize(of viewOrGuide:LayoutPositioning, widthMultiplier:CGFloat? = nil, heightMultiplier:CGFloat? = nil) {
+    func constraintsToMatchSize(of viewOrGuide:LayoutPositioning, widthMultiplier:CGFloat? = nil, heightMultiplier:CGFloat? = nil) -> [NSLayoutConstraint] {
         
         var constraints = [NSLayoutConstraint]()
         
@@ -186,14 +183,73 @@ extension UIView {
             constraints.append(heightAnchor.constraint(equalTo: viewOrGuide.heightAnchor, multiplier: heightMultiplier))
         }
         
-        constrain(to: constraints)
+        return constraints
+    }
+    
+    func aspectRatioConstraints(_ aspectRatio:CGFloat) -> [NSLayoutConstraint] {
+        
+        return [widthAnchor.constraint(equalTo: heightAnchor, multiplier: aspectRatio)]
+    }
+    
+    
+    // MARK:-
+    
+    func constrain(to constraints:[NSLayoutConstraint]) {
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate(constraints)
+    }
+
+    func anchor(leading:NSLayoutXAxisAnchor? = nil,
+                          center:NSLayoutXAxisAnchor? = nil,
+                          trailing:NSLayoutXAxisAnchor? = nil,
+                          top:NSLayoutYAxisAnchor? = nil,
+                          middle:NSLayoutYAxisAnchor? = nil,
+                          bottom:NSLayoutYAxisAnchor? = nil,
+                          size:CGSize = .zero,
+                          padding:UIEdgeInsets = .zero) {
+        
+        constrain(to: constraintsToPin(leading:leading,
+                                       center:center,
+                                       trailing:trailing,
+                                       top:top,
+                                       middle:middle,
+                                       bottom:bottom,
+                                       size:size,
+                                       padding:padding))
+    }
+    
+    func constrainToFillSuperview(insets:UIEdgeInsets = .zero, usingSafeLayoutGuides:Bool = false) {
+        
+        constrain(to: constraintsToFillSuperview(insets:insets, usingSafeLayoutGuides:usingSafeLayoutGuides))
+    }
+    
+    func constrainToPositionInSuperview(_ verticalPosition:VerticalPosition,
+                                          _ horizontalPosition:HorizontalPosition,
+                                          size:CGSize = .zero,
+                                          padding:UIEdgeInsets = .zero,
+                                          usingSafeLayoutGuides:Bool = false) {
+        constrain(to: constraintsToPositionInSuperview(verticalPosition, horizontalPosition, size:size, padding:padding, usingSafeLayoutGuides:usingSafeLayoutGuides))
+    }
+    
+    func constrainToLimitSize(of viewOrGuide:LayoutPositioning, widthMultiplier:CGFloat? = nil, heightMultiplier:CGFloat? = nil) {
+        
+        constrain(to: constraintsToLimitSize(of: viewOrGuide, widthMultiplier:widthMultiplier, heightMultiplier:heightMultiplier))
+    }
+    
+    func constrainToMeetOrExceedSize(of viewOrGuide:LayoutPositioning, widthMultiplier:CGFloat? = nil, heightMultiplier:CGFloat? = nil) {
+    
+        constrain(to: constraintsToMeetOrExceedSize(of: viewOrGuide, widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier))
+    }
+    
+    func constrainToMatchSize(of viewOrGuide:LayoutPositioning, widthMultiplier:CGFloat? = nil, heightMultiplier:CGFloat? = nil) {
+
+        constrain(to: constraintsToMatchSize(of: viewOrGuide, widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier))
     }
     
     func constrainToAspectRatio(_ aspectRatio:CGFloat) {
-        
-        constrain(to: [
-            widthAnchor.constraint(equalTo: heightAnchor, multiplier: aspectRatio)
-            ])
+        constrain(to: aspectRatioConstraints(aspectRatio))
     }
 }
 

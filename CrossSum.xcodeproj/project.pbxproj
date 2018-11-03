@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C05411F2184E03D005B0503 /* FlexibleLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C05411E2184E03D005B0503 /* FlexibleLayoutView.swift */; };
+		7C0541222184E075005B0503 /* GamePlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0541212184E075005B0503 /* GamePlayView.swift */; };
 		7C245CD6217D3EFE00670CC1 /* UIButton+QuickSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C245CD5217D3EFE00670CC1 /* UIButton+QuickSet.swift */; };
 		7C245CD8217D44F600670CC1 /* AnimatingLabelPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C245CD7217D44F600670CC1 /* AnimatingLabelPresenter.swift */; };
 		7C245D2E217EC0EE00670CC1 /* CaretView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C245D2D217EC0EE00670CC1 /* CaretView.swift */; };
@@ -37,8 +39,8 @@
 		7C573FE4216A81DC007C7DF3 /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE3216A81DC007C7DF3 /* TableDataSource.swift */; };
 		7C573FE6216A895C007C7DF3 /* UserDefaults+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE5216A895C007C7DF3 /* UserDefaults+Properties.swift */; };
 		7C573FE8216A8C81007C7DF3 /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE7216A8C81007C7DF3 /* HighScore.swift */; };
-		7C7A529F217BADA80035A959 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A529E217BADA80035A959 /* NewGameViewController.swift */; };
-		7C7A52A1217BAE010035A959 /* GamePlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A52A0217BAE010035A959 /* GamePlayView.swift */; };
+		7C7A529F217BADA80035A959 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A529E217BADA80035A959 /* GameViewController.swift */; };
+		7C7A52A1217BAE010035A959 /* OldGamePlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A52A0217BAE010035A959 /* OldGamePlayView.swift */; };
 		7C7A52A6217CA9DF0035A959 /* Hermit-bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A52A4217CA9CB0035A959 /* Hermit-bold.otf */; };
 		7C7A52A7217CA9DF0035A959 /* Hermit-light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A52A3217CA9CB0035A959 /* Hermit-light.otf */; };
 		7C7A52A8217CA9DF0035A959 /* Hermit-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A52A5217CA9CB0035A959 /* Hermit-medium.otf */; };
@@ -113,6 +115,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7C05411E2184E03D005B0503 /* FlexibleLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexibleLayoutView.swift; sourceTree = "<group>"; };
+		7C0541212184E075005B0503 /* GamePlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayView.swift; sourceTree = "<group>"; };
 		7C245CD5217D3EFE00670CC1 /* UIButton+QuickSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+QuickSet.swift"; sourceTree = "<group>"; };
 		7C245CD7217D44F600670CC1 /* AnimatingLabelPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingLabelPresenter.swift; sourceTree = "<group>"; };
 		7C245D2D217EC0EE00670CC1 /* CaretView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaretView.swift; sourceTree = "<group>"; };
@@ -149,8 +153,8 @@
 		7C573FE3216A81DC007C7DF3 /* TableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataSource.swift; sourceTree = "<group>"; };
 		7C573FE5216A895C007C7DF3 /* UserDefaults+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Properties.swift"; sourceTree = "<group>"; };
 		7C573FE7216A8C81007C7DF3 /* HighScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
-		7C7A529E217BADA80035A959 /* NewGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
-		7C7A52A0217BAE010035A959 /* GamePlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayView.swift; sourceTree = "<group>"; };
+		7C7A529E217BADA80035A959 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		7C7A52A0217BAE010035A959 /* OldGamePlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldGamePlayView.swift; sourceTree = "<group>"; };
 		7C7A52A3217CA9CB0035A959 /* Hermit-light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hermit-light.otf"; sourceTree = "<group>"; };
 		7C7A52A4217CA9CB0035A959 /* Hermit-bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hermit-bold.otf"; sourceTree = "<group>"; };
 		7C7A52A5217CA9CB0035A959 /* Hermit-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hermit-medium.otf"; sourceTree = "<group>"; };
@@ -237,6 +241,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C0541202184E042005B0503 /* Layout Views */ = {
+			isa = PBXGroup;
+			children = (
+				7C05411E2184E03D005B0503 /* FlexibleLayoutView.swift */,
+			);
+			path = "Layout Views";
+			sourceTree = "<group>";
+		};
 		7C245CD3217D336000670CC1 /* defunct */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,7 +346,9 @@
 			isa = PBXGroup;
 			children = (
 				7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */,
-				7C7A52A0217BAE010035A959 /* GamePlayView.swift */,
+				7C0541212184E075005B0503 /* GamePlayView.swift */,
+				7C7A52A0217BAE010035A959 /* OldGamePlayView.swift */,
+				7C0541202184E042005B0503 /* Layout Views */,
 				7C573FE0216A77A1007C7DF3 /* Data Views */,
 				7CCB795721731F0B002081F1 /* Decorative Views */,
 				7C573FDF216A7727007C7DF3 /* Extensions */,
@@ -366,7 +380,7 @@
 		7C3C3F702159C76800BD026A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7C7A529E217BADA80035A959 /* NewGameViewController.swift */,
+				7C7A529E217BADA80035A959 /* GameViewController.swift */,
 				7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */,
 				7C3C3F23215995EE00BD026A /* ViewController.swift */,
 				7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */,
@@ -668,15 +682,17 @@
 				7C8BD3C22160FAB8002BC785 /* UIView+AutolayoutSetup.swift in Sources */,
 				7C573FE6216A895C007C7DF3 /* UserDefaults+Properties.swift in Sources */,
 				7C334AFE2165B1C500AC0CF9 /* UIView+AnimationConvenience.swift in Sources */,
+				7C05411F2184E03D005B0503 /* FlexibleLayoutView.swift in Sources */,
 				7CCB79522172CDEA002081F1 /* UILabel+TextPresenter.swift in Sources */,
 				7C3C3F22215995EE00BD026A /* AppDelegate.swift in Sources */,
 				7C84DA57215B0C6800D3B36F /* StatementLabel.swift in Sources */,
+				7C0541222184E075005B0503 /* GamePlayView.swift in Sources */,
 				7C8BD3D921614833002BC785 /* CGVector+LinearAlgebra.swift in Sources */,
 				7C245D2E217EC0EE00670CC1 /* CaretView.swift in Sources */,
 				7C4136E2216EEBB400B92278 /* ExpressionSymbolPresenter.swift in Sources */,
 				7C8BD3E82162F8D9002BC785 /* GameReadyGridFactory.swift in Sources */,
 				7C8BD3E12161C363002BC785 /* Round.swift in Sources */,
-				7C7A52A1217BAE010035A959 /* GamePlayView.swift in Sources */,
+				7C7A52A1217BAE010035A959 /* OldGamePlayView.swift in Sources */,
 				7CCB7A6121768DA7002081F1 /* SquareTilesProgressView+DiscreteProgressPresenter.swift in Sources */,
 				7C84DA77215B210700D3B36F /* Parser<Character>.swift in Sources */,
 				7CCB7A5F21768D5F002081F1 /* TallyView+IntegerPresenter.swift in Sources */,
@@ -691,7 +707,7 @@
 				7C8BD3DD21615BCD002BC785 /* RationalLabel.swift in Sources */,
 				7CCB7A6321768E0D002081F1 /* EventDisplayLabel+ScoreAddPresenter.swift in Sources */,
 				7CCB7A6721768E67002081F1 /* TimeRemainingView+TimeRemainingPresenter.swift in Sources */,
-				7C7A529F217BADA80035A959 /* NewGameViewController.swift in Sources */,
+				7C7A529F217BADA80035A959 /* GameViewController.swift in Sources */,
 				7C573FE4216A81DC007C7DF3 /* TableDataSource.swift in Sources */,
 				7CCB7A6B21781B6A002081F1 /* SolvedGrid.swift in Sources */,
 				7C573FE8216A8C81007C7DF3 /* HighScore.swift in Sources */,

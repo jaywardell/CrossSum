@@ -22,6 +22,8 @@ import UIKit
         }
     }
     
+    // TODO: maybe a flipped varable that draws the time remaining from right to left
+    
     @IBInspectable var barColorBrightness : CGFloat = 21/34
     @IBInspectable var barColorSaturation : CGFloat = 1
     @IBInspectable var barColorAlpha : CGFloat = 1

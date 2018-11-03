@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewGameViewController: UIViewController {
+class GameViewController: UIViewController {
 
     private lazy var gamePlayView : GamePlayView = {
         let out = GamePlayView()
@@ -73,8 +73,8 @@ class NewGameViewController: UIViewController {
     
     // MARK:-
     
-    class func createNew() -> NewGameViewController {
-        return NewGameViewController()
+    class func createNew() -> GameViewController {
+        return GameViewController()
     }
 
     // MARK:- Notifications
@@ -107,6 +107,7 @@ class NewGameViewController: UIViewController {
         guard let expressionchooser = notification.object as? ExpressionChooserView else { return }
         scoreAddAnimator.font = expressionchooser.choiceFont
         timeScoreAddAnimator.font = expressionchooser.choiceFont
+        gamePlayView.synchronizeFontSizes()
     }
     
     // MARK:- Actions

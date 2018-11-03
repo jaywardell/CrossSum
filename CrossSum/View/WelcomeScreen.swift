@@ -14,6 +14,8 @@ class WelcomeScreen: UIView {
         let out = UIButton(type: .system)
 //        out.setTitle("Play", for: .normal)
         out.setImage(#imageLiteral(resourceName: "play-button.pdf"), for: .normal)
+        out.contentHorizontalAlignment = .center
+        out.contentVerticalAlignment = .center
         out.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         out.titleLabel?.adjustsFontForContentSizeCategory = true
         return out

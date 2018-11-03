@@ -55,7 +55,7 @@ extension CrossSumRouter {
     
     private func playGame() {
         
-        let gvc = NewGameViewController.createNew()
+        let gvc = GameViewController.createNew()
         let round = Round(gridFactory: GameReadyGridFactory())
         NotificationCenter.default.addObserver(self, selector: #selector(userDidQuitRound(_:)), name: Round.DidQuit, object: round)
         gvc.round = round
@@ -98,7 +98,7 @@ extension CrossSumRouter {
 extension CrossSumRouter : UINavigationControllerDelegate {
     func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
         // TODO: go back to allowing autorotation, but for now it's off
-//        return .all
-       return .portrait
+        return .all
+//       return .portrait
     }
 }
