@@ -37,6 +37,15 @@ protocol IntegerPresenter {
 
 // MARK:-
 
+struct ConcreteIntegerPresenter : IntegerPresenter {
+    
+    let presenter : TextPresenter
+
+    func present(integer: Int) {
+        presenter.present(text:"\(integer)")
+    }
+}
+
 /// presents an integer within a string
 /// instances of a replacedString are replaced by the integer in the formatString
 struct SemanticIntegerPresenter : IntegerPresenter {

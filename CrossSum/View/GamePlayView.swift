@@ -109,11 +109,30 @@ class GamePlayView: FlexibleLayoutView {
         return out
     }()
     
-    lazy var scoreLabel : UILabel = {
+    // TODO: split these two up into a label that marks off the score/stage and one that shows the score/stage
+    // so the one can be hidden in certain cases
+
+    lazy var scoreLabelStandoff : UILabel = {
         let out = UILabel()
         out.font = UIFont.preferredFont(forTextStyle: .footnote)
         out.adjustsFontForContentSizeCategory = true
         out.text = "score:"
+        return out
+   }()
+    
+    lazy var scoreLabel : UILabel = {
+        let out = UILabel()
+        out.font = UIFont.preferredFont(forTextStyle: .footnote)
+        out.adjustsFontForContentSizeCategory = true
+        out.text = "0"
+        return out
+    }()
+    
+    lazy var stageLabelStandoff : UILabel = {
+        let out = UILabel()
+        out.font = UIFont.preferredFont(forTextStyle: .footnote)
+        out.adjustsFontForContentSizeCategory = true
+        out.text = "stage:"
         return out
     }()
     
@@ -121,7 +140,7 @@ class GamePlayView: FlexibleLayoutView {
         let out = UILabel()
         out.font = UIFont.preferredFont(forTextStyle: .footnote)
         out.adjustsFontForContentSizeCategory = true
-        out.text = "stage:"
+        out.text = "1"
         return out
     }()
     
@@ -150,7 +169,9 @@ class GamePlayView: FlexibleLayoutView {
             gridContainer,
             quitButton,
             scoreLabel,
+            scoreLabelStandoff,
             stageLabel,
+            stageLabelStandoff,
             statementLabel
         ]
     }()
@@ -164,6 +185,8 @@ class GamePlayView: FlexibleLayoutView {
         statementLabel.textColor = .white
         scoreLabel.textColor = .white
         stageLabel.textColor = .white
+        stageLabelStandoff.textColor = .white
+        scoreLabelStandoff.textColor = .white
     }
     
     // MARK:- Layout
@@ -181,23 +204,30 @@ class GamePlayView: FlexibleLayoutView {
 
         // note: we treat flat as portrait
         let portrait = ViewState(orientations:.allbutLandscape)
-        let ipad = ViewState(interfaceIdiom: .pad)
-        let iPadPortrait = ViewState(interfaceIdiom: .pad, orientations:.allbutLandscape)
+        let ipad = ViewState(horizontalSizeClass:.regular, verticalSizeClass:.regular)
+        let iPadPortrait = ipad.mutatedCopy(orientations:.allbutLandscape)// ViewState(interfaceIdiom: .pad, orientations:.allbutLandscape)
+        let iPadLandscape = !iPadPortrait
+        
+        // we give the user the choice to put the hint and skip buttons on the left or right side
+        // depending on the device orientation
+        // one option for each general orientation (ie portrait, landscape, flat)
+        let iPadLeft = ViewState(interfaceIdiom: .pad, orientations: [.portrait, .landscapeLeft, .faceUp])
+        let iPadRight = !iPadLeft
         
         // note: smaller iphones offer compact:compact in landscape, larger ones offer regular:compact
         // so we can only depend on orientation for this
-        let iphonePortrait = ViewState(interfaceIdiom: .phone, orientations:.allbutLandscape)
-        let iphoneLandscape = !iphonePortrait
-        let iphoneLandscapeRight = (iphoneLandscape).mutatedCopy(orientations: [.landscapeRight])
-        let iphoneLandscapeLeft = (iphoneLandscape).mutatedCopy(orientations: [.landscapeLeft])
+        let iphonePortrait = ViewState(horizontalSizeClass:.compact, verticalSizeClass:.regular)
+        let iphoneLandscape = ViewState(verticalSizeClass:.compact)
+        let iphoneLandscapeRight = (iphoneLandscape).mutatedCopy(interfaceIdiom: .phone, orientations: [.landscapeRight])
+        let iphoneLandscapeLeft = (iphoneLandscape).mutatedCopy(interfaceIdiom: .phone, orientations: [.landscapeLeft])
 
         // relative sizes for all layouts
+        addConstraints(for: .all,
+                       expressionChooser.aspectRatioConstraints(1))
         addConstraints(for: .all,
             quitButton.aspectRatioConstraints(1))
         addConstraints(for: .all,
             quitButton.constraintsToMatchSize(of: expressionChooser, widthMultiplier: 2.0/34))
-        addConstraints(for: .all,
-            expressionChooser.aspectRatioConstraints(1))
         addConstraints(for: .all,
             play_pauseButton.aspectRatioConstraints(1))
         addConstraints(for: .all,
@@ -209,16 +239,6 @@ class GamePlayView: FlexibleLayoutView {
             quitButton.constraintsToPin(leading: safeAreaLayoutGuide.leadingAnchor,
                                         top: safeAreaLayoutGuide.topAnchor,
                                         padding: UIEdgeInsets(top: statusBarHeight, left: statusBarHeight, bottom: 0, right: 0)))
-        addConstraints(for: .all, [
-            stageProgressView.heightAnchor.constraint(equalTo: gameProgressView.heightAnchor)])
-        addConstraints(for: .all,
-            stageProgressView.constraintsToPin(leading:expressionChooser.leadingAnchor, trailing:expressionChooser.trailingAnchor))
-        addConstraint(for: .all,
-                      scoreLabel.centerYAnchor.constraint(equalTo: quitButton.centerYAnchor))
-        addConstraint(for: .all,
-                      stageLabel.centerYAnchor.constraint(equalTo: scoreLabel.centerYAnchor))
-        addConstraint(for: .all,
-                      stageLabel.trailingAnchor.constraint(equalTo: scoreLabel.leadingAnchor, constant:-8))
         addConstraint(for: .all,
                       hintTally.centerYAnchor.constraint(equalTo: hintButton.centerYAnchor))
         addConstraint(for: .all,
@@ -230,14 +250,32 @@ class GamePlayView: FlexibleLayoutView {
             skipTally.widthAnchor.constraint(equalTo: skipTally.heightAnchor, multiplier: 55.0/21.0)
             ])
         
+        addConstraints(for: .all, [
+            stageLabelStandoff.trailingAnchor.constraint(equalTo: stageLabel.leadingAnchor, constant: -8),
+            stageLabel.trailingAnchor.constraint(equalTo: scoreLabelStandoff.leadingAnchor, constant: -8),
+            scoreLabelStandoff.trailingAnchor.constraint(equalTo: scoreLabel.leadingAnchor, constant: -8),
+            ])
+
+        addConstraints(for: .all, [
+            stageLabelStandoff.centerYAnchor.constraint(equalTo: stageLabel.centerYAnchor),
+            scoreLabelStandoff.centerYAnchor.constraint(equalTo: scoreLabel.centerYAnchor),
+            stageLabel.centerYAnchor.constraint(equalTo: scoreLabel.centerYAnchor),
+            scoreLabel.centerYAnchor.constraint(equalTo: quitButton.centerYAnchor)
+            ])
+
         // on iPhone, the expression chooser always grows to meet the smallest dimension of the screen
         // and is positioned in the most accessible position for the user
+        // TODO: clean up calls to addConstraints() that only take one value
         addConstraints(for: iphonePortrait,
             expressionChooser.constraintsToMatchSize(of: self, widthMultiplier: 1))
         addConstraints(for: iphonePortrait,
             expressionChooser.constraintsToPositionInSuperview(.middle, .center))
         addConstraints(for: iphonePortrait,[
             gameProgressView.bottomAnchor.constraint(equalTo:safeAreaLayoutGuide.bottomAnchor)])
+        addConstraints(for: iphonePortrait,
+                       stageProgressView.constraintsToPin(leading:expressionChooser.leadingAnchor, trailing:expressionChooser.trailingAnchor))
+        addConstraint(for: iphonePortrait,
+                      stageProgressView.heightAnchor.constraint(equalTo: gameProgressView.heightAnchor))
         addConstraints(for: iphonePortrait,[
             stageProgressView.bottomAnchor.constraint(equalTo:gameProgressView.topAnchor, constant:-2)])
         addConstraints(for: iphonePortrait,
@@ -269,7 +307,11 @@ class GamePlayView: FlexibleLayoutView {
 
         addConstraints(for: iphoneLandscape,
                        expressionChooser.constraintsToMatchSize(of: self, heightMultiplier: 1))
-        addConstraints(for: iphoneLandscape,[stageProgressView.bottomAnchor.constraint(equalTo:safeAreaLayoutGuide.bottomAnchor)])
+        addConstraints(for: iphoneLandscape,
+                       stageProgressView.constraintsToPin(leading:expressionChooser.leadingAnchor, trailing:expressionChooser.trailingAnchor))
+        addConstraint(for: iphoneLandscape,
+                      stageProgressView.heightAnchor.constraint(equalTo: gameProgressView.heightAnchor))
+       addConstraints(for: iphoneLandscape,[stageProgressView.bottomAnchor.constraint(equalTo:safeAreaLayoutGuide.bottomAnchor)])
         addConstraints(for: iphoneLandscape,
                        gameProgressView.aspectRatioConstraints(34.0/1.0))
         addConstraint(for: iphoneLandscape,
@@ -295,6 +337,9 @@ class GamePlayView: FlexibleLayoutView {
             self?.gameProgressView.geometry = .square
         }
         
+        // the iphone layout in landscape effectively splits the screen vertically
+        // putting the expression chooser closest to the  home button
+        // and the less often touched controls on the opposite side
         addConstraints(for: iphoneLandscapeRight,
                        expressionChooser.constraintsToPin(leading: leadingAnchor, top: topAnchor)
         )
@@ -333,27 +378,40 @@ class GamePlayView: FlexibleLayoutView {
         
         
         // TODO: finish iPad layouts
-        
-        
-//                        gameProgressView.trailingAnchor.constraint(equalTo: expressionChooser.trailingAnchor))
+        addConstraint(for: ipad, expressionChooser.centerXAnchor.constraint(equalTo: centerXAnchor))
+        addConstraint(for: ipad, NSLayoutConstraint(item: expressionChooser, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: .equal, toItem: self, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 34.0/34.0, constant: 0))
+        addConstraints(for: ipad, [
+            statementLabel.centerXAnchor.constraint(equalTo: expressionChooser.centerXAnchor),
+            statementLabel.centerYAnchor.constraint(equalTo: expressionChooser.topAnchor, constant: 0)])
+        addConstraint(for: ipad,
+                      play_pauseButton.centerXAnchor.constraint(equalTo: expressionChooser.centerXAnchor))
+        addConstraint(for: ipad,
+                      play_pauseButton.topAnchor.constraint(equalTo: expressionChooser.bottomAnchor))
+        addConstraint(for: ipad,
+                      scoreLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -statusBarHeight))
+        addConstraint(for: ipad,
+                      stageProgressView.heightAnchor.constraint(equalToConstant: 1))
+       addConstraint(for: ipad,
+            stageProgressView.bottomAnchor.constraint(equalTo:bottomAnchor))
+        addConstraints(for: ipad,
+                       stageProgressView.constraintsToPin(leading:safeAreaLayoutGuide.leadingAnchor, trailing:safeAreaLayoutGuide.trailingAnchor))
 
-//        addConstraints(for: ViewState(interfaceIdiom: .pad),
-//                       expressionChooser.constraintsToPositionInSuperview(.middle, .center) +
-//                        [gameProgressView.bottomAnchor.constraint(equalTo:safeAreaLayoutGuide.bottomAnchor)] +
-//                        [stageProgressView.bottomAnchor.constraint(equalTo:gameProgressView.topAnchor, constant:-2)] +
-//                        gameProgressView.aspectRatioConstraints(34.0/1.0) +
-//                        gameProgressView.constraintsToPin(leading:expressionChooser.leadingAnchor, trailing:expressionChooser.trailingAnchor)
-//        )
-//
-//        addConstraints(for: iPadPortrait,
-//                       expressionChooser.constraintsToMatchSize(of: self, widthMultiplier: 21/34.0)
-//        )
-//
-//        addConstraints(for: !iPadPortrait,
-//                       expressionChooser.constraintsToMatchSize(of: self, heightMultiplier: 21/34.0)
-//        )
         
+        addConstraint(for:iPadPortrait, expressionChooser.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 26/34.0))
+        addConstraint(for:iPadLandscape, expressionChooser.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 21/34.0))
         
+        // TODO: remove this, let hint button and skip button be in the same place no matter what the orientation for now
+
+        addConstraints(for: ipad, [
+            hintButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -statusBarHeight),
+            hintTally.trailingAnchor.constraint(equalTo: hintButton.leadingAnchor, constant: -8),
+            skipButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: statusBarHeight),
+            skipTally.leadingAnchor.constraint(equalTo: skipButton.trailingAnchor, constant: 8)
+            ])
+
+        addConstraints(for: ipad, [hintButton.centerYAnchor.constraint(equalTo: play_pauseButton.centerYAnchor),
+                                   skipButton.centerYAnchor.constraint(equalTo: play_pauseButton.centerYAnchor)])
+
         addCallback(for: iphonePortrait) { [weak self] in
             self?.hintTally.isReversed = false
             self?.skipTally.isReversed = true
@@ -366,6 +424,11 @@ class GamePlayView: FlexibleLayoutView {
             self?.hintTally.isReversed = true
             self?.skipTally.isReversed = true
         }
+        addCallback(for: ipad) { [weak self] in
+            self?.hintTally.isReversed = true
+            self?.skipTally.isReversed = false
+        }
+
     }
     
     // MARK:- 

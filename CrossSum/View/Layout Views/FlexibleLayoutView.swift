@@ -287,11 +287,11 @@ open class FlexibleLayoutView: UIView {
                 }
             }
         }
-        constraints.forEach() {
-            if $0.isActive {
-                print($0)
-            }
-        }
+//        constraints.forEach() {
+//            if $0.isActive {
+//                print($0)
+//            }
+//        }
     }
 }
 

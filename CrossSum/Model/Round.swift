@@ -148,7 +148,8 @@ extension Round {
         
         timeKeeper = TimeKeeper(solutionTime, presenter: timeRemainingPresenter) { [weak self] _ in
             print("Timer Finished")
-            self?.quit()
+            #warning("uncommment this to get back proper gameplay")
+//            self?.quit()
         }
         timeKeeper?.start()
         

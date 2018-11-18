@@ -206,8 +206,8 @@ class GameViewController: UIViewController {
         round?.statePresenter = statePresenter
         
         round?.statementPresenter = gamePlayView.statementLabel
-        round?.scorePresenter = ScorePresenter(gamePlayView.scoreLabel)
-        round?.stagePresenter = StagePresenter(gamePlayView.stageLabel)
+        round?.scorePresenter = ConcreteIntegerPresenter(presenter: gamePlayView.scoreLabel)
+        round?.stagePresenter = ConcreteIntegerPresenter(presenter: gamePlayView.stageLabel)
         
         round?.scoreAddPresenter = scoreAddAnimator
         round?.scoreTimeAddPresenter = timeScoreAddAnimator

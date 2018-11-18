@@ -31,7 +31,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSumTests/InterceptUnsatisfiableConstraints.m"
-            timestampString = "560142347.01917"
+            timestampString = "564211696.668198"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
@@ -47,7 +47,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSumTests/InterceptUnsatisfiableConstraints.m"
-            timestampString = "560142347.0194499"
+            timestampString = "564211696.668538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
@@ -63,7 +63,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/Model/GameReadyGridFactory.swift"
-            timestampString = "561873509.371596"
+            timestampString = "562938920.926546"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "165"
@@ -249,7 +249,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/View/Data Views/TallyView.swift"
-            timestampString = "562561230.395155"
+            timestampString = "562940854.990296"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "127"
@@ -281,7 +281,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/Presenter/GameRelatedPresenters.swift"
-            timestampString = "561852780.565732"
+            timestampString = "564205882.441373"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
@@ -297,7 +297,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/Presenter/GameRelatedPresenters.swift"
-            timestampString = "561852780.565897"
+            timestampString = "564205882.44173"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
@@ -313,11 +313,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/Model/Round.swift"
-            timestampString = "562561230.395636"
+            timestampString = "562940854.990624"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "userChoseTrue(statement:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -345,11 +345,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/View/Data Views/ExpressionChooserView.swift"
-            timestampString = "562561230.396147"
+            timestampString = "562940854.990827"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "455"
-            endingLineNumber = "455"
+            startingLineNumber = "428"
+            endingLineNumber = "428"
             landmarkName = "choiceFontDidChange(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -361,7 +361,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/View/GamePlayView.swift"
-            timestampString = "562561230.396536"
+            timestampString = "564211696.668979"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
@@ -377,13 +377,34 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrossSum/View/Data Views/ExpressionChooserView.swift"
-            timestampString = "562561230.397395"
+            timestampString = "562940854.9916331"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "599"
-            endingLineNumber = "599"
+            startingLineNumber = "572"
+            endingLineNumber = "572"
             landmarkName = "layoutSubviews()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "UIViewAlertForUnsatisfiableConstraints"
+            moduleName = "">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "UIViewAlertForUnsatisfiableConstraints"
+                  moduleName = "UIKitCore"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
