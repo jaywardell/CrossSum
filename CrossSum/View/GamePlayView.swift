@@ -38,14 +38,12 @@ class GamePlayView: FlexibleLayoutView {
         out.contentHorizontalAlignment = .fill  // to make the button fill its expected size
         out.contentVerticalAlignment = .fill
         out.contentMode = .scaleAspectFit
-        out.addTarget(self, action: #selector(play_pauseButtonTapped), for: .touchUpInside)
         return out
     }()
     
     lazy var skipButton : UIButton = {
         let out = UIButton(type: .system)
         out.setTitle("Skip", for: .normal)
-        out.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
         if let titleLabel = out.titleLabel {
             titleLabel.font = UIFontMetrics.default.scaledFont(for: titleLabel.font)
             titleLabel.adjustsFontForContentSizeCategory = true
@@ -63,7 +61,6 @@ class GamePlayView: FlexibleLayoutView {
     lazy var hintButton : UIButton = {
         let out = UIButton(type: .system)
         out.setTitle("Hint", for: .normal)
-        out.addTarget(self, action: #selector(hintButtonTapped), for: .touchUpInside)
         if let titleLabel = out.titleLabel {
             titleLabel.font = UIFontMetrics.default.scaledFont(for: titleLabel.font)
             titleLabel.adjustsFontForContentSizeCategory = true
@@ -105,7 +102,6 @@ class GamePlayView: FlexibleLayoutView {
         out.setImage(#imageLiteral(resourceName: "circle-x"), for: .normal)
         out.contentHorizontalAlignment = .fill
         out.contentVerticalAlignment = .fill
-        out.addTarget(self, action: #selector(quitButtonTapped), for: .touchUpInside)
         return out
     }()
     
@@ -486,30 +482,30 @@ class GamePlayView: FlexibleLayoutView {
         statementLabel.font = statementFont
     }
 
-    // MARK:- Actions
-    
-    var play_pauseButtonAction : ()->() = {}
-    @IBAction func play_pauseButtonTapped() {
-        
-        play_pauseButtonAction()
-    }
-    
-    var hintButtonAction : ()->() = {}
-    @IBAction func hintButtonTapped() {
-        
-        hintButtonAction()
-    }
-    
-    var skipButtonAction : ()->() = {}
-    @IBAction func skipButtonTapped() {
-        
-        skipButtonAction()
-    }
-    
-    var quitButtonAction : ()->() = {}
-    @IBAction func quitButtonTapped() {
-        
-        quitButtonAction()
-    }
+//    // MARK:- Actions
+//    
+//    var play_pauseButtonAction : ()->() = {}
+//    @IBAction func play_pauseButtonTapped() {
+//        
+//        play_pauseButtonAction()
+//    }
+//    
+//    var hintButtonAction : ()->() = {}
+//    @IBAction func hintButtonTapped() {
+//        
+//        hintButtonAction()
+//    }
+//    
+//    var skipButtonAction : ()->() = {}
+//    @IBAction func skipButtonTapped() {
+//        
+//        skipButtonAction()
+//    }
+//    
+//    var quitButtonAction : ()->() = {}
+//    @IBAction func quitButtonTapped() {
+//        
+//        quitButtonAction()
+//    }
 
 }

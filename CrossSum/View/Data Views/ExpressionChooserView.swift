@@ -181,12 +181,14 @@ import UIKit
         return out
     }
     
-    private func showSelection(over label:UILabel, animated:Bool = false) {
+    private func showSelection(over label1:UILabel, animated:Bool = false) {
         removeSelection()
         
         let newLayer = createSelectionLayer()
-        newLayer.frame = convert(label.bounds, from: label)
-        newLayer.cornerRadius = newLayer.frame.height/2
+        newLayer.frame = convert(label1.bounds, from: label1)
+        let halfHeight = label1.frame.height/2
+
+        newLayer.cornerRadius = halfHeight
 
         layer.addSublayer(newLayer)
         selectionLayer = newLayer
@@ -200,21 +202,104 @@ import UIKit
         }
     }
     
+    // TODO: I almost have this working as of Nov 18, 2018, but it's not hugely important for a first attempt
+
+//    private func showSelection(from label1:UILabel, to label2:UILabel, animated:Bool = false) {
+//        removeSelection()
+//
+//        let newLayer = createSelectionLayer()
+//
+//        // first put the selection layer over the first label
+//        newLayer.frame = convert(label1.bounds, from: label1)
+//        let halfHeight = label1.frame.height/2
+//
+//        newLayer.cornerRadius = halfHeight
+//
+//        // but calculate as much as we can about how the layer will eventually work
+//        let l1center = convert(label1.center, from:label1.superview)
+//        let l2center = convert(label2.center, from:label2.superview)
+//
+//        // massage angle to be between 0 and 2π
+//        var angle = l1center.angle(with: l2center)
+//        while angle < 0 {
+//            angle += 2 * .pi
+//        }
+//        while angle > 2 * .pi {
+//            angle -= 2 * .pi
+//        }
+//
+//        // the *10 and convert to Int allows for minor shifts in the center of labels causing slightly different angles
+//        switch Int(angle * 10) {
+//        case 0,
+//             Int(10.0 * 1 * .pi/4),
+//             Int(10.0 * 2 * .pi/4),
+//             Int(10.0 * 3 * .pi/4),
+//             Int(10.0 * 4 * .pi/4),
+//             Int(10.0 * 5 * .pi/4),
+//             Int(10.0 * 6 * .pi/4),
+//             Int(10.0 * 7 * .pi/4),
+//             Int(10.0 * 8 * .pi/4):
+//            break
+//        default:
+//            print("illegitimate angle: \(angle)")
+//            return
+//        }
+//
+//        var tr = CATransform3DIdentity;
+//        tr = CATransform3DRotate(tr, angle, 0.0, 0.0, 1.0);
+//        newLayer.transform = tr
+//
+//        layer.addSublayer(newLayer)
+//        selectionLayer = newLayer
+//
+//        // fade in the selectionLayer
+//        if animated {
+//            let fadeIn = CABasicAnimation(keyPath: "opacity")
+//            fadeIn.fromValue = 0
+//            fadeIn.toValue = 1
+//            fadeIn.duration = 0.3
+//            newLayer.add(fadeIn, forKey: "fade in")
+//        }
+//
+//        //calculate a new frame for the selection layer
+//        let d = l2center - l1center
+//        let center = l1center + d * 0.5
+//        let originalFrame = newLayer.frame
+//        var newFrame = newLayer.frame
+//        newFrame.size.width += l1center.distance(from: convert(label2.center, from:label2.superview))
+//        newFrame.origin = center - CGVector(dx: newFrame.size.width/2, dy: newFrame.size.width/2)
+//
+//        newLayer.frame = newFrame
+//        newLayer.transform = tr
+//
+//        if animated {
+//            let fadeIn = CABasicAnimation(keyPath: "bounds.size")
+//            fadeIn.fromValue = originalFrame
+//            fadeIn.toValue = newFrame
+//            fadeIn.duration = 1
+//            newLayer.add(fadeIn, forKey: "grow")
+//        }
+//
+//    }
+    
+    // TODO: NOT HERE! the skip button isn't disabling when we run out of skips
+
+    
     private func showSelection(from label1:UILabel, to label2:UILabel, animated:Bool = false) {
 
         removeSelection()
-        
+
         let newLayer = createSelectionLayer()
-        
+
         var frame = label1.bounds// convert(label1.bounds, from: label1)
-        
+
         let l1center = convert(label1.center, from:label1.superview)
         let l2center = convert(label2.center, from:label2.superview)
         frame.size.width += l1center.distance(from: convert(label2.center, from:label2.superview))
         newLayer.frame = frame
 
         let halfHeight = label1.frame.height/2
-        
+
         // massage angle to be between 0 and 2π
         var angle = l1center.angle(with: l2center)
         while angle < 0 {
@@ -223,7 +308,7 @@ import UIKit
         while angle > 2 * .pi {
             angle -= 2 * .pi
         }
-        
+
         // the *10 and convert to Int allows for minor shifts in the center of labels causing slightly different angles
         switch Int(angle * 10) {
         case 0,
@@ -240,21 +325,21 @@ import UIKit
             print("illegitimate angle: \(angle)")
             return
         }
-        
+
         let d = l2center - l1center
         let center = l1center + d * 0.5
 
         newLayer.frame.origin = center - CGVector(dx: frame.width/2, dy: frame.height/2)
-        
+
         var tr = CATransform3DIdentity;
         tr = CATransform3DRotate(tr, angle, 0.0, 0.0, 1.0);
         newLayer.transform = tr
-        
+
         newLayer.cornerRadius = halfHeight
-        
+
         layer.addSublayer(newLayer)
         selectionLayer = newLayer
-        
+
         if animated {
             let fadeIn = CABasicAnimation(keyPath: "opacity")
             fadeIn.fromValue = 0

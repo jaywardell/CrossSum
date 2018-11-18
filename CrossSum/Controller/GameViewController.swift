@@ -12,10 +12,14 @@ class GameViewController: UIViewController {
 
     private lazy var gamePlayView : GamePlayView = {
         let out = GamePlayView()
-        out.play_pauseButtonAction = play_pauseInRound
-        out.quitButtonAction = quitRound
-        out.skipButtonAction = skipInRound
-        out.hintButtonAction = hintInRound
+        out.play_pauseButton.addTarget(self, action: #selector(play_pauseInRound), for: .touchUpInside)
+        out.quitButton.addTarget(self, action: #selector(quitRound), for: .touchUpInside)
+        out.skipButton.addTarget(self, action: #selector(skipInRound), for: .touchUpInside)
+        out.hintButton.addTarget(self, action: #selector(hintInRound), for: .touchUpInside)
+//        out.play_pauseButtonAction = play_pauseInRound
+//        out.quitButtonAction = quitRound
+//        out.skipButtonAction = skipInRound
+//        out.hintButtonAction = hintInRound
         return out
     }()
     
@@ -112,7 +116,7 @@ class GameViewController: UIViewController {
     
     // MARK:- Actions
     
-    func play_pauseInRound() {
+    @IBAction func play_pauseInRound() {
         
         if round!.isPaused {
             resumeGame()
@@ -123,18 +127,30 @@ class GameViewController: UIViewController {
     }
     
     
-    func quitRound() {
+    @IBAction func quitRound() {
 
-        round?.quit()
+        // if there's no score, then don't bother to prompt, just quit
+        guard let round = round, round.score != 0 else {
+            self.round?.quit()
+            return
+        }
+        
+        // otherwise, make sure the user wants to quit
+        let prompt = SimplePromptAlert("Really Quit?",
+                                       "Your current score will go in the high scores.",
+                                       okButtonName: "Quit")
+        present(prompt: prompt) {
+            round.quit()
+        }
     }
     
     
-    func hintInRound() {
+    @IBAction func hintInRound() {
 
         round?.showAHint()
     }
     
-    func skipInRound() {
+    @IBAction func skipInRound() {
 
         round?.showASolution()
     }
