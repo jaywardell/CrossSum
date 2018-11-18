@@ -37,8 +37,8 @@ final class AnimatingLabel {
     func animate(_ string:String) {
         guard let startingView = startingView,
             let endingView = endingView,
-            let startingSuperview = startingView.superview,
-            let endingSuperview = endingView.superview
+            let startingSuperview = startingView.superview//,
+//            let endingSuperview = endingView.superview
             else { return }
         
         let label = createLabelToAnimate(string)
