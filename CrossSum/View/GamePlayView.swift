@@ -203,16 +203,16 @@ class GamePlayView: FlexibleLayoutView {
         let statusBarHeight : CGFloat = 44.0// found by calling UIApplication.shared.statusBarFrame.height in portrait mode
 
         // note: we treat flat as portrait
-        let portrait = ViewState(orientations:.allbutLandscape)
-        let ipad = ViewState(horizontalSizeClass:.regular, verticalSizeClass:.regular)
+//        let portrait = ViewState(orientations:.allbutLandscape)
+        let ipad = ViewState(interfaceIdiom: .pad, horizontalSizeClass:.regular, verticalSizeClass:.regular)
         let iPadPortrait = ipad.mutatedCopy(orientations:.allbutLandscape)// ViewState(interfaceIdiom: .pad, orientations:.allbutLandscape)
         let iPadLandscape = !iPadPortrait
         
         // we give the user the choice to put the hint and skip buttons on the left or right side
         // depending on the device orientation
         // one option for each general orientation (ie portrait, landscape, flat)
-        let iPadLeft = ViewState(interfaceIdiom: .pad, orientations: [.portrait, .landscapeLeft, .faceUp])
-        let iPadRight = !iPadLeft
+//        let iPadLeft = ViewState(interfaceIdiom: .pad, orientations: [.portrait, .landscapeLeft, .faceUp])
+//        let iPadRight = !iPadLeft
         
         // note: smaller iphones offer compact:compact in landscape, larger ones offer regular:compact
         // so we can only depend on orientation for this
@@ -389,13 +389,18 @@ class GamePlayView: FlexibleLayoutView {
                       play_pauseButton.topAnchor.constraint(equalTo: expressionChooser.bottomAnchor))
         addConstraint(for: ipad,
                       scoreLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -statusBarHeight))
+
         addConstraint(for: ipad,
                       stageProgressView.heightAnchor.constraint(equalToConstant: 1))
-       addConstraint(for: ipad,
+        addConstraint(for: ipad,
             stageProgressView.bottomAnchor.constraint(equalTo:bottomAnchor))
         addConstraints(for: ipad,
                        stageProgressView.constraintsToPin(leading:safeAreaLayoutGuide.leadingAnchor, trailing:safeAreaLayoutGuide.trailingAnchor))
 
+        addConstraint(for:ipad, gameProgressView.widthAnchor.constraint(equalTo: expressionChooser.widthAnchor))
+        addConstraints(for:ipad, gameProgressView.aspectRatioConstraints(34.0/5.0))
+        addConstraint(for: ipad, gameProgressView.bottomAnchor.constraint(equalTo: stageProgressView.topAnchor, constant:-statusBarHeight))
+        addConstraint(for: ipad, gameProgressView.centerXAnchor.constraint(equalTo: expressionChooser.centerXAnchor))
         
         addConstraint(for:iPadPortrait, expressionChooser.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 26/34.0))
         addConstraint(for:iPadLandscape, expressionChooser.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 21/34.0))
@@ -428,7 +433,20 @@ class GamePlayView: FlexibleLayoutView {
             self?.hintTally.isReversed = true
             self?.skipTally.isReversed = false
         }
-
+        
+        // the quit button can overlap other controls in iphone landscape, so hide it
+        addCallback(for: iphoneLandscape) {
+            self.quitButton.isHidden = true
+        }
+        addCallback(for: !iphoneLandscape) {
+            self.quitButton.isHidden = false
+        }
+        
+        // one last thing: for very large dyanmic type, don't show the standoffs for score and stage,
+        // just the score and stage itself
+        addConstraint(for: ViewState(interfaceIdiom: .phone, contentSizeCategories: .accessibility), stageLabelStandoff.widthAnchor.constraint(equalToConstant: 0))
+//        scoreLabelStandoff.widthAnchor.constraint(lessThanOrEqualToConstant: 0)])
+        
     }
     
     // MARK:- 
