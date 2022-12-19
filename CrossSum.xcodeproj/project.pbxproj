@@ -186,7 +186,6 @@
 		7C8BD3CA216122A9002BC785 /* InterceptUnsatisfiableConstraints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterceptUnsatisfiableConstraints.h; sourceTree = "<group>"; };
 		7C8BD3CB21613900002BC785 /* UIFont+CoreTextConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CoreTextConvenience.swift"; sourceTree = "<group>"; };
 		7C8BD3D021614789002BC785 /* ExpressionChooserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpressionChooserView.swift; sourceTree = "<group>"; };
-		7C8BD3D2216147AA002BC785 /* OldGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldGameViewController.swift; sourceTree = "<group>"; };
 		7C8BD3D421614806002BC785 /* CGPoint+Geomtery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Geomtery.swift"; sourceTree = "<group>"; };
 		7C8BD3D62161481E002BC785 /* CGPoint+LinearAlgebra.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+LinearAlgebra.swift"; sourceTree = "<group>"; };
 		7C8BD3D821614833002BC785 /* CGVector+LinearAlgebra.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+LinearAlgebra.swift"; sourceTree = "<group>"; };
@@ -254,14 +253,6 @@
 			children = (
 				7CCB79532172E6EE002081F1 /* GameViewHintCountPresenter.swift */,
 				7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */,
-			);
-			path = defunct;
-			sourceTree = "<group>";
-		};
-		7C245CD4217D337400670CC1 /* defunct */ = {
-			isa = PBXGroup;
-			children = (
-				7C8BD3D2216147AA002BC785 /* OldGameViewController.swift */,
 			);
 			path = defunct;
 			sourceTree = "<group>";
@@ -386,7 +377,6 @@
 				7C573FE3216A81DC007C7DF3 /* TableDataSource.swift */,
 				7C4136DD216EE22600B92278 /* UIViewController+Debugging.swift */,
 				7C6C5FE421A1E59E004D5B18 /* UIViewController+Alerts.swift */,
-				7C245CD4217D337400670CC1 /* defunct */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
