@@ -36,7 +36,7 @@ extension CGPoint {
 
 extension CGPoint : Hashable {
     
-    public var hashValue: Int {
-        return (x + y).hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(x + y)
     }
 }
