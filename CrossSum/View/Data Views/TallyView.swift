@@ -159,7 +159,7 @@ import UIKit
             CGFloat(bunch) * additionalSquareSpace :
             -CGFloat(bunch + 1) * additionalSquareSpace
         
-        var additionalBunchesPerRow = floor((bounds.width - square.width)/additionalSquareSpace)
+        let additionalBunchesPerRow = floor((bounds.width - square.width)/additionalSquareSpace)
         if numberOfLines > 1 {
             while bounds.minX > square.minX || bounds.maxX < square.maxX { // !bounds.contains(square) {
                 // wrap, direction depends on whether we're reversed
