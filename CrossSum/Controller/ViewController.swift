@@ -25,9 +25,9 @@ class ViewController: UIViewController {
         centeredLabel?.text = "hi"
 //        centeredLabel.label.text = "hello"
 //        statementLabel?.font = UIFont.systemFont(ofSize: 34)
-        statementLabel?.statement = Statement("2-1", 5/2, Statement.greatherthan)
-        equalStatementLabel?.statement = Statement("3/2", 3/2)
-        notequalStatementLabel?.statement = Statement("4/2", 32524/15161)
+        statementLabel?.statement = Statement("2-1", Rational(5)/2, Statement.greatherthan)
+        equalStatementLabel?.statement = Statement("3/2", Rational(3)/2)
+        notequalStatementLabel?.statement = Statement("4/2", Rational(32524)/15161)
         blankExpressionStatementLabel?.statement = Statement(nil, 7)
     }
 
