@@ -440,6 +440,8 @@ extension UIUserInterfaceIdiom : CustomStringConvertible {
             return "tv"
         case .carPlay:
             return "carPlay"
+        case .mac:
+            return "mac"
         }
     }
 }
