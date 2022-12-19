@@ -76,9 +76,9 @@ extension CrossSumRouter {
         let round = notification.object as! Round
         UserDefaults.standard.addHighScore(round.highScore)
         
-        #if DEBUG
-        navigationViewController.takeSnapshot()
-        #endif
+//        #if DEBUG
+//        navigationViewController.takeSnapshot()
+//        #endif
         
         restoreHighScores()
         navigationViewController.popToRootViewController(animated: false)
