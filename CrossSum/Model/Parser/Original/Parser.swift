@@ -21,7 +21,7 @@ public extension Parser {
     /// returns a parser that will parse the entire string
     /// so if there's a remaining string after the parser is finished,
     /// then it will return nil
-    public var complete: Parser<A> {
+    var complete: Parser<A> {
         return Parser<A> { stream in
             let r = self.parse(stream)
             guard r?.1.count == 0  else { return nil }
@@ -29,7 +29,7 @@ public extension Parser {
         }
     }
     
-    public var ignored: Parser<String?> {
+    var ignored: Parser<String?> {
         return Parser<String?> { stream in
             let r = self.parse(stream)
             let s : String? = nil
@@ -38,7 +38,7 @@ public extension Parser {
     }
     
     
-    public var many: Parser<[A]> {
+    var many: Parser<[A]> {
         return Parser<[A]> { stream in
             var result: [A] = []
             var remainder = stream
@@ -50,14 +50,14 @@ public extension Parser {
         }
     }
     
-    public func map<T>(_ transform: @escaping (A)->(T)) -> Parser<T> {
+    func map<T>(_ transform: @escaping (A)->(T)) -> Parser<T> {
         return Parser<T> { stream in
             guard let (result, remainder) = self.parse(stream) else { return nil }
             return (transform(result), remainder)
         }
     }
     
-    public func followed<B>(by other: Parser<B>) -> Parser<(A, B)> {
+    func followed<B>(by other: Parser<B>) -> Parser<(A, B)> {
         return Parser<(A,B)> { input in
             guard let (result1, remainder1) = self.parse(input) else { return nil }
             guard let (result2, remainder2) = other.parse(remainder1) else { return nil }
@@ -65,7 +65,7 @@ public extension Parser {
         }
     }
     
-    public func optional(_ parser:Parser<A>) -> Parser<A> {
+    func optional(_ parser:Parser<A>) -> Parser<A> {
         return Parser<A> { stream in
             
             if let p = parser.parse(stream) {
@@ -75,7 +75,7 @@ public extension Parser {
         }
     }
 
-    public static func repeatableInfix(_ term:Parser<A>, _ op:Parser<Character>, operation:@escaping (A, Character, A)->A) -> Parser<A> {
+    static func repeatableInfix(_ term:Parser<A>, _ op:Parser<Character>, operation:@escaping (A, Character, A)->A) -> Parser<A> {
         
         return Parser<A> { stream in
 
@@ -102,7 +102,7 @@ public extension Parser {
         }
     }
     
-    public var trimmingWhitespace : Parser<A> {
+    var trimmingWhitespace : Parser<A> {
         
         return Parser<A> { stream in
             guard let (_, r) = Parser<Character>.ignoredWhitespace.parse(stream) else { return nil }
