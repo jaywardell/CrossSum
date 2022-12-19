@@ -115,11 +115,10 @@ class StatementLabelTests: XCTestCase {
         
         let sut = createSUT()
         let s = Statement(nil, 2)
-//        let unsatisfiableConstraintsCount = InterceptUnsatisfiableConstraints.callCount()
 
         sut.statementLabel.statement = s
         
-        XCTAssertEqual(sut.expressionLabel.text, StatementLabel.PromptSpace)
+        XCTAssertNil(sut.expressionLabel.text)
         XCTAssertEqual(sut.equalityLabel.text, "=")
         XCTAssertEqual(sut.solutionLabel.value, 2)
         
@@ -128,7 +127,6 @@ class StatementLabelTests: XCTestCase {
         XCTAssert(sut.expressionLabel.isHighlighted)
  
         // we expect six issues with unsatisfiable constraints during the transition step
-//        XCTAssertEqual(unsatisfiableConstraintsCount + 6, InterceptUnsatisfiableConstraints.callCount())
         // but the layout should be satisfiable after the set
         XCTAssertFalse(sut.statementLabel.hasAmbiguousLayout)
     }
