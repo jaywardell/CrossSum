@@ -31,7 +31,7 @@ import UIKit
         let out = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
         out.fromValue = 1
         out.toValue = 0
-        out.repeatCount = 1000000000000
+        out.repeatCount = 10000000000
         out.duration = flashSpeed
         out.autoreverses = true
         out.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
