@@ -40,7 +40,6 @@
 		7C573FE8216A8C81007C7DF3 /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE7216A8C81007C7DF3 /* HighScore.swift */; };
 		7C6C5FE521A1E59E004D5B18 /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6C5FE421A1E59E004D5B18 /* UIViewController+Alerts.swift */; };
 		7C7A529F217BADA80035A959 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A529E217BADA80035A959 /* GameViewController.swift */; };
-		7C7A52A1217BAE010035A959 /* OldGamePlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A52A0217BAE010035A959 /* OldGamePlayView.swift */; };
 		7C7A52A6217CA9DF0035A959 /* Hermit-bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A52A4217CA9CB0035A959 /* Hermit-bold.otf */; };
 		7C7A52A7217CA9DF0035A959 /* Hermit-light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A52A3217CA9CB0035A959 /* Hermit-light.otf */; };
 		7C7A52A8217CA9DF0035A959 /* Hermit-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A52A5217CA9CB0035A959 /* Hermit-medium.otf */; };
@@ -154,7 +153,6 @@
 		7C573FE7216A8C81007C7DF3 /* HighScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
 		7C6C5FE421A1E59E004D5B18 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		7C7A529E217BADA80035A959 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		7C7A52A0217BAE010035A959 /* OldGamePlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldGamePlayView.swift; sourceTree = "<group>"; };
 		7C7A52A3217CA9CB0035A959 /* Hermit-light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hermit-light.otf"; sourceTree = "<group>"; };
 		7C7A52A4217CA9CB0035A959 /* Hermit-bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hermit-bold.otf"; sourceTree = "<group>"; };
 		7C7A52A5217CA9CB0035A959 /* Hermit-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hermit-medium.otf"; sourceTree = "<group>"; };
@@ -338,7 +336,6 @@
 			children = (
 				7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */,
 				7C0541212184E075005B0503 /* GamePlayView.swift */,
-				7C7A52A0217BAE010035A959 /* OldGamePlayView.swift */,
 				7C0541202184E042005B0503 /* Layout Views */,
 				7C573FE0216A77A1007C7DF3 /* Data Views */,
 				7CCB795721731F0B002081F1 /* Decorative Views */,
@@ -682,7 +679,6 @@
 				7C4136E2216EEBB400B92278 /* ExpressionSymbolPresenter.swift in Sources */,
 				7C8BD3E82162F8D9002BC785 /* GameReadyGridFactory.swift in Sources */,
 				7C8BD3E12161C363002BC785 /* Round.swift in Sources */,
-				7C7A52A1217BAE010035A959 /* OldGamePlayView.swift in Sources */,
 				7CCB7A6121768DA7002081F1 /* SquareTilesProgressView+DiscreteProgressPresenter.swift in Sources */,
 				7C84DA77215B210700D3B36F /* Parser<Character>.swift in Sources */,
 				7CCB7A5F21768D5F002081F1 /* TallyView+IntegerPresenter.swift in Sources */,
