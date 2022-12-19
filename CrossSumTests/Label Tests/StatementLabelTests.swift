@@ -181,9 +181,9 @@ class StatementLabelTests: XCTestCase {
         solutionLabel:RationalLabel) {
             
             let st = StatementLabel()
-            let ex = st.subviews[0] as! CenteredLabel
-            let eq = st.subviews[1] as! CenteredLabel
-            let so = st.subviews[2] as! RationalLabel
+            let ex = st.subviews[1] as! CenteredLabel
+            let eq = st.subviews[2] as! CenteredLabel
+            let so = st.subviews[3] as! RationalLabel
             
             return (statementLabel:st,
                     expressionLabel:ex,

@@ -195,7 +195,7 @@ class RationalTests: XCTestCase {
         XCTAssertEqual(twenty * five, 100)
         XCTAssertEqual(five * twenty, 100)
         XCTAssertEqual(twenty / five, 4)
-        XCTAssertEqual(five/twenty, 1/4)
+        XCTAssertEqual(five/twenty, "1/4")
     }
     
     func testExpressibleByFloatLiteral() {

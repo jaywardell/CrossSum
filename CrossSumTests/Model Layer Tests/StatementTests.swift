@@ -88,11 +88,11 @@ class StatementTests: XCTestCase {
     }
 
     func testGreaterThan() {
-        XCTAssert(Statement("2*3",11/2, Statement.greatherthan).isTrue)
+        XCTAssert(Statement("2*3","11/2", Statement.greatherthan).isTrue)
         XCTAssert(Statement("-2*3",-10, Statement.greatherthan).isTrue)
         XCTAssert(Statement("1-2*3",-10, Statement.greatherthan).isTrue)
         XCTAssert(Statement("0*3",-1, Statement.greatherthan).isTrue)
-        XCTAssert(Statement("25",200/10, Statement.greatherthan).isTrue)
+        XCTAssert(Statement("25","200/10", Statement.greatherthan).isTrue)
         
         XCTAssert(!Statement("2*3",6, Statement.greatherthan).isTrue)
         XCTAssert(!Statement("-2*3",-6, Statement.greatherthan).isTrue)
@@ -102,11 +102,11 @@ class StatementTests: XCTestCase {
     }
 
     func testGreaterThanOrEqualTo() {
-        XCTAssert(Statement("2*3",11/2, Statement.greatherthanorequal).isTrue)
+        XCTAssert(Statement("2*3","11/2", Statement.greatherthanorequal).isTrue)
         XCTAssert(Statement("-2*3",-10, Statement.greatherthanorequal).isTrue)
         XCTAssert(Statement("1-2*3",-10, Statement.greatherthanorequal).isTrue)
         XCTAssert(Statement("0*3",-1, Statement.greatherthanorequal).isTrue)
-        XCTAssert(Statement("25",200/10, Statement.greatherthanorequal).isTrue)
+        XCTAssert(Statement("25","200/10", Statement.greatherthanorequal).isTrue)
         
         XCTAssert(Statement("2*3",6, Statement.greatherthanorequal).isTrue)
         XCTAssert(Statement("-2*3",-6, Statement.greatherthanorequal).isTrue)

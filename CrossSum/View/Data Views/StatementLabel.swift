@@ -10,7 +10,7 @@ import UIKit
 
 class StatementLabel: UIStackView {
 
-//    static let PromptSpace = " "
+    static var PromptSpace: String { " " }
 
     
     var statement : Statement? {

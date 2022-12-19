@@ -104,7 +104,7 @@ class RationalLabelTests: XCTestCase {
         XCTAssertEqual(sut.denominatorLabel.text, "5")
 
         // if value is nan, then all labels should be blank
-        let r4 = Rational(1.0/0)
+        let r4 = Rational(1.0/Rational(0))
         sut.rationalLabel.value = r4
         XCTAssertEqual(sut.rationalLabel.value, r4)
         XCTAssertNil(sut.wholeNumberLabel.text)
