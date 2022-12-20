@@ -418,5 +418,28 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "62845BC5-0D3F-41FA-9377-E6AC5D6C769C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "CTFontLogSystemFontNameRequest"
+            moduleName = "">
+            <Locations>
+               <Location
+                  uuid = "62845BC5-0D3F-41FA-9377-E6AC5D6C769C - cc795092e7cc15c2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CTFontLogSystemFontNameRequest"
+                  moduleName = "CoreText"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
