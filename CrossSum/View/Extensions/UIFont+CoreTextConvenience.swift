@@ -11,7 +11,12 @@ import UIKit
 extension UIFont {
     
     var underlineThickness : CGFloat {
-        let ctfont = CTFontCreateWithName(fontName as CFString, pointSize, nil);
-        return CTFontGetUnderlineThickness(ctfont)
+        // it would be more accurate to use the commented code below,
+        // but CoreText throws a fit and prints a nasty message to console
+        // so for now we'll just assume a constant ratio
+        pointSize/12
+
+//        let ctfont = CTFontCreateWithName(fontName as CFString, pointSize, nil);
+//        return CTFontGetUnderlineThickness(ctfont)
     }
 }

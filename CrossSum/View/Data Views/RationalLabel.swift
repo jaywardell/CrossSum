@@ -174,10 +174,7 @@ class RationalLabel: UIStackView {
         numeratorLabel.sizeToFit()
         denominatorLabel.sizeToFit()
 
-        // it would be more accurate to use the commented code,
-        // but CoreText throws a fit and prints a nasty message to console
-        // so for now we'll just assume a constant ratio
-        fractionBar.height = font.pointSize * 1.0/12 //font.underlineThickness
+        fractionBar.height = font.underlineThickness
         fractionBar.width = denominatorLabel.intrinsicContentSize.width
         fractionBar.sizeToFit()
 
