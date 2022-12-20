@@ -44,7 +44,7 @@ class WelcomeScreenViewController: UIViewController {
             cell.detailTextLabel?.textColor = self?.lastHighScore == score ? self?.view.tintColor : .white
         }
         highScoresDS?.style = { cell in
-            cell.backgroundColor = nil
+            cell.backgroundColor = .black
             cell.textLabel?.font = UIFontMetrics.default.scaledFont(for: UIFont(name: UIFont.BPMono, size: 21)!)
             cell.detailTextLabel?.font = UIFontMetrics.default.scaledFont(for: UIFont(name: UIFont.BPMono, size: 21)!)
         }

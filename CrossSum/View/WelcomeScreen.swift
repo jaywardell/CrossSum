@@ -62,6 +62,7 @@ class WelcomeScreen: UIView {
         guard nil == highScoresView.superview else { return }
 
         let tableView = highScoresView
+        tableView.backgroundView?.backgroundColor = .clear
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         
