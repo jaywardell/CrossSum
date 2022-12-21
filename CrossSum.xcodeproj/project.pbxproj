@@ -92,6 +92,7 @@
 		7CCB7A692177F600002081F1 /* GridSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A682177F600002081F1 /* GridSolver.swift */; };
 		7CCB7A6B21781B6A002081F1 /* SolvedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A6A21781B6A002081F1 /* SolvedGrid.swift */; };
 		7CCB7A6D21782A44002081F1 /* GridSolutions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB7A6C21782A44002081F1 /* GridSolutions.swift */; };
+		7CCD5A1E295352C9004D13D7 /* UIColor+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD5A1D295352C9004D13D7 /* UIColor+Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +209,7 @@
 		7CCB7A682177F600002081F1 /* GridSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridSolver.swift; sourceTree = "<group>"; };
 		7CCB7A6A21781B6A002081F1 /* SolvedGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolvedGrid.swift; sourceTree = "<group>"; };
 		7CCB7A6C21782A44002081F1 /* GridSolutions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridSolutions.swift; sourceTree = "<group>"; };
+		7CCD5A1D295352C9004D13D7 /* UIColor+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Constants.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +397,7 @@
 				7C7A52A9217CAF510035A959 /* UIFont+Reporting.swift */,
 				7C7A52AB217CB2F70035A959 /* UIFont+Custom.swift */,
 				7C245CD5217D3EFE00670CC1 /* UIButton+QuickSet.swift */,
+				7CCD5A1D295352C9004D13D7 /* UIColor+Constants.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				7C84DA73215B210700D3B36F /* Parser<Double>.swift in Sources */,
 				7C8BD3D521614806002BC785 /* CGPoint+Geomtery.swift in Sources */,
 				7CCB7A6D21782A44002081F1 /* GridSolutions.swift in Sources */,
+				7CCD5A1E295352C9004D13D7 /* UIColor+Constants.swift in Sources */,
 				7C8BD3DB21614857002BC785 /* Collection+SpecialIteration.swift in Sources */,
 				7C8BD3DD21615BCD002BC785 /* RationalLabel.swift in Sources */,
 				7CCB7A6321768E0D002081F1 /* EventDisplayLabel+ScoreAddPresenter.swift in Sources */,

@@ -25,8 +25,6 @@ final class CrossSumRouter : NSObject {
         out.navigationBar.barStyle = .black
         out.navigationBar.isHidden = true
         
-        out.view.tintColor = UIColor(hue: 164/360, saturation: 1, brightness: 21/34, alpha: 1)
-        
         return out
     }()
     

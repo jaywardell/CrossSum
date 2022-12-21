@@ -44,6 +44,12 @@ class GameViewController: UIViewController {
         view.layoutIfNeeded()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.tintColor = .tintColor
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

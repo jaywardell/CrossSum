@@ -59,6 +59,7 @@ class WelcomeScreenViewController: UIViewController {
         
         welcomeScreen.highScoresView.reloadData()
 
+        view.tintColor = .tintColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
