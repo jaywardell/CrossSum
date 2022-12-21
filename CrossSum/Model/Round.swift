@@ -218,7 +218,7 @@ extension Round {
         self.solutionTime = Round.TimeForEachTargetSolution +  (self.timeKeeper?.timeRemaining ?? TimeInterval(0))
         
         //but reduce the time slightly with each successive target slution
-        self.solutionTime *= 0.95
+        self.solutionTime *= 0.99
     }
     
     private func userChoseFalse(statement:Statement) {
