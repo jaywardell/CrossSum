@@ -136,8 +136,17 @@ public struct Rational {
         }
         
         let g = gcf(numerator, denominator)
-        let num = numerator/g
-        let den = denominator/g
+        var num = numerator/g
+        var den = denominator/g
+        
+        // explicitly check that
+        // the numerator isn't
+        // evenly divisible
+        // by the denominator
+        if den != 0 && num % den == 0 {
+            num = num/den
+            den = 1
+        }
         
         if den < 0 {
             return Rational(-num, -den)

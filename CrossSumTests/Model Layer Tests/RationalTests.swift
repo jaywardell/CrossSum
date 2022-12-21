@@ -379,6 +379,28 @@ class RationalTests: XCTestCase {
         XCTAssertEqual(Rational(-5,0).description, "nan")
     }
     
+    func test_standardized_is_equivalent() {
+        let one = Rational(1,1)
+        let oneAlso = Rational(3,3)
+        
+        XCTAssertEqual(one.standardized, oneAlso.standardized)
+    }
+
+    func test_hashing_is_equivalent() {
+        
+        XCTAssertEqual(Rational(1,1).hashValue, Rational(3,3).hashValue)
+        XCTAssertEqual(Rational(1,2).hashValue, Rational(5,10).hashValue)
+    }
+
+    func test_set_subtraction_with_equivalents() {
+        // I ran into an edge case that was causing a crash
+        // I BELIEVE that this was the cause
+        let first = Set([Rational(1,1), Rational(2,2)])
+        let second = Set([Rational(3,3)])
+        
+        XCTAssert(first.subtracting(second).isEmpty)
+    }
+    
     // MARK:-
 
     // just to make the syntax easier to read in the testing enviornment
