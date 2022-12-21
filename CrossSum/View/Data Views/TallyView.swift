@@ -80,7 +80,15 @@ import UIKit
         }
     }
     
-    private var _tallyColor : UIColor { return (tallyColor ?? tintColor) }
+    @IBInspectable var isEnabled: Bool = true {
+        didSet {
+            tallyMarks.forEach() { tally in
+                tally.strokeColor = _tallyColor.cgColor
+            }
+        }
+    }
+    
+    private var _tallyColor : UIColor { return (isEnabled ? (tallyColor ?? tintColor) : .secondaryLabel) }
     
     private var _tally : Int = 0
     var tally : Int {

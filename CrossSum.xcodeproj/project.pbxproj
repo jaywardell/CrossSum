@@ -900,6 +900,7 @@
 				DEVELOPMENT_TEAM = 7HAJV4F6VL;
 				INFOPLIST_FILE = CrossSum/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.educational-games";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -920,6 +921,7 @@
 				DEVELOPMENT_TEAM = 7HAJV4F6VL;
 				INFOPLIST_FILE = CrossSum/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.educational-games";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

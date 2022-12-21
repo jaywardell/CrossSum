@@ -205,13 +205,21 @@ class GameViewController: UIViewController {
                 .playing(hasHints: true, hasSkips: true),
                 .playing(hasHints: true, hasSkips: false)
             ]),
-            
+            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.hintTally, key: \TallyView.isEnabled), [
+                .playing(hasHints: true, hasSkips: true),
+                .playing(hasHints: true, hasSkips: false)
+            ]),
+
             // the skip button shouldn't be enabled if there are no skips available
             ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.skipButton, key: \UIButton.isEnabled), [
                 .playing(hasHints: true, hasSkips: true),
                 .playing(hasHints: false, hasSkips: false)
             ]),
-            
+            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.skipTally, key: \TallyView.isEnabled), [
+                .playing(hasHints: true, hasSkips: true),
+                .playing(hasHints: false, hasSkips: false)
+            ]),
+
             // except the play_pause button should be enabled when the round is paused also
             ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.play_pauseButton, key: \UIButton.isEnabled), Round.State.allPlaying + [.paused]),
 

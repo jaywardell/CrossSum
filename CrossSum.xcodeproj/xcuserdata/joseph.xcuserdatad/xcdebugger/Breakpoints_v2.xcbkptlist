@@ -212,23 +212,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "31F2B550-115D-442B-82E3-E48EBB160343"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CrossSum/View/Data Views/TallyView.swift"
-            timestampString = "562940854.990296"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "synchronizeTally(animated:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7A056914-11E5-450B-89D8-963E68F88516"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -257,23 +240,6 @@
             startingLineNumber = "23"
             endingLineNumber = "23"
             landmarkName = "scoreAddAnimator"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9B39CC4B-3F6A-4EEF-B9D4-D41F33231450"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CrossSum/View/GamePlayView.swift"
-            timestampString = "564258621.48785"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "quitButton"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
