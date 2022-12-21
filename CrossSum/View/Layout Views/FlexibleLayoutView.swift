@@ -231,9 +231,7 @@ open class FlexibleLayoutView: UIView {
     
     override open func didMoveToSuperview() {
         super.didMoveToSuperview()
-        
-//        translatesAutoresizingMaskIntoConstraints = false
-        
+                
         NotificationCenter.default.removeObserver(self)
         
         if nil != superview {
@@ -263,17 +261,12 @@ open class FlexibleLayoutView: UIView {
     
     private func updateLayout() {
         
-//        print("traitCollection: \(traitCollection)")
-//        print("orientation: \(UIDevice.current.orientation)")
-//
         // first, turn off all constraints
         disableAllConstraints()
         
         // then turn on the ones that we will want for this view state
         for (viewstate, contraints) in layouts {
             let active = viewstate.matches(self) && viewstate.matches(UIDevice.current.orientation)
-//            print("viewstate:\(viewstate)")
-//            print("active:\(active)")
 
             contraints.forEach() {
                 $0.isActive = active
@@ -287,11 +280,6 @@ open class FlexibleLayoutView: UIView {
                 }
             }
         }
-//        constraints.forEach() {
-//            if $0.isActive {
-//                print($0)
-//            }
-//        }
     }
 }
 

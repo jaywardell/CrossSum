@@ -15,7 +15,6 @@
 		7C334AF6216454D500AC0CF9 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */; };
 		7C334AF8216454EA00AC0CF9 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AF7216454EA00AC0CF9 /* WelcomeScreen.swift */; };
 		7C334AFA2164561200AC0CF9 /* CrossSumRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AF92164561200AC0CF9 /* CrossSumRouter.swift */; };
-		7C334AFC21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */; };
 		7C334AFE2165B1C500AC0CF9 /* UIView+AnimationConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334AFD2165B1C500AC0CF9 /* UIView+AnimationConvenience.swift */; };
 		7C334B202168223E00AC0CF9 /* TimeRemainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334B1F2168223E00AC0CF9 /* TimeRemainingView.swift */; };
 		7C334B2221682CD000AC0CF9 /* TimeKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C334B2121682CD000AC0CF9 /* TimeKeeper.swift */; };
@@ -246,6 +245,14 @@
 			path = "Layout Views";
 			sourceTree = "<group>";
 		};
+		7C09978229529A3300905C75 /* defunct */ = {
+			isa = PBXGroup;
+			children = (
+				7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */,
+			);
+			path = defunct;
+			sourceTree = "<group>";
+		};
 		7C245CD3217D336000670CC1 /* defunct */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,10 +377,10 @@
 			children = (
 				7C7A529E217BADA80035A959 /* GameViewController.swift */,
 				7C334AF5216454D500AC0CF9 /* WelcomeScreenViewController.swift */,
-				7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */,
 				7C573FE3216A81DC007C7DF3 /* TableDataSource.swift */,
 				7C4136DD216EE22600B92278 /* UIViewController+Debugging.swift */,
 				7C6C5FE421A1E59E004D5B18 /* UIViewController+Alerts.swift */,
+				7C09978229529A3300905C75 /* defunct */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -688,7 +695,6 @@
 				7C84DA73215B210700D3B36F /* Parser<Double>.swift in Sources */,
 				7C8BD3D521614806002BC785 /* CGPoint+Geomtery.swift in Sources */,
 				7CCB7A6D21782A44002081F1 /* GridSolutions.swift in Sources */,
-				7C334AFC21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift in Sources */,
 				7C8BD3DB21614857002BC785 /* Collection+SpecialIteration.swift in Sources */,
 				7C8BD3DD21615BCD002BC785 /* RationalLabel.swift in Sources */,
 				7CCB7A6321768E0D002081F1 /* EventDisplayLabel+ScoreAddPresenter.swift in Sources */,

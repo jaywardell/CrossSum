@@ -129,45 +129,7 @@ class RationalLabel: UIStackView {
             fractionView
             ].forEach { addArrangedSubview($0) }
     }
-    
-//    private func setupConstraints() {
-//
-//        self.translatesAutoresizingMaskIntoConstraints = false
-//
-//        wholeNumberLabel.constrain(to: [
-//            wholeNumberLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            wholeNumberLabel.topAnchor.constraint(equalTo: topAnchor),
-//            wholeNumberLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-//            wholeNumberLabel.heightAnchor.constraint(greaterThanOrEqualTo: wholeNumberLabel.heightAnchor, multiplier: 1)
-//            ])
-//
-//        numeratorLabel.constrain(to: [
-//            numeratorLabel.leadingAnchor.constraint(equalTo: wholeNumberLabel.trailingAnchor),
-//            numeratorLabel.topAnchor.constraint(greaterThanOrEqualTo: topAnchor),
-//            numeratorLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-//            numeratorLabel.bottomAnchor.constraint(equalTo: fractionBar.topAnchor),
-//
-//            numeratorLabel.heightAnchor.constraint(equalTo: wholeNumberLabel.heightAnchor, multiplier: 13/34),
-//            ])
-//
-//        denominatorLabel.constrain(to: [
-//            denominatorLabel.leadingAnchor.constraint(equalTo: numeratorLabel.leadingAnchor),
-//            denominatorLabel.topAnchor.constraint(equalTo: fractionBar.bottomAnchor),
-//            denominatorLabel.trailingAnchor.constraint(equalTo: numeratorLabel.trailingAnchor),
-//            denominatorLabel.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor),
-//
-//            denominatorLabel.widthAnchor.constraint(equalTo: numeratorLabel.widthAnchor, multiplier: 1),
-//            denominatorLabel.heightAnchor.constraint(equalTo: numeratorLabel.heightAnchor, multiplier: 1),
-//            ])
-//
-//        fractionBar.constrain(to: [
-//            fractionBar.leadingAnchor.constraint(equalTo: numeratorLabel.leadingAnchor),
-//            fractionBar.trailingAnchor.constraint(equalTo: numeratorLabel.trailingAnchor),
-//            fractionBarHeight
-//            ])
-//
-//    }
-    
+        
     private func updateLayout() {
 
         wholeNumberLabel.sizeToFit()

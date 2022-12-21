@@ -481,31 +481,4 @@ class GamePlayView: FlexibleLayoutView {
         let statementFont = expressionChooser.choiceFont.withSize(expressionChooser.choiceFont.pointSize * 34/21)
         statementLabel.font = statementFont
     }
-
-//    // MARK:- Actions
-//    
-//    var play_pauseButtonAction : ()->() = {}
-//    @IBAction func play_pauseButtonTapped() {
-//        
-//        play_pauseButtonAction()
-//    }
-//    
-//    var hintButtonAction : ()->() = {}
-//    @IBAction func hintButtonTapped() {
-//        
-//        hintButtonAction()
-//    }
-//    
-//    var skipButtonAction : ()->() = {}
-//    @IBAction func skipButtonTapped() {
-//        
-//        skipButtonAction()
-//    }
-//    
-//    var quitButtonAction : ()->() = {}
-//    @IBAction func quitButtonTapped() {
-//        
-//        quitButtonAction()
-//    }
-
 }

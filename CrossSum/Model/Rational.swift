@@ -9,10 +9,10 @@
 import Foundation
 
 
-// a number that can be represented by a numerator and a denominator
 
 // TODO: idk how this class deals with infinity, there are probably some issues
 
+/// a number that can be represented by a numerator and a denominator
 public struct Rational {
     
     public let numerator : Int

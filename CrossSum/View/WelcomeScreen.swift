@@ -12,7 +12,6 @@ class WelcomeScreen: UIView {
 
     lazy var playButton : UIButton = {
         let out = UIButton(type: .system)
-//        out.setTitle("Play", for: .normal)
         out.setImage(#imageLiteral(resourceName: "play-button.pdf"), for: .normal)
         out.contentHorizontalAlignment = .center
         out.contentVerticalAlignment = .center

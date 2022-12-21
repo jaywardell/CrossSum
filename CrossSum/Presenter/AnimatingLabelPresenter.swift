@@ -38,7 +38,6 @@ final class AnimatingLabel {
         guard let startingView = startingView,
             let endingView = endingView,
             let startingSuperview = startingView.superview//,
-//            let endingSuperview = endingView.superview
             else { return }
         
         let label = createLabelToAnimate(string)
@@ -48,7 +47,6 @@ final class AnimatingLabel {
         //TODO: start and end can be anywhere in the associated views
         let start = CGPoint(x: CGFloat.random(in: startingView.frame.minX...startingView.frame.maxX),
                             y: CGFloat.random(in: startingView.frame.minY...startingView.frame.maxY))
-//        let end = endingSuperview.convert(endingView.center, to: startingView.superview)
         let end = CGPoint(x: CGFloat.random(in: endingView.frame.minX...endingView.frame.maxX),
                             y: CGFloat.random(in: endingView.frame.minY...endingView.frame.maxY))
 

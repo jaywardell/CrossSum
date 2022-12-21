@@ -16,10 +16,6 @@ class GameViewController: UIViewController {
         out.quitButton.addTarget(self, action: #selector(quitRound), for: .touchUpInside)
         out.skipButton.addTarget(self, action: #selector(skipInRound), for: .touchUpInside)
         out.hintButton.addTarget(self, action: #selector(hintInRound), for: .touchUpInside)
-//        out.play_pauseButtonAction = play_pauseInRound
-//        out.quitButtonAction = quitRound
-//        out.skipButtonAction = skipInRound
-//        out.hintButtonAction = hintInRound
         return out
     }()
     

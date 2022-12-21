@@ -24,7 +24,6 @@ class StatementLabel: UIStackView {
                 return
             }
             
-//            expressionLabel.text = statement.expression ?? StatementLabel.PromptSpace
             expressionLabel.text = statement.expression
             caret.isHidden = statement.expression != nil
             expressionLabel.isHighlighted = isPromptingForExpression
@@ -132,7 +131,6 @@ class StatementLabel: UIStackView {
         equalityLabel.sizeToFit()
         solutionLabel.sizeToFit()
         setNeedsLayout()
-//        layoutIfNeeded()
     }
 
 }

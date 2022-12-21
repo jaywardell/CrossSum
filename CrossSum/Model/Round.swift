@@ -69,24 +69,11 @@ final class Round {
     var acceptableSolutions : Set<Rational> {
         guard let solutions = solutions else { return Set() }
         return solutions.solutions
-        // Round should no longer have to worry about this since it's filtering the acceptable solutions in the delegate method
-        // don't offer solutions that can only be gotten from one or two squares (e.g. - and 5 becomes -5)
-//        return solutions.filter() { solution in
-//            guard let locations = grid?.solutionsToExpressionLocations.value[solution] else { return false }
-//            for choice in locations {
-//                if abs(choice.0.0 - choice.1.0) >= 2 ||
-//                    abs(choice.0.1 - choice.1.1) >= 2 {
-//                    return true
-//                }
-//            }
-//            return false
-//        }
     }
     var availableSolutions : Set<Rational> {
         return acceptableSolutions.subtracting(foundSolutions)
     }
 
-//    var isPaused : Bool { return timeKeeper?.isPaused ?? false }
     var isPaused : Bool { return state == .paused }
     
     // MARK:-
@@ -148,7 +135,6 @@ extension Round {
         
         timeKeeper = TimeKeeper(solutionTime, presenter: timeRemainingPresenter) { [weak self] _ in
             print("Timer Finished")
-//            #warning("uncommment this to get back proper gameplay")
             self?.quit()
         }
         timeKeeper?.start()
@@ -171,18 +157,15 @@ extension Round {
         canEarnASkipThisGrid = true
         
         showingGrid = false
-//        displayDelegate?.willReplaceGrid(self)
         
         let solvedGrid = gridFactory.gridAfter(grid, using: shouldAcceptSolution(solution:in:from:to:))
         self.grid = solvedGrid.grid
         self.solutions = solvedGrid.solutions
-//        self.grid?.solutionClient = self
         expressionSymbolPresenter?.present(grid!, animated: true) { [weak self] in guard let self = self else { return }
         
             self.showNextTargetSolution()
             
             self.showingGrid = true
-//            self.displayDelegate?.didReplaceGrid(self)
         }
         
         // give the user all the time he had accumulated by ansering quickly in previous rounds
