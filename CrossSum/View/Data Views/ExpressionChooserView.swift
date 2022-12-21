@@ -154,6 +154,8 @@ import UIKit
         case .possible:
             break
 
+        @unknown default:
+            fatalError()
         }
     }
     
@@ -454,7 +456,7 @@ import UIKit
     }
     
     private func coordinates(of label:UILabel) -> (row:Int, column:Int)? {
-        guard let index = labels.index(of: label),
+        guard let index = labels.firstIndex(of: label),
         let dataSource = symbolDataSource else { return nil }
         
         return (row:index/dataSource.columns, column:index%dataSource.columns)

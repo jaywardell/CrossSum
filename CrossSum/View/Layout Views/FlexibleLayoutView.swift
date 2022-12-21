@@ -296,6 +296,8 @@ extension UIUserInterfaceSizeClass {
             return .regular
         case .regular:
             return .compact
+        @unknown default:
+            fatalError()
         }
     }
 }
@@ -311,6 +313,8 @@ extension UIUserInterfaceLayoutDirection {
             return .rightToLeft
         case .rightToLeft:
             return .leftToRight
+        @unknown default:
+            fatalError()
         }
     }
 }
@@ -430,6 +434,8 @@ extension UIUserInterfaceIdiom : CustomStringConvertible {
             return "carPlay"
         case .mac:
             return "mac"
+        @unknown default:
+            fatalError()
         }
     }
 }
@@ -444,6 +450,8 @@ extension UIUserInterfaceSizeClass: CustomStringConvertible {
             return "compact"
         case .regular:
             return "regular"
+        @unknown default:
+            fatalError()
         }
     }
 }
@@ -455,6 +463,8 @@ extension UIUserInterfaceLayoutDirection : CustomStringConvertible {
             return "left to right"
         case .rightToLeft:
             return "right to left"
+        @unknown default:
+            fatalError()
         }
     }
 }
@@ -483,6 +493,8 @@ extension UIDeviceOrientation : CustomStringConvertible {
             return "face up"
         case .faceDown:
             return "face down"
+        @unknown default:
+            fatalError()
         }
     }
 }
