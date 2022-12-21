@@ -290,8 +290,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "515"
             endingLineNumber = "515"
-            landmarkName = "ExpressionChooserView"
-            landmarkType = "3">
+            landmarkName = "choiceFontDidChange(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -324,8 +324,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "659"
             endingLineNumber = "659"
-            landmarkName = "ProportionalLabel"
-            landmarkType = "3">
+            landmarkName = "layoutSubviews()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
