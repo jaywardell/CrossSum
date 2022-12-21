@@ -74,9 +74,7 @@ class Grid {
         set {
             // don't allow non-square strings to be set, but instead crash
             
-            guard newValue.allTheSame({
-                $0.count
-            }) else {
+            guard newValue.allTheSame(\.count) else {
                 fatalError("symbolds must be in a rectangular grid\n\(newValue)\nIs not rectangular\n")
             }
             
