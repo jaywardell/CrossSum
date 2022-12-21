@@ -299,7 +299,9 @@ extension Round {
         }) else { return }
 
         showingSkip = true
-        timeKeeper?.stop()
+        if timeKeeper?.isDone == false {
+            timeKeeper?.stop()
+        }
         expressionSelector?.prepareToSimulateSelection()
         expressionSelector?.select(from: thisWay.0.x, thisWay.0.y, to: thisWay.1.x, thisWay.1.y, animated:true)
         
