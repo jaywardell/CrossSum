@@ -184,7 +184,7 @@ class GameViewController: UIViewController {
             // the quit button should always be present, unless the round is quitting
             ToggleBasedOnStatePresenter(gamePlayView.quitButton, [.advancing, .playing, .paused, .starting]),
             
-            // but it cannot be enabled between grids, since that ma cause conflicts with the time keeper
+            // but it cannot be enabled between grids, since that may cause conflicts with the time keeper
             ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.quitButton, key: \UIButton.isEnabled), [.playing, .paused, .starting]),
 
             

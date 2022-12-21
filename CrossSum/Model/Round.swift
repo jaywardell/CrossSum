@@ -288,16 +288,23 @@ extension Round {
         return hint
     }
     
+    private func findAnyCurrentSolution() -> (Grid.Coordinate, Grid.Coordinate)? {
+        guard let currentTargetSolution = currentTargetSolution,
+        let ways = solutions?.waysToGet(solution: currentTargetSolution),
+        let hint = hintedCoordinate()
+        else { return nil }
+        
+        return ways.first {
+            $0.0 == hint
+        }
+    }
+    
     func showASolution() {
         guard skips > 0,
             !showingSkip,
-            let currentTargetSolution = currentTargetSolution,
-            let ways = solutions?.waysToGet(solution: currentTargetSolution),
-            let hint = hintedCoordinate(),
-            let thisWay = ways.first(where:{
-                $0.0 == hint
-        }) else { return }
-
+                let thisWay = findAnyCurrentSolution()
+        else { return }
+                
         showingSkip = true
         if timeKeeper?.isDone == false {
             timeKeeper?.stop()
