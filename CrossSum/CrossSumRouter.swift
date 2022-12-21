@@ -97,8 +97,6 @@ extension CrossSumRouter {
 
 extension CrossSumRouter : UINavigationControllerDelegate {
     func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
-        // TODO: go back to allowing autorotation, but for now it's off
         return .all
-//       return .portrait
     }
 }
