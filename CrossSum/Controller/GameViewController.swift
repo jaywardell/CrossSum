@@ -48,6 +48,8 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         view.tintColor = .tintColor
+        
+        gamePlayView.stageProgressView.barColor = .tintColor
     }
     
     override func viewWillAppear(_ animated: Bool) {

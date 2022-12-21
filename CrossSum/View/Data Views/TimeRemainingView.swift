@@ -28,6 +28,12 @@ import UIKit
     @IBInspectable var barColorSaturation : CGFloat = 1
     @IBInspectable var barColorAlpha : CGFloat = 1
     
+    private var _barColor: UIColor?
+    var barColor: UIColor? {
+        get { _barColor }
+        set { _barColor = newValue }
+    }
+
     private lazy var barLayer : CALayer = {
         let out = CALayer()
         out.frame = .zero
@@ -49,7 +55,7 @@ import UIKit
         
         let scalar = CGFloat(remainingTime/maxTime)
         let bar = CGRect(origin: bounds.origin, size: CGSize(width: bounds.width * scalar, height: bounds.height))
-        let color = UIColor(hue: 1.0/3.0 * scalar, saturation: barColorSaturation, brightness: barColorBrightness, alpha: alpha)
+        let color = _barColor ?? UIColor(hue: 1.0/3.0 * scalar, saturation: barColorSaturation, brightness: barColorBrightness, alpha: alpha)
         
         CATransaction.begin()
         CATransaction.setDisableActions(remainingTime == maxTime)
