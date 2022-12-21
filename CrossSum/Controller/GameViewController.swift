@@ -192,7 +192,7 @@ class GameViewController: UIViewController {
             ToggleBasedOnStatePresenter(gamePlayView.stageLabel, Round.State.allPlaying + [.advancing, .paused]),
             ToggleBasedOnStatePresenter(gamePlayView.scoreLabel, Round.State.allPlaying + [.advancing, .paused]),
 
-            // the hint UI should be visible unless the round is paused or there are no hints
+            // the hint UI should be visible unless the round is paused
             ToggleBasedOnStatePresenter(gamePlayView.hintButton, Round.State.allPlaying + [.advancing]),
             ToggleBasedOnStatePresenter(gamePlayView.hintTally, Round.State.allPlaying + [.advancing]),
             
@@ -200,9 +200,17 @@ class GameViewController: UIViewController {
             ToggleBasedOnStatePresenter(gamePlayView.skipButton, Round.State.allPlaying + [.advancing]),
             ToggleBasedOnStatePresenter(gamePlayView.skipTally, Round.State.allPlaying + [.advancing]),
  
-            // but when the round is advancing, the buttons shouldn't be enabled
-            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.hintButton, key: \UIButton.isEnabled), [.playing(hasHints: true)]),
-            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.skipButton, key: \UIButton.isEnabled), Round.State.allPlaying),
+            // the hint button shouldn't be enabled if there are no hints available
+            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.hintButton, key: \UIButton.isEnabled), [
+                .playing(hasHints: true, hasSkips: true),
+                .playing(hasHints: true, hasSkips: false)
+            ]),
+            
+            // the skip button shouldn't be enabled if there are no skips available
+            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.skipButton, key: \UIButton.isEnabled), [
+                .playing(hasHints: true, hasSkips: true),
+                .playing(hasHints: false, hasSkips: false)
+            ]),
             
             // except the play_pause button should be enabled when the round is paused also
             ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.play_pauseButton, key: \UIButton.isEnabled), Round.State.allPlaying + [.paused]),

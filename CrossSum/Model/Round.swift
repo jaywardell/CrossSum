@@ -34,14 +34,16 @@ final class Round {
     enum State: Equatable {
         case starting   // the round is starting up, its begin() method has not been called yet
         case advancing  // the round is calculating its next grid
-        case playing(hasHints: Bool)    // the round is presenting a grid that the user is playing
+        case playing(hasHints: Bool, hasSkips: Bool)    // the round is presenting a grid that the user is playing
         case paused     // the round is paused
         case quitting   // the round is finishing because the user has failed or has hit the quit button
 
         static var allPlaying: [Self] {
             [
-                .playing(hasHints: true),
-                .playing(hasHints: false)
+                .playing(hasHints: true, hasSkips: true),
+                .playing(hasHints: true, hasSkips: false),
+                .playing(hasHints: false, hasSkips: true),
+                .playing(hasHints: false, hasSkips: false),
             ]
         }
         
@@ -63,7 +65,7 @@ final class Round {
         didSet {
             hintCountPresenter?.present(integer: hints)
             if state.isPlaying {
-                state = .playing(hasHints: hints > 0)
+                state = .playing(hasHints: hints > 0, hasSkips: skips > 0)
             }
         }
     }
@@ -72,6 +74,9 @@ final class Round {
     var skips : Int = 0 {
         didSet {
             skipsCountPresenter?.present(integer: skips)
+            if state.isPlaying {
+                state = .playing(hasHints: hints > 0, hasSkips: skips > 0)
+            }
         }
     }
     private var canEarnASkipThisGrid = true
@@ -139,7 +144,7 @@ extension Round {
             return
         }
         
-        self.state = .playing(hasHints: hints > 0)
+        self.state = .playing(hasHints: hints > 0, hasSkips: skips > 0)
         
         hint = nil
         currentTargetSolution = next
@@ -256,7 +261,7 @@ extension Round {
     func resume(_ callback:()->()) {
         print("\(#function)")
         timeKeeper?.resume()
-        self.state = .playing(hasHints: hints > 0)
+        self.state = .playing(hasHints: hints > 0, hasSkips: skips > 0)
         callback()
     }
 
