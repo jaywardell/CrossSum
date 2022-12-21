@@ -192,7 +192,7 @@ class GameViewController: UIViewController {
             ToggleBasedOnStatePresenter(gamePlayView.stageLabel, [.advancing, .playing, .paused]),
             ToggleBasedOnStatePresenter(gamePlayView.scoreLabel, [.advancing, .playing, .paused]),
 
-            // the hint and skip UI should be visible unless the round if paused
+            // the hint and skip UI should be visible unless the round is paused
             ToggleBasedOnStatePresenter(gamePlayView.hintButton, [.playing, .advancing]),
             ToggleBasedOnStatePresenter(gamePlayView.hintTally, [.playing, .advancing]),
             ToggleBasedOnStatePresenter(gamePlayView.skipButton, [.playing, .advancing]),
