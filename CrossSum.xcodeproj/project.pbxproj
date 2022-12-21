@@ -210,6 +210,7 @@
 		7CCB7A6A21781B6A002081F1 /* SolvedGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolvedGrid.swift; sourceTree = "<group>"; };
 		7CCB7A6C21782A44002081F1 /* GridSolutions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridSolutions.swift; sourceTree = "<group>"; };
 		7CCD5A1D295352C9004D13D7 /* UIColor+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Constants.swift"; sourceTree = "<group>"; };
+		7CCD5A1F29535591004D13D7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +266,7 @@
 		7C3C3F15215995EE00BD026A = {
 			isa = PBXGroup;
 			children = (
+				7CCD5A1F29535591004D13D7 /* README.md */,
 				7C3C3F20215995EE00BD026A /* CrossSum */,
 				7C3C3F35215995F000BD026A /* CrossSumTests */,
 				7C3C3F40215995F000BD026A /* CrossSumUITests */,
