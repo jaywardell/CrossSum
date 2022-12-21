@@ -251,12 +251,13 @@ extension Round {
     
     static let DidQuit = Notification.Name("Round.DidQuit")
     func quit() {
-        print("\(#function)")
         self.state = .quitting
         
         timeKeeper?.stop()
         
-        NotificationCenter.default.post(name: Round.DidQuit, object: self)
+        showSolutionOnQuit {
+            NotificationCenter.default.post(name: Round.DidQuit, object: self)
+        }
     }
 }
 
@@ -324,6 +325,30 @@ extension Round {
                 self?.expressionSelector?.doneSimulatingSelection()
                 
                 self?.showingSkip = false
+            }
+        }
+    }
+    
+    func showSolutionOnQuit(_ completion: @escaping ()->()) {
+        guard let thisWay = findAnyCurrentSolution()
+        else {
+            completion()
+            return
+        }
+        showingSkip = true
+
+        expressionSelector?.prepareToSimulateSelection()
+        expressionSelector?.select(from: thisWay.0.x, thisWay.0.y, to: thisWay.1.x, thisWay.1.y, animated:true)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.expressionSelector?.removeSelection(animated: true) {
+                DispatchQueue.main.async {
+                    self?.expressionSelector?.doneSimulatingSelection()
+                    
+                    self?.showingSkip = false
+                    
+                    completion()
+                }
             }
         }
     }
