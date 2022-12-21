@@ -20,7 +20,7 @@ extension ExpressionSymbolPresenter {
     
     /// The method your model objects want to call
     /// sets symbolDataSource and also calls presentSymbols
-    /// This method lets this presenter act as much as possible like other presenters, with a single preset(...) method
+    /// This method lets this presenter act as much as possible like other presenters, with a single present(...) method
     ///
     /// - Parameters:
     ///   - dataSource: an object of type ExpressionSymbolViewDataSource
