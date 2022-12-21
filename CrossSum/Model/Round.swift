@@ -31,12 +31,21 @@ final class Round {
         }
     }
     
-    enum State : Int {
+    enum State: Equatable {
         case starting   // the round is starting up, its begin() method has not been called yet
         case advancing  // the round is calculating its next grid
-        case playing    // the round is presenting a grid that the user is playing
+        case playing(hasHints: Bool)    // the round is presenting a grid that the user is playing
         case paused     // the round is paused
         case quitting   // the round is finishing because the user has failed or has hit the quit button
+
+        static var allPlaying: [Self] {
+            [
+                .playing(hasHints: true),
+                .playing(hasHints: false)
+            ]
+        }
+        
+        var isPlaying: Bool { Self.allPlaying.contains(self) }
     }
     var state : State {
         didSet {
@@ -53,6 +62,9 @@ final class Round {
     var hints : Int = 0 {
         didSet {
             hintCountPresenter?.present(integer: hints)
+            if state.isPlaying {
+                state = .playing(hasHints: hints > 0)
+            }
         }
     }
     private var hint : Grid.Coordinate?
@@ -74,7 +86,7 @@ final class Round {
         return acceptableSolutions.subtracting(foundSolutions)
     }
 
-    var isPaused : Bool { return state == .paused }
+    var isPaused : Bool { return  state == .paused }
     
     // MARK:-
     
@@ -127,7 +139,7 @@ extension Round {
             return
         }
         
-        self.state = .playing
+        self.state = .playing(hasHints: hints > 0)
         
         hint = nil
         currentTargetSolution = next
@@ -244,7 +256,7 @@ extension Round {
     func resume(_ callback:()->()) {
         print("\(#function)")
         timeKeeper?.resume()
-        self.state = .playing
+        self.state = .playing(hasHints: hints > 0)
         callback()
     }
 
