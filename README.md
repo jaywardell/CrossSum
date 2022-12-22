@@ -14,7 +14,7 @@ CrossSum is at its core an MVC app written with protocol-driven-development, but
 
 ## Model layer
 
-CrossSum implements a custom `Rational` data type in order to allow for fraction computations without losing precision.  A `Statement` type allows for very simple expression evaluation. A `RationalParser` translates strings into `Rational`s. 
+CrossSum implements a custom `Rational` data type in order to allow for fraction computations without losing precision.  A `Statement` type allows for very simple expression evaluation. A `RationalParser` translates a given string into a `Rational`. 
 
 A `Grid` stores the grid of numbers and operators that are shown on screen. A set of types allow for the creation of progressively harder Grids as the user finds more and more answers. A `TimeKeeper` type and `HighScore` type wrap basic gameplay logic.  
 
