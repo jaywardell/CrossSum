@@ -284,8 +284,6 @@ import UIKit
 //
 //    }
     
-    // TODO: NOT HERE! the skip button isn't disabling when we run out of skips
-
     
     private func showSelection(from label1:UILabel, to label2:UILabel, animated:Bool = false) {
 
