@@ -209,6 +209,7 @@
 		7CCB7A6C21782A44002081F1 /* GridSolutions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridSolutions.swift; sourceTree = "<group>"; };
 		7CCD5A1D295352C9004D13D7 /* UIColor+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Constants.swift"; sourceTree = "<group>"; };
 		7CCD5A1F29535591004D13D7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7CCD5A202953EAA8004D13D7 /* example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				7CCD5A1F29535591004D13D7 /* README.md */,
+				7CCD5A212953EAB2004D13D7 /* promotional */,
 				7C3C3F20215995EE00BD026A /* CrossSum */,
 				7C3C3F35215995F000BD026A /* CrossSumTests */,
 				7C3C3F40215995F000BD026A /* CrossSumUITests */,
@@ -504,6 +506,22 @@
 				7CCB7A6621768E67002081F1 /* TimeRemainingView+TimeRemainingPresenter.swift */,
 			);
 			path = "Views that implement Presenter";
+			sourceTree = "<group>";
+		};
+		7CCD5A212953EAB2004D13D7 /* promotional */ = {
+			isa = PBXGroup;
+			children = (
+				7CCD5A222953EAB7004D13D7 /* screenshots */,
+			);
+			path = promotional;
+			sourceTree = "<group>";
+		};
+		7CCD5A222953EAB7004D13D7 /* screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				7CCD5A202953EAA8004D13D7 /* example.png */,
+			);
+			path = screenshots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -1,5 +1,7 @@
 #  CrossSum
 
+<img src="https://raw.githubusercontent.com/jaywardell/CrossSum/master/CrossSum/Assets.xcassets/AppIcon.appiconset/icon.png" alt="icon"/ width=256 height=256>
+
 CrossSum is a math facts practice game.  It shows a grid of numbers separated by math operators.  Your job is to find a math fact in the grid that equals the target number at the top of the screen before time runs out. 
 
 The longer it takes you to find an expression, the fewer points it's worth. If you find the expression quickly, your time gets passed on to the next try.  When you find all the target numbers on one grid, you're presented with a new grid that's harder than the last. 
@@ -22,7 +24,7 @@ A single `Game` object is created each time the user starts a new game and handl
 
 ## View Layer
 
-The most interesting view in the app is `GamePlayView`, which contains all the controls and labels that are used in the game.  GamePlayView inherits from FlexibleLayoutView, a UIView subclass that keeps track of the layout of the screen (portrait or landscape, iPad or iPhone, etc.) and chooses based on that which autolayout constraints to use. GamePlayView also vends its subviews as properties to be used by client code.
+The most interesting view in the app is `GamePlayView`, which contains all the controls and labels that are used in the game.  `GamePlayView` inherits from `FlexibleLayoutView`, a `UIView` subclass that keeps track of the layout of the screen (portrait or landscape, iPad or iPhone, etc.) and chooses based on that which autolayout constraints to use. GamePlayView also vends its subviews as properties to be used by client code.
 
 `ExpressionChooserView` presents the grid to the user and handles user selection of the grid.
 
