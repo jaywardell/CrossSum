@@ -1,6 +1,6 @@
 #  CrossSum
 
-<img src="https://raw.githubusercontent.com/jaywardell/CrossSum/master/CrossSum/Assets.xcassets/AppIcon.appiconset/icon.png" alt="icon" width=256 height=256 />
+<img src="https://raw.githubusercontent.com/jaywardell/CrossSum/master/CrossSum/Assets.xcassets/AppIcon.appiconset/icon.png" alt="icon" width=1024 height=1024 />
 
 CrossSum is a math facts practice game.  It shows a grid of numbers separated by math operators.  Your job is to find a math fact in the grid that equals the target number at the top of the screen before time runs out. 
 
