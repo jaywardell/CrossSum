@@ -210,6 +210,7 @@
 		7CCD5A1D295352C9004D13D7 /* UIColor+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Constants.swift"; sourceTree = "<group>"; };
 		7CCD5A1F29535591004D13D7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7CCD5A202953EAA8004D13D7 /* example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example.png; sourceTree = "<group>"; };
+		7CCD5A2329540185004D13D7 /* license.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				7CCD5A1F29535591004D13D7 /* README.md */,
+				7CCD5A2329540185004D13D7 /* license.txt */,
 				7CCD5A212953EAB2004D13D7 /* promotional */,
 				7C3C3F20215995EE00BD026A /* CrossSum */,
 				7C3C3F35215995F000BD026A /* CrossSumTests */,
