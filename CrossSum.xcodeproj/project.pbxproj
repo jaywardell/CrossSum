@@ -193,8 +193,6 @@
 		7C8BD3E52162F230002BC785 /* GridFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridFactory.swift; sourceTree = "<group>"; };
 		7C8BD3E72162F8D9002BC785 /* GameReadyGridFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameReadyGridFactory.swift; sourceTree = "<group>"; };
 		7CCB79512172CDEA002081F1 /* UILabel+TextPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+TextPresenter.swift"; sourceTree = "<group>"; };
-		7CCB79532172E6EE002081F1 /* GameViewHintCountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewHintCountPresenter.swift; sourceTree = "<group>"; };
-		7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewSkipCountPresenter.swift; sourceTree = "<group>"; };
 		7CCB795821731F30002081F1 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		7CCB796421738E48002081F1 /* TallyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TallyView.swift; sourceTree = "<group>"; };
 		7CCB79BE2173C130002081F1 /* SquareTilesProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareTilesProgressView.swift; sourceTree = "<group>"; };
@@ -250,15 +248,6 @@
 			isa = PBXGroup;
 			children = (
 				7C334AFB21645A0B00AC0CF9 /* UIStoryboard+Convenience.swift */,
-			);
-			path = defunct;
-			sourceTree = "<group>";
-		};
-		7C245CD3217D336000670CC1 /* defunct */ = {
-			isa = PBXGroup;
-			children = (
-				7CCB79532172E6EE002081F1 /* GameViewHintCountPresenter.swift */,
-				7CCB79552172F07D002081F1 /* GameViewSkipCountPresenter.swift */,
 			);
 			path = defunct;
 			sourceTree = "<group>";
@@ -333,7 +322,6 @@
 				7CCB7A57217687D1002081F1 /* GameRelatedPresenters.swift */,
 				7C4136E1216EEBB400B92278 /* ExpressionSymbolPresenter.swift */,
 				7C245CD7217D44F600670CC1 /* AnimatingLabelPresenter.swift */,
-				7C245CD3217D336000670CC1 /* defunct */,
 				7CCB7A5921768B48002081F1 /* Views that implement Presenter */,
 			);
 			path = Presenter;

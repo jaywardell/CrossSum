@@ -132,7 +132,8 @@ class GridTests: XCTestCase {
         let r = Game(gridFactory: SimpleGridFactory())
         // grid with game as its client
         let specifications = Grid.Specification(size: 5, range: 0...30, operators: [.plus], solutionRange: -30...30, allowsFractionalSolutions: false)
-        let sut = """
+        let sut =
+"""
             1 - 3 + 2
             + 3 + 4 +
             2 + 4 - 4
