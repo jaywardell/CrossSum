@@ -8,7 +8,9 @@ The longer it takes you to find an expression, the fewer points it's worth. If y
 
 Exactly how the new grid is harder is randomly determined to be different every time. Sometimes it uses larger numbers. Sometimes it adds new operators. Sometimes it adds negative numbers or fractions. Sometimes more numbers are added to the grid.
 
-This was a project I was working on in 2018. It never became a real product, but there's a lot in it that might be interesting for someone looking for novel ways to work with UIKit, especially in a game.
+This was a project I was working on in 2018. It never became a real product, but there's a lot in it that might be interesting to someone looking for novel ways to work with UIKit, especially in a game.
+
+<img src="https://github.com/jaywardell/CrossSum/raw/master/promotional/screenshots/example.png" alt="screenshot" width=295 height=639 />
 
 ## Architecture
 
