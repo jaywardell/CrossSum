@@ -4,13 +4,13 @@ CrossSum is a math facts practice game.  It shows a grid of numbers separated by
 
 The longer it takes you to find an expression, the fewer points it's worth. If you find the expression quickly, your time gets passed on to the next try.  When you find all the target numbers on one grid, you're presented with a new grid that's harder than the last. 
 
-Exactly how the new grid is harder is randomly determined to be different every time. Sometimes it uses larger numbers. Sometimes it adds new operators. Sometimes it adds negative numbers or fractions.
+Exactly how the new grid is harder is randomly determined to be different every time. Sometimes it uses larger numbers. Sometimes it adds new operators. Sometimes it adds negative numbers or fractions. Sometimes more numbers are added to the grid.
 
 This was a project I was working on in 2018. It never became a real product, but there's a lot in it that might be interesting for someone looking for novel ways to work with UIKit, especially in a game.
 
 ## Architecture
 
-CrossSum is at its core an MVC app written with protocol-driven-development, but it uses several ideas that were floating around in Swift architecture back in 2018.  It's 100% programmatic UI, using a Router to determine which view controller to show at any given time.  View layout is not done in the view controller, but instead in custom UIView subclasses that vend their compoenents to their hosting view controllers.  Views implement a presenter protocol (not the same idea as Presenters in VIPER, but sort of inspired by it) that is called by client code.  The view controller's main responsibility becomes tying updates from the model into presenters in its views.
+CrossSum is at its core an MVC app written with protocol-driven-development, but it uses several ideas that were floating around in Swift architecture back in 2018.  It's 100% programmatic UI, using a Router to determine which view controller to show at any given time.  View layout is not done in the view controller, but instead in custom UIView subclasses that vend their compoenents to their hosting view controllers.  Views implement a presenter protocol (not the same idea as Presenters in VIPER, but sort of inspired by it) that is called by client code.  The view controller's main responsibility becomes tying updates from the model to presenters in its views.
 
 ## Model layer
 
@@ -34,7 +34,7 @@ CrossSum uses presenters to present the data in the model layer to the view laye
 
 
 ## View Controller Layer
- A key job of the view controller is to connect the appropriate presenter in its model to its own views.
+ A key job of the view controller is to connect the appropriate presenter in its model to its own views. It also ties actions attached to views to methods on the model.
  
  
  ## User Interface
