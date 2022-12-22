@@ -37,6 +37,7 @@
 		7C573FE6216A895C007C7DF3 /* UserDefaults+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE5216A895C007C7DF3 /* UserDefaults+Properties.swift */; };
 		7C573FE8216A8C81007C7DF3 /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C573FE7216A8C81007C7DF3 /* HighScore.swift */; };
 		7C6C5FE521A1E59E004D5B18 /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6C5FE421A1E59E004D5B18 /* UIViewController+Alerts.swift */; };
+		7C79F3F72954E6B500EB5AFF /* app store blurb in Resources */ = {isa = PBXBuildFile; fileRef = 7C79F3F62954E6B500EB5AFF /* app store blurb */; };
 		7C7A529F217BADA80035A959 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A529E217BADA80035A959 /* GameViewController.swift */; };
 		7C7A52A6217CA9DF0035A959 /* Hermit-bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A52A4217CA9CB0035A959 /* Hermit-bold.otf */; };
 		7C7A52A7217CA9DF0035A959 /* Hermit-light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A52A3217CA9CB0035A959 /* Hermit-light.otf */; };
@@ -150,6 +151,7 @@
 		7C573FE5216A895C007C7DF3 /* UserDefaults+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Properties.swift"; sourceTree = "<group>"; };
 		7C573FE7216A8C81007C7DF3 /* HighScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
 		7C6C5FE421A1E59E004D5B18 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
+		7C79F3F62954E6B500EB5AFF /* app store blurb */ = {isa = PBXFileReference; lastKnownFileType = text; path = "app store blurb"; sourceTree = "<group>"; };
 		7C7A529E217BADA80035A959 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		7C7A52A3217CA9CB0035A959 /* Hermit-light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hermit-light.otf"; sourceTree = "<group>"; };
 		7C7A52A4217CA9CB0035A959 /* Hermit-bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hermit-bold.otf"; sourceTree = "<group>"; };
@@ -514,6 +516,7 @@
 			isa = PBXGroup;
 			children = (
 				7CCD5A222953EAB7004D13D7 /* screenshots */,
+				7C79F3F62954E6B500EB5AFF /* app store blurb */,
 			);
 			path = promotional;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 			files = (
 				7C3C3F2C215995F000BD026A /* LaunchScreen.storyboard in Resources */,
 				7C7A52A6217CA9DF0035A959 /* Hermit-bold.otf in Resources */,
+				7C79F3F72954E6B500EB5AFF /* app store blurb in Resources */,
 				7C7A52B4217CB4EC0035A959 /* UbuntuMono-R.ttf in Resources */,
 				7C7A52B1217CB4EC0035A959 /* UbuntuMono-B.ttf in Resources */,
 				7C7A52A7217CA9DF0035A959 /* Hermit-light.otf in Resources */,
@@ -919,7 +923,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.oldjewel.CrossSum;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oldjewel.Cross-Sum";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -943,7 +947,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.oldjewel.CrossSum;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oldjewel.Cross-Sum";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
