@@ -120,7 +120,6 @@ struct GameReadyGridFactory : GridFactory {
         GridMutator.same
         ])
     
-//    func gridAfter(_ grid: Grid?) -> Grid {
     func gridAfter(_ grid:Grid?, using filter:@escaping GridSolutionFilter) -> SolvedGrid {
 
         guard let lastGrid = grid else { return solved(firstGrid(), filter) }
