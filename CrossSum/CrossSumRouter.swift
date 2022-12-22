@@ -54,9 +54,9 @@ extension CrossSumRouter {
     private func playGame() {
         
         let gvc = GameViewController.createNew()
-        let round = Round(gridFactory: GameReadyGridFactory())
-        NotificationCenter.default.addObserver(self, selector: #selector(userDidQuitRound(_:)), name: Round.DidQuit, object: round)
-        gvc.round = round
+        let game = Game(gridFactory: GameReadyGridFactory())
+        NotificationCenter.default.addObserver(self, selector: #selector(userDidQuitRound(_:)), name: Game.DidQuit, object: game)
+        gvc.game = game
 
         // don't let the navigation controller support pop on swipe
         // or else the user can swipe out of the game
@@ -71,8 +71,8 @@ extension CrossSumRouter {
         // TODO: this is being called sometimes for unexpected reasons
         // probably a timer is not being stopped when it should be, but I'm not sure
         
-        let round = notification.object as! Round
-        UserDefaults.standard.addHighScore(round.highScore)
+        let game = notification.object as! Game
+        UserDefaults.standard.addHighScore(game.highScore)
         
 //        #if DEBUG
 //        navigationViewController.takeSnapshot()

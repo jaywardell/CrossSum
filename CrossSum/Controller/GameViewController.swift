@@ -12,10 +12,10 @@ class GameViewController: UIViewController {
 
     private lazy var gamePlayView : GamePlayView = {
         let out = GamePlayView()
-        out.play_pauseButton.addTarget(self, action: #selector(play_pauseInRound), for: .touchUpInside)
-        out.quitButton.addTarget(self, action: #selector(quitRound), for: .touchUpInside)
-        out.skipButton.addTarget(self, action: #selector(skipInRound), for: .touchUpInside)
-        out.hintButton.addTarget(self, action: #selector(hintInRound), for: .touchUpInside)
+        out.play_pauseButton.addTarget(self, action: #selector(play_pauseInGame), for: .touchUpInside)
+        out.quitButton.addTarget(self, action: #selector(quitGame), for: .touchUpInside)
+        out.skipButton.addTarget(self, action: #selector(skipInGame), for: .touchUpInside)
+        out.hintButton.addTarget(self, action: #selector(hintInGame), for: .touchUpInside)
         return out
     }()
     
@@ -29,7 +29,7 @@ class GameViewController: UIViewController {
 
     // MARK:-
     
-    var round : Round?
+    var game : Game?
 
     // MARK:-
     
@@ -38,7 +38,7 @@ class GameViewController: UIViewController {
         
         self.view = gamePlayView
         
-        connectRoundToUI()
+        connectGameToUI()
 
         view.setNeedsLayout()
         view.layoutIfNeeded()
@@ -61,7 +61,7 @@ class GameViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(expressionChooserFontDidChange(_:)), name: ExpressionChooserView.ChoiceFontDidChange, object: gamePlayView.expressionChooser)
 
-        round?.begin()
+        game?.begin()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -120,9 +120,9 @@ class GameViewController: UIViewController {
     
     // MARK:- Actions
     
-    @IBAction func play_pauseInRound() {
+    @IBAction func play_pauseInGame() {
         
-        if round!.isPaused {
+        if game!.isPaused {
             resumeGame()
         }
         else {
@@ -131,11 +131,11 @@ class GameViewController: UIViewController {
     }
     
     
-    @IBAction func quitRound() {
+    @IBAction func quitGame() {
 
         // if there's no score, then don't bother to prompt, just quit
-        guard let round = round, round.score != 0 else {
-            self.round?.quit()
+        guard let game = game, game.score != 0 else {
+            self.game?.quit()
             return
         }
         
@@ -144,69 +144,69 @@ class GameViewController: UIViewController {
                                        "Your current score will go in the high scores.",
                                        okButtonName: "Quit")
         present(prompt: prompt) {
-            round.quit()
+            game.quit()
         }
     }
     
     
-    @IBAction func hintInRound() {
+    @IBAction func hintInGame() {
 
-        round?.showAHint()
+        game?.showAHint()
     }
     
-    @IBAction func skipInRound() {
+    @IBAction func skipInGame() {
 
-        round?.showASolution()
+        game?.showASolution()
     }
 
 
 // MARK:- Play/Pause
     
     private func pauseGame() {
-        guard let round = self.round,
-            !round.isPaused else { return }
+        guard let game = self.game,
+            !game.isPaused else { return }
         
-        round.pause() {// [weak self] in guard let self = self else { return }
+        game.pause() {// [weak self] in guard let self = self else { return }
             gamePlayView.expressionChooser.fadeOut(duration: 0.2)
         }
     }
     
     private func resumeGame() {
-        guard let round = self.round,
-            round.isPaused else { return }
+        guard let game = self.game,
+            game.isPaused else { return }
         
         gamePlayView.statementLabel.fadeIn(duration:0.2)
         gamePlayView.expressionChooser.fadeIn(duration: 0.2) { [weak self] in
-            self?.round?.resume() {}
+            self?.game?.resume() {}
         }
     }
 
 // MARK:- Round Maintenance
 
     
-    private func connectRoundToUI() {
+    private func connectGameToUI() {
         guard isViewLoaded else { return }
         
-        let statePresenters : [RoundStatePresenter] = [
+        let statePresenters : [GameStatePresenter] = [
             
-            // the quit button should always be present, unless the round is quitting
-            ToggleBasedOnStatePresenter(gamePlayView.quitButton, Round.State.allPlaying + [.advancing, .paused, .starting]),
+            // the quit button should always be present, unless the game is quitting
+            ToggleBasedOnStatePresenter(gamePlayView.quitButton, Game.State.allPlaying + [.advancing, .paused, .starting]),
             
             // but it cannot be enabled between grids, since that may cause conflicts with the time keeper
-            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.quitButton, key: \UIButton.isEnabled), Round.State.allPlaying + [.paused, .starting]),
+            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.quitButton, key: \UIButton.isEnabled), Game.State.allPlaying + [.paused, .starting]),
 
             
-            // the stage label and score label should be visible as soon as the round is being played, even if paused
-            ToggleBasedOnStatePresenter(gamePlayView.stageLabel, Round.State.allPlaying + [.advancing, .paused]),
-            ToggleBasedOnStatePresenter(gamePlayView.scoreLabel, Round.State.allPlaying + [.advancing, .paused]),
+            // the stage label and score label should be visible as soon as the game is being played, even if paused
+            ToggleBasedOnStatePresenter(gamePlayView.stageLabel, Game.State.allPlaying + [.advancing, .paused]),
+            ToggleBasedOnStatePresenter(gamePlayView.scoreLabel, Game.State.allPlaying + [.advancing, .paused]),
 
-            // the hint UI should be visible unless the round is paused
-            ToggleBasedOnStatePresenter(gamePlayView.hintButton, Round.State.allPlaying + [.advancing]),
-            ToggleBasedOnStatePresenter(gamePlayView.hintTally, Round.State.allPlaying + [.advancing]),
+            // the hint UI should be visible unless the game is paused
+            ToggleBasedOnStatePresenter(gamePlayView.hintButton, Game.State.allPlaying + [.advancing]),
+            ToggleBasedOnStatePresenter(gamePlayView.hintTally, Game.State.allPlaying + [.advancing]),
             
-            // the skip UI should be visible unless the round is paused
-            ToggleBasedOnStatePresenter(gamePlayView.skipButton, Round.State.allPlaying + [.advancing]),
-            ToggleBasedOnStatePresenter(gamePlayView.skipTally, Round.State.allPlaying + [.advancing]),
+            // the skip UI should be visible unless the game is paused
+            ToggleBasedOnStatePresenter(gamePlayView.skipButton, Game.State.allPlaying + [.advancing]),
+            ToggleBasedOnStatePresenter(gamePlayView.skipTally, Game.State.allPlaying + [.advancing]),
  
             // the hint button shouldn't be enabled if there are no hints available
             ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.hintButton, key: \UIButton.isEnabled), [
@@ -228,33 +228,33 @@ class GameViewController: UIViewController {
                 .playing(hasHints: false, hasSkips: false)
             ]),
 
-            // except the play_pause button should be enabled when the round is paused also
-            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.play_pauseButton, key: \UIButton.isEnabled), Round.State.allPlaying + [.paused]),
+            // except the play_pause button should be enabled when the game is paused also
+            ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.play_pauseButton, key: \UIButton.isEnabled), Game.State.allPlaying + [.paused]),
 
-            // the progress views and the statement label should only be visible when the round is being played,
-            // not even when the round is advancing to a new grid
-            ToggleBasedOnStatePresenter(gamePlayView.statementLabel, Round.State.allPlaying),
-            ToggleBasedOnStatePresenter(gamePlayView.stageProgressView, Round.State.allPlaying),
-            ToggleBasedOnStatePresenter(gamePlayView.gameProgressView, Round.State.allPlaying),
+            // the progress views and the statement label should only be visible when the game is being played,
+            // not even when the game is advancing to a new grid
+            ToggleBasedOnStatePresenter(gamePlayView.statementLabel, Game.State.allPlaying),
+            ToggleBasedOnStatePresenter(gamePlayView.stageProgressView, Game.State.allPlaying),
+            ToggleBasedOnStatePresenter(gamePlayView.gameProgressView, Game.State.allPlaying),
             
             // the play button should be selected (showing pause) when the game is paused
             ToggleBasedOnStatePresenter(ToggleableKeyedPresenter(gamePlayView.play_pauseButton, key:\UIButton.image, on:#imageLiteral(resourceName: "play-button"), off:#imageLiteral(resourceName: "pause-button")), [.paused])
         ]
         let statePresenter = RoundStatePresenterGroup(statePresenters)
-        round?.statePresenter = statePresenter
+        game?.statePresenter = statePresenter
         
-        round?.statementPresenter = gamePlayView.statementLabel
-        round?.scorePresenter = ConcreteIntegerPresenter(presenter: gamePlayView.scoreLabel)
-        round?.stagePresenter = ConcreteIntegerPresenter(presenter: gamePlayView.stageLabel)
+        game?.statementPresenter = gamePlayView.statementLabel
+        game?.scorePresenter = ConcreteIntegerPresenter(presenter: gamePlayView.scoreLabel)
+        game?.stagePresenter = ConcreteIntegerPresenter(presenter: gamePlayView.stageLabel)
         
-        round?.scoreAddPresenter = scoreAddAnimator
-        round?.scoreTimeAddPresenter = timeScoreAddAnimator
+        game?.scoreAddPresenter = scoreAddAnimator
+        game?.scoreTimeAddPresenter = timeScoreAddAnimator
 
-        round?.expressionSelector = gamePlayView.expressionChooser
-        round?.expressionSymbolPresenter = gamePlayView.expressionChooser
-        round?.timeRemainingPresenter = gamePlayView.stageProgressView
-        round?.hintCountPresenter = gamePlayView.hintTally
-        round?.skipsCountPresenter = gamePlayView.skipTally
-        round?.gridProgressPresenter = gamePlayView.gameProgressView
+        game?.expressionSelector = gamePlayView.expressionChooser
+        game?.expressionSymbolPresenter = gamePlayView.expressionChooser
+        game?.timeRemainingPresenter = gamePlayView.stageProgressView
+        game?.hintCountPresenter = gamePlayView.hintTally
+        game?.skipsCountPresenter = gamePlayView.skipTally
+        game?.gridProgressPresenter = gamePlayView.gameProgressView
     }
 }

@@ -129,8 +129,8 @@ class GridTests: XCTestCase {
     func testGridDoesNotOffer2CharacterSolutionsToRound() {
         
         // given:
-        let r = Round(gridFactory: SimpleGridFactory())
-        // grid with round as its client
+        let r = Game(gridFactory: SimpleGridFactory())
+        // grid with game as its client
         let specifications = Grid.Specification(size: 5, range: 0...30, operators: [.plus], solutionRange: -30...30, allowsFractionalSolutions: false)
         let sut = """
             1 - 3 + 2
@@ -140,7 +140,7 @@ class GridTests: XCTestCase {
             2 - 3 + 2
 """
         let grid = try! Grid(sut, specifications)
-        let solutions = GridSolver(grid: grid, solutionFilter: Round.shouldAcceptSolution(r)).findSolutions()
+        let solutions = GridSolver(grid: grid, solutionFilter: Game.shouldAcceptSolution(r)).findSolutions()
 
         // since -3 only has 2-step solutions (ie "-3"), r should not have allowed them to be found
         // so there should be no -3 solution

@@ -27,36 +27,36 @@ protocol OptionalStatementPresenter {
 
 // MARK:-
 
-protocol RoundStatePresenter {
-    func present(roundState:Round.State)
+protocol GameStatePresenter {
+    func present(gameState:Game.State)
 }
 
-struct ToggleBasedOnStatePresenter : RoundStatePresenter {
+struct ToggleBasedOnStatePresenter : GameStatePresenter {
     
-    let presentedStates : [Round.State]
+    let presentedStates : [Game.State]
     let toggleable : ToggleablePresenter
     
-    init(_ toggleable:ToggleablePresenter, _ presentedStates:[Round.State]) {
+    init(_ toggleable:ToggleablePresenter, _ presentedStates:[Game.State]) {
         self.toggleable = toggleable
         self.presentedStates = presentedStates
     }
 
-    func present(roundState: Round.State) {
-        toggleable.setIsPresenting(presentedStates.contains(roundState))
+    func present(gameState: Game.State) {
+        toggleable.setIsPresenting(presentedStates.contains(gameState))
     }
 }
 
-struct RoundStatePresenterGroup : RoundStatePresenter {
+struct RoundStatePresenterGroup : GameStatePresenter {
 
-    let presenters : [RoundStatePresenter]
+    let presenters : [GameStatePresenter]
     
-    init(_ presenters:[RoundStatePresenter]) {
+    init(_ presenters:[GameStatePresenter]) {
         self.presenters = presenters
     }
     
-    func present(roundState: Round.State) {
+    func present(gameState: Game.State) {
         presenters.forEach() {
-            $0.present(roundState: roundState)
+            $0.present(gameState: gameState)
         }
     }
 }

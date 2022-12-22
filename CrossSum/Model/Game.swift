@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class Round {
+final class Game {
     
     var grid : Grid?
     var solutions : GridSolutions?
@@ -32,11 +32,11 @@ final class Round {
     }
     
     enum State: Equatable {
-        case starting   // the round is starting up, its begin() method has not been called yet
-        case advancing  // the round is calculating its next grid
-        case playing(hasHints: Bool, hasSkips: Bool)    // the round is presenting a grid that the user is playing
-        case paused     // the round is paused
-        case quitting   // the round is finishing because the user has failed or has hit the quit button
+        case starting   // the game is starting up, its begin() method has not been called yet
+        case advancing  // the game is calculating its next grid
+        case playing(hasHints: Bool, hasSkips: Bool)    // the game is presenting a grid that the user is playing
+        case paused     // the game is paused
+        case quitting   // the game is finishing because the user has failed or has hit the quit button
 
         static var allPlaying: [Self] {
             [
@@ -51,7 +51,7 @@ final class Round {
     }
     var state : State {
         didSet {
-            statePresenter?.present(roundState: state)
+            statePresenter?.present(gameState: state)
         }
     }
     
@@ -96,7 +96,7 @@ final class Round {
     // MARK:-
     
     // NOTE: as of Oct 10, 2018, expressionSymbolPresenter and expressionSelector are the same thing in the iOS app
-    // but they don't tchnically have to be for Round to work
+    // but they don't tchnically have to be for Game to work
     var expressionSymbolPresenter : ExpressionSymbolPresenter?
 
     var expressionSelector : ExpressionSelector? {
@@ -107,7 +107,7 @@ final class Round {
         }
     }
     
-    var statePresenter : RoundStatePresenter?
+    var statePresenter : GameStatePresenter?
     var statementPresenter : OptionalStatementPresenter?
     var scorePresenter : IntegerPresenter?
     var stagePresenter : IntegerPresenter?
@@ -129,7 +129,7 @@ final class Round {
 
 // MARK:- Game Play
 
-extension Round {
+extension Game {
     
     func begin() {
         showNextGrid()
@@ -187,8 +187,8 @@ extension Round {
         
         // give the user all the time he had accumulated by ansering quickly in previous rounds
         // but also give him an extra standard time allotment
-        solutionTime = Round.TimeForEachTargetSolution +
-            ((solutionTime > TimeInterval(0)) ? (solutionTime - Round.TimeForEachTargetSolution) : 0)
+        solutionTime = Game.TimeForEachTargetSolution +
+            ((solutionTime > TimeInterval(0)) ? (solutionTime - Game.TimeForEachTargetSolution) : 0)
         
         stage += 1
         
@@ -232,7 +232,7 @@ extension Round {
     private func updateSolutionTime() {
         
         // reclaim any time that was not spent on this target solution
-        self.solutionTime = Round.TimeForEachTargetSolution +  (self.timeKeeper?.timeRemaining ?? TimeInterval(0))
+        self.solutionTime = Game.TimeForEachTargetSolution +  (self.timeKeeper?.timeRemaining ?? TimeInterval(0))
         
         //but reduce the time slightly with each successive target slution
         self.solutionTime *= 0.99
@@ -273,14 +273,14 @@ extension Round {
         timeKeeper?.stop()
         
         showSolutionOnQuit {
-            NotificationCenter.default.post(name: Round.DidQuit, object: self)
+            NotificationCenter.default.post(name: Game.DidQuit, object: self)
         }
     }
 }
 
 // MARK:- Hints
 
-extension Round {
+extension Game {
     /// Tells the ExpressionSelector to show a selection over the first symbol of ONE OF the possible ways to get the solution, chosen randomly
     func showAHint() {
         guard hints > 0 else { return }
@@ -379,7 +379,7 @@ extension Round {
 
 // MARK:- ExpressionSelector Methods
 
-extension Round {
+extension Game {
     
     func canStartSelection(with string:String?) -> Bool {
         guard !(string?.isEmpty ?? false) else { return false }
@@ -427,7 +427,7 @@ extension Round {
 
 // MARK:- Score
 
-extension Round {
+extension Game {
     
     func score(for statement:Statement) -> Int {
         guard let expression = statement.expression,
@@ -463,7 +463,7 @@ extension Round {
 
 // MARK:- GridSolutionClient
 
-extension Round /*: GridSolverClient*/ {
+extension Game /*: GridSolverClient*/ {
     func shouldAcceptSolution(solution: Rational, in grid:Grid, from start: Grid.Coordinate, to end: Grid.Coordinate) -> Bool {
         
         // don't offer solutions that can only be gotten
