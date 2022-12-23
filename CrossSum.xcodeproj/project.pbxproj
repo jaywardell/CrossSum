@@ -152,6 +152,7 @@
 		7C573FE7216A8C81007C7DF3 /* HighScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
 		7C6C5FE421A1E59E004D5B18 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		7C79F3F62954E6B500EB5AFF /* app store blurb */ = {isa = PBXFileReference; lastKnownFileType = text; path = "app store blurb"; sourceTree = "<group>"; };
+		7C79F404295634A200EB5AFF /* app_store.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = app_store.svg; sourceTree = "<group>"; };
 		7C7A529E217BADA80035A959 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		7C7A52A3217CA9CB0035A959 /* Hermit-light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hermit-light.otf"; sourceTree = "<group>"; };
 		7C7A52A4217CA9CB0035A959 /* Hermit-bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hermit-bold.otf"; sourceTree = "<group>"; };
@@ -414,6 +415,14 @@
 			path = "Data Views";
 			sourceTree = "<group>";
 		};
+		7C79F4032956347D00EB5AFF /* badge */ = {
+			isa = PBXGroup;
+			children = (
+				7C79F404295634A200EB5AFF /* app_store.svg */,
+			);
+			path = badge;
+			sourceTree = "<group>";
+		};
 		7C7A52A2217CA9B80035A959 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,6 +524,7 @@
 		7CCD5A212953EAB2004D13D7 /* promotional */ = {
 			isa = PBXGroup;
 			children = (
+				7C79F4032956347D00EB5AFF /* badge */,
 				7CCD5A222953EAB7004D13D7 /* screenshots */,
 				7C79F3F62954E6B500EB5AFF /* app store blurb */,
 			);
